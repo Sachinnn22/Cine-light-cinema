@@ -2,15 +2,30 @@
     position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 60px;
-    height: 60px;
     background-color: #25D366;
     color: white;
-    font-size: 28px;
-    border-radius: 50%;
+    font-size: 20px;
+    padding: 10px 16px;
+    border-radius: 30px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     z-index: 1000;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.whatsapp-float:hover {
+    background-color: #1ebd5a;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.whatsapp-float i {
+    font-size: 24px;
+}
+
+.whatsapp-text {
+    font-weight: 600;
+    font-size: 16px;
 }
