@@ -1,0 +1,42 @@
+#about h2 {
+    color: #fff;
+}
+
+#about .brand-highlight {
+    background: linear-gradient(45deg, #ff6b6b, #145571, #1e5870, #96ceb4, #feca57);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rainbowShift 4s ease infinite;
+    font-weight: bold;
+}
+
+#about p {
+    line-height: 1.6;
+}
+
+#about h5 {
+    color: #eee;
+    margin-bottom: 0.5rem;
+}
+
+#about i {
+    transition: transform 0.3s ease, color 0.3s ease;
+    cursor: default;
+}
+
+#about i:hover {
+    transform: scale(1.15);
+    color: #feca57 !important;
+}
+
+#about .text-secondary {
+    color: #aaa !important;
+    font-size: 0.9rem;
+}
+
+@keyframes rainbowShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
