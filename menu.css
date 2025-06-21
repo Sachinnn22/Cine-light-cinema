@@ -34,13 +34,6 @@
 .btn-login:hover {
     background-color: darkcyan;
     color: white !important;
-    border-color: darkcyan;
-}
-
-.btn-login:active {
-    background-color: darkcyan;
-    color: white !important;
-    border-color: darkcyan;
 }
 
 .navbar-brand {
