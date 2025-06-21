@@ -36,6 +36,11 @@
     color: white !important;
 }
 
+.btn-login:active {
+    background-color: darkcyan;
+    color: white !important;
+}
+
 .navbar-brand {
     font-weight: 700;
     color: white !important;
