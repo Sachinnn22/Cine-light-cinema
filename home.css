@@ -269,6 +269,106 @@
     margin: 0 auto;
 }
 
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 75px 30px 40px 30px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-badge {
+        font-size: 0.9rem;
+        padding: 12px 20px;
+        margin-bottom: 1.8rem;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    .gradient-text {
+        font-size: 2.5rem;
+    }
+
+    .hero-description {
+        font-size: 1.15rem;
+        max-width: 90%;
+        margin-bottom: 1.8rem;
+        text-align: center;
+    }
+
+    .hero-stats {
+        justify-content: center;
+        gap: 1.8rem;
+    }
+
+    .stat-number {
+        font-size: 1.9rem;
+    }
+
+    .stat-label {
+        font-size: 0.95rem;
+    }
+
+    .hero-visual {
+        height: 350px;
+        margin-top: 2rem;
+    }
+
+    .hero-main-graphic {
+        width: 220px;
+        height: 220px;
+    }
+
+    .graphic-circle.circle-1 {
+        width: 140px;
+        height: 140px;
+    }
+
+    .graphic-circle.circle-2 {
+        width: 180px;
+        height: 180px;
+    }
+
+    .graphic-circle.circle-3 {
+        width: 210px;
+        height: 210px;
+    }
+
+    .graphic-center {
+        width: 90px;
+        height: 90px;
+        font-size: 2.3rem;
+    }
+
+    .floating-card {
+        font-size: 0.85rem;
+        padding: 11px 15px;
+    }
+
+    .card-1 {
+        top: 8%;
+        right: 8%;
+    }
+
+    .card-2 {
+        bottom: 28%;
+        left: 0;
+    }
+
+    .card-3 {
+        top: 38%;
+        right: -6%;
+    }
+
+    .scroll-indicator {
+        bottom: 25px;
+        font-size: 0.9rem;
+    }
+}
+
 @media (max-width: 425px) {
     .hero-section {
         padding: 75px 20px 38px 20px;
