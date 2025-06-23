@@ -19,40 +19,77 @@
 
 <nav class="navbar navbar-dark fixed-top">
     <div class="container-fluid d-flex align-items-center justify-content-between">
-        <a class="navbar-brand brand-highlight" href="#">Digi Marts</a>
-
-        <div class="d-flex align-items-center gap-4">
-            <ul class="navbar-nav flex-row align-items-center gap-3 d-none d-md-flex mb-0">
-                <li class="nav-item">
-                    <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#hero">
-                        <i class="bi bi-house-fill"></i> Home
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#">
-                        <i class="bi bi-gear-fill"></i> Services
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#">
-                        <i class="bi bi-cart-check-fill"></i> Resales
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#">
-                        <i class="bi bi-mortarboard-fill"></i> Courses
-                    </a>
-                </li>
-            </ul>
-
-            <a href="javascript:void(0)"
-               class="btn btn-login px-3 py-1 fw-semibold d-flex align-items-center gap-3 ms-4 lgin"
-               data-bs-toggle="modal"
-               data-bs-target="#loginModal">
-                <i class="bi bi-box-arrow-in-right"></i> Login
-            </a>
-
-        </div>
+        <a class="navbar-brand brand-highlight me-3" href="#">Digi Marts</a>
+        <ul class="navbar-nav flex-row align-items-center gap-3 mb-0 d-none d-md-flex">
+            <li class="nav-item">
+                <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#hero">
+                    <i class="bi bi-house-fill"></i> Home
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#">
+                    <i class="bi bi-gear-fill"></i> Services
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#">
+                    <i class="bi bi-cart-check-fill"></i> Resales
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#">
+                    <i class="bi bi-mortarboard-fill"></i> Courses
+                </a>
+            </li>
+        </ul>
+        <a href="javascript:void(0)"
+           class="btn btn-login px-3 py-1 fw-semibold d-none d-md-flex align-items-center gap-2 lgin"
+           data-bs-toggle="modal"
+           data-bs-target="#loginModal">
+            <i class="bi bi-box-arrow-in-right"></i> Login
+        </a>
+        <button
+                class="navbar-toggler d-md-none border-0"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarMenu"
+                aria-controls="navbarMenu"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+    <div class="collapse d-md-none" id="navbarMenu">
+        <ul class="navbar-nav px-3 pt-3 pb-2">
+            <li class="nav-item">
+                <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#hero">
+                    <i class="bi bi-house-fill"></i> Home
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#">
+                    <i class="bi bi-gear-fill"></i> Services
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#">
+                    <i class="bi bi-cart-check-fill"></i> Resales
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#">
+                    <i class="bi bi-mortarboard-fill"></i> Courses
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-login px-3 py-2 fw-semibold d-flex align-items-center gap-2 mt-3"
+                   data-bs-toggle="modal"
+                   data-bs-target="#loginModal">
+                    <i class="bi bi-box-arrow-in-right"></i> Login
+                </a>
+            </li>
+        </ul>
     </div>
 </nav>
 
