@@ -379,104 +379,32 @@
     }
 }
 
-
 @media (max-width: 768px) {
-    .hero-section {
-        padding: 75px 30px 40px 30px;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .hero-badge {
-        font-size: 0.9rem;
-        padding: 12px 20px;
-        margin-bottom: 1.8rem;
-    }
-
-    .hero-title {
-        font-size: 2.5rem;
-        text-align: center;
-        margin-bottom: 1rem;
-    }
-
-    .gradient-text {
-        font-size: 2.5rem;
-    }
-
-    .hero-description {
-        font-size: 1.15rem;
-        max-width: 90%;
-        margin-bottom: 1.8rem;
-        text-align: center;
-    }
-
-    .hero-stats {
-        justify-content: center;
-        gap: 1.8rem;
-    }
-
-    .stat-number {
-        font-size: 1.9rem;
-    }
-
-    .stat-label {
-        font-size: 0.95rem;
-    }
-
-    .hero-visual {
-        height: 350px;
-        margin-top: 2rem;
-    }
-
-    .hero-main-graphic {
-        width: 220px;
-        height: 220px;
-    }
-
-    .graphic-circle.circle-1 {
-        width: 140px;
-        height: 140px;
-    }
-
-    .graphic-circle.circle-2 {
-        width: 180px;
-        height: 180px;
-    }
-
-    .graphic-circle.circle-3 {
-        width: 210px;
-        height: 210px;
-    }
-
-    .graphic-center {
-        width: 90px;
-        height: 90px;
-        font-size: 2.3rem;
-    }
-
     .floating-card {
         font-size: 0.85rem;
         padding: 11px 15px;
     }
 
+    .hero-badge{
+        display: none;
+    }
+
     .card-1 {
-        top: 8%;
-        right: 8%;
+        top: 10%;
+        right: 10%;
+        animation: float1 6s ease-in-out infinite;
     }
 
     .card-2 {
-        bottom: 28%;
-        left: 0;
+        bottom: 25%;
+        left: 10%;
+        animation: float2 8s ease-in-out infinite;
     }
 
     .card-3 {
-        top: 38%;
-        right: -6%;
-    }
-
-    .scroll-indicator {
-        bottom: 25px;
-        font-size: 0.9rem;
+        top: 40%;
+        right: 5%;
+        animation: float3 7s ease-in-out infinite;
     }
 }
 
@@ -489,9 +417,7 @@
     }
 
     .hero-badge {
-        font-size: 0.85rem;
-        padding: 11px 18px;
-        margin-bottom: 1.8rem;
+        display: none;
     }
 
     .hero-title {
@@ -555,6 +481,21 @@
         padding: 11px 15px;
     }
 
+    .card-1 {
+        top: 12%;
+        right: 6%;
+    }
+
+    .card-2 {
+        bottom: 20%;
+        left: -1%;
+    }
+
+    .card-3 {
+        top: 35%;
+        right: -12%;
+    }
+
     .scroll-indicator {
         bottom: 28px;
         font-size: 0.9rem;
@@ -570,9 +511,7 @@
     }
 
     .hero-badge {
-        font-size: 0.8rem;
-        padding: 10px 18px;
-        margin-bottom: 1.7rem;
+        display: none;
     }
 
     .hero-title {
@@ -636,11 +575,27 @@
         padding: 10px 14px;
     }
 
+    .card-1 {
+        top: 8%;
+        right: 12%;
+    }
+
+    .card-2 {
+        bottom: 20%;
+        left: 4%;
+    }
+
+    .card-3 {
+        top: 31%;
+        right: -10%;
+    }
+
     .scroll-indicator {
         bottom: 25px;
         font-size: 0.85rem;
     }
 }
+
 
 @media (max-width: 320px) {
     .hero-section {
@@ -654,12 +609,7 @@
     }
 
     .hero-badge {
-        font-size: 0.75rem;
-        padding: 8px 16px;
-        margin-top: 20px;
-        margin-bottom: 1.5rem;
-        position: relative;
-        z-index: 3;
+        display: none;
     }
 
     .hero-title {
@@ -732,12 +682,12 @@
     }
 
     .card-2 {
-        bottom: 25%;
+        bottom: 17%;
         left: 0;
     }
 
     .card-3 {
-        top: 35%;
+        top: 28%;
         right: -10%;
     }
 
