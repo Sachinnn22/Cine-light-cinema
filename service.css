@@ -72,3 +72,60 @@
     margin-bottom: 16px;
     min-height: 60px;
 }
+
+@media (max-width: 768px) {
+    .service-section {
+        padding: 60px 0;
+    }
+
+    .service-card {
+        padding: 20px !important;
+        border-radius: 12px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        height: 100%;
+    }
+
+    .service-image {
+        margin-bottom: 16px;
+    }
+
+    .service-image img {
+        height: 180px !important;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .service-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.4rem;
+        margin: 0 auto 12px auto;
+    }
+
+    .service-content h5 {
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+    }
+
+    .service-content p {
+        font-size: 0.9rem;
+        min-height: auto;
+        margin-bottom: 0;
+    }
+
+    .col-md-4 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+    .row.g-4 > .col-md-4:nth-child(3) {
+        flex: 0 0 100%;
+        max-width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .row.g-4 {
+        row-gap: 24px;
+    }
+}
