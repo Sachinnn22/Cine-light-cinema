@@ -62,3 +62,33 @@
     }
 }
 
+@media (max-width: 375px) {
+    .whatsapp-float{
+        display: none;
+    }
+
+    .whatsapp-float2{
+        display: block;
+    }
+}
+
+@media (max-width: 4250px) {
+    .whatsapp-float{
+        display: none;
+    }
+
+    .whatsapp-float2{
+        display: block;
+    }
+}
+
+@media (max-width: 768px) {
+    .whatsapp-float{
+        display: none;
+    }
+
+    .whatsapp-float2{
+        display: block;
+    }
+}
+
