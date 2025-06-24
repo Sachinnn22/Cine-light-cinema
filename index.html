@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="../styles/contact.css">
     <link rel="stylesheet" href="../service.css">
     <link rel="stylesheet" href="../styles/about.css">
+    <link rel="stylesheet" href="../styles/course.css">
 </head>
 
 <body>
@@ -242,71 +243,119 @@
     </div>
 </section>
 
-<section id="courses" class="py-5" style="background-color: #f9f9f9;">
+<section id="courses" class="py-5 bg-light">
     <div class="container">
-        <div class="text-center mb-5">
-            <h2 class="fw-bold text-dark">Our Courses</h2>
-            <p class="text-muted fs-5">Explore top-quality digital courses to boost your skills and career.</p>
+        <div class="text-center mb-4">
+            <h2 class="fw-bold text-dark" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Our Courses</h2>
+            <p class="text-muted fs-5" style="max-width: 600px; margin: 0 auto 0.5rem;">
+                Explore our expertly curated courses to grow your skills and career.
+            </p>
         </div>
 
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="card h-100 shadow-sm border-0 rounded-4">
-                    <img src="../assests/images/course1.jpg" class="card-img-top rounded-top-4" alt="Course 1">
-                    <div class="card-body text-center">
-                        <h5 class="card-title fw-semibold text-dark">Web Development Mastery</h5>
-                        <p class="text-success fw-bold fs-5">$29.99</p>
+        <div class="carousel-header d-flex justify-content-between align-items-center mb-2">
+            <button id="prevBtn" aria-label="Previous courses" class="arrow-btn">&#10094;</button>
+            <button id="nextBtn" aria-label="Next courses" class="arrow-btn">&#10095;</button>
+        </div>
+
+        <div id="carousel" class="d-flex overflow-hidden" style="gap: 1.5rem; scroll-behavior: smooth;">
+            <div class="course-card-custom">
+                <div class="course-image-wrapper">
+                    <img src="../assests/images/WebDevelopmentImage.jpeg" alt="Designing AWS Solutions" class="course-image" />
+                </div>
+                <div class="course-content">
+                    <h6>Designing AWS Solutions</h6>
+                    <div class="rating">
+                        <span class="rating-score">5.0</span>
+                        <span class="stars">★★★★★</span>
+                        <span class="review-count">(662)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">LKR 9,600</span>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-4">
-                <div class="card h-100 shadow-sm border-0 rounded-4">
-                    <img src="../assests/images/course2.jpg" class="card-img-top rounded-top-4" alt="Course 2">
-                    <div class="card-body text-center">
-                        <h5 class="card-title fw-semibold text-dark">Mastering Python Programming</h5>
-                        <p class="text-success fw-bold fs-5">$24.99</p>
+            <div class="course-card-custom">
+                <div class="course-image-wrapper">
+                    <img src="https://i.imgur.com/HxKywC1.png" alt="Fullstack Web Dev" class="course-image" />
+                </div>
+                <div class="course-content">
+                    <h6>Fullstack Web Dev</h6>
+                    <div class="rating">
+                        <span class="rating-score">4.9</span>
+                        <span class="stars">★★★★★</span>
+                        <span class="review-count">(522)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">LKR 6,800</span>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-4">
-                <div class="card h-100 shadow-sm border-0 rounded-4">
-                    <img src="../assests/images/course3.jpg" class="card-img-top rounded-top-4" alt="Course 3">
-                    <div class="card-body text-center">
-                        <h5 class="card-title fw-semibold text-dark">Digital Marketing Pro</h5>
-                        <p class="text-success fw-bold fs-5">$19.99</p>
+            <div class="course-card-custom">
+                <div class="course-image-wrapper">
+                    <img src="https://i.imgur.com/GmCM1Ou.png" alt="Python Mastery" class="course-image" />
+                </div>
+                <div class="course-content">
+                    <h6>Python Mastery</h6>
+                    <div class="rating">
+                        <span class="rating-score">4.8</span>
+                        <span class="stars">★★★★★</span>
+                        <span class="review-count">(431)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">LKR 7,200</span>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-4">
-                <div class="card h-100 shadow-sm border-0 rounded-4">
-                    <img src="../assests/images/course4.jpg" class="card-img-top rounded-top-4" alt="Course 4">
-                    <div class="card-body text-center">
-                        <h5 class="card-title fw-semibold text-dark">UI/UX Design Essentials</h5>
-                        <p class="text-success fw-bold fs-5">$34.99</p>
+            <div class="course-card-custom">
+                <div class="course-image-wrapper">
+                    <img src="https://i.imgur.com/hue6LOw.png" alt="UI/UX Design Pro" class="course-image" />
+                </div>
+                <div class="course-content">
+                    <h6>UI/UX Design Pro</h6>
+                    <div class="rating">
+                        <span class="rating-score">4.7</span>
+                        <span class="stars">★★★★☆</span>
+                        <span class="review-count">(389)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">LKR 5,900</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Course 5 -->
-            <div class="col-md-4">
-                <div class="card h-100 shadow-sm border-0 rounded-4">
-                    <img src="../assests/images/course5.jpg" class="card-img-top rounded-top-4" alt="Course 5">
-                    <div class="card-body text-center">
-                        <h5 class="card-title fw-semibold text-dark">Graphic Design Basics</h5>
-                        <p class="text-success fw-bold fs-5">$14.99</p>
+            <div class="course-card-custom">
+                <div class="course-image-wrapper">
+                    <img src="https://i.imgur.com/8zfqvRo.png" alt="Graphic Design Basic" class="course-image" />
+                </div>
+                <div class="course-content">
+                    <h6>Graphic Design Basic</h6>
+                    <div class="rating">
+                        <span class="rating-score">4.6</span>
+                        <span class="stars">★★★★☆</span>
+                        <span class="review-count">(288)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">LKR 4,500</span>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-4">
-                <div class="card h-100 shadow-sm border-0 rounded-4">
-                    <img src="../assests/images/course6.jpg" class="card-img-top rounded-top-4" alt="Course 6">
-                    <div class="card-body text-center">
-                        <h5 class="card-title fw-semibold text-dark">Cybersecurity Fundamentals</h5>
-                        <p class="text-success fw-bold fs-5">$39.99</p>
+            <div class="course-card-custom">
+                <div class="course-image-wrapper">
+                    <img src="https://i.imgur.com/2uCKQxO.png" alt="Cybersecurity Essentials" class="course-image" />
+                </div>
+                <div class="course-content">
+                    <h6>Cybersecurity Essentials</h6>
+                    <div class="rating">
+                        <span class="rating-score">4.9</span>
+                        <span class="stars">★★★★★</span>
+                        <span class="review-count">(512)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">LKR 8,000</span>
                     </div>
                 </div>
             </div>
@@ -369,6 +418,30 @@
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
     AOS.init();
+</script>
+
+<script>
+    const carousel = document.getElementById('carousel');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    const cardStyle = carousel.querySelector('.course-card-custom').getBoundingClientRect();
+    const cardWidth = cardStyle.width + 16; // width + gap(1rem = 16px approx)
+    let scrollPosition = 0;
+
+    prevBtn.addEventListener('click', () => {
+        scrollPosition -= cardWidth * 3; // move 3 cards left
+        if (scrollPosition < 0) scrollPosition = 0;
+        carousel.scrollTo({ left: scrollPosition, behavior: 'smooth' });
+    });
+
+    nextBtn.addEventListener('click', () => {
+        scrollPosition += cardWidth * 3; // move 3 cards right
+        const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+        if (scrollPosition > maxScroll) scrollPosition = maxScroll;
+        carousel.scrollTo({ left: scrollPosition, behavior: 'smooth' });
+    });
+
 </script>
 
 </body>
