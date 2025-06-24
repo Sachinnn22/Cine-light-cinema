@@ -260,7 +260,7 @@
             <button id="nextBtn" aria-label="Next courses" class="arrow-btn">&#10095;</button>
         </div>
 
-        <div id="carousel" class="d-flex overflow-hidden" style="gap: 1.5rem; scroll-behavior: smooth;">
+        <div id="carousel" class="d-flex overflow-hidden" style="scroll-behavior: smooth;">
             <div class="course-card-custom">
                 <div class="course-image-wrapper">
                     <img src="../assests/images/WebDevelopmentImage.jpeg" alt="Designing AWS Solutions" class="course-image" />
@@ -542,24 +542,30 @@
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
 
-    const cardStyle = carousel.querySelector('.course-card-custom').getBoundingClientRect();
-    const cardWidth = cardStyle.width + 16; // width + gap(1rem = 16px approx)
+    function getCardWidth() {
+        const card = carousel.querySelector('.course-card-custom');
+        if (!card) return 0;
+        const style = window.getComputedStyle(card);
+        const marginRight = parseFloat(style.marginRight || '24'); // fallback for gap
+        return card.offsetWidth + marginRight;
+    }
+
     let scrollPosition = 0;
 
     prevBtn.addEventListener('click', () => {
-        scrollPosition -= cardWidth * 3; // move 3 cards left
+        scrollPosition -= getCardWidth();
         if (scrollPosition < 0) scrollPosition = 0;
         carousel.scrollTo({ left: scrollPosition, behavior: 'smooth' });
     });
 
     nextBtn.addEventListener('click', () => {
-        scrollPosition += cardWidth * 3; // move 3 cards right
+        scrollPosition += getCardWidth();
         const maxScroll = carousel.scrollWidth - carousel.clientWidth;
         if (scrollPosition > maxScroll) scrollPosition = maxScroll;
         carousel.scrollTo({ left: scrollPosition, behavior: 'smooth' });
     });
-
 </script>
+
 
 </body>
 </html>
