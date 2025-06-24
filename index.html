@@ -75,7 +75,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#">
+                <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#service">
                     <i class="bi bi-gear-fill"></i> Services
                 </a>
             </li>
@@ -479,7 +479,6 @@
     </div>
 </section>
 
-
 <section id="about" class="py-5" style="background-color: #101820; color: #eee;">
     <div class="container">
         <div class="text-center mb-5">
@@ -538,6 +537,20 @@
 </script>
 
 <script>
+    const navbarCollapse = document.getElementById('navbarMenu');
+    const navLinks = navbarCollapse.querySelectorAll('a.nav-link');
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            if (navbarCollapse.classList.contains('show')) {
+                setTimeout(() => {
+                    const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+                    if (bsCollapse) bsCollapse.hide();
+                }, 100);
+            }
+        });
+    });
+
     const carousel = document.getElementById('carousel');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
