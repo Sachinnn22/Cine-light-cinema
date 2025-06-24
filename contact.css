@@ -72,7 +72,7 @@
     }
 }
 
-@media (max-width: 4250px) {
+@media (max-width: 425px) {
     .whatsapp-float{
         display: none;
     }
