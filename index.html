@@ -559,7 +559,7 @@
         const card = carousel.querySelector('.course-card-custom');
         if (!card) return 0;
         const style = window.getComputedStyle(card);
-        const marginRight = parseFloat(style.marginRight || '24'); // fallback for gap
+        const marginRight = parseFloat(style.marginRight || '24');
         return card.offsetWidth + marginRight;
     }
 
@@ -578,7 +578,6 @@
         carousel.scrollTo({ left: scrollPosition, behavior: 'smooth' });
     });
 </script>
-
 
 </body>
 </html>
