@@ -9,9 +9,8 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <style>
         html, body {
-            overflow: hidden;
             margin: 0;
-            padding: 2rem;
+            padding: 1rem;
             background: #e8f0ff;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
@@ -34,24 +33,21 @@
             transform: scale(1.02);
         }
         .course-title {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 700;
             color: #0d47a1;
-            text-align: center;
             margin-bottom: 0.4rem;
         }
         .price {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 600;
             color: #007bff;
-            text-align: center;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.5rem;
         }
         .rating {
             font-size: 1rem;
             color: #f1c40f;
-            text-align: center;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1rem;
         }
         .buy-btn {
             background-color: #007bff;
@@ -65,6 +61,7 @@
             transition: background-color 0.3s ease;
             width: 100%;
             max-width: 250px;
+            margin: auto;
         }
         .buy-btn:hover {
             background-color: #0056b3;
@@ -74,6 +71,12 @@
             height: 100%;
             background: #1565c0;
             border-radius: 2px;
+        }
+        .hr-divider {
+            height: 2px;
+            background: #1565c0;
+            border-radius: 2px;
+            margin: 2rem 0;
         }
         .right-side h2 {
             font-size: 2rem;
@@ -97,25 +100,49 @@
         .back-btn:hover {
             color: #004ba0;
         }
+
+        @media (max-width: 425px) {
+            .right-side h2 {
+                text-align: center;
+                font-size: 1.6rem;
+                margin-top: -1rem;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .right-side h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .right-side h2 {
+                font-size: 1.4rem;
+            }
+        }
+
+
     </style>
 </head>
 <body>
 
 <div class="course-container" data-aos="slide-down" data-aos-duration="1000">
     <div class="row">
-        <div class="col-12 col-md-6 left-side text-center mb-4 mb-md-0">
+        <div class="col-12 col-md-5 left-side text-center mb-4 mb-md-0">
             <img src="../assests/images/WebDevelopmentImage.jpeg" alt="Web Design Course Image" />
             <div class="course-title">Web Design Mastery</div>
             <div class="price">LKR 9,600</div>
             <div class="rating">★★★★★ (662 reviews)</div>
-            <button class="buy-btn mt-2">Buy Now</button>
+            <button class="buy-btn mt-3">Buy Now</button>
         </div>
+
+        <div class="d-block d-md-none hr-divider"></div>
 
         <div class="col-md-1 d-none d-md-flex align-items-center justify-content-center">
             <div class="vr"></div>
         </div>
 
-        <div class="col-12 col-md-6 right-side">
+        <div class="col-12 col-md-6 right-side mt-3 mt-md-0">
             <h2>Web Design Mastery</h2>
             <p>
                 Master the art of building beautiful, responsive websites using HTML, CSS, Bootstrap, and modern web tools.
