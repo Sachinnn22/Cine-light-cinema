@@ -10,7 +10,7 @@
     <style>
         html, body {
             margin: 0;
-            padding: 1rem;
+            padding: 1.5rem;
             background: #e8f0ff;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
@@ -21,6 +21,14 @@
             border-radius: 20px;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.07);
             padding: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            gap: 2rem;
+        }
+        .left-side, .right-side {
+            flex: 1 1 45%;
+            box-sizing: border-box;
         }
         .left-side img {
             width: 100%;
@@ -37,17 +45,20 @@
             font-weight: 700;
             color: #0d47a1;
             margin-bottom: 0.4rem;
+            text-align: center;
         }
         .price {
             font-size: 1.3rem;
             font-weight: 600;
             color: #007bff;
             margin-bottom: 0.5rem;
+            text-align: center;
         }
         .rating {
             font-size: 1rem;
             color: #f1c40f;
             margin-bottom: 1rem;
+            text-align: center;
         }
         .buy-btn {
             background-color: #007bff;
@@ -62,21 +73,29 @@
             width: 100%;
             max-width: 250px;
             margin: auto;
+            display: block;
         }
         .buy-btn:hover {
             background-color: #0056b3;
         }
-        .vr {
-            width: 4px;
-            height: 100%;
+        .divider-line {
             background: #1565c0;
             border-radius: 2px;
+            flex-shrink: 0;
         }
-        .hr-divider {
-            height: 2px;
-            background: #1565c0;
+        .divider-line.vertical {
+            width: 4px;
+            height: auto;
+            min-height: 300px;
+            margin: 0 1rem;
+            align-self: stretch;
+        }
+        .divider-line.horizontal {
+            height: 4px;
+            width: 100%;
+            margin: 1rem 0;
+            display: none;
             border-radius: 2px;
-            margin: 2rem 0;
         }
         .right-side h2 {
             font-size: 2rem;
@@ -100,66 +119,72 @@
         .back-btn:hover {
             color: #004ba0;
         }
-
-        @media (max-width: 425px) {
+        @media (max-width: 768px) {
+            .course-container {
+                flex-direction: column;
+            }
+            .left-side, .right-side {
+                flex: 1 1 100%;
+            }
+            .divider-line.vertical {
+                display: none;
+            }
+            .divider-line.horizontal {
+                display: block;
+            }
             .right-side h2 {
                 text-align: center;
+            }
+        }
+        @media (max-width: 425px) {
+            .right-side h2 {
                 font-size: 1.6rem;
                 margin-top: -1rem;
             }
         }
-
         @media (max-width: 375px) {
             .right-side h2 {
                 font-size: 1.5rem;
             }
         }
-
         @media (max-width: 320px) {
             .right-side h2 {
                 font-size: 1.4rem;
             }
         }
-
-
     </style>
 </head>
 <body>
 
 <div class="course-container" data-aos="slide-down" data-aos-duration="1000">
-    <div class="row">
-        <div class="col-12 col-md-5 left-side text-center mb-4 mb-md-0">
-            <img src="../assests/images/WebDevelopmentImage.jpeg" alt="Web Design Course Image" />
-            <div class="course-title">Web Design Mastery</div>
-            <div class="price">LKR 9,600</div>
-            <div class="rating">★★★★★ (662 reviews)</div>
-            <button class="buy-btn mt-3">Buy Now</button>
-        </div>
+    <div class="left-side">
+        <img src="../assests/images/WebDevelopmentImage.jpeg" alt="Web Design Course Image" />
+        <div class="course-title">Web Design Mastery</div>
+        <div class="price">LKR 9,600</div>
+        <div class="rating">★★★★★ (662 reviews)</div>
+        <button class="buy-btn mt-3">Buy Now</button>
+    </div>
 
-        <div class="d-block d-md-none hr-divider"></div>
+    <div class="divider-line vertical"></div>
+    <div class="divider-line horizontal"></div>
 
-        <div class="col-md-1 d-none d-md-flex align-items-center justify-content-center">
-            <div class="vr"></div>
-        </div>
-
-        <div class="col-12 col-md-6 right-side mt-3 mt-md-0">
-            <h2>Web Design Mastery</h2>
-            <p>
-                Master the art of building beautiful, responsive websites using HTML, CSS, Bootstrap, and modern web tools.
-                This course is ideal for both beginners and professionals aiming to sharpen their web design skills.
-            </p>
-            <ul>
-                <li>🧩 Learn HTML5, CSS3, and Bootstrap 5</li>
-                <li>📱 Build mobile-first layouts with Flexbox and Grid</li>
-                <li>🎨 Apply real-world UI/UX design principles</li>
-                <li>🛠️ Hands-on projects: portfolio, landing and product page</li>
-                <li>🏆 Certificate of completion included</li>
-            </ul>
-            <p>
-                By the end of this course, you'll have a solid portfolio and the confidence to design sleek, responsive websites from scratch.
-            </p>
-            <a href="index.html#courses" class="back-btn"><i class="bi bi-arrow-left-circle"></i> Back to Courses</a>
-        </div>
+    <div class="right-side">
+        <h2>Web Design Mastery</h2>
+        <p>
+            Master the art of building beautiful, responsive websites using HTML, CSS, Bootstrap, and modern web tools.
+            This course is ideal for both beginners and professionals aiming to sharpen their web design skills.
+        </p>
+        <ul>
+            <li>🧩 Learn HTML5, CSS3, and Bootstrap 5</li>
+            <li>📱 Build mobile-first layouts with Flexbox and Grid</li>
+            <li>🎨 Apply real-world UI/UX design principles</li>
+            <li>🛠️ Hands-on projects: portfolio, landing and product page</li>
+            <li>🏆 Certificate of completion included</li>
+        </ul>
+        <p>
+            By the end of this course, you'll have a solid portfolio and the confidence to design sleek, responsive websites from scratch.
+        </p>
+        <a href="index.html#courses" class="back-btn"><i class="bi bi-arrow-left-circle"></i> Back to Courses</a>
     </div>
 </div>
 
