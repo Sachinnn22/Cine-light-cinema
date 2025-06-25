@@ -12,11 +12,10 @@
             overflow: hidden;
             margin: 0;
             padding: 0;
-            background: linear-gradient(to bottom, #e8f0ff, #ffffff);
+            background: #e8f0ff;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             padding: 1rem 1rem;
         }
-
         .course-details {
             max-width: 1200px;
             margin: auto;
@@ -28,7 +27,6 @@
             padding: 1rem;
             flex-wrap: nowrap;
         }
-
         .left-side {
             flex: 0 0 45%;
             display: flex;
@@ -36,7 +34,6 @@
             align-items: center;
             padding: 1rem;
         }
-
         .left-side img {
             width: 100%;
             border-radius: 15px;
@@ -44,19 +41,16 @@
             margin-bottom: 1.2rem;
             transition: transform 0.3s ease;
         }
-
         .left-side img:hover {
             transform: scale(1.02);
         }
-
         .course-title {
             font-size: 1.5rem;
             font-weight: 700;
             color: #0d47a1;
             text-align: center;
-            margin-bottom: 0.6rem;
+            margin-bottom: 0.4rem;
         }
-
         .price {
             font-size: 1.2rem;
             font-weight: 600;
@@ -64,38 +58,50 @@
             text-align: center;
             margin-bottom: 0.8rem;
         }
-
         .rating {
             font-size: 1rem;
             color: #f1c40f;
             text-align: center;
+            margin-bottom: 1.2rem;
         }
-
+        .buy-btn {
+            background-color: #007bff;
+            border: none;
+            color: white;
+            font-weight: 600;
+            padding: 0.6rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            width: 100%;
+            max-width: 250px;
+        }
+        .buy-btn:hover {
+            background-color: #0056b3;
+        }
         .divider {
             width: 4px;
-            background: linear-gradient(to bottom, #1565c0, #64b5f6);
+            background: #145571;
             border-radius: 2px;
         }
-
         .right-side {
             flex: 1;
             padding: 1rem 2rem;
         }
-
         .right-side h2 {
             font-size: 2rem;
             font-weight: 700;
             color: #0d47a1;
             margin-bottom: 1rem;
         }
-
         .right-side p,
         .right-side ul {
             font-size: 1.05rem;
             color: #333;
             line-height: 1.8;
         }
-
         .back-btn {
             display: inline-block;
             margin-top: 2rem;
@@ -103,28 +109,8 @@
             color: #1565c0;
             text-decoration: none;
         }
-
         .back-btn:hover {
             color: #004ba0;
-        }
-
-        @media (max-width: 991px) {
-            .course-details {
-                flex-direction: column;
-            }
-
-            .divider {
-                display: none;
-            }
-
-            .left-side,
-            .right-side {
-                flex: 100%;
-            }
-
-            .right-side {
-                padding: 2rem 1rem;
-            }
         }
 
     </style>
@@ -137,6 +123,7 @@
         <div class="course-title">Web Design Mastery</div>
         <div class="price">LKR 9,600</div>
         <div class="rating">★★★★★ (662 reviews)</div>
+        <button class="buy-btn">Buy Now</button>
     </div>
 
     <div class="divider d-none d-lg-block"></div>
@@ -151,7 +138,7 @@
             <li>🧩 Learn HTML5, CSS3, and Bootstrap 5</li>
             <li>📱 Build mobile-first layouts with Flexbox and Grid</li>
             <li>🎨 Apply real-world UI/UX design principles</li>
-            <li>🛠️ Hands-on projects: portfolio, product page, and landing page</li>
+            <li>🛠️ Hands-on projects: portfolio , landing and product page</li>
             <li>🏆 Certificate of completion included</li>
         </ul>
         <p>
