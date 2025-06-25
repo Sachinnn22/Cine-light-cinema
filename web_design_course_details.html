@@ -15,7 +15,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         .course-container {
-            max-width: 1200px;
+            max-width: 1440px;
             margin: auto;
             background: #fff;
             border-radius: 20px;
@@ -23,7 +23,6 @@
             padding: 2rem;
             display: flex;
             gap: 2rem;
-            flex-wrap: nowrap;
             flex-direction: column;
             align-items: flex-start;
         }
@@ -120,6 +119,7 @@
         .back-btn:hover {
             color: #004ba0;
         }
+
         @media (min-width: 1024px) {
             .course-container {
                 flex-direction: row;
@@ -135,6 +135,7 @@
                 display: none;
             }
         }
+
         @media (max-width: 1023.98px) {
             .course-container {
                 flex-direction: column;
@@ -151,6 +152,32 @@
             }
             .right-side h2 {
                 text-align: center;
+            }
+        }
+
+        @media (min-width: 1440px) {
+            .course-container {
+                padding: 3rem;
+            }
+            .course-title {
+                font-size: 2rem;
+            }
+            .price {
+                font-size: 1.6rem;
+            }
+            .rating {
+                font-size: 1.2rem;
+            }
+            .buy-btn {
+                font-size: 1.2rem;
+                padding: 0.8rem 2rem;
+            }
+            .right-side h2 {
+                font-size: 2.4rem;
+            }
+            .right-side p,
+            .right-side ul {
+                font-size: 1.2rem;
             }
         }
     </style>
