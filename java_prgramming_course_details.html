@@ -9,6 +9,221 @@
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <style>
 
+    html, body {
+      margin: 0;
+      padding: 1.5rem;
+      background: #e8f0ff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .course-container {
+      max-width: 1440px;
+      margin: auto;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.07);
+      padding: 2rem;
+      display: flex;
+      gap: 2rem;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .left-side, .right-side {
+      flex: 1 1 100%;
+      box-sizing: border-box;
+    }
+    .left-side img {
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+      margin-bottom: 1.2rem;
+      transition: transform 0.3s ease;
+    }
+    .left-side img:hover {
+      transform: scale(1.02);
+    }
+    .course-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #0d47a1;
+      margin-bottom: 0.4rem;
+      text-align: center;
+    }
+    .price {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #007bff;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+    .rating {
+      font-size: 1rem;
+      color: #f1c40f;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    .buy-btn {
+      background-color: #007bff;
+      border: none;
+      color: white;
+      font-weight: 600;
+      padding: 0.6rem 1.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+      width: 100%;
+      max-width: 250px;
+      margin: auto;
+      display: block;
+    }
+    .buy-btn:hover {
+      background-color: #0056b3;
+    }
+    .divider-line {
+      background: #1565c0;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .divider-line.vertical {
+      width: 4px;
+      min-height: 300px;
+      margin: 0 1rem;
+      align-self: stretch;
+      display: none;
+    }
+    .divider-line.horizontal {
+      height: 4px;
+      width: 100%;
+      margin: 1rem 0;
+      display: block;
+      border-radius: 2px;
+    }
+    .right-side h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #0d47a1;
+      margin-bottom: 1rem;
+    }
+    .right-side p,
+    .right-side ul {
+      font-size: 1.05rem;
+      color: #333;
+      line-height: 1.8;
+    }
+    .back-btn {
+      display: inline-block;
+      margin-top: 2rem;
+      font-weight: 600;
+      color: #1565c0;
+      text-decoration: none;
+    }
+    .back-btn:hover {
+      color: #004ba0;
+    }
+
+    @media (max-width: 1023.98px) {
+      .course-container {
+        flex-direction: column;
+      }
+      .left-side, .right-side {
+        flex: 1 1 100%;
+        min-width: auto;
+      }
+      .divider-line.vertical {
+        display: none;
+      }
+      .divider-line.horizontal {
+        display: block;
+      }
+      .right-side h2 {
+        text-align: center;
+      }
+    }
+
+    @media (min-width: 1440px) {
+      .course-container {
+        padding: 3rem;
+      }
+      .course-title {
+        font-size: 2rem;
+      }
+      .price {
+        font-size: 1.6rem;
+      }
+      .rating {
+        font-size: 1.2rem;
+      }
+      .buy-btn {
+        font-size: 1.2rem;
+        padding: 0.8rem 2rem;
+      }
+      .right-side h2 {
+        font-size: 2.4rem;
+      }
+      .right-side p,
+      .right-side ul {
+        font-size: 1.2rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .course-container {
+        flex-direction: row;
+      }
+      .left-side, .right-side {
+        flex: 1 1 45%;
+        min-width: 300px;
+      }
+      .divider-line.vertical {
+        display: block;
+      }
+      .divider-line.horizontal {
+        display: none;
+      }
+    }
+
+    @media (min-width: 768px) and (max-width: 1023.98px) {
+      .course-container {
+        padding: 2.5rem;
+        gap: 2rem;
+        align-items: center;
+      }
+      .left-side, .right-side {
+        width: 100%;
+        max-width: 800px;
+      }
+      .left-side img {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+        max-height: none;
+        margin-bottom: 2rem;
+        object-fit: contain;
+      }
+      .course-title {
+        font-size: 2.2rem;
+      }
+      .price {
+        font-size: 1.8rem;
+      }
+      .rating {
+        font-size: 1.3rem;
+      }
+      .buy-btn {
+        font-size: 1.2rem;
+        padding: 0.75rem 2.2rem;
+      }
+      .right-side h2 {
+        text-align: center;
+        font-size: 2.6rem;
+      }
+      .right-side p,
+      .right-side ul {
+        font-size: 1.25rem;
+        text-align: justify;
+      }
+    }
+
   </style>
 </head>
 <body>
