@@ -119,23 +119,6 @@
         .back-btn:hover {
             color: #004ba0;
         }
-
-        @media (min-width: 1024px) {
-            .course-container {
-                flex-direction: row;
-            }
-            .left-side, .right-side {
-                flex: 1 1 45%;
-                min-width: 300px;
-            }
-            .divider-line.vertical {
-                display: block;
-            }
-            .divider-line.horizontal {
-                display: none;
-            }
-        }
-
         @media (max-width: 1023.98px) {
             .course-container {
                 flex-direction: column;
@@ -154,7 +137,6 @@
                 text-align: center;
             }
         }
-
         @media (min-width: 1440px) {
             .course-container {
                 padding: 3rem;
@@ -180,10 +162,65 @@
                 font-size: 1.2rem;
             }
         }
+        @media (min-width: 1024px) {
+            .course-container {
+                flex-direction: row;
+            }
+            .left-side, .right-side {
+                flex: 1 1 45%;
+                min-width: 300px;
+            }
+            .divider-line.vertical {
+                display: block;
+            }
+            .divider-line.horizontal {
+                display: none;
+            }
+        }
+        @media (min-width: 768px) and (max-width: 1023.98px) {
+            .course-container {
+                padding: 2.5rem;
+                gap: 2rem;
+                align-items: center;
+            }
+            .left-side, .right-side {
+                width: 100%;
+                max-width: 800px;
+            }
+            .left-side img {
+                width: 100%;
+                height: auto;
+                max-width: 100%;
+                max-height: none;
+                margin-bottom: 2rem;
+                object-fit: contain;
+            }
+            .course-title {
+                font-size: 2.2rem;
+            }
+            .price {
+                font-size: 1.8rem;
+            }
+            .rating {
+                font-size: 1.3rem;
+            }
+            .buy-btn {
+                font-size: 1.2rem;
+                padding: 0.75rem 2.2rem;
+            }
+            .right-side h2 {
+                text-align: center;
+                font-size: 2.6rem;
+            }
+            .right-side p,
+            .right-side ul {
+                font-size: 1.25rem;
+                text-align: justify;
+            }
+        }
     </style>
 </head>
 <body>
-
 <div class="course-container" data-aos="slide-down" data-aos-duration="1000">
     <div class="left-side">
         <img src="https://i.imgur.com/HxKywC1.png" alt="Database Programming Course Image" />
@@ -192,10 +229,8 @@
         <div class="rating">★★★★★ (522 reviews)</div>
         <button class="buy-btn mt-3">Buy Now</button>
     </div>
-
     <div class="divider-line vertical"></div>
     <div class="divider-line horizontal"></div>
-
     <div class="right-side">
         <h2>Database Programming Mastery</h2>
         <p>
@@ -214,11 +249,9 @@
         <a href="index.html#courses" class="back-btn"><i class="bi bi-arrow-left-circle"></i> Back to Courses</a>
     </div>
 </div>
-
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
     AOS.init();
 </script>
-
 </body>
 </html>
