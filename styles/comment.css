@@ -1,5 +1,5 @@
 #comments {
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 25%, #ffffff 50%, #f1f3f4 75%, #e8eaf6 100%);
+    background: linear-gradient(135deg, #a3b1bf 0%, #e9ecef 25%, #ffffff 50%, #abbdc6 75%, #e8eaf6 100%);
     padding: 80px 0;
     position: relative;
     overflow: hidden;
@@ -56,7 +56,7 @@
 
 .comment-card {
     flex: 0 0 320px;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(211, 209, 209, 0.95);
     backdrop-filter: blur(16px);
     border-radius: 20px;
     padding: 2rem;
