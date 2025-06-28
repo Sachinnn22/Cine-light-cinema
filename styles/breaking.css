@@ -1,0 +1,21 @@
+.breaking-banner {
+    background: linear-gradient(to bottom, #0b0c1a, #101828);
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    overflow: hidden;
+}
+
+.breaking-banner h1 {
+    font-size: 2.8rem;
+    font-weight: 900;
+    margin: 0;
+}
+
+.breaking-banner p {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 10px;
+}
