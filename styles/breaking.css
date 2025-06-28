@@ -12,6 +12,11 @@
     font-size: 2.8rem;
     font-weight: 900;
     margin: 0;
+    background: linear-gradient(45deg, #ff6b6b, #145571, #1e5870, #96ceb4, #feca57);
+    background-size: 600% 600%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rainbowShift 8s ease infinite;
 }
 
 .breaking-banner p {
@@ -20,39 +25,40 @@
     margin-top: 10px;
 }
 
-.breaking-banner::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-    z-index: 0;
-}
-
-/* Pebble style */
 .breaking-banner .pebble {
     position: absolute;
-    width: 15px;
-    height: 15px;
-    background: rgba(255, 255, 255, 0.08);
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 50%;
-    animation: floatPebble 15s infinite ease-in-out;
+    animation: floatPebble 10s infinite ease-in-out;
 }
 
-/* Animation */
 @keyframes floatPebble {
     0% {
-        transform: translateY(0) scale(1);
-        opacity: 0.5;
+        transform: translateY(0px) translateX(0px) scale(1);
+        opacity: 0.4;
+    }
+    25% {
+        transform: translateY(-30px) translateX(10px) scale(1.2);
+        opacity: 0.7;
     }
     50% {
-        transform: translateY(-100px) scale(1.2);
+        transform: translateY(-60px) translateX(-10px) scale(0.8);
         opacity: 1;
     }
-    100% {
-        transform: translateY(0) scale(1);
-        opacity: 0.5;
+    75% {
+        transform: translateY(-90px) translateX(15px) scale(1);
+        opacity: 0.7;
     }
+    100% {
+        transform: translateY(0px) translateX(0px) scale(1);
+        opacity: 0.4;
+    }
+}
+
+@keyframes rainbowShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
