@@ -46,4 +46,32 @@ a.text-info:hover {
     text-decoration: underline;
 }
 
+@media (max-width: 768px) {
+    #about .row > div {
+        margin-bottom: 1.5rem;
+    }
+
+    #about .info-box {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    #about .info-box i {
+        margin-right: 0;
+        margin-bottom: 0.5rem;
+    }
+
+    #about .contact-info .col-md-4 {
+        width: 100%;
+    }
+
+    #about .text-center h2 {
+        font-size: 1.75rem;
+    }
+
+    #about .text-center p {
+        font-size: 1rem;
+    }
+}
+
 
