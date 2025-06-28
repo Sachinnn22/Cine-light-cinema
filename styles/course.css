@@ -1,0 +1,250 @@
+#courses {
+    background-color: #e8f0ff;
+    padding: 3rem 0;
+    scroll-margin-top: 50px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#courses .container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+#courses .text-center h2 {
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: #222;
+}
+
+#courses .text-center p {
+    font-size: 1.1rem;
+    color: #6c757d;
+    max-width: 600px;
+    margin: 0 auto 0.75rem;
+}
+
+.carousel-header {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding: 0 0.25rem;
+}
+
+.arrow-btn {
+    background: #3d3dea;
+    border: none;
+    color: white;
+    width: 44px;
+    height: 44px;
+    font-size: 2rem;
+    border-radius: 50%;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2px;
+    margin-right: 1rem;
+}
+
+#carousel {
+    display: flex;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    padding-bottom: 1rem;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+#carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.course-card-custom {
+    flex-shrink: 0;
+    width: 32%;
+    height: 350px;
+    background: #ffffff;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    overflow: hidden;
+    margin-right: 0.95rem;
+}
+
+.course-image-wrapper {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.course-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    display: block;
+}
+
+.course-content {
+    padding: 1rem 1rem 1rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.course-content h6 {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #222;
+    margin-bottom: 0.3rem;
+}
+
+.rating {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    color: #fbbf24;
+}
+
+.rating-score,
+.stars {
+    font-weight: 700;
+}
+
+.review-count {
+    color: #6c757d;
+    font-size: 0.75rem;
+}
+
+.price {
+    font-weight: 700;
+    font-size: 1rem;
+    color: #222;
+}
+
+.buy-btn {
+    margin-top: 0.75rem;
+    padding: 0.5rem 1.25rem;
+    background: linear-gradient(145deg, #0d6efd, #0a58ca);
+    color: white;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
+}
+
+.buy-btn:hover {
+    background: linear-gradient(145deg, #0a58ca, #084298);
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(13, 110, 253, 0.4);
+}
+
+@media (min-width: 1440px) {
+    .course-card-custom {
+        width: 31% !important;
+        margin-right: 1.7rem;
+    }
+
+    #carousel {
+        justify-content: flex-start;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .course-card-custom {
+        width: 31% !important;
+        margin-right: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) and (min-width: 426px) {
+    .course-card-custom {
+        width: 48% !important;
+        margin-right: 0.91rem;
+    }
+}
+
+@media (max-width: 425px) {
+    .course-card-custom {
+        width: 100% !important;
+        margin-right: 0.02rem;
+    }
+
+    .arrow-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 1.5rem;
+        margin-right: 0.1rem;
+    }
+
+    #courses .text-center h2 {
+        font-size: 1.5rem;
+    }
+
+    #courses .text-center p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 375px) {
+    .course-card-custom {
+        width: 100% !important;
+        margin-right: 0.02rem;
+    }
+
+    .arrow-btn {
+        width: 34px;
+        height: 34px;
+        font-size: 1.4rem;
+        margin-right: 0.1rem;
+    }
+
+    #courses .text-center h2 {
+        font-size: 1.4rem;
+    }
+
+    #courses .text-center p {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 320px) {
+    .course-card-custom {
+        width: 100% !important;
+        margin-right: 0.03rem;
+    }
+
+    .arrow-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 1.3rem;
+        margin-right: 0.2rem;
+    }
+
+    #courses .text-center h2 {
+        font-size: 1.3rem;
+    }
+
+    #courses .text-center p {
+        font-size: 0.9rem;
+    }
+}
