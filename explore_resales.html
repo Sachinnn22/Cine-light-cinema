@@ -61,19 +61,48 @@
             object-fit: cover;
             height: 200px;
         }
+        .back-arrow-wrapper {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .back-arrow-wrapper:hover {
+            background-color: #e2e6ea;
+            transform: scale(1.05);
+        }
+        .back-arrow {
+            font-size: 1.3rem;
+            color: #0d6efd;
+            transition: color 0.2s ease;
+        }
+        .back-arrow:hover {
+            color: #084298;
+        }
     </style>
 </head>
 <body>
 
 <section id="reseller-packs" class="py-5" style="background-color: #e8f0ff;">
     <div class="container">
-        <div class="text-center mb-5">
-            <h2 class="fw-bold text-dark mb-2" style="font-size: 2.2rem;">
-                Explore <span class="text-primary">More Resales</span>
-            </h2>
-            <p class="text-muted" style="font-size: 1.1rem; max-width: 700px; margin: 0 auto;">
-                Choose from top digital product bundles perfect for reselling, upgrading your toolkit, or boosting your online business.
-            </p>
+        <div class="mb-4 d-flex align-items-center">
+            <a href="index.html" class="back-arrow-wrapper me-3" title="Go Back">
+                <i class="bi bi-arrow-left back-arrow"></i>
+            </a>
+            <div class="text-center flex-grow-1">
+                <h2 class="fw-bold text-dark mb-2" style="font-size: 2.2rem;">
+                    Explore <span class="text-primary">More Resales</span>
+                </h2>
+                <p class="text-muted" style="font-size: 1.1rem; max-width: 700px; margin: 0 auto;">
+                    Choose from top digital product bundles perfect for reselling, upgrading your toolkit, or boosting your online business.
+                </p>
+            </div>
         </div>
 
         <div class="row g-4">
@@ -85,8 +114,8 @@
                         <div class="stars-rating">
                             <span class="rating-number">4.9</span>
                             <span>
-                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
-                            </span>
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
+              </span>
                             <span class="review-count">(522)</span>
                         </div>
                         <div class="price">LKR 3,200</div>
@@ -103,8 +132,8 @@
                         <div class="stars-rating">
                             <span class="rating-number">4.5</span>
                             <span>
-                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i>
-                            </span>
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i>
+              </span>
                             <span class="review-count">(410)</span>
                         </div>
                         <div class="price">LKR 2,850</div>
@@ -121,8 +150,8 @@
                         <div class="stars-rating">
                             <span class="rating-number">5.0</span>
                             <span>
-                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                            </span>
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              </span>
                             <span class="review-count">(470)</span>
                         </div>
                         <div class="price">LKR 2,000</div>
@@ -139,8 +168,8 @@
                         <div class="stars-rating">
                             <span class="rating-number">4.4</span>
                             <span>
-                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i>
-                            </span>
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i>
+              </span>
                             <span class="review-count">(190)</span>
                         </div>
                         <div class="price">LKR 1,800</div>
@@ -157,8 +186,8 @@
                         <div class="stars-rating">
                             <span class="rating-number">4.8</span>
                             <span>
-                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
-                            </span>
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
+              </span>
                             <span class="review-count">(480)</span>
                         </div>
                         <div class="price">LKR 4,500</div>
@@ -175,8 +204,8 @@
                         <div class="stars-rating">
                             <span class="rating-number">4.6</span>
                             <span>
-                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
-                            </span>
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
+              </span>
                             <span class="review-count">(300)</span>
                         </div>
                         <div class="price">LKR 5,000</div>
