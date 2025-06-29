@@ -19,10 +19,23 @@
             padding: 0.5rem 1.2rem;
             font-size: 1rem;
         }
-        .stars {
+        .stars-rating {
             color: #ffc107;
             font-size: 1.1rem;
             margin-bottom: 0.3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .stars-rating span:nth-child(2) {
+            color: #444;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        .stars-rating span:nth-child(3) {
+            color: #666;
+            font-size: 0.9rem;
         }
         .price {
             font-weight: 600;
@@ -46,17 +59,22 @@
         </div>
 
         <div class="row g-4 justify-content-center mb-5">
+
             <div class="col-md-4">
                 <div class="card reseller-card h-100 border-0 shadow-sm">
                     <img src="assests/images/WebDevelopmentImage.jpeg" class="card-img-top rounded-top-4" alt="Graphic Design Bundle" />
                     <div class="card-body text-center">
                         <h5 class="card-title fw-bold text-dark">Graphic Design Bundle</h5>
-                        <div class="stars">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-half"></i>
+                        <div class="stars-rating">
+                            <span>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-half"></i>
+                            </span>
+                            <span>4.9</span>
+                            <span>(522)</span>
                         </div>
                         <div class="price">$49.99</div>
                         <a href="#" class="btn btn-primary mt-3 btn-rounded btn-md">Show More</a>
@@ -69,12 +87,16 @@
                     <img src="pack2.jpg" class="card-img-top rounded-top-4" alt="Video Editing Bundle" />
                     <div class="card-body text-center">
                         <h5 class="card-title fw-bold text-dark">Video Editing Bundle</h5>
-                        <div class="stars">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
+                        <div class="stars-rating">
+                            <span>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                            </span>
+                            <span>5.0</span>
+                            <span>(320)</span>
                         </div>
                         <div class="price">$59.99</div>
                         <a href="#" class="btn btn-primary mt-3 btn-rounded btn-md">Show More</a>
@@ -87,32 +109,42 @@
                     <img src="pack3.jpg" class="card-img-top rounded-top-4" alt="YT Reals Bundle" />
                     <div class="card-body text-center">
                         <h5 class="card-title fw-bold text-dark">YT Reals Bundle</h5>
-                        <div class="stars">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
+                        <div class="stars-rating">
+                            <span>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                            </span>
+                            <span>5.0</span>
+                            <span>(180)</span>
                         </div>
                         <div class="price">$39.99</div>
                         <a href="#" class="btn btn-primary mt-3 btn-rounded btn-md">Show More</a>
                     </div>
                 </div>
             </div>
+
         </div>
 
         <div class="row g-4 justify-content-center">
+
             <div class="col-md-4">
                 <div class="card reseller-card h-100 border-0 shadow-sm">
                     <img src="pack4.jpg" class="card-img-top rounded-top-4" alt="Social Media Toolkit" />
                     <div class="card-body text-center">
                         <h5 class="card-title fw-bold text-dark">Social Media Toolkit</h5>
-                        <div class="stars">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star"></i>
-                            <i class="bi bi-star"></i>
+                        <div class="stars-rating">
+                            <span>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star"></i>
+                                <i class="bi bi-star"></i>
+                            </span>
+                            <span>3.0</span>
+                            <span>(85)</span>
                         </div>
                         <div class="price">$29.99</div>
                         <a href="#" class="btn btn-primary mt-3 btn-rounded btn-md">Show More</a>
@@ -125,12 +157,16 @@
                     <img src="pack5.jpg" class="card-img-top rounded-top-4" alt="Ebook Creator Kit" />
                     <div class="card-body text-center">
                         <h5 class="card-title fw-bold text-dark">Ebook Creator Kit</h5>
-                        <div class="stars">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-half"></i>
+                        <div class="stars-rating">
+                            <span>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-half"></i>
+                            </span>
+                            <span>4.5</span>
+                            <span>(150)</span>
                         </div>
                         <div class="price">$44.99</div>
                         <a href="#" class="btn btn-primary mt-3 btn-rounded btn-md">Show More</a>
@@ -143,18 +179,23 @@
                     <img src="pack6.jpg" class="card-img-top rounded-top-4" alt="Marketing Funnel Kit" />
                     <div class="card-body text-center">
                         <h5 class="card-title fw-bold text-dark">Marketing Funnel Kit</h5>
-                        <div class="stars">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
+                        <div class="stars-rating">
+                            <span>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                            </span>
+                            <span>5.0</span>
+                            <span>(400)</span>
                         </div>
                         <div class="price">$69.99</div>
                         <a href="#" class="btn btn-primary mt-3 btn-rounded btn-md">Show More</a>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </section>
