@@ -46,14 +46,14 @@ html, body {
     border: 1px solid transparent;
 }
 
-.btn-login:hover {
-    background-color: darkcyan;
-    color: white !important;
-}
-
+.btn-login:hover,
+.btn-login:focus,
 .btn-login:active {
-    background-color: darkcyan;
+    background-color: darkcyan !important;
     color: white !important;
+    outline: none;
+    box-shadow: none;
+    border: 1px solid transparent;
 }
 
 .navbar-brand {
