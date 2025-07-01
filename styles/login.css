@@ -1,3 +1,8 @@
+body.modal-open #page-content {
+    filter: blur(6px);
+    transition: filter 0.3s ease;
+}
+
 .modal-content {
     border-radius: 1.25rem;
     overflow: hidden;
@@ -24,4 +29,12 @@
 
 .form-control:focus {
     box-shadow: 0 0 0 0.2rem rgba(0, 139, 139, 0.25);
+}
+
+.modal-backdrop.show {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-backdrop {
+    transition: background-color 0.4s ease;
 }
