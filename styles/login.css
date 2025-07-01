@@ -40,3 +40,25 @@ body.modal-open #page-content {
 .modal-backdrop {
     transition: background-color ease;
 }
+
+@media (max-width: 425px) {
+    .modal-dialog {
+        margin: 2.5rem auto;
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 375px) {
+    .modal-dialog {
+        margin: 3rem auto;
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 320px) {
+    .modal-dialog {
+        margin: 3.5rem auto;
+        max-width: 90%;
+    }
+
+}
