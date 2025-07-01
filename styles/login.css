@@ -8,6 +8,9 @@ body.modal-open #page-content {
     border-radius: 1.25rem;
     overflow: hidden;
     box-sizing: border-box;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .modal-header {
@@ -41,22 +44,35 @@ body.modal-open #page-content {
     transition: background-color ease;
 }
 
+.modal-dialog {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 4rem;
+    max-width: 700px;
+    width: 90%;
+}
+
 @media (max-width: 1440px) {
     .modal-dialog {
         margin: 4rem auto;
         max-width: 700px;
+        width: 90%;
     }
 }
 
 @media (max-width: 1024px) {
     .modal-dialog {
         margin: 3.8rem auto;
+        max-width: 600px;
+        width: 90%;
     }
 }
 
 @media (max-width: 768px) {
     .modal-dialog {
         margin: 3.8rem auto;
+        max-width: 500px;
+        width: 90%;
     }
 }
 
@@ -64,6 +80,7 @@ body.modal-open #page-content {
     .modal-dialog {
         margin: 3.3rem auto;
         max-width: 91%;
+        width: 91%;
     }
 }
 
@@ -71,6 +88,7 @@ body.modal-open #page-content {
     .modal-dialog {
         margin: 3.5rem auto;
         max-width: 90%;
+        width: 90%;
     }
 }
 
