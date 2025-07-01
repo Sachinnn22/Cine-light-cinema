@@ -202,7 +202,7 @@
 }
 
 .scroll-text {
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     margin-bottom: 8px;
 }
 
@@ -689,7 +689,6 @@
         font-size: 0.85rem;
     }
 }
-
 
 @media (max-width: 320px) {
     .hero-section {
