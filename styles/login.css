@@ -37,7 +37,7 @@ body.modal-open #page-content {
     top: 0;
     left: 0;
     backface-visibility: hidden;
-    background: white;
+    background: #fbf7f7;
     border-radius: 1.25rem;
     overflow-y: auto;
     box-sizing: border-box;
@@ -113,8 +113,8 @@ body.modal-open #page-content {
 }
 
 .social-icons a.social-icon {
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     display: inline-flex;
     justify-content: center;
     align-items: center;
