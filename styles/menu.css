@@ -43,7 +43,7 @@ html, body {
     color: white !important;
     border-radius: 6px;
     transition: all 0.3s ease;
-    border: 1px solid transparent;
+    border: 1.5px solid white;
 }
 
 .btn-login:hover,
@@ -53,7 +53,7 @@ html, body {
     color: white !important;
     outline: none;
     box-shadow: none;
-    border: 1px solid transparent;
+    border: 1.5px solid white;
 }
 
 .navbar-brand {
