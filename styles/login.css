@@ -41,6 +41,20 @@ body.modal-open #page-content {
     transition: background-color ease;
 }
 
+@media (max-width: 1024px) {
+    .modal-dialog {
+        margin: 3.8rem auto;
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 768px) {
+    .modal-dialog {
+        margin: 3.8rem auto;
+        max-width: 90%;
+    }
+}
+
 @media (max-width: 425px) {
     .modal-dialog {
         margin: 2.5rem auto;
