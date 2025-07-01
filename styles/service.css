@@ -1,3 +1,7 @@
+#service{
+    scroll-margin-top: 55px;
+}
+
 .service-section {
     background-color: #e8f0ff;
     padding: 80px 0;
