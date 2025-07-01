@@ -57,19 +57,26 @@ html, body {
 }
 
 .navbar-brand {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     font-weight: 900;
-    color: #00c4cc !important;
-    letter-spacing: 1px;
     text-transform: uppercase;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
-    transition: transform 0.3s ease, color 0.3s ease;
+    background: linear-gradient(45deg, #00c4cc, #00e0d2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 12px;
+    transition: all 0.4s ease-in-out;
 }
 
-.navbar-brand:hover {
-    color: #00e0d2 !important;
-    transform: scale(1.05);
+.navbar-brand i {
+    font-size: 1.6rem;
+    color: #00e0d2;
+    transition: transform 0.4s ease;
 }
 
 .nav-link:hover {
