@@ -1,0 +1,25 @@
+.modal-content {
+    border-radius: 1.25rem;
+    overflow: hidden;
+}
+
+.modal-header {
+    background: linear-gradient(to right, #1565c0, #0d47a1);
+}
+
+.modal-header .modal-title {
+    font-weight: 600;
+}
+
+.btn-primary {
+    background-color: #1565c0;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0d47a1;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 0 0.2rem rgba(21, 101, 192, 0.25);
+}
