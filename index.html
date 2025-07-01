@@ -103,53 +103,111 @@
 
 <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content ">
-            <div class="modal-header">
-                <h5 class="modal-title" id="loginModalLabel">
-                    <i class="bi bi-box-arrow-in-right"></i> Login to Digi Marts
-                </h5>
-                <button
-                        type="button"
-                        class="btn-close btn-close-white"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"
-                ></button>
-            </div>
-            <div class="modal-body p-4 bg-light">
-                <form>
-                    <div class="mb-3">
-                        <label for="loginName" class="form-label fw-semibold">User Name</label>
-                        <input
-                                type="text"
-                                class="form-control rounded-3"
-                                id="loginName"
-                                placeholder="Enter your Name"
-                                required
-                        />
+        <div class="modal-content p-0 rounded-4" style="perspective: 1200px;">
+            <div class="modal-card">
+                <!-- Front side: Login -->
+                <div class="modal-front bg-light rounded-4 p-4">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="loginModalLabel">
+                            <i class="bi bi-box-arrow-in-right"></i> Login to Digi Marts
+                        </h5>
+                        <button
+                                type="button"
+                                class="btn-close btn-close-white"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                        ></button>
                     </div>
-                    <div class="mb-3">
-                        <label for="loginPassword" class="form-label fw-semibold">Password</label>
-                        <input
-                                type="password"
-                                class="form-control rounded-3"
-                                id="loginPassword"
-                                placeholder="Enter your password"
-                                required
-                        />
+                    <div class="modal-body pt-3">
+                        <form id="loginForm">
+                            <div class="mb-3">
+                                <label for="loginName" class="form-label fw-semibold">User Name</label>
+                                <input
+                                        type="text"
+                                        class="form-control rounded-3"
+                                        id="loginName"
+                                        placeholder="Enter your Name"
+                                        required
+                                />
+                            </div>
+                            <div class="mb-3">
+                                <label for="loginPassword" class="form-label fw-semibold">Password</label>
+                                <input
+                                        type="password"
+                                        class="form-control rounded-3"
+                                        id="loginPassword"
+                                        placeholder="Enter your password"
+                                        required
+                                />
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="rememberMe" />
+                                    <label class="form-check-label" for="rememberMe">Remember me</label>
+                                </div>
+                                <a href="#" class="text-decoration-none small">Forgot password?</a>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100 rounded-3 fw-semibold">Login</button>
+                        </form>
                     </div>
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="rememberMe" />
-                            <label class="form-check-label" for="rememberMe">Remember me</label>
-                        </div>
-                        <a href="#" class="text-decoration-none small">Forgot password?</a>
+                    <div class="modal-footer bg-light rounded-bottom-4 justify-content-center">
+                        <span class="text-muted">Don't have an account?</span>
+                        <a href="#" id="showRegister" class="ms-1 fw-semibold text-primary text-decoration-none">Register</a>
                     </div>
-                    <button type="submit" class="btn btn-primary w-100 rounded-3 fw-semibold">Login</button>
-                </form>
-            </div>
-            <div class="modal-footer bg-light rounded-bottom-4 justify-content-center">
-                <span class="text-muted">Don't have an account?</span>
-                <a href="#" class="ms-1 fw-semibold text-primary text-decoration-none">Register</a>
+                </div>
+
+                <div class="modal-back bg-light rounded-4 p-4">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="registerModalLabel">
+                            <i class="bi bi-person-plus"></i> Register at Digi Marts
+                        </h5>
+                        <button
+                                type="button"
+                                class="btn-close btn-close-white"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                        ></button>
+                    </div>
+                    <div class="modal-body pt-3">
+                        <form id="registerForm">
+                            <div class="mb-3">
+                                <label for="registerName" class="form-label fw-semibold">User Name</label>
+                                <input
+                                        type="text"
+                                        class="form-control rounded-3"
+                                        id="registerName"
+                                        placeholder="Enter your Name"
+                                        required
+                                />
+                            </div>
+                            <div class="mb-3">
+                                <label for="registerEmail" class="form-label fw-semibold">Email</label>
+                                <input
+                                        type="email"
+                                        class="form-control rounded-3"
+                                        id="registerEmail"
+                                        placeholder="Enter your Email"
+                                        required
+                                />
+                            </div>
+                            <div class="mb-3">
+                                <label for="registerPassword" class="form-label fw-semibold">Password</label>
+                                <input
+                                        type="password"
+                                        class="form-control rounded-3"
+                                        id="registerPassword"
+                                        placeholder="Enter your password"
+                                        required
+                                />
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100 rounded-3 fw-semibold">Register</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer bg-light rounded-bottom-4 justify-content-center">
+                        <span class="text-muted">Already have an account?</span>
+                        <a href="#" id="showLogin" class="ms-1 fw-semibold text-primary text-decoration-none">Login</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -739,6 +797,20 @@
         const maxScroll = carousel.scrollWidth - carousel.clientWidth;
         if (scrollPosition > maxScroll) scrollPosition = maxScroll;
         carousel.scrollTo({ left: scrollPosition, behavior: 'smooth' });
+    });
+
+        const modalCard = document.querySelector('.modal-card');
+        const showRegister = document.getElementById('showRegister');
+        const showLogin = document.getElementById('showLogin');
+
+        showRegister.addEventListener('click', e => {
+        e.preventDefault();
+        modalCard.classList.add('flipped');
+    });
+
+        showLogin.addEventListener('click', e => {
+        e.preventDefault();
+        modalCard.classList.remove('flipped');
     });
 
 </script>
