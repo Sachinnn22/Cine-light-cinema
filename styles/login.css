@@ -135,12 +135,14 @@ body.modal-open #page-content {
 @media (max-width: 1024px) {
     .modal-dialog {
         max-width: 600px;
+        width: 90%;
     }
 }
 
 @media (max-width: 768px) {
     .modal-dialog {
         max-width: 500px;
+        width: 90%;
     }
 }
 
@@ -152,9 +154,8 @@ body.modal-open #page-content {
 }
 
 @media (max-width: 375px) {
-    .modal-dialog {
-        max-width: 90%;
-        width: 90%;
+    .modal-body .d-flex.justify-content-between.align-items-center.mb-3 a {
+        margin-left: 2rem;
     }
 }
 
