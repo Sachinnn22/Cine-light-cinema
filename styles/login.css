@@ -1,3 +1,4 @@
+
 body.modal-open #page-content {
     filter: blur(6px);
     transition: filter 0.3s ease;
