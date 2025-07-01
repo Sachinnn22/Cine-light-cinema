@@ -52,17 +52,7 @@
     font-size: 16px;
 }
 
-@media (max-width: 320px) {
-    .whatsapp-float{
-        display: none;
-    }
-
-    .whatsapp-float2{
-        display: block;
-    }
-}
-
-@media (max-width: 375px) {
+@media (max-width: 768px) {
     .whatsapp-float{
         display: none;
     }
@@ -82,7 +72,17 @@
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 375px) {
+    .whatsapp-float{
+        display: none;
+    }
+
+    .whatsapp-float2{
+        display: block;
+    }
+}
+
+@media (max-width: 320px) {
     .whatsapp-float{
         display: none;
     }
