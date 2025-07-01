@@ -110,48 +110,17 @@
                         <h5 class="modal-title" id="loginModalLabel">
                             <i class="bi bi-box-arrow-in-right"></i> Login to Digi Marts
                         </h5>
-                        <button
-                                type="button"
-                                class="btn-close btn-close-white"
-                                data-bs-dismiss="modal"
-                                aria-label="Close"
-                        ></button>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body pt-3">
-                        <div class="d-flex justify-content-center mb-4 gap-3">
-                            <a href="#" class="text-decoration-none text-primary fs-4" aria-label="Login with Facebook">
-                                <i class="bi bi-facebook"></i>
-                            </a>
-                            <a href="#" class="text-decoration-none text-info fs-4" aria-label="Login with Twitter">
-                                <i class="bi bi-twitter"></i>
-                            </a>
-                            <a href="#" class="text-decoration-none text-danger fs-4" aria-label="Login with Google">
-                                <i class="bi bi-google"></i>
-                            </a>
-                            <a href="#" class="text-decoration-none text-primary fs-4" aria-label="Login with LinkedIn">
-                                <i class="bi bi-linkedin"></i>
-                            </a>
-                        </div>
                         <form id="loginForm">
                             <div class="mb-3">
                                 <label for="loginName" class="form-label fw-semibold">User Name</label>
-                                <input
-                                        type="text"
-                                        class="form-control rounded-3"
-                                        id="loginName"
-                                        placeholder="Enter your Name"
-                                        required
-                                />
+                                <input type="text" class="form-control rounded-3" id="loginName" placeholder="Enter your Name" required />
                             </div>
                             <div class="mb-3">
                                 <label for="loginPassword" class="form-label fw-semibold">Password</label>
-                                <input
-                                        type="password"
-                                        class="form-control rounded-3"
-                                        id="loginPassword"
-                                        placeholder="Enter your password"
-                                        required
-                                />
+                                <input type="password" class="form-control rounded-3" id="loginPassword" placeholder="Enter your password" required />
                             </div>
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <div class="form-check">
@@ -161,6 +130,16 @@
                                 <a href="#" class="text-decoration-none small">Forgot password?</a>
                             </div>
                             <button type="submit" class="btn btn-primary w-100 rounded-3 fw-semibold">Login</button>
+
+                            <div class="social-login mt-4 text-center">
+                                <span class="d-block mb-2 text-muted">Or login with</span>
+                                <div class="d-flex justify-content-center gap-3 social-icons">
+                                    <a href="#" class="social-icon text-primary"><i class="bi bi-facebook"></i></a>
+                                    <a href="#" class="social-icon text-info"><i class="bi bi-twitter"></i></a>
+                                    <a href="#" class="social-icon text-danger"><i class="bi bi-google"></i></a>
+                                    <a href="#" class="social-icon text-primary"><i class="bi bi-linkedin"></i></a>
+                                </div>
+                            </div>
                         </form>
                     </div>
                     <div class="modal-footer bg-light rounded-bottom-4 justify-content-center">
@@ -174,44 +153,21 @@
                         <h5 class="modal-title" id="registerModalLabel">
                             <i class="bi bi-person-plus"></i> Register at Digi Marts
                         </h5>
-                        <button
-                                type="button"
-                                class="btn-close btn-close-white"
-                                data-bs-dismiss="modal"
-                                aria-label="Close"
-                        ></button>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body pt-3">
-                        <form id="registerForm">
+                        <form id="registerForm" class="register-container mx-auto">
                             <div class="mb-3">
                                 <label for="registerName" class="form-label fw-semibold">User Name</label>
-                                <input
-                                        type="text"
-                                        class="form-control rounded-3"
-                                        id="registerName"
-                                        placeholder="Enter your Name"
-                                        required
-                                />
+                                <input type="text" class="form-control rounded-3" id="registerName" placeholder="Enter your Name" required />
                             </div>
                             <div class="mb-3">
                                 <label for="registerEmail" class="form-label fw-semibold">Email</label>
-                                <input
-                                        type="email"
-                                        class="form-control rounded-3"
-                                        id="registerEmail"
-                                        placeholder="Enter your Email"
-                                        required
-                                />
+                                <input type="email" class="form-control rounded-3" id="registerEmail" placeholder="Enter your Email" required />
                             </div>
                             <div class="mb-3">
                                 <label for="registerPassword" class="form-label fw-semibold">Password</label>
-                                <input
-                                        type="password"
-                                        class="form-control rounded-3"
-                                        id="registerPassword"
-                                        placeholder="Enter your password"
-                                        required
-                                />
+                                <input type="password" class="form-control rounded-3" id="registerPassword" placeholder="Enter your password" required />
                             </div>
                             <button type="submit" class="btn btn-primary w-100 rounded-3 fw-semibold">Register</button>
                         </form>
