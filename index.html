@@ -25,92 +25,83 @@
 
 <body>
 
-    <nav class="navbar navbar-dark fixed-top">
-        <div class="container-fluid d-flex align-items-center justify-content-between">
-            <a class="navbar-brand brand-highlight me-3" href="#">Digi Marts</a>
+<nav class="navbar navbar-dark fixed-top">
+    <div class="container-fluid d-flex align-items-center justify-content-between">
+        <a class="navbar-brand brand-highlight me-3" href="#">Digi Marts</a>
+        <ul class="navbar-nav flex-row align-items-center gap-3 mb-0 d-none d-lg-flex">
+            <li class="nav-item">
+                <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#hero">
+                    <i class="bi bi-house-fill"></i> Home
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#service">
+                    <i class="bi bi-gear-fill"></i> Services
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#reseller-packs">
+                    <i class="bi bi-cart-check-fill"></i> Resales
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#courses">
+                    <i class="bi bi-mortarboard-fill"></i> Courses
+                </a>
+            </li>
+        </ul>
+        <a href="javascript:void(0)"
+           class="btn btn-login px-3 py-1 fw-semibold d-none d-lg-flex align-items-center gap-2 lgin"
+           data-bs-toggle="modal"
+           data-bs-target="#loginModal">
+            <i class="bi bi-box-arrow-in-right"></i> Login
+        </a>
+        <button
+                class="navbar-toggler d-lg-none border-0"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarMenu"
+                aria-controls="navbarMenu"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+    <div class="collapse d-lg-none" id="navbarMenu">
+        <ul class="navbar-nav px-3 pt-3 pb-2">
+            <li class="nav-item">
+                <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#hero">
+                    <i class="bi bi-house-fill"></i> Home
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#service">
+                    <i class="bi bi-gear-fill"></i> Services
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#">
+                    <i class="bi bi-cart-check-fill"></i> Resales
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#mn">
+                    <i class="bi bi-mortarboard-fill"></i> Courses
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-login px-3 py-2 fw-semibold d-flex align-items-center gap-2 mt-3"
+                   data-bs-toggle="modal"
+                   data-bs-target="#loginModal">
+                    <i class="bi bi-box-arrow-in-right"></i> Login
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
 
-            <ul class="navbar-nav flex-row align-items-center gap-3 mb-0 d-none d-lg-flex">
-                <li class="nav-item">
-                    <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#hero">
-                        <i class="bi bi-house-fill"></i> Home
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#service">
-                        <i class="bi bi-gear-fill"></i> Services
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#reseller-packs">
-                        <i class="bi bi-cart-check-fill"></i> Resales
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#courses">
-                        <i class="bi bi-mortarboard-fill"></i> Courses
-                    </a>
-                </li>
-            </ul>
-
-            <a href="javascript:void(0)"
-               class="btn btn-login px-3 py-1 fw-semibold d-none d-lg-flex align-items-center gap-2 lgin"
-               data-bs-toggle="modal"
-               data-bs-target="#loginModal">
-                <i class="bi bi-box-arrow-in-right"></i> Login
-            </a>
-
-            <button
-                    class="navbar-toggler d-lg-none border-0"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarMenu"
-                    aria-controls="navbarMenu"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-            >
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </div>
-
-        <div class="collapse d-lg-none" id="navbarMenu">
-            <ul class="navbar-nav px-3 pt-3 pb-2">
-                <li class="nav-item">
-                    <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#hero">
-                        <i class="bi bi-house-fill"></i> Home
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#service">
-                        <i class="bi bi-gear-fill"></i> Services
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#">
-                        <i class="bi bi-cart-check-fill"></i> Resales
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#mn">
-                        <i class="bi bi-mortarboard-fill"></i> Courses
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="btn btn-login px-3 py-2 fw-semibold d-flex align-items-center gap-2 mt-3"
-                       data-bs-toggle="modal"
-                       data-bs-target="#loginModal">
-                        <i class="bi bi-box-arrow-in-right"></i> Login
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <div
-        class="modal fade"
-        id="loginModal"
-        tabindex="-1"
-        aria-labelledby="loginModalLabel"
-        aria-hidden="true"
->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content border-0 shadow-lg rounded-4">
             <div class="modal-header">
@@ -127,9 +118,7 @@
             <div class="modal-body p-4 bg-light">
                 <form>
                     <div class="mb-3">
-                        <label for="loginEmail" class="form-label fw-semibold"
-                        >Email address</label
-                        >
+                        <label for="loginEmail" class="form-label fw-semibold">Email address</label>
                         <input
                                 type="email"
                                 class="form-control rounded-3"
@@ -139,9 +128,7 @@
                         />
                     </div>
                     <div class="mb-3">
-                        <label for="loginPassword" class="form-label fw-semibold"
-                        >Password</label
-                        >
+                        <label for="loginPassword" class="form-label fw-semibold">Password</label>
                         <input
                                 type="password"
                                 class="form-control rounded-3"
@@ -150,36 +137,19 @@
                                 required
                         />
                     </div>
-                    <div
-                            class="d-flex justify-content-between align-items-center mb-3"
-                    >
+                    <div class="d-flex justify-content-between align-items-center mb-3">
                         <div class="form-check">
-                            <input
-                                    class="form-check-input"
-                                    type="checkbox"
-                                    id="rememberMe"
-                            />
-                            <label class="form-check-label" for="rememberMe"
-                            >Remember me</label
-                            >
+                            <input class="form-check-input" type="checkbox" id="rememberMe" />
+                            <label class="form-check-label" for="rememberMe">Remember me</label>
                         </div>
                         <a href="#" class="text-decoration-none small">Forgot password?</a>
                     </div>
-                    <button
-                            type="submit"
-                            class="btn btn-primary w-100 rounded-3 fw-semibold"
-                    >
-                        Login
-                    </button>
+                    <button type="submit" class="btn btn-primary w-100 rounded-3 fw-semibold">Login</button>
                 </form>
             </div>
-            <div
-                    class="modal-footer bg-light rounded-bottom-4 justify-content-center"
-            >
+            <div class="modal-footer bg-light rounded-bottom-4 justify-content-center">
                 <span class="text-muted">Don't have an account?</span>
-                <a href="#" class="ms-1 fw-semibold text-primary text-decoration-none"
-                >Sign up</a
-                >
+                <a href="#" class="ms-1 fw-semibold text-primary text-decoration-none">Sign up</a>
             </div>
         </div>
     </div>
@@ -196,80 +166,73 @@
 
 <div id="page-content">
     <section class="hero-section" id="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-particles"></div>
-
-    <div class="hero-content">
-        <div class="row align-items-center">
-            <div class="col-lg-6">
-                <div class="hero-text" data-aos="fade-right" data-aos-duration="1700">
-                    <div class="hero-badge">
-                        <i class="bi bi-lightning-charge-fill"></i>
-                        <span>Premium Digital Solutions</span>
-                    </div>
-
-                    <h1 class="hero-title">
-                        Transform Your Digital
-                        <span class="gradient-text">Experience</span>
-                        with <span class="brand-highlight">Digi Marts</span>
-                    </h1>
-
-                    <p class="hero-description">
-                        Discover cutting-edge digital products, instant downloads, and premium solutions that elevate your business to new heights. Join thousands of satisfied customers worldwide.
-                    </p>
-
-                    <div class="hero-stats">
-                        <div class="stat-item">
-                            <div class="stat-number">10K+</div>
-                            <div class="stat-label">Happy Customers</div>
+        <div class="hero-bg"></div>
+        <div class="hero-particles"></div>
+        <div class="hero-content">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-text" data-aos="fade-right" data-aos-duration="1700">
+                        <div class="hero-badge">
+                            <i class="bi bi-lightning-charge-fill"></i>
+                            <span>Premium Digital Solutions</span>
                         </div>
-                        <div class="stat-item">
-                            <div class="stat-number">500+</div>
-                            <div class="stat-label">Digital Products</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">24/7</div>
-                            <div class="stat-label">Support</div>
+                        <h1 class="hero-title">
+                            Transform Your Digital
+                            <span class="gradient-text">Experience</span>
+                            with <span class="brand-highlight">Digi Marts</span>
+                        </h1>
+                        <p class="hero-description">
+                            Discover cutting-edge digital products, instant downloads, and premium solutions that elevate your business to new heights. Join thousands of satisfied customers worldwide.
+                        </p>
+                        <div class="hero-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">10K+</div>
+                                <div class="stat-label">Happy Customers</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">500+</div>
+                                <div class="stat-label">Digital Products</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">24/7</div>
+                                <div class="stat-label">Support</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-lg-6">
-                <div class="hero-visual" data-aos="fade-left" data-aos-duration="1700">
-                    <div class="floating-card card-1">
-                        <i class="bi bi-download"></i>
-                        <span>Instant Download</span>
-                    </div>
-                    <div class="floating-card card-2">
-                        <i class="bi bi-shield-check"></i>
-                        <span>100% Secure</span>
-                    </div>
-                    <div class="floating-card card-3">
-                        <i class="bi bi-star-fill"></i>
-                        <span>Premium Quality</span>
-                    </div>
-
-                    <div class="hero-main-graphic">
-                        <div class="graphic-circle circle-1"></div>
-                        <div class="graphic-circle circle-2"></div>
-                        <div class="graphic-circle circle-3"></div>
-                        <div class="graphic-center">
-                            <i class="bi bi-laptop"></i>
+                <div class="col-lg-6">
+                    <div class="hero-visual" data-aos="fade-left" data-aos-duration="1700">
+                        <div class="floating-card card-1">
+                            <i class="bi bi-download"></i>
+                            <span>Instant Download</span>
+                        </div>
+                        <div class="floating-card card-2">
+                            <i class="bi bi-shield-check"></i>
+                            <span>100% Secure</span>
+                        </div>
+                        <div class="floating-card card-3">
+                            <i class="bi bi-star-fill"></i>
+                            <span>Premium Quality</span>
+                        </div>
+                        <div class="hero-main-graphic">
+                            <div class="graphic-circle circle-1"></div>
+                            <div class="graphic-circle circle-2"></div>
+                            <div class="graphic-circle circle-3"></div>
+                            <div class="graphic-center">
+                                <i class="bi bi-laptop"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="scroll-indicator" data-aos="fade-up" data-aos-duration="1000">
-        <div class="scroll-text">Scroll to explore</div>
-        <div class="scroll-arrow">
-            <i class="bi bi-chevron-down" id="service"></i>
+        <div class="scroll-indicator" data-aos="fade-up" data-aos-duration="1000">
+            <div class="scroll-text">Scroll to explore</div>
+            <div class="scroll-arrow">
+                <i class="bi bi-chevron-down" id="service"></i>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 </div>
 
 <section class="service-section py-5">
