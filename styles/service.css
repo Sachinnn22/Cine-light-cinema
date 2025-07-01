@@ -7,6 +7,23 @@
     padding: 80px 0;
 }
 
+.rainbow-title {
+    font-size: 2.3em;
+    font-weight: 1000;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: linear-gradient(45deg, #0b0a0a, #1e403d);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.headers p{
+    font-weight: 600;
+    color: #515151;
+}
+
 .service-card {
     background: #ffffff;
     border-radius: 16px;
