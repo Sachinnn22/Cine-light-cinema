@@ -689,11 +689,11 @@
 
     .card-3 {
         top: 31%;
-        right: -10%;
+        right: -14%;
     }
 
     .scroll-indicator {
-        bottom: 25px;
+        bottom: 15px;
         font-size: 0.85rem;
     }
 }
@@ -793,7 +793,7 @@
     }
 
     .scroll-indicator {
-        bottom: 20px;
+        bottom: 5px;
         font-size: 0.8rem;
     }
 }
