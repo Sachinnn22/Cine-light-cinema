@@ -4,12 +4,11 @@ body.modal-open #page-content {
 }
 
 .modal-content {
-    border: 3px solid #222121;
+    border: 4px solid #222121;
     border-radius: 1.25rem;
     overflow: hidden;
     box-sizing: border-box;
 }
-
 
 .modal-header {
     background: linear-gradient(to right, #1565c0, #008b8b);
