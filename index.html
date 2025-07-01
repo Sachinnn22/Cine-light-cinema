@@ -688,11 +688,12 @@
 </script>
 
 <script>
+
     const navbarCollapse = document.getElementById('navbarMenu');
     const navLinks = navbarCollapse.querySelectorAll('a.nav-link');
 
     navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
+        link.addEventListener('click', () => {
             if (navbarCollapse.classList.contains('show')) {
                 setTimeout(() => {
                     const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
@@ -701,6 +702,16 @@
             }
         });
     });
+
+    const loginBtnMobile = document.querySelector('#navbarMenu .btn-login');
+    if (loginBtnMobile) {
+        loginBtnMobile.addEventListener('click', () => {
+            if (navbarCollapse.classList.contains('show')) {
+                const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+                if (bsCollapse) bsCollapse.hide();
+            }
+        });
+    }
 
     const carousel = document.getElementById('carousel');
     const prevBtn = document.getElementById('prevBtn');
@@ -728,6 +739,7 @@
         if (scrollPosition > maxScroll) scrollPosition = maxScroll;
         carousel.scrollTo({ left: scrollPosition, behavior: 'smooth' });
     });
+
 </script>
 
 </body>
