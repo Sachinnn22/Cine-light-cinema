@@ -4,7 +4,7 @@ body.modal-open #page-content {
 }
 
 .modal-content {
-    border: 2px solid #d1cece;
+    border: 3px solid #222121;
     border-radius: 1.25rem;
     overflow: hidden;
     box-sizing: border-box;
