@@ -56,9 +56,7 @@ body.modal-open #page-content {
 }
 
 @media (max-width: 320px) {
-    .modal-dialog {
-        margin: 3.5rem auto;
-        max-width: 90%;
+    .modal-body .d-flex.justify-content-between.align-items-center.mb-3 a {
+        margin-left: 2rem;
     }
-
 }
