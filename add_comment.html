@@ -62,11 +62,18 @@
         textarea:focus {
             background: rgba(255, 255, 255, 0.2);
         }
+        .stars-label {
+            text-align: center;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            display: block;
+        }
         .stars {
             display: flex;
             gap: 8px;
             margin-bottom: 1.3rem;
-            justify-content: flex-start;
+            justify-content: center;
+            flex-direction: row;
         }
         .stars input[type="radio"] {
             display: none;
@@ -79,8 +86,16 @@
             user-select: none;
         }
         .stars label:hover,
-        .stars label:hover ~ label,
+        .stars label:hover ~ label {
+            color: #7f5af0;
+            filter: drop-shadow(0 0 2px #7f5af0);
+        }
         .stars input[type="radio"]:checked ~ label {
+            color: #555;
+            filter: none;
+        }
+        .stars input[type="radio"]:checked + label,
+        .stars input[type="radio"]:checked + label ~ label {
             color: #7f5af0;
             filter: drop-shadow(0 0 2px #7f5af0);
         }
@@ -123,18 +138,22 @@
         <input type="text" id="username" name="username" placeholder="Enter your username" required />
         <label for="description">Description</label>
         <textarea id="description" name="description" placeholder="Write your comment here..." rows="4" required></textarea>
-        <label>Stars</label>
+        <label class="stars-label">Stars</label>
         <div class="stars" role="radiogroup" aria-label="Star rating">
-            <input type="radio" id="star1" name="stars" value="1" required />
-            <label for="star1" title="1 star"><i class="fas fa-star"></i></label>
-            <input type="radio" id="star2" name="stars" value="2" />
-            <label for="star2" title="2 stars"><i class="fas fa-star"></i></label>
-            <input type="radio" id="star3" name="stars" value="3" />
-            <label for="star3" title="3 stars"><i class="fas fa-star"></i></label>
+            <input type="radio" id="star5" name="stars" value="5" required />
+            <label for="star5" title="5 stars"><i class="fas fa-star"></i></label>
+
             <input type="radio" id="star4" name="stars" value="4" />
             <label for="star4" title="4 stars"><i class="fas fa-star"></i></label>
-            <input type="radio" id="star5" name="stars" value="5" />
-            <label for="star5" title="5 stars"><i class="fas fa-star"></i></label>
+
+            <input type="radio" id="star3" name="stars" value="3" />
+            <label for="star3" title="3 stars"><i class="fas fa-star"></i></label>
+
+            <input type="radio" id="star2" name="stars" value="2" />
+            <label for="star2" title="2 stars"><i class="fas fa-star"></i></label>
+
+            <input type="radio" id="star1" name="stars" value="1" />
+            <label for="star1" title="1 star"><i class="fas fa-star"></i></label>
         </div>
         <button type="submit">Add Comment</button>
     </form>
