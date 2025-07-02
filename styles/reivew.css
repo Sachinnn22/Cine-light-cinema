@@ -1,5 +1,5 @@
 #comment-modal-container {
-    display: none;
+    display: flex;
     position: fixed;
     z-index: 9999;
     top: 0;
@@ -7,7 +7,6 @@
     width: 100%;
     min-height: 100vh;
     background-color: rgba(0, 0, 0, 0.6);
-    display: flex;
     padding-top: 5.5rem;
     justify-content: center;
     align-items: center;
@@ -103,9 +102,7 @@ select.star-select {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background: white
-    url("data:image/svg+xml;utf8,<svg fill='%23777777' height='16' viewBox='0 0 24 24' width='16' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>")
-    no-repeat right 12px center;
+    background: white url("data:image/svg+xml;utf8,<svg fill='%23777777' height='16' viewBox='0 0 24 24' width='16' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat right 12px center;
     background-size: 16px 16px;
     color: #222;
 }
@@ -135,4 +132,111 @@ button.btn-primary {
 
 button.btn-primary:hover {
     background: linear-gradient(to right, #0d47a1, #006666);
+}
+
+@media (max-width: 425px) {
+    .comments-modal-dialog {
+        width: 95%;
+        padding: 1rem 1rem 1.5rem;
+        border-width: 3px;
+    }
+
+    .modal-header {
+        font-size: 1rem;
+        padding: 1rem;
+        height: 3rem;
+        position: relative;
+    }
+
+    .btn-close {
+        font-size: 1.8rem;
+        right: 0.8rem;
+        top: 50%;
+        transform: translateY(-50%);
+        position: absolute;
+    }
+
+    input.form-control,
+    textarea.form-control,
+    select.star-select {
+        font-size: 0.95rem;
+        padding: 0.5rem 0.65rem;
+    }
+
+    button.btn-primary {
+        font-size: 1rem;
+        padding: 0.65rem;
+    }
+}
+
+@media (max-width: 375px) {
+    .comments-modal-dialog {
+        width: 95%;
+        padding: 0.8rem 0.8rem 1.2rem;
+        border-width: 3px;
+    }
+
+    .modal-header {
+        font-size: 0.95rem;
+        height: auto;
+        padding: 0.8rem 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .btn-close {
+        font-size: 1.6rem;
+        position: static;
+        transform: none;
+        margin-left: 1rem;
+    }
+
+    input.form-control,
+    textarea.form-control,
+    select.star-select {
+        font-size: 0.9rem;
+        padding: 0.5rem 0.6rem;
+    }
+
+    button.btn-primary {
+        font-size: 0.95rem;
+        padding: 0.6rem;
+    }
+}
+
+@media (max-width: 320px) {
+    .comments-modal-dialog {
+        width: 98%;
+        padding: 0.75rem 0.75rem 1rem;
+        border-width: 2px;
+    }
+
+    .modal-header {
+        font-size: 0.9rem;
+        height: auto;
+        padding: 0.7rem 0.9rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .btn-close {
+        font-size: 1.5rem;
+        position: static;
+        transform: none;
+        margin-left: 1rem;
+    }
+
+    input.form-control,
+    textarea.form-control,
+    select.star-select {
+        font-size: 0.85rem;
+        padding: 0.45rem 0.6rem;
+    }
+
+    button.btn-primary {
+        font-size: 0.9rem;
+        padding: 0.6rem;
+    }
 }
