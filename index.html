@@ -269,27 +269,41 @@
     </section>
 </div>
 
-<div id="commentModal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn" onclick="closeModal()">&times;</span>
-        <h2>Leave a Comment</h2>
-
-        <form id="commentForm">
-            <input type="text" id="name" placeholder="Your Name" required />
-
-            <textarea id="description" placeholder="Write your comment..." rows="4" required></textarea>
-
-            <select id="stars" required>
-                <option value="">Select Stars</option>
-                <option value="5">⭐️⭐️⭐️⭐️⭐️</option>
-                <option value="4">⭐️⭐️⭐️⭐️</option>
-                <option value="3">⭐️⭐️⭐️</option>
-                <option value="2">⭐️⭐️</option>
-                <option value="1">⭐️</option>
-            </select>
-
-            <button type="submit">Submit</button>
-        </form>
+<div id="comment-modal-container" class="modal" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-front">
+                <div class="modal-header">
+                    <h5 class="modal-title">💬 Leave a Comment</h5>
+                </div>
+                <div class="modal-body">
+                    <form id="commentForm">
+                        <div class="mb-3">
+                            <label for="comment-name" class="form-label">👤 Name</label>
+                            <input type="text" class="form-control" id="comment-name" placeholder="Enter your name" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="comment-description" class="form-label">📝 Description</label>
+                            <textarea class="form-control" id="comment-description" rows="4" placeholder="Write your feedback..." required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="comment-stars" class="form-label">⭐ Rating</label>
+                            <select class="form-control" id="comment-stars" required>
+                                <option value="">Choose rating</option>
+                                <option value="5">⭐️⭐️⭐️⭐️⭐️</option>
+                                <option value="4.5">⭐️⭐️⭐️⭐️✨</option>
+                                <option value="4">⭐️⭐️⭐️⭐️</option>
+                                <option value="3.5">⭐️⭐️⭐️✨</option>
+                                <option value="3">⭐️⭐️⭐️</option>
+                                <option value="2">⭐️⭐️</option>
+                                <option value="1">⭐️</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -812,34 +826,37 @@
         modalCard.classList.remove('flipped');
     });
 
-    // // Show modal
-    // function showModal() {
-    //     document.getElementById("commentModal").style.display = "flex";
-    // }
-    //
-    // // Hide modal
-    // function closeModal() {
-    //     document.getElementById("commentModal").style.display = "none";
-    // }
-    //
-    // // Handle form submit
-    // document.getElementById("commentForm").addEventListener("submit", function (e) {
-    //     e.preventDefault();
-    //
-    //     const name = document.getElementById("name").value.trim();
-    //     const desc = document.getElementById("description").value.trim();
-    //     const stars = document.getElementById("stars").value;
-    //
-    //     if (name && desc && stars) {
-    //         alert(`Thank you ${name}!\nComment: ${desc}\nStars: ${stars}`);
-    //         closeModal();
-    //         this.reset();
-    //     } else {
-    //         alert("Please fill out all fields.");
-    //     }
-    // });
-    //
-    // setInterval(showModal, 60000);
+    // Show modal
+    function showModal() {
+        document.getElementById("commentModal").style.display = "flex";
+        document.body.classList.add("modal-open");
+    }
+
+    // Hide modal
+    function closeModal() {
+        document.getElementById("commentModal").style.display = "none";
+        document.body.classList.remove("modal-open");
+    }
+
+    // Submit comment
+    document.getElementById("commentForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+        const name = document.getElementById("name").value.trim();
+        const desc = document.getElementById("description").value.trim();
+        const stars = document.getElementById("stars").value;
+
+        if (name && desc && stars) {
+            alert(`Thank you ${name}!\nComment: ${desc}\nStars: ${stars}`);
+            this.reset();
+            closeModal();
+        } else {
+            alert("Please fill all fields.");
+        }
+    });
+
+    // Open every 60 seconds
+    setInterval(showModal, 60000);
+
 
 
 </script>
