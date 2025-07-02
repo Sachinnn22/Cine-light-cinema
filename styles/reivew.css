@@ -7,13 +7,16 @@
     width: 100%;
     min-height: 100vh;
     background-color: rgba(0, 0, 0, 0.6);
-    padding-top: 5.5rem;
+    padding-top: 5rem;
     justify-content: center;
     align-items: center;
     font-family: Arial, sans-serif;
     padding-left: 0;
     padding-right: 0;
     box-sizing: border-box;
+
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px); /* Safari support */
 }
 
 .comments-modal-dialog {
@@ -135,11 +138,10 @@ button.btn-primary:hover {
 }
 
 @media (min-width: 1025px) and (max-width: 1440px) {
-    #comment-modal-container {
-        align-items: flex-start;
-        padding-top: 8rem;
-    }
 
+    #comment-modal-container{
+        padding-top: 80px;
+    }
     .comments-modal-dialog {
         width: 75%;
         padding: 1.5rem 2rem 2rem;
@@ -185,7 +187,6 @@ button.btn-primary:hover {
         cursor: pointer;
     }
 }
-
 
 @media (max-width: 1024px) {
     .comments-modal-dialog {
