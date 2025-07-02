@@ -37,6 +37,8 @@
             transform-style: preserve-3d;
             transition: transform 0.8s ease;
             background: transparent;
+            box-shadow: 0 8px 32px rgba(0, 139, 139, 0.7);
+            border-radius: 20px;
         }
         .auth-container.flipped .card {
             transform: rotateY(180deg);
@@ -52,7 +54,7 @@
             backdrop-filter: blur(12px);
             padding: 2rem;
             color: #e1e8f0;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.7);
+            box-shadow: 0 8px 32px rgba(0, 139, 139, 0.7);
         }
         .back {
             transform: rotateY(180deg);
@@ -68,11 +70,11 @@
             z-index: 10;
         }
         .close-btn:hover {
-            color: #7f5af0;
+            color: darkcyan;
         }
         h2 {
             text-align: center;
-            color: #7f5af0;
+            color: darkcyan;
             margin-bottom: 1.5rem;
             font-weight: 600;
         }
@@ -109,18 +111,18 @@
             width: 100%;
             padding: 0.85rem;
             border-radius: 12px;
-            background: #7f5af0;
+            background: darkcyan;
             border: none;
             color: white;
             font-weight: 600;
             font-size: 1rem;
             cursor: pointer;
-            transition: background 0.3s ease;
-            box-shadow: 0 4px 12px rgba(127, 90, 240, 0.5);
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 139, 139, 0.6);
         }
         button[type="submit"]:hover {
-            background: #6a48e6;
-            box-shadow: 0 6px 14px rgba(106, 72, 230, 0.7);
+            background: #006666;
+            box-shadow: 0 6px 14px rgba(0, 102, 102, 0.8);
         }
         .toggle-link {
             text-align: center;
@@ -129,7 +131,7 @@
             color: #8a94a6;
         }
         .toggle-link span {
-            color: #7f5af0;
+            color: darkcyan;
             cursor: pointer;
             font-weight: 600;
         }
@@ -153,11 +155,10 @@
             transition: transform 0.2s ease, color 0.3s ease;
         }
         .social-icons a:hover {
-            color: #7f5af0;
+            color: darkcyan;
             transform: scale(1.2);
-            filter: drop-shadow(0 0 2px #7f5af0);
+            filter: drop-shadow(0 0 4px darkcyan);
         }
-
         @media (min-width: 1440px) {
             .auth-container {
                 max-width: 700px;
@@ -186,7 +187,7 @@
             button[type="submit"] {
                 font-size: 1.2rem;
                 padding: 1.1rem;
-                box-shadow: 0 6px 18px rgba(127, 90, 240, 0.7);
+                box-shadow: 0 6px 18px rgba(0, 139, 139, 0.8);
             }
             .toggle-link {
                 font-size: 1.05rem;
@@ -198,26 +199,22 @@
                 font-size: 1.8rem;
             }
         }
-
         @media (max-width: 425px) {
             .side {
                 padding: 1.2rem;
             }
         }
-
         @media (max-width: 375px) {
             .side {
                 padding: 1rem 0.5rem;
             }
         }
-
         @media (max-width: 320px) {
             .side {
                 padding: 0.8rem 0.4rem;
             }
         }
     </style>
-
 </head>
 <body>
 <div class="auth-container" id="authContainer" data-aos="fade-down">
