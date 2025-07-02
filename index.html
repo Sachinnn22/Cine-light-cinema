@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css">
 
     <link rel="stylesheet" href="styles/home.css">
-    <link rel="stylesheet" href="styles/login.css">
     <link rel="stylesheet" href="styles/menu.css">
     <link rel="stylesheet" href="styles/contact.css">
     <link rel="stylesheet" href="styles/service.css">
@@ -55,12 +54,11 @@
                 </a>
             </li>
         </ul>
-        <a href="javascript:void(0)"
-           class="btn btn-login px-3 py-1 fw-semibold d-none d-lg-flex align-items-center gap-2 lgin"
-           data-bs-toggle="modal"
-           data-bs-target="#loginModal">
+        <a href="login.html"
+           class="btn btn-login px-3 py-1 fw-semibold d-none d-lg-flex align-items-center gap-2 lgin">
             <i class="bi bi-box-arrow-in-right"></i> Login
         </a>
+
         <button
                 class="navbar-toggler d-lg-none border-0"
                 type="button"
@@ -105,88 +103,6 @@
         </ul>
     </div>
 </nav>
-
-<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content p-0 rounded-4" style="perspective: 1200px;">
-            <div class="modal-card">
-                <div class="modal-front  rounded-4 p-4">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="loginModalLabel">
-                            <i class="bi bi-box-arrow-in-right"></i> Login to Digi Marts
-                        </h5>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body pt-3">
-                        <form id="loginForm">
-                            <div class="mb-3">
-                                <label for="loginName" class="form-label fw-semibold">User Name</label>
-                                <input type="text" class="form-control rounded-3" id="loginName" placeholder="Enter your Name" required />
-                            </div>
-                            <div class="mb-3">
-                                <label for="loginPassword" class="form-label fw-semibold">Password</label>
-                                <input type="password" class="form-control rounded-3" id="loginPassword" placeholder="Enter your password" required />
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="rememberMe" />
-                                    <label class="form-check-label" for="rememberMe">Remember me</label>
-                                </div>
-                                <a href="#" class="text-decoration-none small">Forgot password?</a>
-                            </div>
-                            <button type="submit" class="btn btn-primary w-100 rounded-3 fw-semibold">Login</button>
-
-                            <div class="social-login mt-4 text-center">
-                                <span class="d-block mb-2 text-muted">Or login with</span>
-                                <div class="d-flex justify-content-center gap-3 social-icons">
-                                    <a href="#" class="social-icon text-primary"><i class="bi bi-facebook"></i></a>
-                                    <a href="#" class="social-icon text-info"><i class="bi bi-twitter"></i></a>
-                                    <a href="#" class="social-icon text-danger"><i class="bi bi-google"></i></a>
-                                    <a href="#" class="social-icon text-primary"><i class="bi bi-linkedin"></i></a>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer bg-light rounded-bottom-4 justify-content-center">
-                        <span class="text-muted">Don't have an account?</span>
-                        <a href="#" id="showRegister" class="ms-1 fw-semibold text-primary text-decoration-none">Register</a>
-                    </div>
-                </div>
-
-                <div class="modal-back rounded-4 p-4">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="registerModalLabel">
-                            <i class="bi bi-person-plus"></i> Register at Digi Marts
-                        </h5>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body pt-3">
-                        <form id="registerForm" class="register-container mx-auto">
-                            <div class="mb-3">
-                                <label for="registerName" class="form-label fw-semibold">User Name</label>
-                                <input type="text" class="form-control rounded-3" id="registerName" placeholder="Enter your Name" required />
-                            </div>
-                            <div class="mb-3">
-                                <label for="registerEmail" class="form-label fw-semibold">Email</label>
-                                <input type="email" class="form-control rounded-3" id="registerEmail" placeholder="Enter your Email" required />
-                            </div>
-                            <div class="mb-3">
-                                <label for="reEnterPassword" class="form-label fw-semibold">Password</label>
-                                <input type="password" class="form-control rounded-3 mb-2" id="registerPassword" placeholder="Enter your password" required />
-                                <input type="password" class="form-control rounded-3" id="reEnterPassword" placeholder="Re Enter your password" required />
-                            </div>
-                            <button type="submit" class="btn btn-primary w-100 rounded-3 fw-semibold">Register</button>
-                        </form>
-                    </div>
-                    <div class="modal-footer bg-light rounded-bottom-4 justify-content-center">
-                        <span class="text-muted">Already have an account?</span>
-                        <a href="#" id="showLogin" class="ms-1 fw-semibold text-primary text-decoration-none">Login</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <a href="https://wa.me/94753493015" class="whatsapp-float animate__animated animate__zoomInDown" target="_blank">
     <i class="bi bi-whatsapp"></i>
@@ -268,39 +184,6 @@
         </div>
     </section>
 </div>
-
-<!--<div id="comment-modal-container">-->
-<!--    <div class="comments-modal-dialog">-->
-<!--        <div class="modal-header">-->
-<!--            <h5 class="modal-title">💬 Leave a Comment</h5>-->
-<!--            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>-->
-<!--        </div>-->
-
-<!--        <form id="commentForm">-->
-<!--            <label for="comment-name" class="form-label">👤 Name</label>-->
-<!--            <input type="text" id="comment-name" class="form-control" placeholder="Enter your name" required />-->
-
-<!--            <label for="comment-description" class="form-label">📝 Description</label>-->
-<!--            <textarea id="comment-description" class="form-control" rows="4" placeholder="Write your feedback..." required></textarea>-->
-
-<!--            <label for="comment-stars" class="form-label">⭐ Rating</label>-->
-<!--            <select id="comment-stars" class="star-select" required>-->
-<!--                <option value="" disabled selected>Choose rating</option>-->
-<!--                <option value="5" class="yellow-stars">★★★★★ 5 Stars</option>-->
-<!--                <option value="4.5" class="yellow-stars">★★★★☆ 4.5 Stars</option>-->
-<!--                <option value="4" class="yellow-stars">★★★★ 4 Stars</option>-->
-<!--                <option value="3.5" class="yellow-stars">★★★☆ 3.5 Stars</option>-->
-<!--                <option value="3" class="yellow-stars">★★★ 3 Stars</option>-->
-<!--                <option value="2.5" class="yellow-stars">★★☆ 2.5 Stars</option>-->
-<!--                <option value="2" class="yellow-stars">★★ 2 Stars</option>-->
-<!--                <option value="1.5" class="yellow-stars">★☆ 1.5 Stars</option>-->
-<!--                <option value="1" class="yellow-stars">★ 1 Star</option>-->
-<!--            </select>-->
-
-<!--            <button type="submit" class="btn-primary">Submit</button>-->
-<!--        </form>-->
-<!--    </div>-->
-<!--</div>-->
 
 <section class="service-section py-5" id="service">
     <div class="container text-center mb-4 headers">
@@ -683,8 +566,12 @@
                 </div>
             </div>
         </div>
+        <div class="add-comment-wrapper">
+            <button class="add-comment-btn">Add My Comments</button>
+        </div>
     </div>
 </section>
+
 
 <section id="about" class="py-4" style="background-color: #101820; color: #eee;">
     <div class="container">
@@ -767,99 +654,24 @@
     document.addEventListener("DOMContentLoaded", function () {
         const navbarCollapse = document.getElementById('navbarMenu');
         const navLinks = navbarCollapse.querySelectorAll('a.nav-link');
+        const navbarToggler = document.querySelector('.navbar-toggler');
 
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
-                if (navbarCollapse.classList.contains('show')) {
-                    setTimeout(() => {
-                        const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
-                        if (bsCollapse) bsCollapse.hide();
-                    }, 100);
-                }
-            });
-        });
-
-        const loginBtnMobile = document.querySelector('#navbarMenu .btn-login');
-        if (loginBtnMobile) {
-            loginBtnMobile.addEventListener('click', () => {
                 if (navbarCollapse.classList.contains('show')) {
                     const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
                     if (bsCollapse) bsCollapse.hide();
                 }
             });
-        }
-
-        const carousel = document.getElementById('carousel');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-
-        function getCardWidth() {
-            const card = carousel.querySelector('.course-card-custom');
-            if (!card) return 0;
-            const style = window.getComputedStyle(card);
-            const marginRight = parseFloat(style.marginRight || '24');
-            return card.offsetWidth + marginRight;
-        }
-
-        let scrollPosition = 0;
-
-        prevBtn.addEventListener('click', () => {
-            scrollPosition -= getCardWidth();
-            if (scrollPosition < 0) scrollPosition = 0;
-            carousel.scrollTo({ left: scrollPosition, behavior: 'smooth' });
         });
 
-        nextBtn.addEventListener('click', () => {
-            scrollPosition += getCardWidth();
-            const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-            if (scrollPosition > maxScroll) scrollPosition = maxScroll;
-            carousel.scrollTo({ left: scrollPosition, behavior: 'smooth' });
-        });
-
-        const modalCard = document.querySelector('.modal-card');
-        const showRegister = document.getElementById('showRegister');
-        const showLogin = document.getElementById('showLogin');
-
-        if (showRegister && modalCard) {
-            showRegister.addEventListener('click', e => {
-                e.preventDefault();
-                modalCard.classList.add('flipped');
-            });
-        }
-
-        if (showLogin && modalCard) {
-            showLogin.addEventListener('click', e => {
-                e.preventDefault();
-                modalCard.classList.remove('flipped');
-            });
-        }
-
-        setTimeout(() => {
-            document.getElementById('comment-modal-container').style.display = 'flex';
-        }, 6000);
-
-        // Close modal on clicking close button
-        document.getElementById('closeModalBtn').addEventListener('click', () => {
-            document.getElementById('comment-modal-container').style.display = 'none';
-        });
-
-        // Form submit handler
-        document.getElementById('commentForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const name = document.getElementById('comment-name').value.trim();
-            const desc = document.getElementById('comment-description').value.trim();
-            const stars = document.getElementById('comment-stars').value;
-
-            if(name && desc && stars) {
-                alert(`✅ Thank you ${name}!\n📝 ${desc}\n⭐ Stars: ${stars}`);
-                this.reset();
-                document.getElementById('comment-modal-container').style.display = 'none';
-            } else {
-                alert('⚠️ Please fill out all fields.');
+        navbarToggler.addEventListener('click', () => {
+            if (!bootstrap.Collapse.getInstance(navbarCollapse)) {
+                new bootstrap.Collapse(navbarCollapse);
             }
         });
+    });
 </script>
-
 
 </body>
 </html>
