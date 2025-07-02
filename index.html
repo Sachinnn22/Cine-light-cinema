@@ -272,10 +272,10 @@
 <div class="comments-modal" id="comment-modal-container" style="display: none;">
     <div class="comments-modal-dialog">
         <div class="comments-modal-content">
-            <div class="comments-modal-front position-relative">
-                <button type="button" class="btn-close btn-close-white" aria-label="Close" onclick="closeCommentModal()" style="position: absolute; top: 12px; right: 18px;"></button>
-                <div class="comments-modal-header">
+            <div class="comments-modal-front">
+                <div class="comments-modal-header position-relative">
                     <h5 class="comments-modal-title">💬 Leave a Comment</h5>
+                    <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" aria-label="Close" onclick="closeCommentModal()"></button>
                 </div>
                 <div class="comments-modal-body">
                     <form id="commentForm">
@@ -307,8 +307,6 @@
         </div>
     </div>
 </div>
-
-
 
 <section class="service-section py-5" id="service">
     <div class="container text-center mb-4 headers">
