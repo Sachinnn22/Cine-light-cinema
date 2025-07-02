@@ -132,15 +132,38 @@
             background: #6a48e6;
             box-shadow: 0 6px 14px rgba(106, 72, 230, 0.7);
         }
+
         @media (max-width: 425px) {
             .comment-container {
-                padding: 1.2rem;
+                padding: 1.5rem;
+            }
+            button[type="submit"] {
+                font-size: 0.95rem;
+                padding: 0.8rem;
             }
         }
         @media (max-width: 375px) {
+            .comment-container {
+                padding: 1.2rem;
+            }
             button[type="submit"] {
                 font-size: 0.9rem;
                 padding: 0.7rem;
+            }
+        }
+        @media (max-width: 320px) {
+            .comment-container {
+                padding: 1rem;
+            }
+            h2 {
+                font-size: 1.2rem;
+            }
+            button[type="submit"] {
+                font-size: 0.85rem;
+                padding: 0.6rem;
+            }
+            .stars label {
+                font-size: 1.4rem;
             }
         }
     </style>
