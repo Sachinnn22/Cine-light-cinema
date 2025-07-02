@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="styles/course.css">
     <link rel="stylesheet" href="styles/comment.css">
     <link rel="stylesheet" href="styles/breaking.css">
+    <link rel="stylesheet" href="styles/reivew.css">
     <link rel="stylesheet" href="styles/footer.css">
 </head>
 
@@ -266,6 +267,30 @@
             </div>
         </div>
     </section>
+</div>
+
+<div id="commentModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <h2>Leave a Comment</h2>
+
+        <form id="commentForm">
+            <input type="text" id="name" placeholder="Your Name" required />
+
+            <textarea id="description" placeholder="Write your comment..." rows="4" required></textarea>
+
+            <select id="stars" required>
+                <option value="">Select Stars</option>
+                <option value="5">⭐️⭐️⭐️⭐️⭐️</option>
+                <option value="4">⭐️⭐️⭐️⭐️</option>
+                <option value="3">⭐️⭐️⭐️</option>
+                <option value="2">⭐️⭐️</option>
+                <option value="1">⭐️</option>
+            </select>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
 </div>
 
 <section class="service-section py-5" id="service">
@@ -786,6 +811,36 @@
         e.preventDefault();
         modalCard.classList.remove('flipped');
     });
+
+    // // Show modal
+    // function showModal() {
+    //     document.getElementById("commentModal").style.display = "flex";
+    // }
+    //
+    // // Hide modal
+    // function closeModal() {
+    //     document.getElementById("commentModal").style.display = "none";
+    // }
+    //
+    // // Handle form submit
+    // document.getElementById("commentForm").addEventListener("submit", function (e) {
+    //     e.preventDefault();
+    //
+    //     const name = document.getElementById("name").value.trim();
+    //     const desc = document.getElementById("description").value.trim();
+    //     const stars = document.getElementById("stars").value;
+    //
+    //     if (name && desc && stars) {
+    //         alert(`Thank you ${name}!\nComment: ${desc}\nStars: ${stars}`);
+    //         closeModal();
+    //         this.reset();
+    //     } else {
+    //         alert("Please fill out all fields.");
+    //     }
+    // });
+    //
+    // setInterval(showModal, 60000);
+
 
 </script>
 
