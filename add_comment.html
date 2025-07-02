@@ -29,7 +29,9 @@
             padding: 2rem;
             width: 100%;
             max-width: 420px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.7);
+            box-shadow:
+                    0 12px 48px rgba(0,0,0,0.85),
+                    0 0 25px 6px rgba(0,139,139,0.9);
         }
         .close-icon {
             position: absolute;
@@ -42,11 +44,11 @@
             user-select: none;
         }
         .close-icon:hover {
-            color: #7f5af0;
-            filter: drop-shadow(0 0 2px #7f5af0);
+            color: darkcyan;
+            filter: drop-shadow(0 0 2px darkcyan);
         }
         h2 {
-            color: #7f5af0;
+            color: darkcyan;
             margin-bottom: 1.5rem;
             text-align: center;
             font-weight: 600;
@@ -89,7 +91,7 @@
             gap: 8px;
             margin-bottom: 1.3rem;
             justify-content: center;
-            flex-direction: row;
+            flex-direction: row-reverse;
         }
         .stars input[type="radio"] {
             display: none;
@@ -103,41 +105,38 @@
         }
         .stars label:hover,
         .stars label:hover ~ label {
-            color: #7f5af0;
-            filter: drop-shadow(0 0 2px #7f5af0);
-        }
-        .stars input[type="radio"]:checked ~ label {
-            color: #555;
-            filter: none;
+            color: darkcyan;
+            filter: drop-shadow(0 0 2px darkcyan);
         }
         .stars input[type="radio"]:checked + label,
         .stars input[type="radio"]:checked + label ~ label {
-            color: #7f5af0;
-            filter: drop-shadow(0 0 2px #7f5af0);
+            color: darkcyan;
+            filter: drop-shadow(0 0 2px darkcyan);
         }
         button[type="submit"] {
             width: 100%;
             padding: 0.85rem;
             border-radius: 12px;
-            background: #7f5af0;
+            background: darkcyan;
             border: none;
             color: white;
             font-weight: 600;
             font-size: 1rem;
             cursor: pointer;
             transition: background 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 12px rgba(127, 90, 240, 0.5);
+            box-shadow: 0 4px 12px rgba(0, 139, 139, 0.5);
         }
         button[type="submit"]:hover {
-            background: #6a48e6;
-            box-shadow: 0 6px 14px rgba(106, 72, 230, 0.7);
+            background: #006666;
+            box-shadow: 0 6px 14px rgba(0, 102, 102, 0.7);
         }
-
         @media (min-width: 1440px) {
             .comment-container {
                 max-width: 600px;
                 padding: 3rem;
-                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+                box-shadow:
+                        0 16px 60px rgba(0, 0, 0, 0.9),
+                        0 0 30px 8px rgba(0,139,139,0.95);
             }
             h2 {
                 font-size: 2.2rem;
@@ -154,10 +153,9 @@
             button[type="submit"] {
                 font-size: 1.2rem;
                 padding: 1rem;
-                box-shadow: 0 6px 18px rgba(127, 90, 240, 0.7);
+                box-shadow: 0 6px 18px rgba(0, 139, 139, 0.7);
             }
         }
-
         @media (max-width: 425px) {
             .comment-container {
                 padding: 1.5rem;
@@ -205,16 +203,16 @@
         <textarea id="description" name="description" placeholder="Write your comment here..." rows="4" required></textarea>
         <label class="stars-label">Stars</label>
         <div class="stars" role="radiogroup" aria-label="Star rating">
-            <input type="radio" id="star5" name="stars" value="5" required />
-            <label for="star5" title="5 stars"><i class="fas fa-star"></i></label>
-            <input type="radio" id="star4" name="stars" value="4" />
-            <label for="star4" title="4 stars"><i class="fas fa-star"></i></label>
-            <input type="radio" id="star3" name="stars" value="3" />
-            <label for="star3" title="3 stars"><i class="fas fa-star"></i></label>
+            <input type="radio" id="star1" name="stars" value="1" required />
+            <label for="star1" title="1 star"><i class="fas fa-star"></i></label>
             <input type="radio" id="star2" name="stars" value="2" />
             <label for="star2" title="2 stars"><i class="fas fa-star"></i></label>
-            <input type="radio" id="star1" name="stars" value="1" />
-            <label for="star1" title="1 star"><i class="fas fa-star"></i></label>
+            <input type="radio" id="star3" name="stars" value="3" />
+            <label for="star3" title="3 stars"><i class="fas fa-star"></i></label>
+            <input type="radio" id="star4" name="stars" value="4" />
+            <label for="star4" title="4 stars"><i class="fas fa-star"></i></label>
+            <input type="radio" id="star5" name="stars" value="5" />
+            <label for="star5" title="5 stars"><i class="fas fa-star"></i></label>
         </div>
         <button type="submit">Add Comment</button>
     </form>
