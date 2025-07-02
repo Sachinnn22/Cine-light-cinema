@@ -269,45 +269,35 @@
     </section>
 </div>
 
-<div class="comments-modal" id="comment-modal-container">
+<div id="comment-modal-container">
     <div class="comments-modal-dialog">
-        <div class="comments-modal-header">
-            💬 Leave a Comment
-            <button type="button" class="btn-close" aria-label="Close" onclick="document.getElementById('comment-modal-container').style.display='none'">&times;</button>
+        <div class="modal-header">
+            <h5 class="modal-title">💬 Leave a Comment</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+
         <form id="commentForm">
-            <div class="mb-3">
-                <label for="comment-name" class="form-label">👤 Name</label>
-                <input type="text" class="form-control" id="comment-name" placeholder="Enter your name" required />
-            </div>
-            <div class="mb-3">
-                <label for="comment-description" class="form-label">📝 Description</label>
-                <textarea
-                        class="form-control"
-                        id="comment-description"
-                        rows="4"
-                        placeholder="Write your feedback..."
-                        required
-                ></textarea>
-            </div>
+            <label for="comment-name" class="form-label">👤 Name</label>
+            <input type="text" id="comment-name" class="form-control" placeholder="Enter your name" required />
 
-            <div class="mb-3">
-                <label for="comment-stars" class="form-label">⭐ Rating</label>
-                <select id="comment-stars" name="rating" class="star-select" required>
-                    <option value="" disabled selected>Select rating</option>
-                    <option value="5">★★★★★ 5 Stars</option>
-                    <option value="4.5">★★★★☆ 4.5 Stars</option>
-                    <option value="4">★★★★ 4 Stars</option>
-                    <option value="3.5">★★★☆ 3.5 Stars</option>
-                    <option value="3">★★★ 3 Stars</option>
-                    <option value="2.5">★★☆ 2.5 Stars</option>
-                    <option value="2">★★ 2 Stars</option>
-                    <option value="1.5">★☆ 1.5 Stars</option>
-                    <option value="1">★ 1 Star</option>
-                </select>
-            </div>
+            <label for="comment-description" class="form-label">📝 Description</label>
+            <textarea id="comment-description" class="form-control" rows="4" placeholder="Write your feedback..." required></textarea>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <label for="comment-stars" class="form-label">⭐ Rating</label>
+            <select id="comment-stars" class="star-select" required>
+                <option value="" disabled selected>Choose rating</option>
+                <option value="5" class="yellow-stars">★★★★★ 5 Stars</option>
+                <option value="4.5" class="yellow-stars">★★★★☆ 4.5 Stars</option>
+                <option value="4" class="yellow-stars">★★★★ 4 Stars</option>
+                <option value="3.5" class="yellow-stars">★★★☆ 3.5 Stars</option>
+                <option value="3" class="yellow-stars">★★★ 3 Stars</option>
+                <option value="2.5" class="yellow-stars">★★☆ 2.5 Stars</option>
+                <option value="2" class="yellow-stars">★★ 2 Stars</option>
+                <option value="1.5" class="yellow-stars">★☆ 1.5 Stars</option>
+                <option value="1" class="yellow-stars">★ 1 Star</option>
+            </select>
+
+            <button type="submit" class="btn-primary">Submit</button>
         </form>
     </div>
 </div>
@@ -765,99 +755,102 @@
 </script>
 
 <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const navbarCollapse = document.getElementById('navbarMenu');
+        const navLinks = navbarCollapse.querySelectorAll('a.nav-link');
 
-    const navbarCollapse = document.getElementById('navbarMenu');
-    const navLinks = navbarCollapse.querySelectorAll('a.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navbarCollapse.classList.contains('show')) {
+                    setTimeout(() => {
+                        const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+                        if (bsCollapse) bsCollapse.hide();
+                    }, 100);
+                }
+            });
+        });
 
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            if (navbarCollapse.classList.contains('show')) {
-                setTimeout(() => {
+        const loginBtnMobile = document.querySelector('#navbarMenu .btn-login');
+        if (loginBtnMobile) {
+            loginBtnMobile.addEventListener('click', () => {
+                if (navbarCollapse.classList.contains('show')) {
                     const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
                     if (bsCollapse) bsCollapse.hide();
-                }, 100);
-            }
+                }
+            });
+        }
+
+        const carousel = document.getElementById('carousel');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        function getCardWidth() {
+            const card = carousel.querySelector('.course-card-custom');
+            if (!card) return 0;
+            const style = window.getComputedStyle(card);
+            const marginRight = parseFloat(style.marginRight || '24');
+            return card.offsetWidth + marginRight;
+        }
+
+        let scrollPosition = 0;
+
+        prevBtn.addEventListener('click', () => {
+            scrollPosition -= getCardWidth();
+            if (scrollPosition < 0) scrollPosition = 0;
+            carousel.scrollTo({ left: scrollPosition, behavior: 'smooth' });
         });
-    });
 
-    const loginBtnMobile = document.querySelector('#navbarMenu .btn-login');
-    if (loginBtnMobile) {
-        loginBtnMobile.addEventListener('click', () => {
-            if (navbarCollapse.classList.contains('show')) {
-                const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
-                if (bsCollapse) bsCollapse.hide();
-            }
+        nextBtn.addEventListener('click', () => {
+            scrollPosition += getCardWidth();
+            const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+            if (scrollPosition > maxScroll) scrollPosition = maxScroll;
+            carousel.scrollTo({ left: scrollPosition, behavior: 'smooth' });
         });
-    }
-
-    const carousel = document.getElementById('carousel');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-
-    function getCardWidth() {
-        const card = carousel.querySelector('.course-card-custom');
-        if (!card) return 0;
-        const style = window.getComputedStyle(card);
-        const marginRight = parseFloat(style.marginRight || '24');
-        return card.offsetWidth + marginRight;
-    }
-
-    let scrollPosition = 0;
-
-    prevBtn.addEventListener('click', () => {
-        scrollPosition -= getCardWidth();
-        if (scrollPosition < 0) scrollPosition = 0;
-        carousel.scrollTo({ left: scrollPosition, behavior: 'smooth' });
-    });
-
-    nextBtn.addEventListener('click', () => {
-        scrollPosition += getCardWidth();
-        const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-        if (scrollPosition > maxScroll) scrollPosition = maxScroll;
-        carousel.scrollTo({ left: scrollPosition, behavior: 'smooth' });
-    });
 
         const modalCard = document.querySelector('.modal-card');
         const showRegister = document.getElementById('showRegister');
         const showLogin = document.getElementById('showLogin');
 
-        showRegister.addEventListener('click', e => {
-        e.preventDefault();
-        modalCard.classList.add('flipped');
-    });
-
-        showLogin.addEventListener('click', e => {
-        e.preventDefault();
-        modalCard.classList.remove('flipped');
-    });
-
-    function showCommentModal() {
-        document.getElementById("comment-modal-container").style.display = "flex";
-        document.body.classList.add("modal-open");
-    }
-
-    function closeCommentModal() {
-        document.getElementById("comment-modal-container").style.display = "none";
-        document.body.classList.remove("modal-open");
-    }
-
-    document.getElementById("commentForm").addEventListener("submit", function (e) {
-        e.preventDefault();
-        const name = document.getElementById("comment-name").value.trim();
-        const desc = document.getElementById("comment-description").value.trim();
-        const stars = document.getElementById("comment-stars").value;
-        if (name && desc && stars) {
-            alert(`✅ Thank you ${name}!\n📝 ${desc}\n⭐ Stars: ${stars}`);
-            this.reset();
-            closeCommentModal();
-        } else {
-            alert("⚠️ Please fill out all fields.");
+        if (showRegister && modalCard) {
+            showRegister.addEventListener('click', e => {
+                e.preventDefault();
+                modalCard.classList.add('flipped');
+            });
         }
-    });
 
-    setInterval(showCommentModal, 6000);
+        if (showLogin && modalCard) {
+            showLogin.addEventListener('click', e => {
+                e.preventDefault();
+                modalCard.classList.remove('flipped');
+            });
+        }
 
+        setTimeout(() => {
+            document.getElementById('comment-modal-container').style.display = 'flex';
+        }, 6000);
+
+        // Close modal on clicking close button
+        document.getElementById('closeModalBtn').addEventListener('click', () => {
+            document.getElementById('comment-modal-container').style.display = 'none';
+        });
+
+        // Form submit handler
+        document.getElementById('commentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('comment-name').value.trim();
+            const desc = document.getElementById('comment-description').value.trim();
+            const stars = document.getElementById('comment-stars').value;
+
+            if(name && desc && stars) {
+                alert(`✅ Thank you ${name}!\n📝 ${desc}\n⭐ Stars: ${stars}`);
+                this.reset();
+                document.getElementById('comment-modal-container').style.display = 'none';
+            } else {
+                alert('⚠️ Please fill out all fields.');
+            }
+        });
 </script>
+
 
 </body>
 </html>
