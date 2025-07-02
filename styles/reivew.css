@@ -134,6 +134,57 @@ button.btn-primary:hover {
     background: linear-gradient(to right, #0d47a1, #006666);
 }
 
+@media (max-width: 768px) {
+    .comments-modal-dialog {
+        width: 92%;
+        padding: 1rem 1.2rem 1.5rem;
+        border-width: 3px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        max-height: 95vh;
+        box-sizing: border-box;
+    }
+
+    .modal-header {
+        font-size: 1.05rem;
+        height: auto;
+        padding: 1rem 1.2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-sizing: border-box;
+    }
+
+    .btn-close {
+        font-size: 1.8rem;
+        position: static;
+        transform: none;
+        margin-left: 1rem;
+        flex-shrink: 0;
+    }
+
+    input.form-control,
+    textarea.form-control,
+    select.star-select {
+        font-size: 1rem;
+        padding: 0.55rem 0.75rem;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    textarea.form-control {
+        min-height: 100px;
+    }
+
+    button.btn-primary {
+        font-size: 1.05rem;
+        padding: 0.7rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+
 @media (max-width: 425px) {
     .comments-modal-dialog {
         width: 95%;
