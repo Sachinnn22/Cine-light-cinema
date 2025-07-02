@@ -10,8 +10,8 @@
 .breaking-banner h1 {
     font-size: 3.8rem;
     font-weight: bolder;
-    font-family: "sans-serif";
-    background: linear-gradient(45deg, #56ccf2, #2f80ed, #4ac29a, #6a11cb);
+    font-family: "Tw Cen MT";
+    background: linear-gradient(45deg, #ff6b6b, #145571, #1e5870, #96ceb4, #feca57);
     background-size: 600% 600%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
