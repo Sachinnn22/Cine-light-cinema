@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Digi Marts - Add Comment</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet" />
     <style>
         * {
             box-sizing: border-box;
@@ -30,7 +31,6 @@
             max-width: 420px;
             box-shadow: 0 8px 32px rgba(0,0,0,0.7);
         }
-        /* Close icon styles */
         .close-icon {
             position: absolute;
             top: 1rem;
@@ -147,7 +147,7 @@
 </head>
 <body>
 
-<div class="comment-container">
+<div class="comment-container" data-aos="fade-down" data-aos-duration="1200">
     <i class="fas fa-times close-icon" title="Close"></i>
     <h2>Add Your Comment</h2>
     <form id="commentForm">
@@ -159,16 +159,12 @@
         <div class="stars" role="radiogroup" aria-label="Star rating">
             <input type="radio" id="star5" name="stars" value="5" required />
             <label for="star5" title="5 stars"><i class="fas fa-star"></i></label>
-
             <input type="radio" id="star4" name="stars" value="4" />
             <label for="star4" title="4 stars"><i class="fas fa-star"></i></label>
-
             <input type="radio" id="star3" name="stars" value="3" />
             <label for="star3" title="3 stars"><i class="fas fa-star"></i></label>
-
             <input type="radio" id="star2" name="stars" value="2" />
             <label for="star2" title="2 stars"><i class="fas fa-star"></i></label>
-
             <input type="radio" id="star1" name="stars" value="1" />
             <label for="star1" title="1 star"><i class="fas fa-star"></i></label>
         </div>
@@ -176,7 +172,10 @@
     </form>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script>
+    AOS.init();
+
     document.querySelector('.close-icon').addEventListener('click', function() {
         window.location.href = 'index.html';
     });
