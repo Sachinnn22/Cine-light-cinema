@@ -20,6 +20,7 @@
             color: #e1e8f0;
         }
         .comment-container {
+            position: relative;
             background: rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 20px;
@@ -28,6 +29,21 @@
             width: 100%;
             max-width: 420px;
             box-shadow: 0 8px 32px rgba(0,0,0,0.7);
+        }
+        /* Close icon styles */
+        .close-icon {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            color: #e1e8f0;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            user-select: none;
+        }
+        .close-icon:hover {
+            color: #7f5af0;
+            filter: drop-shadow(0 0 2px #7f5af0);
         }
         h2 {
             color: #7f5af0;
@@ -132,6 +148,7 @@
 <body>
 
 <div class="comment-container">
+    <i class="fas fa-times close-icon" title="Close"></i>
     <h2>Add Your Comment</h2>
     <form id="commentForm">
         <label for="username">User Name</label>
@@ -158,6 +175,12 @@
         <button type="submit">Add Comment</button>
     </form>
 </div>
+
+<script>
+    document.querySelector('.close-icon').addEventListener('click', function() {
+        window.location.href = 'index.html';
+    });
+</script>
 
 </body>
 </html>
