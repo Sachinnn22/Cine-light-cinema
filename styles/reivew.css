@@ -134,6 +134,101 @@ button.btn-primary:hover {
     background: linear-gradient(to right, #0d47a1, #006666);
 }
 
+@media (min-width: 1025px) and (max-width: 1440px) {
+    #comment-modal-container {
+        align-items: flex-start;
+        padding-top: 8rem;
+    }
+
+    .comments-modal-dialog {
+        width: 75%;
+        padding: 1.5rem 2rem 2rem;
+        border-width: 4px;
+        max-height: 95vh;
+        overflow-y: auto;
+        box-sizing: border-box;
+    }
+
+    .modal-header {
+        font-size: 1.2rem;
+        padding: 1.4rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-sizing: border-box;
+    }
+
+    .btn-close {
+        font-size: 2.2rem;
+        position: static;
+        transform: none;
+        margin-left: 1.2rem;
+        cursor: pointer;
+        color: white;
+    }
+
+    input.form-control,
+    textarea.form-control,
+    select.star-select {
+        font-size: 1.05rem;
+        padding: 0.65rem 0.85rem;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    button.btn-primary {
+        font-size: 1.15rem;
+        padding: 0.8rem;
+        width: 100%;
+        box-sizing: border-box;
+        cursor: pointer;
+    }
+}
+
+
+@media (max-width: 1024px) {
+    .comments-modal-dialog {
+        width: 88%;
+        padding: 1rem 1.8rem 1.8rem;
+        border-width: 3px;
+        max-height: 95vh;
+        overflow-y: auto;
+        box-sizing: border-box;
+    }
+
+    .modal-header {
+        font-size: 1.1rem;
+        padding: 1.2rem 1.8rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .btn-close {
+        font-size: 2rem;
+        position: static;
+        transform: none;
+        margin-left: 1rem;
+        flex-shrink: 0;
+    }
+
+    input.form-control,
+    textarea.form-control,
+    select.star-select {
+        font-size: 1rem;
+        padding: 0.6rem 0.75rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    button.btn-primary {
+        font-size: 1.1rem;
+        padding: 0.75rem;
+        width: 100%;
+    }
+}
+
 @media (max-width: 768px) {
     .comments-modal-dialog {
         width: 92%;
