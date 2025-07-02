@@ -269,42 +269,46 @@
     </section>
 </div>
 
-<div class="comments-modal" id="comment-modal-container" style="display: none;">
+<div class="comments-modal" id="comment-modal-container">
     <div class="comments-modal-dialog">
-        <div class="comments-modal-content">
-            <div class="comments-modal-front">
-                <div class="comments-modal-header position-relative">
-                    <h5 class="comments-modal-title">💬 Leave a Comment</h5>
-                    <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" aria-label="Close" onclick="closeCommentModal()"></button>
-                </div>
-                <div class="comments-modal-body">
-                    <form id="commentForm">
-                        <div class="mb-3">
-                            <label for="comment-name" class="form-label">👤 Name</label>
-                            <input type="text" class="form-control" id="comment-name" placeholder="Enter your name" required />
-                        </div>
-                        <div class="mb-3">
-                            <label for="comment-description" class="form-label">📝 Description</label>
-                            <textarea class="form-control" id="comment-description" rows="4" placeholder="Write your feedback..." required></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="comment-stars" class="form-label">⭐ Rating</label>
-                            <select class="form-control" id="comment-stars" required>
-                                <option value="">Choose rating</option>
-                                <option value="5">⭐️⭐️⭐️⭐️⭐️</option>
-                                <option value="4.5">⭐️⭐️⭐️⭐️✨</option>
-                                <option value="4">⭐️⭐️⭐️⭐️</option>
-                                <option value="3.5">⭐️⭐️⭐️✨</option>
-                                <option value="3">⭐️⭐️⭐️</option>
-                                <option value="2">⭐️⭐️</option>
-                                <option value="1">⭐️</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Submit</button>
-                    </form>
-                </div>
-            </div>
+        <div class="comments-modal-header">
+            💬 Leave a Comment
+            <button type="button" class="btn-close" aria-label="Close" onclick="document.getElementById('comment-modal-container').style.display='none'">&times;</button>
         </div>
+        <form id="commentForm">
+            <div class="mb-3">
+                <label for="comment-name" class="form-label">👤 Name</label>
+                <input type="text" class="form-control" id="comment-name" placeholder="Enter your name" required />
+            </div>
+            <div class="mb-3">
+                <label for="comment-description" class="form-label">📝 Description</label>
+                <textarea
+                        class="form-control"
+                        id="comment-description"
+                        rows="4"
+                        placeholder="Write your feedback..."
+                        required
+                ></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="comment-stars" class="form-label">⭐ Rating</label>
+                <select id="comment-stars" name="rating" class="star-select" required>
+                    <option value="" disabled selected>Select rating</option>
+                    <option value="5">★★★★★ 5 Stars</option>
+                    <option value="4.5">★★★★☆ 4.5 Stars</option>
+                    <option value="4">★★★★ 4 Stars</option>
+                    <option value="3.5">★★★☆ 3.5 Stars</option>
+                    <option value="3">★★★ 3 Stars</option>
+                    <option value="2.5">★★☆ 2.5 Stars</option>
+                    <option value="2">★★ 2 Stars</option>
+                    <option value="1.5">★☆ 1.5 Stars</option>
+                    <option value="1">★ 1 Star</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
     </div>
 </div>
 
