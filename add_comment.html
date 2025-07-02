@@ -1,10 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>a</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Digi Marts - Add Comment</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0; padding: 0;
+            background: #101820;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #e1e8f0;
+        }
+        .comment-container {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            backdrop-filter: blur(12px);
+            padding: 2rem;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.7);
+        }
+        h2 {
+            color: #7f5af0;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-weight: 600;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 10px;
+            border: none;
+            background: rgba(255, 255, 255, 0.12);
+            color: #e1e8f0;
+            font-size: 1rem;
+            outline: none;
+            transition: background 0.3s ease;
+            resize: vertical;
+            margin-bottom: 1.3rem;
+        }
+        input::placeholder,
+        textarea::placeholder {
+            color: #abb2bf;
+        }
+        input:focus,
+        textarea:focus {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .stars {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 1.3rem;
+            justify-content: flex-start;
+        }
+        .stars input[type="radio"] {
+            display: none;
+        }
+        .stars label {
+            font-size: 1.8rem;
+            color: #555;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            user-select: none;
+        }
+        .stars label:hover,
+        .stars label:hover ~ label,
+        .stars input[type="radio"]:checked ~ label {
+            color: #7f5af0;
+            filter: drop-shadow(0 0 2px #7f5af0);
+        }
+        button[type="submit"] {
+            width: 100%;
+            padding: 0.85rem;
+            border-radius: 12px;
+            background: #7f5af0;
+            border: none;
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 12px rgba(127, 90, 240, 0.5);
+        }
+        button[type="submit"]:hover {
+            background: #6a48e6;
+            box-shadow: 0 6px 14px rgba(106, 72, 230, 0.7);
+        }
+        @media (max-width: 425px) {
+            .comment-container {
+                padding: 1.2rem;
+            }
+        }
+        @media (max-width: 375px) {
+            button[type="submit"] {
+                font-size: 0.9rem;
+                padding: 0.7rem;
+            }
+        }
+    </style>
 </head>
 <body>
+
+<div class="comment-container">
+    <h2>Add Your Comment</h2>
+    <form id="commentForm">
+        <label for="username">User Name</label>
+        <input type="text" id="username" name="username" placeholder="Enter your username" required />
+        <label for="description">Description</label>
+        <textarea id="description" name="description" placeholder="Write your comment here..." rows="4" required></textarea>
+        <label>Stars</label>
+        <div class="stars" role="radiogroup" aria-label="Star rating">
+            <input type="radio" id="star1" name="stars" value="1" required />
+            <label for="star1" title="1 star"><i class="fas fa-star"></i></label>
+            <input type="radio" id="star2" name="stars" value="2" />
+            <label for="star2" title="2 stars"><i class="fas fa-star"></i></label>
+            <input type="radio" id="star3" name="stars" value="3" />
+            <label for="star3" title="3 stars"><i class="fas fa-star"></i></label>
+            <input type="radio" id="star4" name="stars" value="4" />
+            <label for="star4" title="4 stars"><i class="fas fa-star"></i></label>
+            <input type="radio" id="star5" name="stars" value="5" />
+            <label for="star5" title="5 stars"><i class="fas fa-star"></i></label>
+        </div>
+        <button type="submit">Add Comment</button>
+    </form>
+</div>
 
 </body>
 </html>
