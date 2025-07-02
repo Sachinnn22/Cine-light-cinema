@@ -8,9 +8,9 @@
 }
 
 .breaking-banner h1 {
-    font-size: 2.8rem;
-    font-weight: 900;
-    background: linear-gradient(45deg, #ff6b6b, #145571, #1e5870, #96ceb4, #feca57);
+    font-size: 3.2rem;
+    font-weight: 1000;
+    background: linear-gradient(45deg, #56ccf2, #2f80ed, #4ac29a, #6a11cb);
     background-size: 600% 600%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -18,7 +18,7 @@
 }
 
 .breaking-banner p {
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 600;
     margin-top: 10px;
 }
