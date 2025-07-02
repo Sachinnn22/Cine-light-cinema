@@ -2,3 +2,13 @@
     background-color: #101820;
     border-top: 3px solid #2c5364;
 }
+
+#footer .brand-highlight {
+    font-weight: 900;
+    background: linear-gradient(45deg, #ff6b6b, #145571, #1e5870, #96ceb4, #feca57);
+    background-size: 500% 500%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rainbowShift 4s ease infinite;
+    font-weight: bold;
+}
