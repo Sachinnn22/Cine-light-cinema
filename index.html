@@ -269,14 +269,14 @@
     </section>
 </div>
 
-<div id="comment-modal-container" class="modal" style="display: none;">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-front">
-                <div class="modal-header">
-                    <h5 class="modal-title">💬 Leave a Comment</h5>
+<div class="comments-modal" style="display: none;" id="comment-modal-container">
+    <div class="comments-modal-dialog">
+        <div class="comments-modal-content">
+            <div class="comments-modal-front">
+                <div class="comments-modal-header">
+                    <h5 class="comments-modal-title">💬 Leave a Comment</h5>
                 </div>
-                <div class="modal-body">
+                <div class="comments-modal-body">
                     <form id="commentForm">
                         <div class="mb-3">
                             <label for="comment-name" class="form-label">👤 Name</label>
@@ -291,9 +291,7 @@
                             <select class="form-control" id="comment-stars" required>
                                 <option value="">Choose rating</option>
                                 <option value="5">⭐️⭐️⭐️⭐️⭐️</option>
-                                <option value="4.5">⭐️⭐️⭐️⭐️✨</option>
                                 <option value="4">⭐️⭐️⭐️⭐️</option>
-                                <option value="3.5">⭐️⭐️⭐️✨</option>
                                 <option value="3">⭐️⭐️⭐️</option>
                                 <option value="2">⭐️⭐️</option>
                                 <option value="1">⭐️</option>
@@ -826,37 +824,31 @@
         modalCard.classList.remove('flipped');
     });
 
-    // Show modal
-    function showModal() {
-        document.getElementById("commentModal").style.display = "flex";
+    function showCommentModal() {
+        document.getElementById("comment-modal-container").style.display = "flex";
         document.body.classList.add("modal-open");
     }
 
-    // Hide modal
-    function closeModal() {
-        document.getElementById("commentModal").style.display = "none";
+    function closeCommentModal() {
+        document.getElementById("comment-modal-container").style.display = "none";
         document.body.classList.remove("modal-open");
     }
 
-    // Submit comment
     document.getElementById("commentForm").addEventListener("submit", function (e) {
         e.preventDefault();
-        const name = document.getElementById("name").value.trim();
-        const desc = document.getElementById("description").value.trim();
-        const stars = document.getElementById("stars").value;
-
+        const name = document.getElementById("comment-name").value.trim();
+        const desc = document.getElementById("comment-description").value.trim();
+        const stars = document.getElementById("comment-stars").value;
         if (name && desc && stars) {
-            alert(`Thank you ${name}!\nComment: ${desc}\nStars: ${stars}`);
+            alert(`✅ Thank you ${name}!\n📝 ${desc}\n⭐ Stars: ${stars}`);
             this.reset();
-            closeModal();
+            closeCommentModal();
         } else {
-            alert("Please fill all fields.");
+            alert("⚠️ Please fill out all fields.");
         }
     });
 
-    // Open every 60 seconds
-    setInterval(showModal, 60000);
-
+    setInterval(showCommentModal, 6000);
 
 
 </script>
