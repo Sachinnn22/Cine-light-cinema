@@ -269,10 +269,11 @@
     </section>
 </div>
 
-<div class="comments-modal" style="display: none;" id="comment-modal-container">
+<div class="comments-modal" id="comment-modal-container" style="display: none;">
     <div class="comments-modal-dialog">
         <div class="comments-modal-content">
-            <div class="comments-modal-front">
+            <div class="comments-modal-front position-relative">
+                <button type="button" class="btn-close btn-close-white" aria-label="Close" onclick="closeCommentModal()" style="position: absolute; top: 12px; right: 18px;"></button>
                 <div class="comments-modal-header">
                     <h5 class="comments-modal-title">💬 Leave a Comment</h5>
                 </div>
@@ -291,7 +292,9 @@
                             <select class="form-control" id="comment-stars" required>
                                 <option value="">Choose rating</option>
                                 <option value="5">⭐️⭐️⭐️⭐️⭐️</option>
+                                <option value="4.5">⭐️⭐️⭐️⭐️✨</option>
                                 <option value="4">⭐️⭐️⭐️⭐️</option>
+                                <option value="3.5">⭐️⭐️⭐️✨</option>
                                 <option value="3">⭐️⭐️⭐️</option>
                                 <option value="2">⭐️⭐️</option>
                                 <option value="1">⭐️</option>
@@ -304,6 +307,8 @@
         </div>
     </div>
 </div>
+
+
 
 <section class="service-section py-5" id="service">
     <div class="container text-center mb-4 headers">
@@ -849,7 +854,6 @@
     });
 
     setInterval(showCommentModal, 6000);
-
 
 </script>
 
