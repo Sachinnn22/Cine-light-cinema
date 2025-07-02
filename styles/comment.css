@@ -50,7 +50,7 @@
 .comment-track {
     display: flex;
     gap: 2rem;
-    animation: infiniteScroll 50s linear infinite;
+    animation: infiniteScroll 100s linear infinite;
     width: fit-content;
 }
 
