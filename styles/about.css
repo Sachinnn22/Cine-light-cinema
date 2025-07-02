@@ -1,15 +1,17 @@
 #about h2 {
     color: #fff;
+    font-weight: 900;
+    font-size: 2.5rem;
 }
 
 #about .brand-highlight {
-    font-weight: 900;
+    font-weight: 1000;
     background: linear-gradient(45deg, #ff6b6b, #145571, #1e5870, #96ceb4, #feca57);
     background-size: 500% 500%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: rainbowShift 4s ease infinite;
-    font-weight: bold;
+    font-size: 2.5rem;
 }
 
 #about p {
@@ -47,4 +49,15 @@ a.text-info:hover {
     text-decoration: underline;
 }
 
+/*@media (max-width: 768px) {*/
+/*    #about .row.text-center.gy-4 > div {*/
+/*        flex: 0 0 50%;*/
+/*        max-width: 50%;*/
+/*    }*/
+
+/*    #about .contact-info > div {*/
+/*        flex: 0 0 100%;*/
+/*        max-width: 100%;*/
+/*    }*/
+/*}*/
 
