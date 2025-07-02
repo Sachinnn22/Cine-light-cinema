@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Digi Marts - Login/Register Flip</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"/>
     <style>
         * {
             box-sizing: border-box;
@@ -164,7 +165,7 @@
     </style>
 </head>
 <body>
-<div class="auth-container" id="authContainer">
+<div class="auth-container" id="authContainer" data-aos="fade-down">
     <div class="card">
         <i class="fas fa-times close-btn" onclick="closeCard()" title="Close"></i>
         <div class="side front">
@@ -219,7 +220,13 @@
         </div>
     </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script>
+    AOS.init({
+        duration: 1100,
+        easing: 'ease-in-out',
+        once: true
+    });
     function flipCard() {
         document.getElementById('authContainer').classList.toggle('flipped');
     }
