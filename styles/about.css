@@ -49,15 +49,15 @@ a.text-info:hover {
     text-decoration: underline;
 }
 
-/*@media (max-width: 768px) {*/
-/*    #about .row.text-center.gy-4 > div {*/
-/*        flex: 0 0 50%;*/
-/*        max-width: 50%;*/
-/*    }*/
+@media (min-width: 700px) and (max-width: 769px) {
+    #about .row.text-center.gy-4 > div {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
 
-/*    #about .contact-info > div {*/
-/*        flex: 0 0 100%;*/
-/*        max-width: 100%;*/
-/*    }*/
-/*}*/
+    #about .contact-info > div {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
 
