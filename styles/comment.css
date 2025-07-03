@@ -109,7 +109,7 @@
 .add-comment-wrapper {
     display: flex;
     justify-content: center;
-    margin-top: 35px;
+    margin-top: 30px;
     position: relative;
     z-index: 2;
 }
@@ -119,6 +119,8 @@
     color: white;
     border: none;
     padding: 10px 28px;
+    font-weight: 800;
+    font-family: "DM Sans", sans-serif;;
     font-size: 1.1rem;
     border-radius: 25px;
     cursor: pointer;
