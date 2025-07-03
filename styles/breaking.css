@@ -10,7 +10,7 @@
 .breaking-banner h1 {
     font-size: 3.8rem;
     font-weight: 900;
-    font-family: "DM Sans";
+    font-family: "DM Sans", sans-serif;
     background: linear-gradient(45deg, #ff6b6b, #145571, #1e5870, #96ceb4, #feca57);
     background-size: 600% 600%;
     -webkit-background-clip: text;
