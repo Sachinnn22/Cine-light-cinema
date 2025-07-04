@@ -92,9 +92,16 @@
     font-size: 1rem;
 }
 
-.comment-stars {
+.comment-stars i {
     color: #ffc107;
-    font-size: 1.2rem;
+    font-size: 0.9rem;
+    margin-right: 2px;
+    vertical-align: middle;
+}
+
+.comment-stars i.fa-star-half-alt {
+    transform: scaleX(1) scaleY(1);
+    margin-left: -1px;
 }
 
 @keyframes infiniteScroll {
@@ -120,7 +127,7 @@
     border: none;
     padding: 10px 28px;
     font-weight: 800;
-    font-family: "DM Sans", sans-serif;;
+    font-family: "DM Sans", sans-serif;
     font-size: 1.1rem;
     border-radius: 25px;
     cursor: pointer;
@@ -161,8 +168,8 @@
         font-size: 1.1rem;
     }
 
-    .comment-stars {
-        font-size: 1.4rem;
+    .comment-stars i {
+        font-size: 1.2rem;
     }
 
     .add-comment-btn {
