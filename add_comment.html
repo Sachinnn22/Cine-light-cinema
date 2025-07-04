@@ -144,29 +144,29 @@
             background: #006666;
             box-shadow: 0 6px 14px rgba(0, 102, 102, 0.7);
         }
-        @media (min-width: 1440px) {
+
+        @media (max-width: 1024px) {
             .comment-container {
-                max-width: 600px;
-                padding: 3rem;
-                box-shadow:
-                        0 16px 60px rgba(0, 0, 0, 0.9),
-                        0 0 30px 8px rgba(0,139,139,0.95);
-            }
-            h2 {
-                font-size: 2.2rem;
-                margin-bottom: 2rem;
-            }
-            input[type="text"],
-            textarea {
-                font-size: 1.2rem;
-                padding: 1rem 1.2rem;
+                padding: 1.8rem;
+                max-width: 360px;
             }
             button[type="submit"] {
-                font-size: 1.2rem;
-                padding: 1rem;
-                box-shadow: 0 6px 18px rgba(0, 139, 139, 0.7);
+                font-size: 1rem;
+                padding: 0.8rem;
             }
         }
+
+        @media (max-width: 768px) {
+            .comment-container {
+                padding: 1.5rem;
+                max-width: 320px;
+            }
+            button[type="submit"] {
+                font-size: 0.95rem;
+                padding: 0.75rem;
+            }
+        }
+
         @media (max-width: 425px) {
             .comment-container {
                 padding: 1.5rem;
