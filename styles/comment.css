@@ -139,45 +139,6 @@
     background-color: #1a2736;
 }
 
-@media (min-width: 1400px) and (max-width: 1440px) {
-    #comments {
-        padding: 100px 0;
-    }
-
-    #comments h2 {
-        font-size: 3rem;
-    }
-
-    #comments .subtitle {
-        font-size: 1.3rem;
-    }
-
-    .comment-card {
-        flex: 0 0 360px;
-        padding: 2.5rem;
-        backdrop-filter: blur(12px);
-        background: rgba(230, 230, 230, 0.85);
-    }
-
-    .comment-text {
-        font-size: 1.1rem;
-        line-height: 1.8;
-    }
-
-    .comment-name {
-        font-size: 1.1rem;
-    }
-
-    .comment-stars i {
-        font-size: 1.2rem;
-    }
-
-    .add-comment-btn {
-        font-size: 1.2rem;
-        padding: 12px 32px;
-    }
-}
-
 @media (max-width: 768px) {
     .comment-card {
         flex: 0 0 70vw;
@@ -204,10 +165,6 @@
     #comments .subtitle {
         font-size: 1rem;
     }
-
-    .comment-carousel:hover .comment-track {
-        animation-play-state: paused !important;
-    }
 }
 
 @media (max-width: 375px) {
@@ -222,10 +179,6 @@
     #comments .subtitle {
         font-size: 0.95rem;
     }
-
-    .comment-carousel:active .comment-track {
-        animation-play-state: paused !important;
-    }
 }
 
 @media (max-width: 320px) {
@@ -239,13 +192,5 @@
 
     #comments .subtitle {
         font-size: 0.9rem;
-    }
-
-    .comment-carousel:active .comment-track {
-        animation-play-state: paused !important;
-    }
-
-    .comment-card:hover {
-        transform: translateY(-6px) !important;
     }
 }
