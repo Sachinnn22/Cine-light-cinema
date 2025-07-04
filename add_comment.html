@@ -80,38 +80,52 @@
         textarea:focus {
             background: rgba(255, 255, 255, 0.2);
         }
-        .stars-label {
-            text-align: center;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            display: block;
-        }
-        .stars {
-            display: flex;
-            gap: 8px;
+        .custom-dropdown-css {
+            position: relative;
+            width: 100%;
+            max-width: 420px;
             margin-bottom: 1.3rem;
-            justify-content: center;
-            flex-direction: row-reverse;
         }
-        .stars input[type="radio"] {
-            display: none;
-        }
-        .stars label {
-            font-size: 1.8rem;
-            color: #555;
+        .custom-dropdown-css select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 10px;
+            border: none;
+            background: rgba(255, 255, 255, 0.12);
+            color: #e1e8f0;
+            font-size: 1rem;
             cursor: pointer;
-            transition: color 0.3s ease;
-            user-select: none;
+            outline: none;
+            box-shadow: none;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        .stars label:hover,
-        .stars label:hover ~ label {
-            color: darkcyan;
-            filter: drop-shadow(0 0 2px darkcyan);
+        .custom-dropdown-css select:focus {
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 5px darkcyan;
         }
-        .stars input[type="radio"]:checked + label,
-        .stars input[type="radio"]:checked + label ~ label {
-            color: darkcyan;
-            filter: drop-shadow(0 0 2px darkcyan);
+        .custom-dropdown-css select option {
+            background: #101820;
+            color: #e1e8f0;
+        }
+        .custom-dropdown-css .dropdown-arrow {
+            pointer-events: none;
+            position: absolute;
+            top: 50%;
+            right: 1rem;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid #e1e8f0;
+        }
+        @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+            .custom-dropdown-css select {
+                padding-right: 1.5rem;
+            }
         }
         button[type="submit"] {
             width: 100%;
@@ -146,9 +160,6 @@
             textarea {
                 font-size: 1.2rem;
                 padding: 1rem 1.2rem;
-            }
-            .stars label {
-                font-size: 2.2rem;
             }
             button[type="submit"] {
                 font-size: 1.2rem;
@@ -185,35 +196,38 @@
                 font-size: 0.85rem;
                 padding: 0.6rem;
             }
-            .stars label {
-                font-size: 1.4rem;
-            }
         }
     </style>
 </head>
 <body>
 
 <div class="comment-container" data-aos="fade-down" data-aos-duration="1200">
-    <i class="fas fa-times close-icon" title="Close"></i>
+    <i class="fas fa-times close-icon" title="Close" onclick="window.location.href='index.html#comments'"></i>
     <h2>Add Your Comment</h2>
     <form id="commentForm">
         <label for="username">User Name</label>
         <input type="text" id="username" name="username" placeholder="Enter your username" required />
+
         <label for="description">Description</label>
         <textarea id="description" name="description" placeholder="Write your comment here..." rows="4" required></textarea>
-        <label class="stars-label">Stars</label>
-        <div class="stars" role="radiogroup" aria-label="Star rating">
-            <input type="radio" id="star1" name="stars" value="1" required />
-            <label for="star1" title="1 star"><i class="fas fa-star"></i></label>
-            <input type="radio" id="star2" name="stars" value="2" />
-            <label for="star2" title="2 stars"><i class="fas fa-star"></i></label>
-            <input type="radio" id="star3" name="stars" value="3" />
-            <label for="star3" title="3 stars"><i class="fas fa-star"></i></label>
-            <input type="radio" id="star4" name="stars" value="4" />
-            <label for="star4" title="4 stars"><i class="fas fa-star"></i></label>
-            <input type="radio" id="star5" name="stars" value="5" />
-            <label for="star5" title="5 stars"><i class="fas fa-star"></i></label>
+
+        <label for="stars" class="custom-dropdown-label">Stars</label>
+        <div class="custom-dropdown-css">
+            <select id="stars" name="stars" required>
+                <option value="" disabled selected>Select rating</option>
+                <option value="1">★☆☆☆☆ 1 Star</option>
+                <option value="1.5">★½☆☆☆ 1.5 Stars</option>
+                <option value="2">★★☆☆☆ 2 Stars</option>
+                <option value="2.5">★★½☆☆ 2.5 Stars</option>
+                <option value="3">★★★☆☆ 3 Stars</option>
+                <option value="3.5">★★★½☆ 3.5 Stars</option>
+                <option value="4">★★★★☆ 4 Stars</option>
+                <option value="4.5">★★★★½ 4.5 Stars</option>
+                <option value="5">★★★★★ 5 Stars</option>
+            </select>
+            <span class="dropdown-arrow"></span>
         </div>
+
         <button type="submit">Add Comment</button>
     </form>
 </div>
@@ -221,11 +235,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script>
     AOS.init();
-
-    document.querySelector('.close-icon').addEventListener('click', function() {
-        window.location.href = 'index.html#comments';
-    });
-
 </script>
 
 </body>
