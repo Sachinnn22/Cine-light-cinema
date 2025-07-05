@@ -1,4 +1,4 @@
-#resale{
+#resale {
     scroll-margin-top: 110px;
 }
 
@@ -9,6 +9,7 @@
     overflow: hidden;
     position: relative;
     border-radius: 15px;
+    cursor: pointer;
 }
 
 .square-img {
@@ -19,4 +20,32 @@
     top: 0;
     left: 0;
     border-radius: 15px;
+    transition: transform 0.3s ease;
 }
+
+.overlay-text {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    text-align: center;
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.square-img-wrapper:hover .overlay-text {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+
