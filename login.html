@@ -4,10 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Digi Marts - Login/Register Flip</title>
-    <link
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-            rel="stylesheet"
-    />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet" />
     <style>
         * {
@@ -16,7 +13,7 @@
         body {
             margin: 0;
             padding: 0;
-            background: #101820;
+            background: linear-gradient(135deg, #a3b1bf 0%, #c1d1e1 25%, #c1bcbc 50%, #abbdc6 75%, #e8eaf6 100%);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             height: 100vh;
             display: flex;
@@ -38,9 +35,8 @@
             position: relative;
             transform-style: preserve-3d;
             transition: transform 0.8s ease;
-            background: transparent;
-            box-shadow: 0 8px 32px rgba(0, 139, 139, 0.7);
             border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
         }
         .auth-container.flipped .card {
             transform: rotateY(180deg);
@@ -50,13 +46,10 @@
             width: 100%;
             height: 100%;
             backface-visibility: hidden;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
-            backdrop-filter: blur(12px);
             padding: 1.8rem 2rem;
-            color: #e1e8f0;
-            box-shadow: 0 8px 32px rgba(0, 139, 139, 0.7);
+            color: #333;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -69,17 +62,17 @@
             top: 15px;
             right: 15px;
             font-size: 1.3rem;
-            color: #e1e8f0;
+            color: #5c6a7d;
             cursor: pointer;
             transition: color 0.3s ease;
             z-index: 10;
         }
         .close-btn:hover {
-            color: darkcyan;
+            color: #3e4d5c;
         }
         h2 {
             text-align: center;
-            color: darkcyan;
+            color: #5b6c7d;
             margin-bottom: 2rem;
             font-weight: 800;
             font-size: 1.7rem;
@@ -93,52 +86,53 @@
             top: 50%;
             left: 14px;
             transform: translateY(-50%);
-            color: #a3a9b2;
+            color: #77889a;
             font-size: 1rem;
         }
         .form-group input {
             width: 100%;
             padding: 0.65rem 1rem 0.65rem 2.5rem;
             border-radius: 10px;
-            border: none;
-            background: rgba(255, 255, 255, 0.12);
-            color: #e1e8f0;
+            border: 1px solid #d4d8e0;
+            background: #f2f4f8;
+            color: #333;
             font-size: 0.95rem;
             outline: none;
-            transition: background 0.3s ease;
+            transition: background 0.3s ease, border 0.3s ease;
         }
         .form-group input::placeholder {
-            color: #abb2bf;
+            color: #8894a1;
         }
         .form-group input:focus {
-            background: rgba(255, 255, 255, 0.2);
+            background: #ffffff;
+            border: 1px solid #a3b1bf;
         }
         button[type='submit'] {
             width: 100%;
             padding: 0.75rem;
             border-radius: 12px;
-            background: darkcyan;
+            background: #a3b1bf;
             border: none;
             color: white;
             font-weight: 600;
             font-size: 1rem;
             cursor: pointer;
             transition: background 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0, 139, 139, 0.6);
+            box-shadow: 0 4px 12px rgba(163, 177, 191, 0.4);
             margin-top: 0.5rem;
         }
         button[type='submit']:hover {
-            background: #006666;
-            box-shadow: 0 6px 14px rgba(0, 102, 102, 0.8);
+            background: #8f9da9;
+            box-shadow: 0 6px 14px rgba(128, 144, 158, 0.5);
         }
         .toggle-link {
             text-align: center;
             margin-top: 1rem;
             font-size: 0.9rem;
-            color: #8a94a6;
+            color: #667380;
         }
         .toggle-link span {
-            color: darkcyan;
+            color: #5b6c7d;
             cursor: pointer;
             font-weight: 600;
         }
@@ -149,7 +143,7 @@
         .social-login p {
             margin-bottom: 0.5rem;
             font-size: 0.9rem;
-            color: #8a94a6;
+            color: #667380;
         }
         .social-icons {
             display: flex;
@@ -157,14 +151,14 @@
             gap: 1.1rem;
         }
         .social-icons a {
-            color: #a3a9b2;
+            color: #77889a;
             font-size: 1.3rem;
             transition: transform 0.2s ease, color 0.3s ease;
         }
         .social-icons a:hover {
-            color: darkcyan;
+            color: #5b6c7d;
             transform: scale(1.2);
-            filter: drop-shadow(0 0 4px darkcyan);
+            filter: drop-shadow(0 0 4px #a3b1bf);
         }
         @media (min-width: 1400px) {
             .auth-container {
@@ -172,7 +166,7 @@
                 height: 650px;
             }
             .card {
-                max-height: 650px;
+                height: 650px;
             }
             .side {
                 padding: 3rem;
@@ -192,11 +186,8 @@
             button[type='submit'] {
                 font-size: 1.2rem;
                 padding: 1.1rem;
-                box-shadow: 0 6px 18px rgba(0, 139, 139, 0.8);
             }
-            .toggle-link {
-                font-size: 1.05rem;
-            }
+            .toggle-link,
             .social-login p {
                 font-size: 1.05rem;
             }
@@ -210,7 +201,7 @@
                 height: 480px;
             }
             .card {
-                max-height: 480px;
+                height: 480px;
             }
             .side {
                 padding: 1.5rem 1.8rem;
@@ -231,15 +222,6 @@
                 font-size: 1rem;
                 padding: 0.75rem;
             }
-            .toggle-link {
-                font-size: 0.9rem;
-            }
-            .social-login p {
-                font-size: 0.9rem;
-            }
-            .social-icons a {
-                font-size: 1.3rem;
-            }
         }
         @media (max-width: 425px) {
             .auth-container {
@@ -247,7 +229,7 @@
                 height: 460px;
             }
             .card {
-                max-height: 460px;
+                height: 460px;
             }
             .side {
                 padding: 1rem 1.5rem;
@@ -274,7 +256,7 @@
                 height: 440px;
             }
             .card {
-                max-height: 440px;
+                height: 440px;
             }
             .side {
                 padding: 0.8rem 1rem;
@@ -329,7 +311,7 @@
             <h2>Create Account</h2>
             <form>
                 <div class="form-group">
-                    <i class="fas fa-user-plus"></i>
+                    <i class="fas fa-user"></i>
                     <input type="text" placeholder="Username" required />
                 </div>
                 <div class="form-group">
@@ -340,10 +322,6 @@
                     <i class="fas fa-lock"></i>
                     <input type="password" placeholder="Password" required />
                 </div>
-                <div class="form-group">
-                    <i class="fas fa-lock"></i>
-                    <input type="password" placeholder="Confirm Password" required />
-                </div>
                 <button type="submit">Register</button>
                 <div class="toggle-link">
                     Already have an account? <span onclick="flipCard()">Login</span>
@@ -352,21 +330,19 @@
         </div>
     </div>
 </div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
 <script>
-    AOS.init({
-        duration: 1100,
-        easing: 'ease-in-out',
-        once: true,
-    });
-
+    AOS.init({ duration: 1200 });
+    const authContainer = document.getElementById('authContainer');
     function flipCard() {
-        document.getElementById('authContainer').classList.toggle('flipped');
+        authContainer.classList.toggle('flipped');
     }
-
     function closeCard() {
-        window.location.href = 'index.html';
+        authContainer.style.display = 'none';
     }
 </script>
+
 </body>
 </html>
