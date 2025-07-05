@@ -29,11 +29,11 @@
 }
 
 #comments .subtitle {
-    color: #6c757d;
-    font-size: 1.15rem;
+    font-weight: 700;
+    color: #515151;
+    font-size: 1.2rem;
     text-align: center;
     margin-bottom: 2.5rem;
-    font-weight: 400;
     position: relative;
     z-index: 2;
 }
