@@ -41,6 +41,7 @@ html, body {
 .btn-login {
     background-color: darkcyan;
     color: white !important;
+    font-weight: bold;
     border-radius: 6px;
     transition: all 0.3s ease;
     border: 2px solid white;
