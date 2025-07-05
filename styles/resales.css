@@ -1,23 +1,18 @@
-#reseller-packs{
-    scroll-margin-top: 35px;
+.square-img-wrapper {
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    border-radius: 15px;
 }
 
-.reseller-card {
-    border-radius: 1rem;
-    background-color: #fff;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.reseller-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-}
-
-.explore-btn {
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.explore-btn:hover {
-    background-color: #0b5ed7;
-    transform: scale(1.05);
+.square-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 15px;
 }
