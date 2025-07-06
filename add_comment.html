@@ -12,48 +12,46 @@
         }
         body {
             margin: 0; padding: 0;
-            background: #101820;
+            background: linear-gradient(135deg, #a3b1bf 0%, #c1d1e1 25%, #c1bcbc 50%, #abbdc6 75%, #e8eaf6 100%);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #e1e8f0;
+            color: #333;
         }
         .comment-container {
             position: relative;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 20px;
-            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.95);
+            color: #5b6c7d;
             padding: 2rem;
             width: 100%;
             max-width: 450px;
-            box-shadow:
-                    0 12px 48px rgba(0,0,0,0.85),
-                    0 0 25px 6px rgba(0,139,139,0.9);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
         }
         .close-icon {
             position: absolute;
             top: 1rem;
             right: 1rem;
             font-size: 1.5rem;
-            color: #e1e8f0;
+            color: #5c6a7d;
             cursor: pointer;
             transition: color 0.3s ease;
             user-select: none;
         }
         .close-icon:hover {
-            color: darkcyan;
-            filter: drop-shadow(0 0 2px darkcyan);
+            color:#3e4d5c;
         }
         h2 {
-            color: darkcyan;
+            color: #5b6c7d;
             margin-bottom: 1.5rem;
             text-align: center;
-            font-weight: 600;
+            font-weight: 800;
+            font-size: 1.7rem;
         }
         label {
+            color: #77889a;
+            font-size: 0.95rem;
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 600;
@@ -61,24 +59,27 @@
         input[type="text"],
         textarea {
             width: 100%;
-            padding: 0.75rem 1rem;
+            padding: 0.65rem 1rem;
             border-radius: 10px;
-            border: none;
-            background: rgba(255, 255, 255, 0.12);
-            color: #e1e8f0;
-            font-size: 1rem;
+            border: 1px solid #d4d8e0;
+            background: #f2f4f8;
+            color: #333;
+            font-size: 0.95rem;
             outline: none;
-            transition: background 0.3s ease;
+            transition: background 0.3s ease, border 0.3s ease;
             resize: vertical;
             margin-bottom: 1.3rem;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            box-sizing: border-box;
         }
         input::placeholder,
         textarea::placeholder {
-            color: #abb2bf;
+            color: #8894a1;
         }
         input:focus,
         textarea:focus {
-            background: rgba(255, 255, 255, 0.2);
+            background: #ffffff;
+            border-color: #a3b1bf;
         }
         .custom-dropdown-css {
             position: relative;
@@ -91,24 +92,25 @@
             -webkit-appearance: none;
             -moz-appearance: none;
             width: 100%;
-            padding: 0.75rem 1rem;
+            padding: 0.65rem 1rem;
             border-radius: 10px;
-            border: none;
-            background: rgba(255, 255, 255, 0.12);
-            color: #e1e8f0;
-            font-size: 1rem;
+            border: 1px solid #d4d8e0;
+            background: #f2f4f8;
+            color: #333;
+            font-size: 0.95rem;
             cursor: pointer;
             outline: none;
             box-shadow: none;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background 0.3s ease, border 0.3s ease;
         }
         .custom-dropdown-css select:focus {
-            background: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 0 5px darkcyan;
+            background: #ffffff;
+            border-color: #a3b1bf;
         }
         .custom-dropdown-css select option {
-            background: #101820;
-            color: #e1e8f0;
+            background: #fff;
+            color: #333;
         }
         .custom-dropdown-css .dropdown-arrow {
             pointer-events: none;
@@ -120,7 +122,7 @@
             height: 0;
             border-left: 6px solid transparent;
             border-right: 6px solid transparent;
-            border-top: 6px solid #e1e8f0;
+            border-top: 6px solid #333;
         }
         @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
             .custom-dropdown-css select {
@@ -129,20 +131,21 @@
         }
         button[type="submit"] {
             width: 100%;
-            padding: 0.85rem;
+            padding: 0.75rem;
             border-radius: 12px;
-            background: darkcyan;
+            background: #5b6c7d;
             border: none;
             color: white;
             font-weight: 600;
             font-size: 1rem;
             cursor: pointer;
             transition: background 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0, 139, 139, 0.5);
+            box-shadow: 0 4px 12px rgba(163, 177, 191, 0.4);
+            margin-top: 0.5rem;
         }
         button[type="submit"]:hover {
-            background: #006666;
-            box-shadow: 0 6px 14px rgba(0, 102, 102, 0.7);
+            background: #3e4d5c;
+            box-shadow: 0 6px 14px rgba(62, 77, 92, 0.6);
         }
 
         @media (max-width: 1024px) {
@@ -155,7 +158,7 @@
             }
             button[type="submit"] {
                 font-size: 1rem;
-                padding: 0.8rem;
+                padding: 0.75rem;
             }
         }
         @media (max-width: 768px) {
@@ -181,7 +184,7 @@
             }
             button[type="submit"] {
                 font-size: 0.95rem;
-                padding: 0.8rem;
+                padding: 0.7rem;
             }
         }
         @media (max-width: 375px) {
@@ -206,7 +209,7 @@
                 max-width: 280px;
             }
             h2 {
-                font-size: 1.2rem;
+                font-size: 1.3rem;
             }
             button[type="submit"] {
                 font-size: 0.85rem;
