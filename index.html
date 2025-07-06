@@ -569,6 +569,14 @@
             }
         });
     });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector(".navbar-brand").addEventListener("click", function (e) {
+            e.preventDefault();
+            location.reload();
+        });
+    });
+
 </script>
 
 </body>
