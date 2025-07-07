@@ -14,7 +14,7 @@ html, body {
 }
 
 .navbar {
-    background: rgba(0, 0, 0, 0.7) !important;
+    background: rgba(0, 0, 0, 0.85) !important;
     backdrop-filter: blur(6px);
 }
 
