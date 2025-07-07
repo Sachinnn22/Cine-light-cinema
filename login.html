@@ -23,7 +23,7 @@
         .auth-container {
             width: 100%;
             max-width: 470px;
-            height: 470px;
+            height: 500px;
             perspective: 1000px;
             display: flex;
             align-items: center;
@@ -99,6 +99,27 @@
             border: 1px solid #a3b1bf;
             outline: none;
         }
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: #5b6c7d;
+        }
+        .options-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.8rem;
+        }
+        .forgot-link {
+            font-size: 0.85rem;
+            color: #5b6c7d;
+            cursor: pointer;
+        }
+        .forgot-link:hover {
+            text-decoration: underline;
+        }
         button[type='submit'] {
             width: 100%;
             padding: 0.75rem;
@@ -109,7 +130,7 @@
             font-weight: 600;
             font-size: 1rem;
             cursor: pointer;
-            margin-top: 0.5rem;
+            margin-top: 0.6rem;
         }
         .toggle-link {
             text-align: center;
@@ -144,18 +165,6 @@
             color: #5b6c7d;
             transform: scale(1.2);
         }
-
-        .forgot-link {
-            margin-top: 0.3rem;
-            text-align: right;
-            font-size: 0.85rem;
-            color: #5b6c7d;
-            cursor: pointer;
-        }
-        .forgot-link:hover {
-            text-decoration: underline;
-        }
-
         .modal {
             position: fixed;
             top: 0; left: 0;
@@ -166,7 +175,6 @@
             justify-content: center;
             z-index: 1000;
         }
-
         .modal-content {
             background: #fff;
             padding: 2rem;
@@ -177,13 +185,11 @@
             position: relative;
             animation: fadeIn 0.3s ease-in-out;
         }
-
         .modal-content h3 {
             margin-bottom: 1rem;
             color: #5b6c7d;
             text-align: center;
         }
-
         .modal-content input[type="email"] {
             width: 100%;
             padding: 0.65rem;
@@ -191,21 +197,16 @@
             border-radius: 8px;
             margin-bottom: 1rem;
         }
-
-        button[type='submit'] {
+        .modal-content button {
             width: 100%;
-            padding: 0.75rem;
-            border-radius: 12px;
-            background: #5b6c7d;
+            padding: 0.8rem;
             border: none;
-            color: white;
+            background: #5b6c7d;
+            color: #fff;
+            border-radius: 10px;
             font-weight: 600;
-            font-size: 1rem;
             cursor: pointer;
-            margin-top: 1rem;
         }
-
-
         .modal-close {
             position: absolute;
             top: 10px;
@@ -214,7 +215,6 @@
             color: #999;
             cursor: pointer;
         }
-
         @keyframes fadeIn {
             from { opacity: 0; transform: scale(0.95); }
             to { opacity: 1; transform: scale(1); }
@@ -225,7 +225,6 @@
 <div class="auth-container" id="authContainer" data-aos="fade-down">
     <div class="card">
         <i class="fas fa-times close-btn" onclick="closeCard()" title="Close"></i>
-
         <div class="side front">
             <h2>Welcome Back</h2>
             <form>
@@ -237,11 +236,14 @@
                     <i class="fas fa-lock"></i>
                     <input type="password" placeholder="Password" required />
                 </div>
-
-                <div class="forgot-link" onclick="openModal()">Forgot Password?</div>
-
+                <div class="options-row">
+                    <div class="remember-me">
+                        <input type="checkbox" id="rememberMe" />
+                        <label for="rememberMe">Remember Me</label>
+                    </div>
+                    <div class="forgot-link" onclick="openModal()">Forgot Password?</div>
+                </div>
                 <button type="submit">Login</button>
-
                 <div class="social-login">
                     <p>Or sign in with</p>
                     <div class="social-icons">
@@ -250,13 +252,11 @@
                         <a href="#"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
-
                 <div class="toggle-link">
                     Don't have an account? <span onclick="flipCard()">Register</span>
                 </div>
             </form>
         </div>
-
         <div class="side back">
             <h2>Create Account</h2>
             <form>
@@ -280,7 +280,6 @@
         </div>
     </div>
 </div>
-
 <div class="modal" id="forgotModal">
     <div class="modal-content">
         <i class="fas fa-times modal-close" onclick="closeModal()"></i>
@@ -289,30 +288,23 @@
         <button onclick="submitForgot()">Send Reset Link</button>
     </div>
 </div>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script>
     AOS.init({ duration: 1200 });
-
     const authContainer = document.getElementById('authContainer');
     const modal = document.getElementById('forgotModal');
-
     function flipCard() {
         authContainer.classList.toggle('flipped');
     }
-
     function closeCard() {
-        window.location.href = 'index.html'; // Adjust as needed
+        window.location.href = 'index.html';
     }
-
     function openModal() {
         modal.style.display = 'flex';
     }
-
     function closeModal() {
         modal.style.display = 'none';
     }
-
     function submitForgot() {
         const email = document.getElementById('resetEmail').value;
         if (!email) {
@@ -322,7 +314,6 @@
         alert(`Password reset link will be sent to: ${email}`);
         closeModal();
     }
-
     window.addEventListener("click", function (event) {
         if (event.target === modal) closeModal();
     });
