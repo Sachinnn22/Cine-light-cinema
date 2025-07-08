@@ -10,14 +10,15 @@
         html, body {
             margin: 0;
             padding: 0;
-            overflow-x: hidden;
             background: linear-gradient(135deg, #a3b1bf 0%, #c1d1e1 25%, #c1bcbc 50%, #c1d1e1 75%, #e8eaf6 100%);
             font-family: Arial, sans-serif;
             scroll-behavior: smooth;
+            height: auto;
+            min-height: 100%;
         }
 
         body {
-            padding-top: 90px;
+            padding-top: 60px; /* Reduced from 90px */
         }
 
         .navbar {
@@ -36,13 +37,7 @@
             text-transform: uppercase;
             font-family: 'Montserrat', sans-serif;
             letter-spacing: 1.5px;
-            background: linear-gradient(270deg,
-            #417d81,
-            #00e0d2,
-            #1abc9c,
-            #00c4cc,
-            #417d81
-            );
+            background: linear-gradient(270deg, #417d81, #00e0d2, #1abc9c, #00c4cc, #417d81);
             background-size: 600% 600%;
             animation: gradientShift 6s ease infinite;
             -webkit-background-clip: text;
@@ -57,15 +52,9 @@
         }
 
         @keyframes gradientShift {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .btn-login {
@@ -88,16 +77,6 @@
         .btn-login:active {
             background-color: darkcyan;
             color: white !important;
-            font-weight: 800;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-            border: 2px solid white;
-            height: 40px;
-            padding: 0 12px;
-            font-size: 0.85rem;
-            display: flex;
-            align-items: center;
-            gap: 6px;
         }
 
         .rainbow-title {
@@ -136,7 +115,7 @@
 
         .reseller-card img {
             object-fit: cover;
-            height: 200px;
+            height: 150px; /* Reduced from 200px */
         }
 
         .stars-rating {
@@ -181,6 +160,15 @@
             transition: background-color 0.3s ease;
             text-decoration: none;
         }
+
+        #resale {
+            padding-top: 100px; /* Added to move section down */
+            padding-bottom: 50px; /* Reduced bottom padding */
+        }
+
+        footer {
+            height: 40px; /* Reduced footer height */
+        }
     </style>
 </head>
 <body>
@@ -194,7 +182,7 @@
     </div>
 </nav>
 
-<section id="resale" class="pt-2">
+<section id="resale" class="pt-1">
     <div class="container">
         <div class="text-center headers mb-4">
             <h2 class="rainbow-title">Reseller Packs</h2>
@@ -202,14 +190,19 @@
         </div>
 
         <div class="row g-4">
+            <!-- Card 1 -->
             <div class="col-12 col-sm-6 col-lg-4">
                 <div class="card reseller-card h-100 border-0 shadow-sm">
-                    <img src="assets/images/WebDevelopmentImage.jpeg" class="card-img-top img-fluid" alt="Adobe Master Bundle" />
+                    <img src="assets/images/WebDevelopmentImage.jpeg" class="card-img-top img-fluid" alt="Canva Pro Templates" />
                     <div class="card-body text-center">
                         <h5 class="card-title">Canva Pro Templates</h5>
                         <div class="stars-rating">
                             <span class="rating-number">4.8</span>
-                            <span><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i></span>
+                            <span>
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-half"></i>
+                            </span>
                             <span class="review-count">(390)</span>
                         </div>
                         <div class="price">LKR 2,300</div>
@@ -217,15 +210,19 @@
                     </div>
                 </div>
             </div>
-
+            <!-- Card 2 -->
             <div class="col-12 col-sm-6 col-lg-4">
                 <div class="card reseller-card h-100 border-0 shadow-sm">
-                    <img src="assets/images/WebDevelopmentImage.jpeg" class="card-img-top img-fluid" alt="Adobe Master Bundle" />
+                    <img src="assets/images/WebDevelopmentImage.jpeg" class="card-img-top img-fluid" alt="Online Course Bundle" />
                     <div class="card-body text-center">
                         <h5 class="card-title">Online Course Bundle</h5>
                         <div class="stars-rating">
                             <span class="rating-number">4.6</span>
-                            <span><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i></span>
+                            <span>
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star"></i>
+                            </span>
                             <span class="review-count">(318)</span>
                         </div>
                         <div class="price">LKR 3,500</div>
@@ -233,74 +230,93 @@
                     </div>
                 </div>
             </div>
-
+            <!-- Card 3 -->
             <div class="col-12 col-sm-6 col-lg-4">
                 <div class="card reseller-card h-100 border-0 shadow-sm">
-                    <img src="assets/images/WebDevelopmentImage.jpeg" class="card-img-top img-fluid" alt="Adobe Master Bundle" />
+                    <img src="assets/images/WebDevelopmentImage.jpeg" class="card-img-top img-fluid" alt="SEO Pack" />
                     <div class="card-body text-center">
-                        <h5 class="card-title">Social Media Kit</h5>
+                        <h5 class="card-title">SEO Pack</h5>
                         <div class="stars-rating">
                             <span class="rating-number">4.7</span>
-                            <span><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i></span>
-                            <span class="review-count">(289)</span>
+                            <span>
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-half"></i>
+                            </span>
+                            <span class="review-count">(350)</span>
                         </div>
-                        <div class="price">LKR 2,600</div>
+                        <div class="price">LKR 4,000</div>
                         <a href="#" class="re-btn">Show More</a>
                     </div>
                 </div>
             </div>
-
+            <!-- Card 4 -->
             <div class="col-12 col-sm-6 col-lg-4">
                 <div class="card reseller-card h-100 border-0 shadow-sm">
-                    <img src="assets/images/WebDevelopmentImage.jpeg" class="card-img-top img-fluid" alt="Adobe Master Bundle" />
+                    <img src="assets/images/WebDevelopmentImage.jpeg" class="card-img-top img-fluid" alt="Social Kit" />
                     <div class="card-body text-center">
-                        <h5 class="card-title">Adobe Master Bundle</h5>
-                        <div class="stars-rating">
-                            <span class="rating-number">4.9</span>
-                            <span><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></span>
-                            <span class="review-count">(450)</span>
-                        </div>
-                        <div class="price">LKR 4,800</div>
-                        <a href="#" class="re-btn">Show More</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="card reseller-card h-100 border-0 shadow-sm">
-                    <img src="assets/images/WebDevelopmentImage.jpeg" class="card-img-top img-fluid" alt="Adobe Master Bundle" />
-                    <div class="card-body text-center">
-                        <h5 class="card-title">SEO Expert Pack</h5>
-                        <div class="stars-rating">
-                            <span class="rating-number">4.4</span>
-                            <span><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i><i class="bi bi-star"></i></span>
-                            <span class="review-count">(210)</span>
-                        </div>
-                        <div class="price">LKR 1,900</div>
-                        <a href="#" class="re-btn">Show More</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="card reseller-card h-100 border-0 shadow-sm">
-                    <img src="assets/images/WebDevelopmentImage.jpeg" class="card-img-top img-fluid" alt="Adobe Master Bundle" />
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Graphic Design Pro</h5>
+                        <h5 class="card-title">Social Kit</h5>
                         <div class="stars-rating">
                             <span class="rating-number">4.5</span>
-                            <span><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i><i class="bi bi-star"></i></span>
-                            <span class="review-count">(275)</span>
+                            <span>
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
+                                <i class="bi bi-star"></i>
+                            </span>
+                            <span class="review-count">(290)</span>
                         </div>
-                        <div class="price">LKR 2,100</div>
+                        <div class="price">LKR 2,800</div>
                         <a href="#" class="re-btn">Show More</a>
                     </div>
                 </div>
             </div>
-
+            <!-- Card 5 -->
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="card reseller-card h-100 border-0 shadow-sm">
+                    <img src="assets/images/WebDevelopmentImage.jpeg" class="card-img-top img-fluid" alt="Adobe Bundle" />
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Adobe Bundle</h5>
+                        <div class="stars-rating">
+                            <span class="rating-number">4.9</span>
+                            <span>
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                            </span>
+                            <span class="review-count">(420)</span>
+                        </div>
+                        <div class="price">LKR 5,200</div>
+                        <a href="#" class="re-btn">Show More</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 6 -->
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="card reseller-card h-100 border-0 shadow-sm">
+                    <img src="assets/images/WebDevelopmentImage.jpeg" class="card-img-top img-fluid" alt="Marketing Essentials" />
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Marketing Essentials</h5>
+                        <div class="stars-rating">
+                            <span class="rating-number">4.7</span>
+                            <span>
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-half"></i>
+                            </span>
+                            <span class="review-count">(365)</span>
+                        </div>
+                        <div class="price">LKR 3,900</div>
+                        <a href="#" class="re-btn">Show More</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
+
+<footer class="d-flex justify-content-center align-items-center text-white bg-dark">
+    <small>&copy; 2024 Digi Marts. All rights reserved.</small>
+</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
 </body>
