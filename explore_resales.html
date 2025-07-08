@@ -166,9 +166,22 @@
             padding-bottom: 50px; /* Reduced bottom padding */
         }
 
-        footer {
-            height: 40px; /* Reduced footer height */
+        footer{
+            color: white;
+            background-color: #101820;
+            border-top: 3px solid #2c5364;
         }
+
+        #footerrr {
+            font-weight: 900;
+            background: linear-gradient(45deg, #ff6b6b, #145571, #1e5870, #96ceb4, #feca57);
+            background-size: 500% 500%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rainbowShift 4s ease infinite;
+        }
+
+
     </style>
 </head>
 <body>
@@ -314,8 +327,8 @@
     </div>
 </section>
 
-<footer class="d-flex justify-content-center align-items-center text-white bg-dark">
-    <small>&copy; 2024 Digi Marts. All rights reserved.</small>
+<footer class="d-flex justify-content-center align-items-center">
+    <small>&copy; 2024 <span id="footerrr">Digi Marts.</span> All rights reserved.</small>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
