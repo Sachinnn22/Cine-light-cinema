@@ -26,13 +26,7 @@
 
         .btn-rounded {
             border-radius: 50px !important;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-
-        .btn-rounded:hover {
-            background-color: #0069d9;
-            transform: scale(1.05);
-            color: #fff;
+            transition: background-color 0.3s ease;
         }
 
         .btn-md {
@@ -43,6 +37,7 @@
         .reseller-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+
         .rainbow-title {
             font-size: 2.3em;
             font-weight: 1000;
@@ -55,14 +50,9 @@
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
-        .headers p{
+        .headers p {
             font-weight: 600;
             color: #515151;
-        }
-
-        .reseller-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
 
         .stars-rating {
@@ -126,6 +116,25 @@
             color: #084298;
         }
 
+        .re-btn {
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            padding: 8px 26px;
+            font-weight: 800;
+            font-family: "DM Sans", sans-serif;
+            font-size: 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(44, 62, 80, 0.5);
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .re-btn:hover {
+            background-color: #1a2736;
+        }
+
         @media (max-width: 576px) {
             .mb-4.d-flex.align-items-center {
                 flex-direction: column;
@@ -140,13 +149,9 @@
 </head>
 <body>
 
-<section id="reseller-packs" class="py-5" style="background: linear-gradient(135deg, #a3b1bf 0%, #c1d1e1 25%, #c1bcbc 50%, #c1d1e1 75%, #e8eaf6 100%);
-">
+<section id="reseller-packs" class="py-5" style="background: linear-gradient(135deg, #a3b1bf 0%, #c1d1e1 25%, #c1bcbc 50%, #c1d1e1 75%, #e8eaf6 100%);">
     <div class="container">
         <div class="mb-4 d-flex align-items-center">
-            <a href="index.html" class="home-btn-wrapper me-3" title="Go to Home">
-                <i class="bi bi-house-fill home-icon"></i>
-            </a>
             <div class="container text-center mb-4 headers">
                 <h2 class="rainbow-title">Our Resales</h2>
                 <p class="text-muted fs-5">Discover a handpicked selection of premium resale items.</p>
@@ -165,7 +170,7 @@
                             <span class="review-count">(522)</span>
                         </div>
                         <div class="price">LKR 3,200</div>
-                        <a href="#" class="btn btn-primary mt-3 btn-rounded btn-md">Show More</a>
+                        <a href="#" class="re-btn">Show More</a>
                     </div>
                 </div>
             </div>
@@ -181,7 +186,7 @@
                             <span class="review-count">(410)</span>
                         </div>
                         <div class="price">LKR 2,850</div>
-                        <a href="#" class="btn btn-primary mt-3 btn-rounded btn-md">Show More</a>
+                        <a href="#" class="re-btn">Show More</a>
                     </div>
                 </div>
             </div>
@@ -197,7 +202,7 @@
                             <span class="review-count">(470)</span>
                         </div>
                         <div class="price">LKR 2,000</div>
-                        <a href="#" class="btn btn-primary mt-3 btn-rounded btn-md">Show More</a>
+                        <a href="#" class="re-btn">Show More</a>
                     </div>
                 </div>
             </div>
@@ -215,7 +220,7 @@
                             <span class="review-count">(190)</span>
                         </div>
                         <div class="price">LKR 1,800</div>
-                        <a href="#" class="btn btn-primary mt-3 btn-rounded btn-md">Show More</a>
+                        <a href="#" class="re-btn">Show More</a>
                     </div>
                 </div>
             </div>
@@ -231,7 +236,7 @@
                             <span class="review-count">(480)</span>
                         </div>
                         <div class="price">LKR 4,500</div>
-                        <a href="#" class="btn btn-primary mt-3 btn-rounded btn-md">Show More</a>
+                        <a href="#" class="re-btn">Show More</a>
                     </div>
                 </div>
             </div>
@@ -247,7 +252,7 @@
                             <span class="review-count">(300)</span>
                         </div>
                         <div class="price">LKR 5,000</div>
-                        <a href="#" class="btn btn-primary mt-3 btn-rounded btn-md">Show More</a>
+                        <a href="#" class="re-btn">Show More</a>
                     </div>
                 </div>
             </div>
