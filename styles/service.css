@@ -82,12 +82,13 @@
 }
 
 .service-content p {
-    color: #1d1e1e;
-    font-size: 0.95rem;
-    font-weight: 500;
-    margin-top: 0;
-    margin-bottom: 16px;
-    min-height: 60px;
+    font-size: 1rem;
+    color: #322e2e;
+    font-weight: 600;
+    line-height: 1.6;
+    padding: 0 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
 }
 
 @media (max-width: 768px) {
