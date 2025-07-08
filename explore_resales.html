@@ -21,9 +21,9 @@
         }
 
         .navbar {
-            background: rgba(0, 0, 0, 0.85) !important;
+            background: rgba(0, 0, 0, 0.7) !important;
             backdrop-filter: blur(6px);
-            height: 60px;
+            height: 65px;
         }
 
         .navbar .container-fluid {
@@ -33,7 +33,7 @@
         .btn-login {
             background-color: darkcyan;
             color: white !important;
-            font-weight: bold;
+            font-weight: 800;
             border-radius: 6px;
             transition: all 0.3s ease;
             border: 2px solid white;
@@ -50,7 +50,7 @@
         .btn-login:active {
             background-color: darkcyan;
             color: white !important;
-            font-weight: bold;
+            font-weight: 800;
             border-radius: 6px;
             transition: all 0.3s ease;
             border: 2px solid white;
@@ -78,6 +78,16 @@
             font-weight: 600;
             color: #515151;
             margin-bottom: 0;
+        }
+
+        .reseller-card h5 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #1e2a38;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.75rem;
+            text-transform: capitalize;
         }
 
         .reseller-card {
@@ -114,7 +124,7 @@
             font-weight: 700;
             font-size: 1.1rem;
             color: #0a0b0a;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .re-btn {
@@ -132,11 +142,6 @@
             text-decoration: none;
         }
 
-        @media (max-width: 576px) {
-            .navbar-nav {
-                flex-direction: column;
-            }
-        }
     </style>
 </head>
 <body>
@@ -152,16 +157,17 @@
 <section id="resale" class="pt-2">
     <div class="container">
         <div class="text-center headers mb-3">
-            <h2 class="rainbow-title">Our Resales</h2>
-            <p class="fs-5">Discover a handpicked selection of premium resale items.</p>
+            <h2 class="rainbow-title">Reseller Packs</h2>
+            <p class="fs-5">Explore exclusive digital bundles curated for resellers.</p>
         </div>
+
 
         <div class="row g-4">
             <div class="col-12 col-sm-6 col-lg-4">
                 <div class="card reseller-card h-100 border-0 shadow-sm">
                     <img src="assets/images/WebDevelopmentImage.jpeg" class="card-img-top img-fluid" alt="Adobe Bundle" />
                     <div class="card-body text-center">
-                        <h5 class="card-title fw-bold text-dark">Adobe Master Bundle</h5>
+                        <h5 class="card-title">Adobe Master Bundle</h5>
                         <div class="stars-rating">
                             <span class="rating-number">4.9</span>
                             <span><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i></span>
@@ -177,7 +183,7 @@
                 <div class="card reseller-card h-100 border-0 shadow-sm">
                     <img src="pack2.jpg" class="card-img-top img-fluid" alt="Video Kit" />
                     <div class="card-body text-center">
-                        <h5 class="card-title fw-bold text-dark">Video Creator Kit</h5>
+                        <h5 class="card-title">Video Creator Kit</h5>
                         <div class="stars-rating">
                             <span class="rating-number">4.5</span>
                             <span><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i></span>
@@ -193,7 +199,7 @@
                 <div class="card reseller-card h-100 border-0 shadow-sm">
                     <img src="pack3.jpg" class="card-img-top img-fluid" alt="Reels Upload Bundle" />
                     <div class="card-body text-center">
-                        <h5 class="card-title fw-bold text-dark">Reels Upload Bundle</h5>
+                        <h5 class="card-title">Reels Upload Bundle</h5>
                         <div class="stars-rating">
                             <span class="rating-number">5.0</span>
                             <span><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></span>
