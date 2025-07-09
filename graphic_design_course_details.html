@@ -70,6 +70,8 @@
       cursor: pointer;
       font-size: 1rem;
       transition: background-color 0.3s ease;
+      display: inline-flex;
+      align-items: center;
     }
     .buy-btn:hover {
       background-color: #1a252f;
@@ -150,6 +152,8 @@
       color: #2c3e50;
       border-radius: 8px;
       transition: background-color 0.3s ease, color 0.3s ease;
+      display: inline-flex;
+      align-items: center;
     }
     .see-cart-btn:hover {
       background-color: #2c3e50;
@@ -181,6 +185,9 @@
     }
     #cart-close-btn:hover {
       color: #4a4545;
+    }
+    .me-2 {
+      margin-right: 0.5rem !important;
     }
     @media (max-width: 1023.98px) {
       .course-container {
@@ -285,10 +292,14 @@
     <div class="price">LKR 8,000</div>
     <div class="rating">★★★★★ (512 reviews)</div>
     <div class="d-flex justify-content-center gap-3 mt-3 flex-wrap">
-      <button class="buy-btn">Add To Cart</button>
-      <a href="preivew.html" class="btn" style="border: 2px solid #2c3e50; color: #2c3e50; font-weight: 700; border-radius: 8px; padding: 0.6rem 1.5rem;">See Preview</a>
+      <button class="buy-btn">
+        <i class="bi bi-bag-plus-fill me-2"></i> Add To Cart
+      </button>
+      <a href="preivew.html" class="btn" style="border: 2px solid #2c3e50; color: #2c3e50; font-weight: 700; border-radius: 8px; padding: 0.6rem 1.5rem; display: inline-flex; align-items: center;">
+        <i class="bi bi-play-circle-fill me-2"></i> See Preview
+      </a>
       <button id="toggle-cart-btn" class="btn see-cart-btn">
-        <i class="bi bi-cart3"></i> See Cart
+        <i class="bi bi-cart3 me-2"></i> See Cart
       </button>
     </div>
   </div>
