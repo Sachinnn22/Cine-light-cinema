@@ -40,9 +40,6 @@
       margin-bottom: 1.2rem;
       transition: transform 0.3s ease;
     }
-    .left-side img:hover {
-      transform: scale(1.02);
-    }
     .course-title {
       font-size: 1.6rem;
       font-weight: 700;
@@ -315,7 +312,7 @@
 </div>
 
 <div id="cart-modal" role="dialog" aria-modal="true" aria-labelledby="cart-title">
-  <div id="cart">
+  <div id="cart" data-aos="zoom-in" data-aos-duration="1200">
     <button id="cart-close-btn" aria-label="Close cart">&times;</button>
     <h4 id="cart-title">Your Cart</h4>
     <ul id="cart-items" class="list-group mb-3"></ul>
@@ -325,15 +322,20 @@
 </div>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>AOS.init();</script>
-
+<script>
+  AOS.init();
+</script>
 <script>
   const cartModal = document.getElementById('cart-modal');
   const toggleCartBtn = document.getElementById('toggle-cart-btn');
   const cartCloseBtn = document.getElementById('cart-close-btn');
+  const cart = document.getElementById('cart');
 
   toggleCartBtn.addEventListener('click', () => {
     cartModal.classList.add('show');
+    cart.classList.remove('aos-animate');
+    void cart.offsetWidth;
+    cart.classList.add('aos-animate');
     document.body.style.overflow = 'hidden';
   });
 
@@ -356,6 +358,5 @@
     }
   });
 </script>
-
 </body>
 </html>
