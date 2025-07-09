@@ -121,12 +121,14 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(0,0,0,0.5);
+      background: rgba(0,0,0,0.3);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
       display: none;
       align-items: center;
       justify-content: center;
       z-index: 1050;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.3s ease, backdrop-filter 0.3s ease;
       opacity: 0;
     }
     #cart-modal.show {
@@ -141,6 +143,7 @@
       max-width: 480px;
       box-shadow: 0 8px 30px rgba(0,0,0,0.15);
       position: relative;
+      z-index: 1060;
     }
     .see-cart-btn {
       font-size: 1rem;
@@ -298,9 +301,7 @@
 
   <div class="right-side">
     <h2>Graphic Design Mastery</h2>
-    <p>
-      Unlock your creativity and learn graphic design fundamentals using Adobe Photoshop, Illustrator, and Canva. Perfect for beginners and creative professionals.
-    </p>
+    <p>Unlock your creativity and learn graphic design fundamentals using Adobe Photoshop, Illustrator, and Canva. Perfect for beginners and creative professionals.</p>
     <ul>
       <li>Master layout, typography, and color theory</li>
       <li>Create stunning logos, posters, and branding</li>
@@ -308,9 +309,7 @@
       <li>Export for print and digital platforms</li>
       <li>Certificate of completion included</li>
     </ul>
-    <p>
-      Start designing eye-catching visuals that communicate your ideas effectively.
-    </p>
+    <p>Start designing eye-catching visuals that communicate your ideas effectively.</p>
     <a href="index.html#courses" class="back-btn"><i class="bi bi-arrow-left-circle"></i> Back to Courses</a>
   </div>
 </div>
