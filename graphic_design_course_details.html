@@ -115,6 +115,60 @@
       color: #2c3e50;
       text-decoration: none;
     }
+    #cart-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1050;
+      transition: opacity 0.3s ease;
+      opacity: 0;
+    }
+    #cart-modal.show {
+      display: flex;
+      opacity: 1;
+    }
+    #cart {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.5rem 2rem;
+      width: 90%;
+      max-width: 480px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+      position: relative;
+    }
+    #cart h4 {
+      margin-bottom: 1rem;
+      font-weight: 700;
+      color: #2c3e50;
+      text-align: center;
+    }
+    #cart-items {
+      max-height: 300px;
+      overflow-y: auto;
+      margin-bottom: 1rem;
+    }
+    #cart-total {
+      font-weight: 700;
+    }
+    #cart-close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #2c3e50;
+    }
+    #cart-close-btn:hover {
+      color: #f39c12;
+    }
     @media (max-width: 1023.98px) {
       .course-container {
         flex-direction: column;
@@ -220,6 +274,9 @@
     <div class="d-flex justify-content-center gap-3 mt-3 flex-wrap">
       <button class="buy-btn">Buy Now</button>
       <a href="preivew.html" class="btn" style="border: 2px solid #2c3e50; color: #2c3e50; font-weight: 700; border-radius: 8px; padding: 0.6rem 1.5rem;">See Preview</a>
+      <button id="toggle-cart-btn" class="btn btn-outline-secondary" style="font-size:1.3rem;">
+        <i class="bi bi-cart3"></i> Cart
+      </button>
     </div>
   </div>
 
@@ -245,8 +302,84 @@
   </div>
 </div>
 
+<div id="cart-modal" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+  <div id="cart">
+    <button id="cart-close-btn" aria-label="Close cart">&times;</button>
+    <h4 id="cart-title">Your Cart</h4>
+    <ul id="cart-items" class="list-group mb-3"></ul>
+    <p><strong>Total:</strong> LKR <span id="cart-total">0</span></p>
+  </div>
+</div>
+
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>AOS.init();</script>
+
+<script>
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  let total = 0;
+
+  function updateCart() {
+    const cartItems = document.getElementById('cart-items');
+    const cartTotal = document.getElementById('cart-total');
+    cartItems.innerHTML = '';
+    total = 0;
+
+    cart.forEach(item => {
+      const li = document.createElement('li');
+      li.className = 'list-group-item d-flex justify-content-between align-items-center';
+      li.textContent = item.name;
+      const span = document.createElement('span');
+      span.textContent = 'LKR ' + item.price.toLocaleString();
+      li.appendChild(span);
+      cartItems.appendChild(li);
+      total += item.price;
+    });
+
+    cartTotal.textContent = total.toLocaleString();
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }
+
+  function addToCart(name, price) {
+    cart.push({ name, price });
+    updateCart();
+    alert('Added to cart!');
+  }
+
+  updateCart();
+
+  document.querySelector('.buy-btn').addEventListener('click', function () {
+    addToCart('Graphic Design Mastery', 8000);
+  });
+
+  const cartModal = document.getElementById('cart-modal');
+  const toggleCartBtn = document.getElementById('toggle-cart-btn');
+  const cartCloseBtn = document.getElementById('cart-close-btn');
+
+  toggleCartBtn.addEventListener('click', () => {
+    updateCart();
+    cartModal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  });
+
+  cartCloseBtn.addEventListener('click', () => {
+    cartModal.classList.remove('show');
+    document.body.style.overflow = '';
+  });
+
+  cartModal.addEventListener('click', (e) => {
+    if (e.target === cartModal) {
+      cartModal.classList.remove('show');
+      document.body.style.overflow = '';
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && cartModal.classList.contains('show')) {
+      cartModal.classList.remove('show');
+      document.body.style.overflow = '';
+    }
+  });
+</script>
 
 </body>
 </html>
