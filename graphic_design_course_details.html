@@ -289,11 +289,11 @@
       Unlock your creativity and learn graphic design fundamentals using Adobe Photoshop, Illustrator, and Canva. Perfect for beginners and creative professionals.
     </p>
     <ul>
-      <li> Master layout, typography, and color theory</li>
-      <li> Create stunning logos, posters, and branding</li>
-      <li> Understand composition and visual hierarchy</li>
-      <li> Export for print and digital platforms</li>
-      <li> Certificate of completion included</li>
+      <li>Master layout, typography, and color theory</li>
+      <li>Create stunning logos, posters, and branding</li>
+      <li>Understand composition and visual hierarchy</li>
+      <li>Export for print and digital platforms</li>
+      <li>Certificate of completion included</li>
     </ul>
     <p>
       Start designing eye-catching visuals that communicate your ideas effectively.
@@ -308,6 +308,7 @@
     <h4 id="cart-title">Your Cart</h4>
     <ul id="cart-items" class="list-group mb-3"></ul>
     <p><strong>Total:</strong> LKR <span id="cart-total">0</span></p>
+    <button id="cart-buy-btn" class="buy-btn" style="width: 100%;">Buy Now</button>
   </div>
 </div>
 
@@ -323,7 +324,6 @@
     const cartTotal = document.getElementById('cart-total');
     cartItems.innerHTML = '';
     total = 0;
-
     cart.forEach(item => {
       const li = document.createElement('li');
       li.className = 'list-group-item d-flex justify-content-between align-items-center';
@@ -334,7 +334,6 @@
       cartItems.appendChild(li);
       total += item.price;
     });
-
     cartTotal.textContent = total.toLocaleString();
     localStorage.setItem('cart', JSON.stringify(cart));
   }
@@ -354,6 +353,7 @@
   const cartModal = document.getElementById('cart-modal');
   const toggleCartBtn = document.getElementById('toggle-cart-btn');
   const cartCloseBtn = document.getElementById('cart-close-btn');
+  const cartBuyBtn = document.getElementById('cart-buy-btn');
 
   toggleCartBtn.addEventListener('click', () => {
     updateCart();
@@ -378,6 +378,18 @@
       cartModal.classList.remove('show');
       document.body.style.overflow = '';
     }
+  });
+
+  cartBuyBtn.addEventListener('click', () => {
+    if (cart.length === 0) {
+      alert('Your cart is empty!');
+      return;
+    }
+    alert(`Thank you for purchasing ${cart.length} item(s) totaling LKR ${total.toLocaleString()}!`);
+    cart = [];
+    updateCart();
+    cartModal.classList.remove('show');
+    document.body.style.overflow = '';
   });
 </script>
 
