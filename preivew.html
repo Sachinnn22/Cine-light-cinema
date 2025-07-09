@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Course Preview - Digi Marts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #f4f6f9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .container {
+            width: 100%;
+            max-width: 800px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.15);
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+        }
+        .ratio {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(0,0,0,0.12);
+        }
+        .back-btn {
+            display: inline-block;
+            margin-top: 1.8rem;
+            font-weight: 600;
+            color: #2c3e50;
+            text-decoration: none;
+        }
+        .back-btn:hover {
+            color: #1a252f;
+        }
+        iframe {
+            display: block;
+            width: 100%;
+            height: 450px; /* increased height */
+            border: none;
+        }
+        @media (max-width: 480px) {
+            iframe {
+                height: 250px;
+            }
+            .container {
+                max-width: 95%;
+                padding: 1rem;
+            }
+            body {
+                padding: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<h2>Graphic Design Mastery – Preview</h2>
+<div class="container">
+    <div class="ratio ratio-16x9">
+        <iframe src="https://www.youtube.com/embed/Z8g3rc_3o8k" title="Course Preview" allowfullscreen></iframe>
+    </div>
+    <div class="text-center">
+        <a href="index.html" class="back-btn"><i class="bi bi-arrow-left-circle"></i> Back to Course</a>
+    </div>
+</div>
+
+</body>
+</html>
