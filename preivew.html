@@ -13,6 +13,7 @@
             padding: 0;
             overflow-x: hidden;
         }
+
         body {
             background: linear-gradient(135deg, #a3b1bf 0%, #c1d1e1 25%, #c1bcbc 50%, #c1d1e1 75%, #e8eaf6 100%);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -21,6 +22,7 @@
             min-height: 100vh;
             box-sizing: border-box;
         }
+
         main {
             flex: 1 0 auto;
             padding: 0.5rem 1rem;
@@ -29,6 +31,7 @@
             align-items: center;
             justify-content: center;
         }
+
         h2 {
             font-size: 2.1em;
             font-weight: 1000;
@@ -39,7 +42,9 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
         }
+
         .container {
             width: 100%;
             max-width: 800px;
@@ -48,11 +53,21 @@
             padding: 1rem 1.5rem;
             border-radius: 12px;
         }
+
         .ratio {
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 0 15px rgba(0,0,0,0.12);
         }
+
+        iframe {
+            display: block;
+            width: 100%;
+            height: 40vh;
+            min-height: 250px;
+            border: none;
+        }
+
         .back-btn {
             display: inline-block;
             margin-top: 1.5rem;
@@ -62,29 +77,11 @@
             letter-spacing: 1px;
             text-decoration: none;
         }
+
         .back-btn:hover {
             color: #2c3e50;
         }
-        iframe {
-            display: block;
-            width: 100%;
-            height: 40vh;
-            min-height: 250px;
-            border: none;
-        }
-        @media (max-width: 480px) {
-            iframe {
-                height: 30vh;
-                min-height: 200px;
-            }
-            .container {
-                max-width: 95%;
-                padding: 1rem;
-            }
-            main {
-                padding: 0.5rem;
-            }
-        }
+
         footer {
             flex-shrink: 0;
             width: 100%;
@@ -97,6 +94,7 @@
             color: #ccc;
             font-size: 0.9rem;
         }
+
         #footerrr {
             font-weight: 900;
             background: linear-gradient(45deg, #ff6b6b, #145571, #1e5870, #96ceb4, #feca57);
@@ -106,6 +104,7 @@
             animation: rainbowShift 4s ease infinite;
             margin-left: 4px;
         }
+
         @keyframes rainbowShift {
             0% {
                 background-position: 0% 50%;
@@ -115,6 +114,59 @@
             }
             100% {
                 background-position: 0% 50%;
+            }
+        }
+
+        @media (max-width: 425px) {
+            iframe {
+                height: 35vh;
+                min-height: 220px;
+            }
+
+            .container {
+                max-width: 95%;
+                padding: 0.8rem;
+            }
+
+            h2 {
+                font-size: 1.8em;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 375px) {
+            iframe {
+                height: 32vh;
+                min-height: 200px;
+            }
+
+            .container {
+                padding: 0.7rem;
+            }
+
+            h2 {
+                font-size: 1.6em;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 320px) {
+            iframe {
+                height: 28vh;
+                min-height: 180px;
+            }
+
+            .container {
+                padding: 0.6rem;
+            }
+
+            h2 {
+                font-size: 1.4em;
+                text-align: center;
+            }
+
+            .back-btn {
+                font-size: 0.95rem;
             }
         }
     </style>
