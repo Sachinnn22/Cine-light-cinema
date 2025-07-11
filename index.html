@@ -22,7 +22,6 @@
     <link rel="stylesheet" href="styles/service.css">
     <link rel="stylesheet" href="styles/resales.css">
     <link rel="stylesheet" href="styles/about.css">
-    <link rel="stylesheet" href="styles/course.css">
     <link rel="stylesheet" href="styles/comment.css">
     <link rel="stylesheet" href="styles/breaking.css">
     <link rel="stylesheet" href="styles/reivew.css">
@@ -33,7 +32,7 @@
 
 <nav class="navbar navbar-dark fixed-top">
     <div class="container-fluid d-flex align-items-center justify-content-between">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="#" aria-label="Homepage">
             <span class="brand-text">Digi Marts</span>
         </a>
         <ul class="navbar-nav flex-row align-items-center gap-3 mb-0 d-none d-lg-flex">
@@ -57,21 +56,17 @@
                     <i class="bi bi-info-circle-fill"></i> About Us
                 </a>
             </li>
+            <li class="nav-item cart-item">
+                <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#cart">
+                    <i class="bi bi-cart-fill"></i> Cart
+                </a>
+            </li>
         </ul>
-        <a href="login.html"
-           class="btn btn-login px-3 py-1 fw-semibold d-none d-lg-flex align-items-center gap-2 lgin">
+        <a href="login.html" class="btn btn-login px-3 py-1 fw-semibold d-none d-lg-flex align-items-center gap-2 lgin">
             <i class="bi bi-box-arrow-in-right"></i> Login
         </a>
 
-        <button
-                class="navbar-toggler d-lg-none border-0"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarMenu"
-                aria-controls="navbarMenu"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-        >
+        <button class="navbar-toggler d-lg-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
     </div>
@@ -98,8 +93,12 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="btn btn-login px-3 py-2 fw-semibold d-flex align-items-center gap-2 mt-3"
-                   href="login.html">
+                <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#cart">
+                    <i class="bi bi-cart-fill"></i> Cart
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-login px-3 py-2 fw-semibold d-flex align-items-center gap-2 mt-3" href="login.html">
                     <i class="bi bi-box-arrow-in-right"></i> Login
                 </a>
             </li>
