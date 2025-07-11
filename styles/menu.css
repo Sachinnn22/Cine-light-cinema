@@ -38,6 +38,16 @@ html, body {
     transition: all 0.25s ease;
 }
 
+.navbar-nav .cart-item {
+    margin-left: 0;
+}
+
+.navbar-nav.d-flex {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
 .btn-login {
     background-color: darkcyan;
     color: white !important;
@@ -63,13 +73,7 @@ html, body {
     text-transform: uppercase;
     font-family: 'Montserrat', sans-serif;
     letter-spacing: 1.5px;
-    background: linear-gradient(270deg,
-    #417d81,
-    #00e0d2,
-    #1abc9c,
-    #00c4cc,
-    #417d81
-    );
+    background: linear-gradient(270deg, #417d81, #00e0d2, #1abc9c, #00c4cc, #417d81);
     background-size: 600% 600%;
     animation: gradientShift 6s ease infinite;
     -webkit-background-clip: text;
@@ -98,6 +102,3 @@ html, body {
         background-position: 0% 50%;
     }
 }
-
-
-
