@@ -12,7 +12,7 @@
     html, body {
       height: 100%;
       margin: 0;
-      background: linear-gradient(135deg, #a3b1bf 0%, #c1d1e1 25%, #c1bcbc 50%, #c1d1e1 75%, #e8eaf6 100%);
+      background: linear-gradient(135deg, #a3b1bf 0%, #c1d1e1 25%, #c8c4c4 50%, #c1d1e1 75%, #e8eaf6 100%);
       font-family: 'Poppins', sans-serif;
     }
     .wrapper {
@@ -23,9 +23,10 @@
       padding: 20px;
     }
     .card {
+      position: relative;
       background: rgba(255, 251, 251, 0.95);
       padding: 30px;
-      border-radius: 12px;
+      border-radius: 30px;
       box-shadow: 0 6px 20px rgba(44, 62, 80, 0.07);
       max-width: 600px;
       width: 100%;
@@ -44,12 +45,10 @@
       border: 1px solid #cfd6e4;
       box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
     }
-
     .form-label {
       font-weight: 500;
       color: #3a4a62;
     }
-
     .total {
       font-weight: 600;
       font-size: 1.2rem;
@@ -99,12 +98,31 @@
     .cart-item:last-child {
       margin-bottom: 0;
     }
+    #closeBtn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: transparent;
+      border: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: #5a6a82;
+      line-height: 1;
+      padding: 0;
+      user-select: none;
+      transition: color 0.3s ease;
+    }
+    #closeBtn:hover {
+      color: #3a4a62;
+    }
   </style>
 </head>
 <body>
 
 <div class="wrapper">
   <div class="card">
+    <button id="closeBtn" aria-label="Close">&times;</button>
+
     <h2>Buy Now</h2>
     <div class="cart-items" id="cartItemsContainer">
       <h5>Your Cart Items</h5>
@@ -131,5 +149,14 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  const closeBtn = document.getElementById('closeBtn');
+
+  closeBtn.addEventListener('click', () => {
+    window.location.href = 'index.html';
+  });
+</script>
+
 </body>
 </html>
