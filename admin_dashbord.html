@@ -14,43 +14,42 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="styles/menu.css">
 </head>
 <body>
 
-<nav class="navbar navbar-dark fixed-top">
-  <div class="container-fluid d-flex align-items-center justify-content-between">
+<nav class="navbar navbar-dark fixed-top navbar-expand-lg bg-dark">
+  <div class="container-fluid">
     <a class="navbar-brand" href="#" aria-label="Homepage">
       <span class="brand-text">Digi Marts</span>
     </a>
-
-    <ul class="navbar-nav flex-row align-items-center justify-content-between gap-3 mb-0 d-none d-lg-flex">
-      <li class="nav-item">
-        <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#">
-          <i class="bi bi-bag-fill"></i> Resale
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#">
-          <i class="bi bi-tags-fill"></i> In_Resale
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#">
-          <i class="bi bi-eye-fill"></i> Preview
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#">
-          <i class="bi bi-people-fill"></i> Users
-        </a>
-      </li>
-    </ul>
-
-    <button class="navbar-toggler d-lg-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+    <div class="collapse navbar-collapse justify-content-start justify-content-lg-center" id="navbarMenu">
+      <ul class="navbar-nav flex-column flex-lg-row align-items-start align-items-lg-center gap-2 gap-lg-3 mb-0 mt-3 mt-lg-0">
+        <li class="nav-item">
+          <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#">
+            <i class="bi bi-bag-fill"></i> Resale
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#">
+            <i class="bi bi-tags-fill"></i> In_Resale
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#">
+            <i class="bi bi-eye-fill"></i> Preview
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#">
+            <i class="bi bi-people-fill"></i> Users
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>
 
