@@ -30,12 +30,12 @@
     <div class="collapse navbar-collapse justify-content-start justify-content-lg-center" id="navbarMenu">
       <ul class="navbar-nav flex-column flex-lg-row align-items-start align-items-lg-center gap-2 gap-lg-3 mb-0 mt-3 mt-lg-0">
         <li class="nav-item">
-          <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#">
+          <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#" id="resale_nav">
             <i class="bi bi-bag-fill"></i> Resale
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#">
+          <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#" id="inside_resale_nav">
             <i class="bi bi-tags-fill"></i> Inside Resale
           </a>
         </li>
@@ -54,13 +54,13 @@
   </div>
 </nav>
 
-<section>
+<section id="resale">
   <div class="container py-5 mt-5">
     <div class="row">
       <div class="col-12 col-md-5 mb-5 d-flex justify-content-start">
         <div class="form-container w-100">
           <h2 class="mb-4">Add Resale Form</h2>
-          <form id="productForm" class="row g-3" enctype="multipart/form-data">
+          <form id="resales" class="row g-3" enctype="multipart/form-data">
             <div class="col-12">
               <label for="image" class="form-label">Choose Image</label>
               <input type="file" class="form-control" id="image" required />
@@ -100,7 +100,7 @@
       </div>
       <div class="col-12 col-md-7">
         <div class="table-container">
-          <h3 class="mb-4">Submitted Products</h3>
+          <h3 class="mb-4">resale</h3>
           <div class="table-responsive">
             <table class="table table-striped table-bordered align-middle">
               <thead class="table-dark">
@@ -111,7 +111,57 @@
                 <th>Price</th>
               </tr>
               </thead>
-              <tbody id="productTableBody">
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="inside_resale">
+  <div class="container py-5 mt-5">
+    <div class="row">
+      <div class="col-12 col-md-5 mb-5 d-flex justify-content-start">
+        <div class="form-container w-100">
+          <h2 class="mb-4">Inside Resale Form</h2>
+          <form id="inside_resale_form" class="row g-3" enctype="multipart/form-data">
+            <div class="col-12">
+              <label for="first_paragraph" class="form-label">First Paragraph</label>
+              <input type="number" class="form-control" id="first_paragraph" min="0" required />
+            </div>
+            <div class="col-12">
+              <label for="center_points" class="form-label">Center Points</label>
+              <input type="number" class="form-control" id="center_points" min="0" required />
+            </div>
+            <div class="col-12">
+              <label for="last_paragraph" class="form-label">Third Paragraph</label>
+              <input type="number" class="form-control" id="last_paragraph" min="0" required />
+            </div>
+            <div class="col-12 d-flex flex-wrap gap-1">
+              <button type="submit" class="btn btn-primary btn-sm">Save</button>
+              <button type="submit" class="btn btn-primary btn-sm">Update</button>
+              <button type="submit" class="btn btn-primary btn-sm">Delete</button>
+              <button type="reset" class="btn btn-secondary btn-sm">Reset</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-12 col-md-7">
+        <div class="table-container">
+          <h3 class="mb-4">Inside Resale</h3>
+          <div class="table-responsive">
+            <table class="table table-striped table-bordered align-middle">
+              <thead class="table-dark">
+              <tr>
+                <th>1st Row</th>
+                <th>center Row</th>
+                <th>3rd Row</th>
+              </tr>
+              </thead>
+              <tbody >
               </tbody>
             </table>
           </div>
@@ -123,6 +173,11 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha384-+WDjTfzN1kJv7a+iM0AH6nC0+yZPLl9uZOSkkMeLwRVc2TvmA6pbI1JhP8F8A6CV" crossorigin="anonymous"></script>
+
+<script>
+
+</script>
 
 </body>
 </html>
