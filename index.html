@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="styles/contact.css">
     <link rel="stylesheet" href="styles/service.css">
     <link rel="stylesheet" href="styles/resales.css">
+    <link rel="stylesheet" href="styles/cart.css">
     <link rel="stylesheet" href="styles/about.css">
     <link rel="stylesheet" href="styles/comment.css">
     <link rel="stylesheet" href="styles/breaking.css">
@@ -57,7 +58,7 @@
                 </a>
             </li>
             <li class="nav-item cart-item">
-                <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#cart">
+                <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#" id="open-cart-btn">
                     <i class="bi bi-cart-fill"></i> Cart
                 </a>
             </li>
@@ -70,41 +71,18 @@
             <span class="navbar-toggler-icon"></span>
         </button>
     </div>
-    <div class="collapse d-lg-none" id="navbarMenu">
-        <ul class="navbar-nav px-3 pt-3 pb-2">
-            <li class="nav-item">
-                <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#hero">
-                    <i class="bi bi-house-fill"></i> Home
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#service">
-                    <i class="bi bi-gear-fill"></i> Services
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#resale">
-                    <i class="bi bi-cart-check-fill"></i> Resales
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#about">
-                    <i class="bi bi-info-circle-fill"></i> About Us
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white fw-semibold d-flex align-items-center gap-2" href="#cart">
-                    <i class="bi bi-cart-fill"></i> Cart
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="btn btn-login px-3 py-2 fw-semibold d-flex align-items-center gap-2 mt-3" href="login.html">
-                    <i class="bi bi-box-arrow-in-right"></i> Login
-                </a>
-            </li>
-        </ul>
-    </div>
 </nav>
+
+<div id="cart-modal" role="dialog" aria-modal="true" aria-labelledby="cart-title" class="modal">
+    <div id="cart" class="modal-content" data-aos="zoom-in" data-aos-duration="1500">
+        <button id="cart-close-btn" aria-label="Close cart" class="close-btn">&times;</button>
+        <h4 id="cart-title">Your Cart</h4>
+        <ul id="cart-items" class="list-group mb-3"></ul>
+        <p><strong>Total:</strong> LKR <span id="cart-total">0</span></p>
+        <button id="cart-buy-btn" class="buy-btn" style="width: 100%;">Buy Now</button>
+    </div>
+</div>
+
 
 <a href="https://wa.me/94753493015" class="whatsapp-float animate__animated animate__zoomInDown" target="_blank">
     <i class="bi bi-whatsapp"></i>
@@ -552,7 +530,10 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-    AOS.init();
+    AOS.init({
+        duration: 1200,
+        once: true
+    });
 </script>
 
 <script>
@@ -581,6 +562,27 @@
         document.querySelector(".navbar-brand").addEventListener("click", function (e) {
             e.preventDefault();
             location.reload();
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const cartModal = document.getElementById('cart-modal');
+        const openCartBtn = document.getElementById('open-cart-btn');
+        const closeCartBtn = document.getElementById('cart-close-btn');
+
+        openCartBtn.addEventListener('click', (event) => {
+            event.preventDefault();
+            cartModal.classList.add('show');
+        });
+
+        closeCartBtn.addEventListener('click', () => {
+            cartModal.classList.remove('show');
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === cartModal) {
+                cartModal.classList.remove('show');
+            }
         });
     });
 
