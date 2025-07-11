@@ -1,4 +1,3 @@
-/* Modal Styles */
 #cart {
     background: #fff;
     border-radius: 12px;
@@ -43,7 +42,7 @@
     right: 15px;
     background: none;
     border: none;
-    font-size: 1.8rem;
+    font-size: 1.9rem;
     cursor: pointer;
     color: #2c3e50;
     padding: 0;
@@ -51,7 +50,7 @@
 }
 
 #cart-close-btn:hover {
-    color: #4a4545;
+    color: #1b2835;
 }
 
 #cart-buy-btn {
@@ -67,6 +66,11 @@
     text-align: center;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#cart-buy-btn:hover {
+    background-color: #1b2835;
+    transform: scale(1.05);
 }
 
 #cart-modal.show {
@@ -88,6 +92,24 @@
     justify-content: center;
     z-index: 1050;
     opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#cart-modal.show {
+    display: flex;
+    opacity: 1;
+}
+
+#cart-modal.show::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8px);
+    z-index: -1;
 }
 
 #cart-items .list-group-item {
