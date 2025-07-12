@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Buy Now - Bank Transfer</title>
+  <title>Buy Now</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
 
@@ -16,28 +16,29 @@
     }
 
     .wrapper {
-      height: 100%;
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      padding: 40px 20px;
     }
 
     .card {
       background: rgba(255, 255, 255, 0.96);
-      padding: 30px;
       border-radius: 25px;
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-      max-width: 600px;
+      max-width: 1000px;
       width: 100%;
+      overflow: hidden;
       position: relative;
     }
 
-    .card h2 {
+    .main-title {
       text-align: center;
+      font-size: 2rem;
       font-weight: 900;
       color: #34495e;
-      margin-bottom: 1.5rem;
+      padding-top: 25px;
     }
 
     .form-label {
@@ -49,6 +50,19 @@
       border-radius: 8px;
       background-color: #f2f4f8;
       border: 1px solid #cfd6e4;
+    }
+
+    .left-side, .right-side {
+      padding: 30px;
+    }
+
+    .left-side {
+      background-color: #ffffff;
+      border-right: 1px solid #e0e6ed;
+    }
+
+    .right-side {
+      background-color: #f8fafc;
     }
 
     .cart-items {
@@ -80,7 +94,7 @@
       margin-top: 1rem;
     }
 
-    .btn-buy, .btn-next {
+    .btn-submit {
       width: 100%;
       padding: 12px;
       border: none;
@@ -93,16 +107,34 @@
       margin-top: 1.5rem;
     }
 
-    .btn-buy:hover, .btn-next:hover {
+    .btn-submit:hover {
       background-color: #34495e;
     }
 
-    .step {
-      display: none;
+    .bank-details {
+      background-color: #fff;
+      border: 1px solid #dce3ec;
+      border-left: 5px solid #5a6a82;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 25px;
     }
 
-    .step.active {
-      display: block;
+    .bank-details h5 {
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #2c3e50;
+    }
+
+    .bank-details li {
+      margin-bottom: 5px;
+      color: #34495e;
+    }
+
+    .upload-note {
+      font-size: 0.95rem;
+      color: #777;
+      margin-top: 5px;
     }
 
     #closeBtn {
@@ -120,29 +152,14 @@
       color: #3a4a62;
     }
 
-    .upload-note {
-      font-size: 0.95rem;
-      color: #777;
-      margin-top: 5px;
-    }
-
-    .bank-details {
-      background-color: #f7f9fb;
-      border: 1px solid #dce3ec;
-      border-left: 5px solid #5a6a82;
-      padding: 15px;
-      border-radius: 10px;
-    }
-
-    .bank-details h5 {
-      font-weight: 600;
-      margin-bottom: 12px;
-      color: #2c3e50;
-    }
-
-    .bank-details li {
-      margin-bottom: 5px;
-      color: #34495e;
+    @media (max-width: 768px) {
+      .row.flex-lg-row {
+        flex-direction: column;
+      }
+      .left-side {
+        border-right: none;
+        border-bottom: 1px solid #e0e6ed;
+      }
     }
   </style>
 </head>
@@ -151,91 +168,85 @@
 <div class="wrapper">
   <div class="card">
     <button id="closeBtn" aria-label="Close">&times;</button>
+    <div class="main-title">Make Your Payment</div>
+    <form id="paymentForm">
+      <div class="row g-0 flex-lg-row">
+        <div class="col-lg-6 left-side">
+          <div class="cart-items">
+            <h5>Your Cart Items</h5>
+            <div class="cart-item">
+              <span>Item 1</span>
+              <span>LKR 1500</span>
+            </div>
+            <div class="cart-item">
+              <span>Item 2</span>
+              <span>LKR 2000</span>
+            </div>
+          </div>
 
-    <div id="step1" class="step active">
-      <h2>Check Your Product</h2>
-      <div class="cart-items" id="cartItemsContainer">
-        <h5>Your Cart Items</h5>
-        <div class="cart-item">
-          <span>Item 1</span>
-          <span>LKR 1500</span>
+          <div class="total">Total: LKR <span id="totalPrice">3500</span></div>
+
+          <div class="row mt-4">
+            <div class="col-md-12 mb-3">
+              <label for="name" class="form-label">Full Name</label>
+              <input type="text" id="name" class="form-control" required />
+            </div>
+            <div class="col-md-12 mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" id="email" class="form-control" required />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="review" class="form-label">Review / Note (Optional)</label>
+            <textarea id="review" class="form-control" rows="2"></textarea>
+          </div>
         </div>
-        <div class="cart-item">
-          <span>Item 2</span>
-          <span>LKR 2000</span>
+
+        <div class="col-lg-6 right-side">
+          <div class="bank-details">
+            <h5>Bank Account Details</h5>
+            <ul class="list-unstyled mb-0">
+              <li><strong>Bank:</strong> Commercial Bank</li>
+              <li><strong>Branch:</strong> Colombo Main</li>
+              <li><strong>Account Name:</strong> John Doe</li>
+              <li><strong>Account Number:</strong> 1234567890</li>
+              <li><strong>SWIFT Code:</strong> CCEYLKLX</li>
+            </ul>
+          </div>
+
+          <div class="mb-3">
+            <label for="slip" class="form-label">Upload Bank Slip</label>
+            <input type="file" id="slip" class="form-control" accept="image/*,application/pdf" required />
+            <div class="upload-note">Accepted formats: JPG, PNG, PDF</div>
+          </div>
+
+          <button type="submit" class="btn-submit">Submit Payment</button>
         </div>
       </div>
-
-      <form id="userInfoForm">
-        <div class="row">
-          <div class="col-md-6 mb-3">
-            <label for="name" class="form-label">Full Name</label>
-            <input type="text" id="name" class="form-control" required />
-          </div>
-          <div class="col-md-6 mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" id="email" class="form-control" required />
-          </div>
-        </div>
-        <div class="mb-3">
-          <label for="review" class="form-label">Review / Note (Optional)</label>
-          <textarea id="review" class="form-control" rows="2"></textarea>
-        </div>
-        <div class="total">Total: LKR <span id="totalPrice">3500</span></div>
-        <button type="button" class="btn-next" id="toStep2">Continue to Payment</button>
-      </form>
-    </div>
-
-    <div id="step2" class="step">
-      <h2>Bank Transfer</h2>
-      <p class="mb-3 text-center">Please transfer the amount and upload your bank receipt below.</p>
-
-      <div class="bank-details mb-4">
-        <h5>Bank Account Details</h5>
-        <ul class="list-unstyled mb-0">
-          <li><strong>Bank:</strong> Commercial Bank</li>
-          <li><strong>Branch:</strong> Colombo Main</li>
-          <li><strong>Account Name:</strong> John Doe</li>
-          <li><strong>Account Number:</strong> 1234567890</li>
-        </ul>
-      </div>
-
-      <form id="paymentForm">
-        <div class="mb-3">
-          <label for="slip" class="form-label">Upload Bank Slip</label>
-          <input type="file" id="slip" class="form-control" accept="image/*,application/pdf" required />
-          <div class="upload-note">Accepted formats: JPG, PNG, PDF</div>
-        </div>
-        <button type="submit" class="btn-buy">Submit Payment</button>
-      </form>
-    </div>
+    </form>
   </div>
 </div>
 
 <script>
-  const toStep2Btn = document.getElementById('toStep2');
-  const step1 = document.getElementById('step1');
-  const step2 = document.getElementById('step2');
   const closeBtn = document.getElementById('closeBtn');
-
-  toStep2Btn.addEventListener('click', () => {
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    if (name && email) {
-      step1.classList.remove('active');
-      step2.classList.add('active');
-    } else {
-      alert("Please fill in your name and email first.");
-    }
-  });
 
   document.getElementById('paymentForm').addEventListener('submit', function (e) {
     e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
     const slip = document.getElementById('slip').files[0];
+
+    if (!name || !email) {
+      alert("Please fill in your name and email.");
+      return;
+    }
+
     if (!slip) {
       alert("Please upload the bank slip.");
       return;
     }
+
     alert("Payment submitted successfully!\nWe'll verify and contact you shortly.");
     window.location.href = "thankyou.html";
   });
