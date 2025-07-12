@@ -8,8 +8,8 @@ html, body {
     padding: 0;
 }
 
-section {
-    padding-top: 5px;
+#resale {
+    padding-top: 80px;
 }
 
 #inside_resale, #preview, #users {
