@@ -10,28 +10,24 @@ html, body {
 
 #resale {
     padding-top: 80px;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 
-#inside_resale, #preview, #users {
-    padding-top: 50px;
-}
-
-section {
-    padding-top: 10px;
-}
-
-.form-container {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
-
+.form-container,
 .table-container {
     background: rgba(255, 255, 255, 0.95);
     padding: 2rem;
     border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(43, 38, 38, 0.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    flex: 1 1 48%;
+    min-width: 280px;
+    box-sizing: border-box;
 }
 
 .btn-primary {
@@ -42,6 +38,7 @@ section {
     font-size: 1rem;
     border-radius: 8px;
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .btn-primary:hover {
@@ -53,8 +50,173 @@ section {
     width: auto;
     padding: 0.6rem 1.3rem;
     font-size: 0.875rem;
+    cursor: pointer;
 }
 
+h2, h3 {
+    margin-bottom: 1rem;
+    font-weight: 600;
+    text-align: center;
+}
 
+@media (min-width: 1440px) {
+    #resale {
+        padding-top: 160px;
+        gap: 3rem;
+        justify-content: flex-start;
+    }
 
+    .form-container,
+    .table-container {
+        flex: 1 1 42%;
+        padding: 3rem;
+    }
 
+    h2, h3 {
+        font-size: 2rem;
+        text-align: left;
+    }
+
+    .btn-primary {
+        font-size: 1.2rem;
+        padding: 0.8rem 2rem;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1439px) {
+    #resale {
+        padding-top: 120px;
+        justify-content: flex-start;
+    }
+
+    .form-container,
+    .table-container {
+        flex: 1 1 45%;
+        padding: 2.5rem;
+    }
+
+    h2, h3 {
+        font-size: 1.8rem;
+        text-align: left;
+    }
+
+    .btn-primary {
+        font-size: 1.1rem;
+        padding: 0.7rem 1.8rem;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    #resale {
+        padding-top: 100px;
+        justify-content: center;
+    }
+
+    .form-container,
+    .table-container {
+        flex: 1 1 48%;
+        padding: 2rem;
+        max-width: 600px;
+    }
+
+    h2, h3 {
+        font-size: 1.6rem;
+        text-align: center;
+    }
+
+    .btn-primary {
+        font-size: 1rem;
+        padding: 0.6rem 1.5rem;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+    #resale {
+        padding-top: 120px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .form-container,
+    .table-container {
+        flex: 1 1 100%;
+        max-width: 500px;
+        padding: 1.8rem;
+    }
+
+    h2, h3 {
+        font-size: 1.4rem;
+        text-align: center;
+    }
+
+    .btn-primary {
+        font-size: 1rem;
+        padding: 0.6rem 1.5rem;
+    }
+}
+
+@media (max-width: 575px) {
+    #resale {
+        padding-top: 90px;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .form-container,
+    .table-container {
+        flex: 1 1 100%;
+        max-width: 100%;
+        padding: 1.2rem;
+        box-sizing: border-box;
+    }
+
+    h2, h3 {
+        font-size: 1.3rem;
+        text-align: center;
+    }
+
+    .btn-primary {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+    }
+}
+
+@media (max-width: 375px) {
+    #resale {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5rem;
+        padding-top: 80px;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    h2, h3 {
+        font-size: 1.1rem;
+        text-align: center;
+    }
+
+    .form-container,
+    .table-container {
+        padding: 1rem;
+        min-width: auto;
+        max-width: 100%;
+        width: 100%;
+        box-sizing: border-box;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .btn-primary {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+    }
+}
+
+html {
+    scroll-padding-top: 160px;
+}
