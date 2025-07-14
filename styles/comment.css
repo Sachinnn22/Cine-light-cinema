@@ -155,13 +155,13 @@
     }
 
     #comments h2 {
-        font-size: 2.3rem;
+        font-size: 2.6rem;
         font-weight: 900;
         line-height: 1.1;
     }
 
     #comments .subtitle {
-        font-size: 1.15rem;
+        font-size: 1.5rem;
         line-height: 1.4;
     }
 }
@@ -172,11 +172,11 @@
     }
 
     #comments h2 {
-        font-size: 2rem;
+        font-size: 2.5rem;
     }
 
     #comments .subtitle {
-        font-size: 1rem;
+        font-size: 1.5rem;
     }
 }
 
@@ -186,11 +186,11 @@
     }
 
     #comments h2 {
-        font-size: 2rem;
+        font-size: 2.2rem;
     }
 
     #comments .subtitle {
-        font-size: 1rem;
+        font-size: 1.4rem;
     }
 }
 
@@ -200,11 +200,11 @@
     }
 
     #comments h2 {
-        font-size: 1.8rem;
+        font-size: 2.1rem;
     }
 
     #comments .subtitle {
-        font-size: 0.95rem;
+        font-size: 1.3rem;
     }
 }
 
@@ -214,10 +214,10 @@
     }
 
     #comments h2 {
-        font-size: 1.6rem;
+        font-size: 1.9rem;
     }
 
     #comments .subtitle {
-        font-size: 0.9rem;
+        font-size: 1.2rem;
     }
 }
