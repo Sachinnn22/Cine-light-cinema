@@ -166,6 +166,39 @@
     }
 }
 
+@media (max-width: 1024px) {
+    #comments {
+        padding: 50px 0;
+    }
+
+    .comment-card {
+        flex: 0 0 380px;
+        padding: 2.3rem;
+        box-shadow: 0 9px 32px rgba(0, 0, 0, 0.09);
+        border-radius: 22px;
+    }
+
+    .comment-track {
+        gap: 2.2rem;
+    }
+
+    #comments h2 {
+        font-size: 2.4rem;
+        font-weight: 850;
+        line-height: 1.1;
+    }
+
+    #comments .subtitle {
+        font-size: 1.4rem;
+        line-height: 1.4;
+    }
+
+    .add-comment-btn {
+        font-size: 1rem;
+        padding: 9px 24px;
+    }
+}
+
 @media (max-width: 768px) {
     .comment-card {
         flex: 0 0 70vw;
