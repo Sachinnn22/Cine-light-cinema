@@ -13,8 +13,9 @@
 
 #cart h4 {
     margin-bottom: 1rem;
-    font-weight: 900;
+    font-weight: 800;
     color: #2c3e50;
+    font-family: sans-serif;
     text-align: center;
     font-size: 1.5rem;
     text-transform: uppercase;
