@@ -86,13 +86,20 @@
     }
 
     .hero-text h1 {
-      font-family: 'Poppins',monospace;
+      font-family: 'Poppins', monospace;
       font-size: 3rem;
       line-height: 1.1;
       font-weight: 900;
       color: #f5f5f5;
       letter-spacing: 3px;
       text-transform: uppercase;
+      text-shadow: 1px 1px 2px rgba(151, 118, 118, 0.4);
+      background: rgba(0, 0, 0, 0.3);
+      padding: 20px 40px;
+      border-radius: 10px;
+      border: 2px solid rgba(255, 255, 255, 0.7);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 1);
+      display: inline-block;
     }
 
     .hero-text p {
@@ -101,6 +108,13 @@
       font-weight: 600;
       line-height: 1.6;
       color: #eae4e4;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 15px 25px;
+      border-radius: 8px;
+      border: 1.5px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.95);
+      display: inline-block;
+      margin-top: 15px;
     }
 
     #premiumToast {
@@ -136,11 +150,11 @@
     }
 
     .btn-custom-primary {
-      background: rgba(0, 0, 0, 0.5) !important;
+      background: rgba(0, 0, 0, 0.4) !important;
       color: white;
       border: 3px solid black;
-      backdrop-filter: blur(2px);
-      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(2px);
       transition: background 0.3s ease, border 0.3s ease;
     }
 
@@ -258,8 +272,12 @@
   </div>
 </div>
 
-<section class="pt-32 pb-16 px-6 lg:px-24 bg-cover bg-center min-h-[100vh] flex items-center" style="background-image: url('assets/images/Jurassic-World-Fallen-Kingdom-dinosaurs-wallpaper.jpg');">
-  <div class="max-w-xl hero-text">
+<section class="relative pt-32 pb-16 px-6 lg:px-24 min-h-[100vh] flex items-center justify-center overflow-hidden">
+  <div class="absolute inset-0 bg-cover bg-center blur-sm scale-105" style="background-image: url('assets/images/Jurassic-World-Fallen-Kingdom-dinosaurs-wallpaper.jpg');"></div>
+
+  <div class="absolute inset-0 "></div>
+
+  <div class="relative z-10 max-w-xl hero-text text-center">
     <h1 class="mb-4 drop-shadow-lg">Live Theater</h1>
     <p class="mb-6 drop-shadow">
       Discover the latest blockbusters, timeless classics, and hidden gems all in one place. Enjoy thrilling adventures, emotional dramas, and unforgettable stories, handpicked for every movie lover. Dive into a world where stories come alive and entertainment never ends.
