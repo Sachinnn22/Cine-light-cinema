@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>DaisyUI Navbar Transparent</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HEALIYSE - Watch Movies</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.1/dist/full.css" rel="stylesheet" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
 
     .brand-name {
-      font-family: "Algerian";
+      font-family: "Poppins", sans-serif;
       font-size: 1.8rem;
       font-weight: 700;
       letter-spacing: 3px;
@@ -24,15 +25,9 @@
     }
 
     @keyframes pulseGlow {
-      0% {
-        text-shadow: 0 0 6px rgba(255, 255, 255, 0.15);
-      }
-      50% {
-        text-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
-      }
-      100% {
-        text-shadow: 0 0 6px rgba(255, 255, 255, 0.15);
-      }
+      0% { text-shadow: 0 0 6px rgba(255, 255, 255, 0.15); }
+      50% { text-shadow: 0 0 12px rgba(255, 255, 255, 0.4); }
+      100% { text-shadow: 0 0 6px rgba(255, 255, 255, 0.15); }
     }
 
     .navbar-transparent {
@@ -41,29 +36,20 @@
       -webkit-backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.3);
     }
+
     .dropdown-glass {
-      background: rgba(0, 0, 0, 0.65) !important;
+      background: rgba(0, 0, 0, 0.75) !important;
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.3);
       color: white;
     }
-    .dropdown-content {
-      display: none;
-    }
-    .dropdown.open .dropdown-content {
-      display: block;
-    }
-    .dropdown-glass a {
-      color: white;
-    }
-    .dropdown-glass a svg {
-      stroke: white;
-      fill: none;
-    }
-    .dropdown-glass a:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-    }
+
+    .dropdown-content { display: none; }
+    .dropdown.open .dropdown-content { display: block; }
+
+    .dropdown-glass a { color: white; }
+    .dropdown-glass a:hover { background-color: rgba(255, 255, 255, 0.1); }
 
     #searchInput {
       max-width: 0;
@@ -86,44 +72,21 @@
     }
   </style>
 </head>
-<body>
-<div class="navbar navbar-transparent shadow-sm">
+<body class="bg-black text-white">
+
+<div class="navbar navbar-transparent shadow-sm fixed top-0 left-0 right-0 z-50">
   <div class="navbar-start">
     <div class="dropdown" id="mainDropdown">
-      <button id="dropdownToggle" class="btn btn-ghost btn-circle flex items-center justify-center">
+      <button id="dropdownToggle" class="btn btn-ghost btn-circle flex items-center justify-center" aria-label="Toggle menu">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h7"/>
         </svg>
       </button>
-      <ul class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow dropdown-glass rounded-box w-52">
-        <li>
-          <a>
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none"
-                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M13 5v6h6" />
-            </svg>
-            Homepage
-          </a>
-        </li>
-        <li>
-          <a>
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none"
-                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-6h13v6M9 17H4v-6h5m0 0V5h13v6" />
-            </svg>
-            Portfolio
-          </a>
-        </li>
-        <li>
-          <a>
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none"
-                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M12 2a10 10 0 100 20 10 10 0 000-20z" />
-            </svg>
-            About
-          </a>
-        </li>
+      <ul class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow dropdown-glass rounded-box w-52" role="menu" aria-label="Main menu">
+        <li><a href="#" role="menuitem">Homepage</a></li>
+        <li><a href="#" role="menuitem">Portfolio</a></li>
+        <li><a href="#" role="menuitem">About</a></li>
       </ul>
     </div>
   </div>
@@ -134,10 +97,10 @@
 
   <div class="navbar-end flex gap-2 items-center">
     <div id="searchContainer" class="flex items-center relative">
-      <input id="searchInput" type="text" placeholder="Search..." autocomplete="off" />
-      <button id="searchToggle" class="btn btn-ghost btn-circle ml-2" aria-label="Search">
+      <input id="searchInput" type="text" placeholder="Search..." autocomplete="off" aria-label="Search movies" />
+      <button id="searchToggle" class="btn btn-ghost btn-circle ml-2" aria-label="Toggle search">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round"
                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
         </svg>
@@ -147,85 +110,92 @@
     <button class="btn btn-ghost btn-circle" aria-label="Notifications">
       <div class="indicator">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.4-1.4A2 2 0 0118 14.2V11a6 6 0 00-4-5.7V5a2 2 0 10-4 0v.3C7.7 6.2 6 8.4 6 11v3.2c0 .5-.2 1.1-.6 1.4L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
         </svg>
       </div>
     </button>
 
     <div class="dropdown dropdown-end" id="userDropdown">
-      <button id="userToggle" class="btn btn-ghost btn-circle flex items-center justify-center" aria-label="User Profile">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24"
-             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <button id="userToggle" class="btn btn-ghost btn-circle" aria-label="User Profile">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <circle cx="12" cy="8" r="4" />
           <path d="M6 20c0-3.31 5.33-5 6-5s6 1.69 6 5" />
         </svg>
       </button>
-      <ul class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow dropdown-glass rounded-box w-52">
-        <li>
-          <a>
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none"
-                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
-            Sign In
-          </a>
-        </li>
-        <li>
-          <a>
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none"
-                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.5 0-2.72.92-3.24 2.22M12 16c1.5 0 2.72-.92 3.24-2.22M4 12c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8-8 3.58-8 8z" />
-            </svg>
-            Buy Premium
-          </a>
-        </li>
+      <ul class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow dropdown-glass rounded-box w-52" role="menu" aria-label="User menu">
+        <li><a href="#" role="menuitem">Sign In</a></li>
+        <li><a href="#" role="menuitem">Buy Premium</a></li>
       </ul>
     </div>
   </div>
 </div>
 
-<script>
-  // Dropdown toggles
-  const dropdown = document.getElementById('mainDropdown');
-  const toggleBtn = document.getElementById('dropdownToggle');
+<section
+        class="pt-32 pb-16 px-6 lg:px-24 bg-cover bg-center min-h-[100vh] flex items-center"
+        style="background-image: url('https://images.unsplash.com/photo-1606112219348-204d7d8b94ee?auto=format&fit=crop&w=1600&q=80');"
+>
+  <div class="max-w-xl">
+    <h1 class="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg">
+      Stream Movies Anytime
+    </h1>
+    <p class="mb-6 text-lg text-white/80 drop-shadow">
+      Discover the latest blockbusters and timeless classics in one place.
+    </p>
+    <div class="flex gap-3">
+      <button
+              class="btn btn-primary transition-transform transform hover:scale-105 focus:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-400"
+              onclick="document.getElementById('trending').scrollIntoView({behavior: 'smooth'})"
+      >
+        Start Watching
+      </button>
+      <button
+              class="btn btn-outline text-white border-white/50 transition-colors hover:bg-white hover:text-black focus:outline-none focus:ring-4 focus:ring-white"
+      >
+        Browse All
+      </button>
+    </div>
+  </div>
+</section>
 
-  toggleBtn.addEventListener('click', function (e) {
-    e.stopPropagation();
+<script>
+  document.getElementById('dropdownToggle').addEventListener('click', () => {
+    const dropdown = document.getElementById('mainDropdown');
     dropdown.classList.toggle('open');
   });
 
-  const userDropdown = document.getElementById('userDropdown');
-  const userToggleBtn = document.getElementById('userToggle');
-
-  userToggleBtn.addEventListener('click', function (e) {
-    e.stopPropagation();
-    userDropdown.classList.toggle('open');
+  document.getElementById('userToggle').addEventListener('click', () => {
+    const dropdown = document.getElementById('userDropdown');
+    dropdown.classList.toggle('open');
   });
 
-  document.addEventListener('click', function (e) {
-    if (!dropdown.contains(e.target)) dropdown.classList.remove('open');
-    if (!userDropdown.contains(e.target)) userDropdown.classList.remove('open');
+  window.addEventListener('click', (e) => {
+    if (!document.getElementById('mainDropdown').contains(e.target)) {
+      document.getElementById('mainDropdown').classList.remove('open');
+    }
+    if (!document.getElementById('userDropdown').contains(e.target)) {
+      document.getElementById('userDropdown').classList.remove('open');
+    }
   });
 
-  // Search toggle
   const searchToggle = document.getElementById('searchToggle');
   const searchInput = document.getElementById('searchInput');
 
-  searchToggle.addEventListener('click', (e) => {
-    e.stopPropagation();
+  searchToggle.addEventListener('click', () => {
     searchInput.classList.toggle('show');
     if (searchInput.classList.contains('show')) {
       searchInput.focus();
     } else {
-      searchInput.blur();
+      searchInput.value = '';
     }
   });
 
-  document.addEventListener('click', (e) => {
-    if (!searchInput.contains(e.target) && !searchToggle.contains(e.target)) {
+  searchInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
       searchInput.classList.remove('show');
-      searchInput.blur();
+      searchInput.value = '';
+      searchToggle.focus();
     }
   });
 </script>
