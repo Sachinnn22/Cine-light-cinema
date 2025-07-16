@@ -31,7 +31,7 @@
     }
 
     .navbar-transparent {
-      background: rgba(0, 0, 0, 0.65) !important;
+      background: rgba(0, 0, 0, 0.6) !important;
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.3);
@@ -84,9 +84,32 @@
         </svg>
       </button>
       <ul class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow dropdown-glass rounded-box w-52" role="menu" aria-label="Main menu">
-        <li><a href="#" role="menuitem">Homepage</a></li>
-        <li><a href="#" role="menuitem">Portfolio</a></li>
-        <li><a href="#" role="menuitem">About</a></li>
+        <li>
+          <a href="#" role="menuitem" class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M13 5v6h6" />
+            </svg>
+            Homepage
+          </a>
+        </li>
+        <li>
+          <a href="#" role="menuitem" class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 20h9" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4h9m-9 8h9" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 7h.01M4 12h.01M4 17h.01" />
+            </svg>
+            Portfolio
+          </a>
+        </li>
+        <li>
+          <a href="#" role="menuitem" class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16h6M12 4v4m-6 8v-6a2 2 0 012-2h8a2 2 0 012 2v6" />
+            </svg>
+            About
+          </a>
+        </li>
       </ul>
     </div>
   </div>
@@ -125,8 +148,23 @@
         </svg>
       </button>
       <ul class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow dropdown-glass rounded-box w-52" role="menu" aria-label="User menu">
-        <li><a href="#" role="menuitem">Sign In</a></li>
-        <li><a href="#" role="menuitem">Buy Premium</a></li>
+        <li>
+          <a href="#" role="menuitem" class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16 21v-2a4 4 0 00-8 0v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+            Sign In
+          </a>
+        </li>
+        <li>
+          <a href="#" role="menuitem" class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+            Buy Premium
+          </a>
+        </li>
       </ul>
     </div>
   </div>
@@ -134,7 +172,13 @@
 
 <section
         class="pt-32 pb-16 px-6 lg:px-24 bg-cover bg-center min-h-[100vh] flex items-center"
-        style="background-image: url('https://images.unsplash.com/photo-1606112219348-204d7d8b94ee?auto=format&fit=crop&w=1600&q=80');"
+        style="
+  background-image: url('assets/images/Avengers-Wallpaper-For-Desktop-HD-4k (1).jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+"
 >
   <div class="max-w-xl">
     <h1 class="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg">
