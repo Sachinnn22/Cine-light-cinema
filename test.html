@@ -35,6 +35,28 @@
     .dropdown-glass a:hover {
       background-color: rgba(255, 255, 255, 0.1);
     }
+
+    /* Search input transition */
+    #searchInput {
+      max-width: 0;
+      opacity: 0;
+      transition: max-width 0.3s ease, opacity 0.3s ease;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: white;
+    }
+    #searchInput::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+    /* Show input when active */
+    #searchInput.show {
+      max-width: 200px;
+      opacity: 1;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    }
   </style>
 </head>
 <body>
@@ -84,12 +106,16 @@
   </div>
 
   <div class="navbar-end flex gap-2 items-center">
-    <button class="btn btn-ghost btn-circle" aria-label="Search">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-           viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-      </svg>
-    </button>
+    <div id="searchContainer" class="flex items-center relative">
+      <input id="searchInput" type="text" placeholder="Search..." autocomplete="off" />
+      <button id="searchToggle" class="btn btn-ghost btn-circle ml-2" aria-label="Search">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+      </button>
+    </div>
 
     <button class="btn btn-ghost btn-circle" aria-label="Notifications">
       <div class="indicator">
@@ -133,6 +159,7 @@
 </div>
 
 <script>
+  // Dropdown toggles
   const dropdown = document.getElementById('mainDropdown');
   const toggleBtn = document.getElementById('dropdownToggle');
 
@@ -152,6 +179,27 @@
   document.addEventListener('click', function (e) {
     if (!dropdown.contains(e.target)) dropdown.classList.remove('open');
     if (!userDropdown.contains(e.target)) userDropdown.classList.remove('open');
+  });
+
+  // Search toggle
+  const searchToggle = document.getElementById('searchToggle');
+  const searchInput = document.getElementById('searchInput');
+
+  searchToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    searchInput.classList.toggle('show');
+    if (searchInput.classList.contains('show')) {
+      searchInput.focus();
+    } else {
+      searchInput.blur();
+    }
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!searchInput.contains(e.target) && !searchToggle.contains(e.target)) {
+      searchInput.classList.remove('show');
+      searchInput.blur();
+    }
   });
 </script>
 
