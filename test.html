@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>HEALIYSE - Watch Movies</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -45,6 +45,14 @@
     .dropdown-glass {
       background: rgba(0, 0, 0, 0.75) !important;
       backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: white;
+    }
+
+    .dropdown-glass-movie {
+      background: rgba(0, 0, 0, 0.2) !important;
+      backdrop-filter: blur(2px);
       -webkit-backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.3);
       color: white;
@@ -95,6 +103,38 @@
       line-height: 1.6;
       color: #eae4e4;
     }
+
+    #premiumToast {
+      position: fixed;
+      bottom: 1rem;
+      left: 50%;
+      transform: translate(-50%, 100%);
+      background-color: #dc2626;
+      color: white;
+      padding: 1rem 1.25rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+      z-index: 50;
+      user-select: none;
+    }
+
+    #premiumToast.show {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translate(-50%, 0);
+    }
+
+    .disabled-link {
+      color: rgba(255, 255, 255, 0.5) !important;
+      cursor: not-allowed !important;
+      user-select: none;
+      opacity: 0.6;
+    }
   </style>
 </head>
 <body class="bg-black text-white">
@@ -108,11 +148,30 @@
           <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h7"/>
         </svg>
       </button>
-      <ul class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow dropdown-glass rounded-box w-52" role="menu" aria-label="Main menu">
+      <ul class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow dropdown-glass rounded-box w-52" role="menu">
         <li><a href="#">Home Page</a></li>
-        <li><a href="#">New Release</a></li>
-        <li><a href="#">Movies</a></li>
-        <li><a href="#">About</a></li>
+        <li>
+          <a href="#" id="newReleaseLock" class="flex justify-between items-center select-none px-2 py-1 rounded disabled-link" aria-disabled="true">
+            <span>New Release</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <rect x="6" y="11" width="12" height="9" rx="2" ry="2" />
+              <path d="M9 11V7a3 3 0 016 0v4" />
+            </svg>
+          </a>
+        </li>
+        <li>
+          <details>
+            <summary>Movies</summary>
+            <ul class="p-2 dropdown-glass-movie rounded-box mt-1 space-y-1">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Drama</a></li>
+              <li><a href="#">Sci-Fi</a></li>
+              <li><a href="#">Romance</a></li>
+            </ul>
+          </details>
+        </li>
+        <li><a href="#">Blogs</a></li>
+        <li><a href="#">About Us</a></li>
       </ul>
     </div>
   </div>
@@ -123,33 +182,33 @@
 
   <div class="navbar-end flex gap-2 items-center">
     <div id="searchContainer" class="flex items-center relative">
-      <input id="searchInput" type="text" placeholder="Search..." autocomplete="off" aria-label="Search movies" />
+      <input id="searchInput" type="text" placeholder="Search..." autocomplete="off" />
       <button id="searchToggle" class="btn btn-ghost btn-circle ml-2" aria-label="Toggle search">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
         </svg>
       </button>
     </div>
 
-    <button class="btn btn-ghost btn-circle" aria-label="Notifications">
+    <button class="btn btn-ghost btn-circle">
       <div class="indicator">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.4-1.4A2 2 0 0118 14.2V11a6 6 0 00-4-5.7V5a2 2 0 10-4 0v.3C7.7 6.2 6 8.4 6 11v3.2c0 .5-.2 1.1-.6 1.4L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
         </svg>
       </div>
     </button>
 
     <div class="dropdown dropdown-end" id="userDropdown">
-      <button id="userToggle" class="btn btn-ghost btn-circle" aria-label="User Profile">
+      <button id="userToggle" class="btn btn-ghost btn-circle">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <circle cx="12" cy="8" r="4" />
           <path d="M6 20c0-3.31 5.33-5 6-5s6 1.69 6 5" />
         </svg>
       </button>
-      <ul class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow dropdown-glass rounded-box w-52" role="menu" aria-label="User menu">
+      <ul class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow dropdown-glass rounded-box w-52">
         <li><a href="#">Sign In</a></li>
         <li><a href="#">Buy Premium</a></li>
       </ul>
@@ -164,15 +223,17 @@
       Explore the latest blockbusters, timeless classics, and hidden gems all in one place. Enjoy action-packed adventures, heartfelt dramas, and acclaimed masterpieces, handpicked for you.
     </p>
     <div class="flex gap-3">
-      <button class="btn btn-primary transition-transform transform hover:scale-105 focus:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-400" onclick="document.getElementById('trending').scrollIntoView({behavior: 'smooth'})">
+      <button class="btn btn-primary" onclick="document.getElementById('trending').scrollIntoView({behavior: 'smooth'})">
         Start Watching
       </button>
-      <button class="btn btn-outline text-white border-white/50 transition-colors hover:bg-white hover:text-black focus:outline-none focus:ring-4 focus:ring-white">
+      <button class="btn btn-outline text-white border-white/50">
         Browse All
       </button>
     </div>
   </div>
 </section>
+
+<div id="premiumToast">Need to buy premium</div>
 
 <script>
   document.getElementById('dropdownToggle').addEventListener('click', () => {
@@ -209,6 +270,28 @@
       searchInput.classList.remove('show');
       searchInput.value = '';
       searchToggle.focus();
+    }
+  });
+
+  const newReleaseLock = document.getElementById('newReleaseLock');
+  const premiumToast = document.getElementById('premiumToast');
+
+  newReleaseLock.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    if(premiumToast.classList.contains('show')) {
+      clearTimeout(premiumToast.timeoutId);
+      premiumToast.classList.remove('show');
+      setTimeout(showToast, 350);
+    } else {
+      showToast();
+    }
+
+    function showToast() {
+      premiumToast.classList.add('show');
+      premiumToast.timeoutId = setTimeout(() => {
+        premiumToast.classList.remove('show');
+      }, 2000);
     }
   });
 </script>
