@@ -1,411 +1,411 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SINHALIES - Watch Movies</title>
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SINHALIES - Watch Movies</title>
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.1/dist/full.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.1/dist/full.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
 
-  <style>
-    body {
-      font-family: 'Open Sans', sans-serif;
-    }
+    <style>
+      body {
+        font-family: 'Open Sans', sans-serif;
+      }
 
-    .brand-name {
-      font-family: "Poppins", sans-serif;
-      font-size: 1.9rem;
-      font-weight: 700;
-      letter-spacing: 4px;
-      background: linear-gradient(80deg, #4aabcd, #72d582, #6071d1);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-fill-color: transparent;
-      text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.15);
-      animation: pulseGlow 4s infinite ease-in-out;
-      user-select: none;
-    }
+      .brand-name {
+        font-family: "Poppins", sans-serif;
+        font-size: 1.9rem;
+        font-weight: 700;
+        letter-spacing: 4px;
+        background: linear-gradient(80deg, #4aabcd, #72d582, #6071d1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-fill-color: transparent;
+        text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.15);
+        animation: pulseGlow 4s infinite ease-in-out;
+        user-select: none;
+      }
 
-    .navbar-transparent {
-      background: rgba(0, 0, 0, 0.6) !important;
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    }
+      .navbar-transparent {
+        background: rgba(0, 0, 0, 0.6) !important;
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      }
 
-    .dropdown-glass {
-      background: rgba(0, 0, 0, 0.7) !important;
-      backdrop-filter: blur(6px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      color: white;
-    }
+      .dropdown-glass {
+        background: rgba(0, 0, 0, 0.7) !important;
+        backdrop-filter: blur(6px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white;
+      }
 
-    .dropdown-glass-movie {
-      background: rgba(0, 0, 0, 0) !important;
-      backdrop-filter: blur(2px);
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      color: white;
-    }
+      .dropdown-glass-movie {
+        background: rgba(0, 0, 0, 0) !important;
+        backdrop-filter: blur(2px);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        color: white;
+      }
 
-    .dropdown-content { display: none; }
-    .dropdown.open .dropdown-content { display: block; }
+      .dropdown-content { display: none; }
+      .dropdown.open .dropdown-content { display: block; }
 
-    .dropdown-glass a { color: white; }
-    .dropdown-glass a:hover { background-color: rgba(255, 255, 255, 0.1); }
+      .dropdown-glass a { color: white; }
+      .dropdown-glass a:hover { background-color: rgba(255, 255, 255, 0.1); }
 
-    #searchInput {
-      max-width: 0;
-      opacity: 0;
-      transition: max-width 0.3s ease, opacity 0.3s ease;
-      border: none;
-      outline: none;
-      background: transparent;
-      color: white;
-    }
+      #searchInput {
+        max-width: 0;
+        opacity: 0;
+        transition: max-width 0.3s ease, opacity 0.3s ease;
+        border: none;
+        outline: none;
+        background: transparent;
+        color: white;
+      }
 
-    #searchInput::placeholder {
-      color: rgba(255, 255, 255, 0.7);
-    }
+      #searchInput::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+      }
 
-    #searchInput.show {
-      max-width: 200px;
-      opacity: 1;
-      padding-left: 0.5rem;
-      padding-right: 0.5rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-    }
+      #searchInput.show {
+        max-width: 200px;
+        opacity: 1;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+      }
 
-    section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items-center {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
+      section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items-center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
 
-    .hero-text h1 {
-      font-family: 'Perpetua Titling MT',serif;
-      font-size: 2.7rem;
-      line-height: 1.1;
-      font-weight: 900;
-      color: #f4f2f2;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      text-shadow:
-              2px 2px 4px rgba(0, 0, 0, 0.5),
-              0 0 10px rgba(255, 255, 255, 0.5);
-    }
+      .hero-text h1 {
+        font-family: 'Perpetua Titling MT',serif;
+        font-size: 2.7rem;
+        line-height: 1.1;
+        font-weight: 900;
+        color: #f4f2f2;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        text-shadow:
+                2px 2px 4px rgba(0, 0, 0, 0.5),
+                0 0 10px rgba(255, 255, 255, 0.5);
+      }
 
-    .hero-text p {
-      font-family: 'Open Sans', sans-serif;
-      font-size: 1.125rem;
-      font-weight: 600;
-      line-height: 1.6;
-      color: #d3d1d1;
-      letter-spacing: 1.3px;
-      text-shadow:
-              1px 1px 3px rgba(0, 0, 0, 0.4),
-              0 0 5px rgba(255, 255, 255, 0.4);
-    }
+      .hero-text p {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 1.125rem;
+        font-weight: 600;
+        line-height: 1.6;
+        color: #d3d1d1;
+        letter-spacing: 1.3px;
+        text-shadow:
+                1px 1px 3px rgba(0, 0, 0, 0.4),
+                0 0 5px rgba(255, 255, 255, 0.4);
+      }
 
-    #premiumToast {
-      position: fixed;
-      bottom: 1rem;
-      left: 50%;
-      transform: translate(-50%, 100%);
-      background-color: #dc2626;
-      color: white;
-      padding: 1rem 1.25rem;
-      border-radius: 0.5rem;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.25);
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-      transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
-      z-index: 50;
-      user-select: none;
-    }
+      #premiumToast {
+        position: fixed;
+        bottom: 1rem;
+        left: 50%;
+        transform: translate(-50%, 100%);
+        background-color: #dc2626;
+        color: white;
+        padding: 1rem 1.25rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+        z-index: 50;
+        user-select: none;
+      }
 
-    #premiumToast.show {
-      opacity: 1;
-      visibility: visible;
-      pointer-events: auto;
-      transform: translate(-50%, 0);
-    }
+      #premiumToast.show {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translate(-50%, 0);
+      }
 
-    .disabled-link {
-      color: rgba(255, 255, 255, 0.5) !important;
-      cursor: not-allowed !important;
-      user-select: none;
-      opacity: 0.6;
-    }
-    .btn-custom-primary {
-      background: rgba(0, 0, 0, 0.4) !important;
-      color: white;
-      border-color: rgba(255, 255, 255, 1.5);
-      backdrop-filter: blur(3px);
-      -webkit-backdrop-filter: blur(2px);
-      transition: background 0.3s ease, border 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 4px 6px rgba(0, 123, 255, 0.5);
-    }
+      .disabled-link {
+        color: rgba(255, 255, 255, 0.5) !important;
+        cursor: not-allowed !important;
+        user-select: none;
+        opacity: 0.6;
+      }
+      .btn-custom-primary {
+        background: rgba(0, 0, 0, 0.4) !important;
+        color: white;
+        border-color: rgba(255, 255, 255, 1.5);
+        backdrop-filter: blur(3px);
+        -webkit-backdrop-filter: blur(2px);
+        transition: background 0.3s ease, border 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 123, 255, 0.5);
+      }
 
-    .btn-custom-primary:hover {
-      background: rgba(0, 0, 0, 0.65) !important;
-      border-color: rgba(255, 255, 255, 1.5);
-      box-shadow: 0 6px 12px rgba(0, 123, 255, 0.7);
-    }
+      .btn-custom-primary:hover {
+        background: rgba(0, 0, 0, 0.65) !important;
+        border-color: rgba(255, 255, 255, 1.5);
+        box-shadow: 0 6px 12px rgba(0, 123, 255, 0.7);
+      }
 
-    .btn-custom-outline {
-      border-color: rgba(255, 255, 255, 1.5);
-      color: white;
-      box-shadow: 0 3px 6px rgba(57, 255, 20, 0.5);
-      transition: background 0.3s ease, border 0.3s ease, box-shadow 0.3s ease;
-    }
+      .btn-custom-outline {
+        border-color: rgba(255, 255, 255, 1.5);
+        color: white;
+        box-shadow: 0 3px 6px rgba(57, 255, 20, 0.5);
+        transition: background 0.3s ease, border 0.3s ease, box-shadow 0.3s ease;
+      }
 
-    .btn-custom-outline:hover {
-      background: rgba(0, 0, 0, 0.6) !important;
-      border-color: rgba(255, 255, 255, 1.5);
-      color: white;
-      box-shadow: 0 6px 12px rgba(57, 255, 20, 0.7);
-    }
+      .btn-custom-outline:hover {
+        background: rgba(0, 0, 0, 0.6) !important;
+        border-color: rgba(255, 255, 255, 1.5);
+        color: white;
+        box-shadow: 0 6px 12px rgba(57, 255, 20, 0.7);
+      }
 
-    #notificationPopup {
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      opacity: 0;
-      transform: translateY(20px);
-      display: none !important;
-      position: fixed;
-      bottom: -11rem; /* enough above bottom */
-      right: 1rem;
-      width: 18rem; /* 72 = 18rem */
-      background: rgba(0,0,0,0.7);
-      color: white;
-      border-radius: 0.5rem;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-      padding: 1rem;
-      z-index: 60;
-    }
+      #notificationPopup {
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        opacity: 0;
+        transform: translateY(20px);
+        display: none !important;
+        position: fixed;
+        bottom: -11rem; /* enough above bottom */
+        right: 1rem;
+        width: 18rem; /* 72 = 18rem */
+        background: rgba(0,0,0,0.7);
+        color: white;
+        border-radius: 0.5rem;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+        padding: 1rem;
+        z-index: 60;
+      }
 
-    #notificationPopup.show {
-      display: block !important;
-      opacity: 1;
-      transform: translateY(0);
-    }
+      #notificationPopup.show {
+        display: block !important;
+        opacity: 1;
+        transform: translateY(0);
+      }
 
-    #notificationPopup.hidden {
-      opacity: 0;
-      transform: translateY(20px);
-      display: none !important;
-    }
+      #notificationPopup.hidden {
+        opacity: 0;
+        transform: translateY(20px);
+        display: none !important;
+      }
 
-  </style>
-</head>
-<body class="bg-black text-white">
+    </style>
+  </head>
+  <body class="bg-black text-white">
 
-<div class="navbar navbar-transparent shadow-sm fixed top-0 left-0 right-0 z-50">
-  <div class="navbar-start">
-    <div class="dropdown" id="mainDropdown">
-      <button id="dropdownToggle" class="btn btn-ghost btn-circle">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h7"/>
-        </svg>
-      </button>
-      <ul class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow dropdown-glass rounded-box w-52">
-        <li><a href="#">Home Page</a></li>
-        <li>
-          <a href="#" id="newReleaseLock" class="flex justify-between items-center px-3 py-2 w-full rounded disabled-link">
-            <span class="pr-3">New Release</span>
-          </a>
-        </li>
-        <li>
-          <details>
-            <summary>Movies</summary>
-            <ul class="p-2 dropdown-glass-movie rounded-box mt-1 space-y-1">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Horror</a></li>
-              <li><a href="#">Sci-Fic</a></li>
-              <li><a href="#">Romance</a></li>
-            </ul>
-          </details>
-        </li>
-        <li><a href="#">Blogs</a></li>
-        <li><a href="#">About Us</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="navbar-center">
-    <span class="brand-name">SINHALIES</span>
-  </div>
-
-  <div class="navbar-end flex gap-2 items-center">
-    <div id="searchContainer" class="flex items-center relative">
-      <input id="searchInput" type="text" placeholder="Search Movie" autocomplete="off" />
-      <button id="searchToggle" class="btn btn-ghost btn-circle ml-2">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-        </svg>
-      </button>
-    </div>
-
-    <button id="notificationBtn" class="btn btn-ghost btn-circle">
-      <div class="indicator">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.4-1.4A2 2 0 0118 14.2V11a6 6 0 00-4-5.7V5a2 2 0 10-4 0v.3C7.7 6.2 6 8.4 6 11v3.2c0 .5-.2 1.1-.6 1.4L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
-        </svg>
+  <div class="navbar navbar-transparent shadow-sm fixed top-0 left-0 right-0 z-50">
+    <div class="navbar-start">
+      <div class="dropdown" id="mainDropdown">
+        <button id="dropdownToggle" class="btn btn-ghost btn-circle">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+               viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h7"/>
+          </svg>
+        </button>
+        <ul class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow dropdown-glass rounded-box w-52">
+          <li><a href="#">Home Page</a></li>
+          <li>
+            <a href="#" id="newReleaseLock" class="flex justify-between items-center px-3 py-2 w-full rounded disabled-link">
+              <span class="pr-3">New Release</span>
+            </a>
+          </li>
+          <li>
+            <details>
+              <summary>Movies</summary>
+              <ul class="p-2 dropdown-glass-movie rounded-box mt-1 space-y-1">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Horror</a></li>
+                <li><a href="#">Sci-Fic</a></li>
+                <li><a href="#">Romance</a></li>
+              </ul>
+            </details>
+          </li>
+          <li><a href="#">Blogs</a></li>
+          <li><a href="#">About Us</a></li>
+        </ul>
       </div>
-    </button>
-
-    <!-- Notification Popup at Bottom -->
-    <div id="notificationPopup" class="fixed bottom-16 right-4 w-72 bg-black bg-opacity-90 text-white rounded-lg shadow-lg p-4 z-60 hidden">
-      <h3 class="font-semibold mb-2 border-b border-gray-600 pb-1">Notifications</h3>
-      <ul class="text-sm max-h-48 overflow-y-auto">
-        <li class="mb-2">New movie "Inception 2" added!</li>
-        <li class="mb-2">Your subscription will expire in 3 days.</li>
-        <li class="mb-2">Server maintenance scheduled for tomorrow.</li>
-      </ul>
     </div>
 
-    <div class="dropdown dropdown-end" id="userDropdown">
-      <button id="userToggle" class="btn btn-ghost btn-circle">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <circle cx="12" cy="8" r="4" />
-          <path d="M6 20c0-3.31 5.33-5 6-5s6 1.69 6 5" />
-        </svg>
+    <div class="navbar-center">
+      <span class="brand-name">SINHALIES</span>
+    </div>
+
+    <div class="navbar-end flex gap-2 items-center">
+      <div id="searchContainer" class="flex items-center relative">
+        <input id="searchInput" type="text" placeholder="Search Movie" autocomplete="off" />
+        <button id="searchToggle" class="btn btn-ghost btn-circle ml-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+               viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+        </button>
+      </div>
+
+      <button id="notificationBtn" class="btn btn-ghost btn-circle">
+        <div class="indicator">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+               viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.4-1.4A2 2 0 0118 14.2V11a6 6 0 00-4-5.7V5a2 2 0 10-4 0v.3C7.7 6.2 6 8.4 6 11v3.2c0 .5-.2 1.1-.6 1.4L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+          </svg>
+        </div>
       </button>
-      <ul class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow dropdown-glass rounded-box w-52">
-        <li>
-          <a href="#" class="flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none"
-                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="8" r="4" />
-              <path d="M6 20c0-3.31 5.33-5 6-5s6 1.69 6 5" />
-            </svg>
-            Sign In
-          </a>
-        </li>
-        <li>
-          <a href="#" class="flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none"
-                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <rect x="2" y="6" width="20" height="12" rx="2" ry="2" />
-              <path d="M2 10h20" />
-            </svg>
-            Buy Premium
-          </a>
-        </li>
-      </ul>
+
+      <!-- Notification Popup at Bottom -->
+      <div id="notificationPopup" class="fixed bottom-16 right-4 w-72 bg-black bg-opacity-90 text-white rounded-lg shadow-lg p-4 z-60 hidden">
+        <h3 class="font-semibold mb-2 border-b border-gray-600 pb-1">Notifications</h3>
+        <ul class="text-sm max-h-48 overflow-y-auto">
+          <li class="mb-2">New movie "Inception 2" added!</li>
+          <li class="mb-2">Your subscription will expire in 3 days.</li>
+          <li class="mb-2">Server maintenance scheduled for tomorrow.</li>
+        </ul>
+      </div>
+
+      <div class="dropdown dropdown-end" id="userDropdown">
+        <button id="userToggle" class="btn btn-ghost btn-circle">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+               viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="8" r="4" />
+            <path d="M6 20c0-3.31 5.33-5 6-5s6 1.69 6 5" />
+          </svg>
+        </button>
+        <ul class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow dropdown-glass rounded-box w-52">
+          <li>
+            <a href="#" class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none"
+                   viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="8" r="4" />
+                <path d="M6 20c0-3.31 5.33-5 6-5s6 1.69 6 5" />
+              </svg>
+              Sign In
+            </a>
+          </li>
+          <li>
+            <a href="#" class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none"
+                   viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="6" width="20" height="12" rx="2" ry="2" />
+                <path d="M2 10h20" />
+              </svg>
+              Buy Premium
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
-</div>
 
-<section class="relative pt-32 pb-16 px-6 lg:px-24 min-h-[100vh] flex items-center justify-center overflow-hidden">
-  <div class="absolute inset-0 bg-cover bg-center scale-105" style="background-image: url('assets/images/Jurassic-World-Fallen-Kingdom-dinosaurs-wallpaper.jpg'); filter: blur(5px);"></div>
-  <div class="absolute inset-0 "></div>
-  <div class="relative z-10 max-w-xl hero-text text-center" data-aos="fade-up">
-    <h1 class="mb-4 drop-shadow-lg" >Find Your Movie</h1>
-    <p class="mb-6 drop-shadow">
-      Discover the latest blockbusters, timeless classics, and hidden gems all in one place. Enjoy thrilling adventures, emotional dramas, and unforgettable stories, handpicked for every movie lover. Dive into a world where stories come alive and entertainment never ends.
-    </p>
-    <div class="flex gap-3 justify-center">
-      <button class="btn btn-custom-primary flex items-center gap-2" onclick="document.getElementById('trending').scrollIntoView({behavior: 'smooth'})">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M6 4l15 8-15 8V4z" />
-        </svg>
-        Watch Movies
-      </button>
-      <button class="btn btn-outline btn-custom-outline flex items-center gap-2">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M2 6l5 5 5-5 5 5 5-5v13H2V6z" />
-        </svg>
-        Buy Premium
-      </button>
+  <section class="relative pt-32 pb-16 px-6 lg:px-24 min-h-[100vh] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 bg-cover bg-center scale-105" style="background-image: url('assets/images/Jurassic-World-Fallen-Kingdom-dinosaurs-wallpaper.jpg'); filter: blur(4px);"></div>
+    <div class="absolute inset-0 "></div>
+    <div class="relative z-10 max-w-xl hero-text text-center" data-aos="fade-up">
+      <h1 class="mb-4 drop-shadow-lg" >Find Your Movie</h1>
+      <p class="mb-6 drop-shadow">
+        Discover the latest blockbusters, timeless classics, and hidden gems all in one place. Enjoy thrilling adventures, emotional dramas, and unforgettable stories, handpicked for every movie lover. Dive into a world where stories come alive and entertainment never ends.
+      </p>
+      <div class="flex gap-3 justify-center">
+        <button class="btn btn-custom-primary flex items-center gap-2" onclick="document.getElementById('trending').scrollIntoView({behavior: 'smooth'})">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M6 4l15 8-15 8V4z" />
+          </svg>
+          Watch Movies
+        </button>
+        <button class="btn btn-outline btn-custom-outline flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M2 6l5 5 5-5 5 5 5-5v13H2V6z" />
+          </svg>
+          Buy Premium
+        </button>
+      </div>
     </div>
+  </section>
+
+  <div id="premiumToast" aria-live="assertive" aria-atomic="true" role="alert" aria-relevant="additions" aria-live="polite">
+    Only Available Prime Subscribe
   </div>
-</section>
 
-<div id="premiumToast" aria-live="assertive" aria-atomic="true" role="alert" aria-relevant="additions" aria-live="polite">
-  Only Available Prime Subscribe
-</div>
+  <script>
+    document.getElementById('dropdownToggle').addEventListener('click', () => {
+      const dropdown = document.getElementById('mainDropdown');
+      dropdown.classList.toggle('open');
+    });
 
-<script>
-  document.getElementById('dropdownToggle').addEventListener('click', () => {
-    const dropdown = document.getElementById('mainDropdown');
-    dropdown.classList.toggle('open');
-  });
+    document.getElementById('userToggle').addEventListener('click', () => {
+      const dropdown = document.getElementById('userDropdown');
+      dropdown.classList.toggle('open');
+    });
 
-  document.getElementById('userToggle').addEventListener('click', () => {
-    const dropdown = document.getElementById('userDropdown');
-    dropdown.classList.toggle('open');
-  });
-
-  const searchInput = document.getElementById('searchInput');
-  const searchToggle = document.getElementById('searchToggle');
-  searchToggle.addEventListener('click', () => {
-    if (searchInput.classList.contains('show')) {
-      searchInput.classList.remove('show');
-      searchInput.value = '';
-      searchInput.blur();
-    } else {
-      searchInput.classList.add('show');
-      searchInput.focus();
-    }
-  });
-
-  const newReleaseLock = document.getElementById('newReleaseLock');
-  const premiumToast = document.getElementById('premiumToast');
-
-  newReleaseLock.addEventListener('click', (e) => {
-    e.preventDefault();
-    if (!premiumToast.classList.contains('show')) {
-      premiumToast.classList.add('show');
-      setTimeout(() => {
-        premiumToast.classList.remove('show');
-      }, 3000);
-    }
-  });
-
-  const notificationBtn = document.getElementById('notificationBtn');
-  const notificationPopup = document.getElementById('notificationPopup');
-
-  if (notificationBtn && notificationPopup) {
-    notificationBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (notificationPopup.classList.contains('show')) {
-        notificationPopup.classList.remove('show');
-        notificationPopup.classList.add('hidden');
+    const searchInput = document.getElementById('searchInput');
+    const searchToggle = document.getElementById('searchToggle');
+    searchToggle.addEventListener('click', () => {
+      if (searchInput.classList.contains('show')) {
+        searchInput.classList.remove('show');
+        searchInput.value = '';
+        searchInput.blur();
       } else {
-        notificationPopup.classList.add('show');
-        notificationPopup.classList.remove('hidden');
+        searchInput.classList.add('show');
+        searchInput.focus();
       }
     });
 
-    // Close popup on clicking outside
-    document.addEventListener('click', (e) => {
-      if (!notificationPopup.contains(e.target) && !notificationBtn.contains(e.target)) {
-        notificationPopup.classList.remove('show');
-        notificationPopup.classList.add('hidden');
+    const newReleaseLock = document.getElementById('newReleaseLock');
+    const premiumToast = document.getElementById('premiumToast');
+
+    newReleaseLock.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (!premiumToast.classList.contains('show')) {
+        premiumToast.classList.add('show');
+        setTimeout(() => {
+          premiumToast.classList.remove('show');
+        }, 3000);
       }
     });
-  }
 
-</script>
+    const notificationBtn = document.getElementById('notificationBtn');
+    const notificationPopup = document.getElementById('notificationPopup');
 
-<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-<script>
-  AOS.init({
-    duration: 1500,
-    easing: 'ease-in-out',
-    once: true,
-  });
-</script>
+    if (notificationBtn && notificationPopup) {
+      notificationBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (notificationPopup.classList.contains('show')) {
+          notificationPopup.classList.remove('show');
+          notificationPopup.classList.add('hidden');
+        } else {
+          notificationPopup.classList.add('show');
+          notificationPopup.classList.remove('hidden');
+        }
+      });
 
-</body>
-</html>
+      // Close popup on clicking outside
+      document.addEventListener('click', (e) => {
+        if (!notificationPopup.contains(e.target) && !notificationBtn.contains(e.target)) {
+          notificationPopup.classList.remove('show');
+          notificationPopup.classList.add('hidden');
+        }
+      });
+    }
+
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1500,
+      easing: 'ease-in-out',
+      once: true,
+    });
+  </script>
+
+  </body>
+  </html>
