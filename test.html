@@ -8,6 +8,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.1/dist/full.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
 
   <style>
     body {
@@ -86,20 +87,16 @@
     }
 
     .hero-text h1 {
-      font-family: 'Poppins', monospace;
-      font-size: 3rem;
+      font-family: 'Perpetua Titling MT',serif;
+      font-size: 2.7rem;
       line-height: 1.1;
       font-weight: 900;
-      color: #f5f5f5;
-      letter-spacing: 3px;
+      color: #f4f2f2;
+      letter-spacing: 2.5px;
       text-transform: uppercase;
-      text-shadow: 1px 1px 2px rgba(151, 118, 118, 0.4);
-      background: rgba(0, 0, 0, 0.3);
-      padding: 20px 40px;
-      border-radius: 10px;
-      border: 2px solid rgba(163, 155, 155, 0.7);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 1);
-      display: inline-block;
+      text-shadow:
+              2px 2px 4px rgba(0, 0, 0, 0.5),
+              0 0 10px rgba(255, 255, 255, 0.5);
     }
 
     .hero-text p {
@@ -107,14 +104,11 @@
       font-size: 1.125rem;
       font-weight: 600;
       line-height: 1.6;
-      color: #eae4e4;
-      background: rgba(0, 0, 0, 0.4);
-      padding: 15px 25px;
-      border-radius: 8px;
-      border: 1.5px solid rgba(0, 0, 0, 0.5);
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.95);
-      display: inline-block;
-      margin-top: 15px;
+      color: #d3d1d1;
+      letter-spacing: 1.3px;
+      text-shadow:
+              1px 1px 3px rgba(0, 0, 0, 0.4),
+              0 0 5px rgba(255, 255, 255, 0.4);
     }
 
     #premiumToast {
@@ -148,31 +142,35 @@
       user-select: none;
       opacity: 0.6;
     }
-
     .btn-custom-primary {
       background: rgba(0, 0, 0, 0.4) !important;
       color: white;
-      border-color: rgba(255, 255, 255, 1);
+      border-color: rgba(255, 255, 255, 1.5);
       backdrop-filter: blur(3px);
       -webkit-backdrop-filter: blur(2px);
-      transition: background 0.3s ease, border 0.3s ease;
+      transition: background 0.3s ease, border 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 123, 255, 0.5);
     }
 
     .btn-custom-primary:hover {
       background: rgba(0, 0, 0, 0.65) !important;
-      border-color: rgba(255, 255, 255, 1);
+      border-color: rgba(255, 255, 255, 1.5);
+      box-shadow: 0 6px 12px rgba(0, 123, 255, 0.7);
     }
 
     .btn-custom-outline {
-      border-color: rgba(255, 255, 255, 1);
+      border-color: rgba(255, 255, 255, 1.5);
       color: white;
-    }
-    .btn-custom-outline:hover {
-      background: rgba(0, 0, 0, 0.7) !important;
-      border-color: rgba(255, 255, 255, 1);
-      color: white;
+      box-shadow: 0 3px 6px rgba(57, 255, 20, 0.5);
+      transition: background 0.3s ease, border 0.3s ease, box-shadow 0.3s ease;
     }
 
+    .btn-custom-outline:hover {
+      background: rgba(0, 0, 0, 0.6) !important;
+      border-color: rgba(255, 255, 255, 1.5);
+      color: white;
+      box-shadow: 0 6px 12px rgba(57, 255, 20, 0.7);
+    }
   </style>
 </head>
 <body class="bg-black text-white">
@@ -203,7 +201,7 @@
             <ul class="p-2 dropdown-glass-movie rounded-box mt-1 space-y-1">
               <li><a href="#">Action</a></li>
               <li><a href="#">Horror</a></li>
-              <li><a href="#">Sci-Fi</a></li>
+              <li><a href="#">Sci-Fic</a></li>
               <li><a href="#">Romance</a></li>
             </ul>
           </details>
@@ -273,64 +271,55 @@
 </div>
 
 <section class="relative pt-32 pb-16 px-6 lg:px-24 min-h-[100vh] flex items-center justify-center overflow-hidden">
-  <div class="absolute inset-0 bg-cover bg-center blur-sm scale-105" style="background-image: url('assets/images/Jurassic-World-Fallen-Kingdom-dinosaurs-wallpaper.jpg');"></div>
-
+  <div class="absolute inset-0 bg-cover bg-center scale-105" style="background-image: url('assets/images/Jurassic-World-Fallen-Kingdom-dinosaurs-wallpaper.jpg'); filter: blur(5px);"></div>
   <div class="absolute inset-0 "></div>
-
-  <div class="relative z-10 max-w-xl hero-text text-center">
-    <h1 class="mb-4 drop-shadow-lg">Live Theater</h1>
+  <div class="relative z-10 max-w-xl hero-text text-center" data-aos="fade-up">
+    <h1 class="mb-4 drop-shadow-lg" >Find Your Movie</h1>
     <p class="mb-6 drop-shadow">
       Discover the latest blockbusters, timeless classics, and hidden gems all in one place. Enjoy thrilling adventures, emotional dramas, and unforgettable stories, handpicked for every movie lover. Dive into a world where stories come alive and entertainment never ends.
     </p>
     <div class="flex gap-3 justify-center">
-      <button class="btn btn-custom-primary" onclick="document.getElementById('trending').scrollIntoView({behavior: 'smooth'})">
-        Start Watching
+      <button class="btn btn-custom-primary flex items-center gap-2" onclick="document.getElementById('trending').scrollIntoView({behavior: 'smooth'})">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M6 4l15 8-15 8V4z" />
+        </svg>
+        Watch Movies
       </button>
-      <button class="btn btn-outline btn-custom-outline">
-        Browse All
+      <button class="btn btn-outline btn-custom-outline flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M2 6l5 5 5-5 5 5 5-5v13H2V6z" />
+        </svg>
+        Buy Premium
       </button>
     </div>
   </div>
 </section>
 
-
-<div id="premiumToast">Need to buy premium</div>
+<div id="premiumToast" aria-live="assertive" aria-atomic="true" role="alert" aria-relevant="additions" aria-live="polite">
+  Only Available Prime Subscribe
+</div>
 
 <script>
   document.getElementById('dropdownToggle').addEventListener('click', () => {
-    document.getElementById('mainDropdown').classList.toggle('open');
+    const dropdown = document.getElementById('mainDropdown');
+    dropdown.classList.toggle('open');
   });
 
   document.getElementById('userToggle').addEventListener('click', () => {
-    document.getElementById('userDropdown').classList.toggle('open');
+    const dropdown = document.getElementById('userDropdown');
+    dropdown.classList.toggle('open');
   });
 
-  window.addEventListener('click', (e) => {
-    if (!document.getElementById('mainDropdown').contains(e.target)) {
-      document.getElementById('mainDropdown').classList.remove('open');
-    }
-    if (!document.getElementById('userDropdown').contains(e.target)) {
-      document.getElementById('userDropdown').classList.remove('open');
-    }
-  });
-
-  const searchToggle = document.getElementById('searchToggle');
   const searchInput = document.getElementById('searchInput');
-
+  const searchToggle = document.getElementById('searchToggle');
   searchToggle.addEventListener('click', () => {
-    searchInput.classList.toggle('show');
     if (searchInput.classList.contains('show')) {
-      searchInput.focus();
-    } else {
-      searchInput.value = '';
-    }
-  });
-
-  searchInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
       searchInput.classList.remove('show');
       searchInput.value = '';
-      searchToggle.focus();
+      searchInput.blur();
+    } else {
+      searchInput.classList.add('show');
+      searchInput.focus();
     }
   });
 
@@ -339,21 +328,21 @@
 
   newReleaseLock.addEventListener('click', (e) => {
     e.preventDefault();
-
-    if(premiumToast.classList.contains('show')) {
-      clearTimeout(premiumToast.timeoutId);
-      premiumToast.classList.remove('show');
-      setTimeout(showToast, 350);
-    } else {
-      showToast();
-    }
-
-    function showToast() {
+    if (!premiumToast.classList.contains('show')) {
       premiumToast.classList.add('show');
-      premiumToast.timeoutId = setTimeout(() => {
+      setTimeout(() => {
         premiumToast.classList.remove('show');
       }, 3000);
     }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1500,
+    easing: 'ease-in-out',
+    once: true,
   });
 </script>
 
