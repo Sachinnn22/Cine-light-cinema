@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>HEALIYSE - Watch Movies</title>
+  <title>SINHALIES - Watch Movies</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.1/dist/full.css" rel="stylesheet" />
@@ -171,6 +171,36 @@
       color: white;
       box-shadow: 0 6px 12px rgba(57, 255, 20, 0.7);
     }
+
+    #notificationPopup {
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+      display: none !important;
+      position: fixed;
+      bottom: -11rem; /* enough above bottom */
+      right: 1rem;
+      width: 18rem; /* 72 = 18rem */
+      background: rgba(0,0,0,0.7);
+      color: white;
+      border-radius: 0.5rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+      padding: 1rem;
+      z-index: 60;
+    }
+
+    #notificationPopup.show {
+      display: block !important;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #notificationPopup.hidden {
+      opacity: 0;
+      transform: translateY(20px);
+      display: none !important;
+    }
+
   </style>
 </head>
 <body class="bg-black text-white">
@@ -188,9 +218,9 @@
         <li><a href="#">Home Page</a></li>
         <li>
           <a href="#" id="newReleaseLock" class="flex justify-between items-center px-3 py-2 w-full rounded disabled-link">
-            <span>New Release</span>
+            <span class="pr-3">New Release</span>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <rect x="6" y="11" width="12" height="9" rx="2" ry="2" />
+              <rect x="12" y="11" width="12" height="9" rx="2" ry="2" />
               <path d="M9 11V7a3 3 0 016 0v4" />
             </svg>
           </a>
@@ -227,7 +257,7 @@
       </button>
     </div>
 
-    <button class="btn btn-ghost btn-circle">
+    <button id="notificationBtn" class="btn btn-ghost btn-circle">
       <div class="indicator">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
              viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -235,6 +265,16 @@
         </svg>
       </div>
     </button>
+
+    <!-- Notification Popup at Bottom -->
+    <div id="notificationPopup" class="fixed bottom-16 right-4 w-72 bg-black bg-opacity-90 text-white rounded-lg shadow-lg p-4 z-60 hidden">
+      <h3 class="font-semibold mb-2 border-b border-gray-600 pb-1">Notifications</h3>
+      <ul class="text-sm max-h-48 overflow-y-auto">
+        <li class="mb-2">New movie "Inception 2" added!</li>
+        <li class="mb-2">Your subscription will expire in 3 days.</li>
+        <li class="mb-2">Server maintenance scheduled for tomorrow.</li>
+      </ul>
+    </div>
 
     <div class="dropdown dropdown-end" id="userDropdown">
       <button id="userToggle" class="btn btn-ghost btn-circle">
@@ -335,6 +375,31 @@
       }, 3000);
     }
   });
+
+  const notificationBtn = document.getElementById('notificationBtn');
+  const notificationPopup = document.getElementById('notificationPopup');
+
+  if (notificationBtn && notificationPopup) {
+    notificationBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (notificationPopup.classList.contains('show')) {
+        notificationPopup.classList.remove('show');
+        notificationPopup.classList.add('hidden');
+      } else {
+        notificationPopup.classList.add('show');
+        notificationPopup.classList.remove('hidden');
+      }
+    });
+
+    // Close popup on clicking outside
+    document.addEventListener('click', (e) => {
+      if (!notificationPopup.contains(e.target) && !notificationBtn.contains(e.target)) {
+        notificationPopup.classList.remove('show');
+        notificationPopup.classList.add('hidden');
+      }
+    });
+  }
+
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
