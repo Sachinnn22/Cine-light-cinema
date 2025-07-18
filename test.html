@@ -171,11 +171,31 @@
 
   <div id="mobile-menu"
        class="lg:hidden fixed top-[73px] left-0 right-0 z-40 hidden mobile-dropdown-glass p-4 space-y-2 rounded shadow-lg transition-all duration-300 ease-in-out bg-black/70 backdrop-blur">
-      <a href="#" class="block px-4 py-2 rounded-md hover:bg-white/10 text-white">Search</a>
-      <a href="#" class="block px-4 py-2 rounded-md hover:bg-white/10 text-white">My Profile</a>
-      <a href="#" class="block px-4 py-2 rounded-md hover:bg-white/10 text-white">Settings</a>
-      <a href="#" class="block px-4 py-2 rounded-md hover:bg-white/10 text-white">Sign Out</a>
+
+      <a href="#" class="block px-4 py-2 rounded-md hover:bg-white/10 text-white">Home Page</a>
+      <a href="#" class="block px-4 py-2 rounded-md hover:bg-white/10 text-white">New Release</a>
+
+      <!-- Dropdown for Movies -->
+      <div>
+          <button id="mobileMoviesToggle" class="w-full text-left px-4 py-2 rounded-md hover:bg-white/10 text-white flex justify-between items-center">
+              Movies
+              <svg id="mobileMoviesArrow" class="w-4 h-4 transition-transform duration-300 transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+          </button>
+
+          <div id="mobileMoviesSubmenu" class="ml-6 mt-1 space-y-1 hidden">
+              <a href="#" class="block px-4 py-2 rounded-md hover:bg-white/10 text-white text-sm">Horror</a>
+              <a href="#" class="block px-4 py-2 rounded-md hover:bg-white/10 text-white text-sm">Sci-Fi</a>
+              <a href="#" class="block px-4 py-2 rounded-md hover:bg-white/10 text-white text-sm">Romance</a>
+          </div>
+      </div>
+
+      <a href="#" class="block px-4 py-2 rounded-md hover:bg-white/10 text-white">About Us</a>
+      <a href="#" class="block px-4 py-2 rounded-md hover:bg-white/10 text-white">Sign In</a>
+      <a href="#" class="block px-4 py-2 rounded-md hover:bg-white/10 text-white">Buy Premium</a>
   </div>
+
 
 
   <section class="relative pt-32 pb-16 px-6 lg:px-24 min-h-[100vh] flex items-center justify-center overflow-hidden">
@@ -257,7 +277,7 @@
   </footer>
 
   <div id="premiumToast" aria-live="assertive" aria-atomic="true" role="alert" aria-relevant="additions" aria-live="polite">
-    Only Available Prime Subscribe
+    Buy Premium To Watch
   </div>
 
   <script>
@@ -365,8 +385,16 @@
         }
     });
 
+    document.addEventListener('DOMContentLoaded', function () {
+        const toggle = document.getElementById('mobileMoviesToggle');
+        const submenu = document.getElementById('mobileMoviesSubmenu');
+        const arrow = document.getElementById('mobileMoviesArrow');
 
-
+        toggle.addEventListener('click', function () {
+            submenu.classList.toggle('hidden');
+            arrow.classList.toggle('rotate-180'); // Optional: rotates the arrow
+        });
+    });
 
   </script>
 
