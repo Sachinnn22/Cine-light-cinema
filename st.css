@@ -19,14 +19,14 @@ body ,html{
 }
 
 .navbar-transparent {
-    background: rgba(0, 0, 0, 0.6) !important;
+    background: rgba(0, 0, 0, 0.5) !important;
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .dropdown-glass {
-    background: rgba(0, 0, 0, 0.7) !important;
+    background: rgba(0, 0, 0, 0.8) !important;
     backdrop-filter: blur(6px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     color: white;
@@ -40,7 +40,7 @@ body ,html{
 }
 
 .mobile-dropdown-glass {
-    background: rgba(0, 0, 0, 0.5) !important;
+    background: rgba(0, 0, 0, 0.8) !important;
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     color: white;
@@ -223,7 +223,7 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
     bottom: -11rem;
     right: 1rem;
     width: 18rem;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0,0,0,0.8);
     color: white;
     border-radius: 0.5rem;
     box-shadow: 0 8px 20px rgba(0,0,0,0.5);
@@ -248,12 +248,12 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
     font-size: 2.7rem;
     line-height: 1.1;
     font-weight: 900;
-    color: #f4f2f2;
+    color: #ffffff;
     letter-spacing: 2.5px;
     text-transform: uppercase;
     text-shadow:
             2px 2px 4px rgba(0, 0, 0, 0.5),
-            0 0 10px rgba(255, 255, 255, 0.5);
+            0 0 10px rgba(213, 208, 208, 0.5);
 }
 
 .hero-text p {
@@ -270,34 +270,35 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
 .btn-custom-primary {
     background: rgba(0, 0, 0, 0.4) !important;
     color: #f6e2e2;
-    border-color: rgba(255, 255, 255, 1.5);
+    border: 2px solid #1e90ff;
     backdrop-filter: blur(3px);
     -webkit-backdrop-filter: blur(2px);
     transition: background 0.3s ease, border 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 123, 255, 0.5);
+    box-shadow: 0 0 12px 4px rgba(0, 123, 255, 0.5);
 }
 
 .btn-custom-primary:hover {
-    background: rgba(0, 0, 0, 0.65) !important;
-    border-color: rgba(255, 255, 255, 1.5);
-    box-shadow: 0 6px 12px rgba(0, 123, 255, 0.7);
+    background: rgba(0, 0, 0, 0.8) !important;
+    border: 2px solid #00bfff;
+    box-shadow: 0 0 16px 6px rgba(0, 123, 255, 0.7);
 }
 
 .btn-custom-outline {
-    border-color: rgba(255, 255, 255, 1.5);
+    background: rgba(0, 0, 0, 0.4) !important;
+    border: 2px solid #39ff14;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(2px);
     color: #f6e2e2;
-    box-shadow: 0 3px 6px rgba(57, 255, 20, 0.5);
+    box-shadow: 0 0 10px 4px rgba(57, 255, 20, 0.5);
     transition: background 0.3s ease, border 0.3s ease, box-shadow 0.3s ease;
 }
 
 .btn-custom-outline:hover {
-    background: rgba(0, 0, 0, 0.6) !important;
-    border-color: rgba(255, 255, 255, 1.5);
+    background: rgba(0, 0, 0, 0.8) !important;
+    border: 2px solid #adff2f;
     color: white;
-    box-shadow: 0 6px 12px rgba(57, 255, 20, 0.7);
+    box-shadow: 0 0 14px 6px rgba(57, 255, 20, 0.7);
 }
-
-
 
 @media (min-width: 1440px) {
     .hero-text {
