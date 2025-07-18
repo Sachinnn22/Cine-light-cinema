@@ -614,13 +614,13 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
 }
 
 .custom-glass-footer a:hover {
-    color: #6a0dad;
+    color: #318fb6;
     text-decoration: underline;
 }
 
 .foot-head{
     font-family: "Poppins", sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     font-weight: 800;
     letter-spacing: 5px;
     background: linear-gradient(45deg, #c67d7d, #64a6c3, #1e5870, #96ceb4, #feca57);
@@ -633,6 +633,14 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
     user-select: none;
 }
 
+.flex a img {
+    transition: transform 0.3s ease;
+}
+
+.flex a img:hover {
+    transform: scale(1.25);
+}
+
 .foot-sub{
     font-weight: 600;
     font-size: 0.9rem;
@@ -640,28 +648,34 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
     width: 250px;
 }
 
-.fallow{
-    font-size: 1.3rem;
+.fallow {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.4rem;
     font-weight: 800;
     letter-spacing: 1.5px;
 }
 
-.movie{
-    font-size: 1.3rem;
+.movie {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.4rem;
     font-weight: 800;
     letter-spacing: 1.5px;
 }
 
-.movie-sub{
+.movie-sub {
+    font-family: 'Open Sans', sans-serif;
     font-size: 0.9rem;
 }
 
-.company{
-    font-size: 1.3rem;
+.company {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.4rem;
     font-weight: 800;
     letter-spacing: 1.5px;
 }
-.company-sub{
+
+.company-sub {
+    font-family: 'Open Sans', sans-serif;
     font-size: 0.9rem;
 }
 
