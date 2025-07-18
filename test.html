@@ -78,7 +78,6 @@
         </div>
       </button>
 
-      <!-- Notification Popup at Bottom -->
       <div id="notificationPopup" class="fixed bottom-16 right-4 w-72 bg-black bg-opacity-90 text-white rounded-lg shadow-lg p-4 z-60 hidden">
         <h3 class="font-semibold mb-2 border-b border-gray-600 pb-1">Notifications</h3>
         <ul class="text-sm max-h-48 overflow-y-auto">
@@ -122,50 +121,62 @@
     </div>
   </div>
 
-  <nav class="mobile-navbar-transparent p-4 shadow-md md:hidden fixed top-0 left-0 right-0 z-50">
-      <div class="w-full">
-          <div class="flex items-center justify-between">
-              <!-- Search Icon -->
-              <button id="search-toggle-mobile"
-                      class="text-white p-2 mr-3 rounded-full bg-transparent hover:bg-white/10 transition border-none outline-none focus:outline-none">
-                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                  </svg>
-              </button>
+  <nav class="mobile-navbar-transparent p-4 shadow-md md:hidden fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur">
+      <div class="flex items-center justify-between">
+          <button id="search-toggle-mobile"
+                  class="text-white p-2 rounded-full bg-transparent hover:bg-white/10 transition border-none outline-none focus:outline-none"
+                  aria-label="Toggle Search">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+          </button>
 
-              <!-- Brand -->
-              <a class="text-xl font-bold text-white flex-grow text-center" href="#">SINHALIES</a>
+          <a href="#" class="text-xl font-bold text-white flex-grow text-center select-none mobil-brand">SINHALIES</a>
 
-              <!-- Hamburger -->
-              <button id="menu-toggle" class="btn btn-sm btn-circle text-white bg-transparent hover:bg-white/10 transition">
-                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16M4 18h16" />
-                  </svg>
-              </button>
-          </div>
+          <button id="menu-toggle"
+                  class="text-white p-2 rounded-full bg-transparent hover:bg-white/10 transition border-none outline-none focus:outline-none"
+                  aria-label="Toggle Menu">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+          </button>
       </div>
   </nav>
 
-  <!-- 🔍 Slide-down search input -->
-  <div id="mobile-search-container" class="md:hidden fixed top-[64px] left-0 right-0 bg-black/80 backdrop-blur px-4 py-3 z-40 hidden transition-all duration-300">
-      <input
-              type="text"
-              id="mobile-search-input"
-              class="input input-bordered w-full text-black"
-              placeholder="Search Movie..."
-              autocomplete="off"
-      />
+  <div id="mobile-search-container"
+       class="md:hidden fixed top-[64px] left-0 right-0 bg-black/80 backdrop-blur px-4 py-3 z-40 hidden transition-all duration-300 flex justify-center">
+      <div class="relative max-w-[320px] w-full">
+          <input
+                  type="text"
+                  id="mobile-search-input"
+                  class="w-full pr-12 pl-4 h-9 text-sm text-white bg-white/5 rounded-full border border-white/10 placeholder-white/60 focus:outline-none focus:border-white focus:bg-white/10 transition"
+                  placeholder="Search Movie..."
+                  autocomplete="off"
+          />
+          <button
+                  id="search-submit-mobile"
+                  class="absolute top-1/2 -translate-y-1/2 p-2 rounded-full hover:bg-white/10 transition text-white"
+                  style="right: -10px;"
+                  aria-label="Submit search"
+          >
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+          </button>
+      </div>
   </div>
 
-  <!-- 📱 Mobile menu (toggled by hamburger) -->
-  <div id="mobile-menu" class="md:hidden fixed top-[73px] left-0 right-0 z-40 hidden mobile-dropdown-glass p-4 space-y-2 rounded shadow-lg transition-all duration-300 ease-in-out">
-      <a href="#" class="block px-4 py-2 rounded-md hover:bg-white/10">Search</a>
-      <a href="#" class="block px-4 py-2 rounded-md hover:bg-white/10">My Profile</a>
-      <a href="#" class="block px-4 py-2 rounded-md hover:bg-white/10">Settings</a>
-      <a href="#" class="block px-4 py-2 rounded-md hover:bg-white/10">Sign Out</a>
+  <div id="mobile-menu"
+       class="md:hidden fixed top-[73px] left-0 right-0 z-40 hidden mobile-dropdown-glass p-4 space-y-2 rounded shadow-lg transition-all duration-300 ease-in-out bg-black/70 backdrop-blur">
+      <a href="#" class="block px-4 py-2 rounded-md hover:bg-white/10 text-white">Search</a>
+      <a href="#" class="block px-4 py-2 rounded-md hover:bg-white/10 text-white">My Profile</a>
+      <a href="#" class="block px-4 py-2 rounded-md hover:bg-white/10 text-white">Settings</a>
+      <a href="#" class="block px-4 py-2 rounded-md hover:bg-white/10 text-white">Sign Out</a>
   </div>
+
 
   <section class="relative pt-32 pb-16 px-6 lg:px-24 min-h-[100vh] flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 bg-cover bg-center scale-105" style="background-image: url('assets/images/Jurassic-World-Fallen-Kingdom-dinosaurs-wallpaper.jpg'); filter: blur(4px);"></div>
