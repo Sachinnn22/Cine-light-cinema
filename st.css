@@ -700,6 +700,31 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
     user-select: none;
 }
 
+@media (max-width: 1024px) {
+    .custom-glass-footer > div.max-w-7xl {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-rows: auto;
+        gap: 2rem;
+        place-items: center;
+        justify-content: center;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .custom-glass-footer > div.max-w-7xl > div {
+        justify-self: center;
+        align-self: center;
+        text-align: center;
+    }
+
+    .custom-glass-footer .flex {
+        justify-content: center !important;
+    }
+}
+
+
 @media (min-width: 700px) and (max-width: 768px) {
     .custom-glass-footer > div.max-w-7xl {
         display: grid;
