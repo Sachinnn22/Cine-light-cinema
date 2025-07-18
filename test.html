@@ -21,7 +21,7 @@
   <body class="bg-black text-white">
 
   <!-- FIXED -->
-  <div class="navbar navbar-transparent shadow-sm fixed top-0 left-0 right-0 z-50 md:flex hidden">
+  <div id="desktopNavbar" class="navbar navbar-transparent shadow-sm fixed top-0 left-0 right-0 z-50 lg:flex hidden">
     <div class="navbar-start">
       <div class="dropdown" id="mainDropdown">
         <button id="dropdownToggle" class="btn btn-ghost btn-circle">
@@ -121,7 +121,7 @@
     </div>
   </div>
 
-  <nav class="mobile-navbar-transparent p-4 shadow-md md:hidden fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur">
+  <nav id="mobileNavbar" class="mobile-navbar-transparent p-4 shadow-md lg:hidden fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur">
       <div class="flex items-center justify-between">
           <button id="search-toggle-mobile"
                   class="text-white p-2 rounded-full bg-transparent  border-none outline-none focus:outline-none"
@@ -146,7 +146,7 @@
   </nav>
 
   <div id="mobile-search-container"
-       class="md:hidden fixed top-[64px] left-0 right-0 bg-black/80 backdrop-blur px-4 py-3 z-40 hidden transition-all duration-300 flex justify-center">
+       class="lg:hidden fixed top-[64px] left-0 right-0 bg-black/80 backdrop-blur px-4 py-3 z-40 hidden transition-all duration-300 flex justify-center">
       <div class="relative max-w-[320px] w-full">
           <input
                   type="text"
@@ -170,7 +170,7 @@
   </div>
 
   <div id="mobile-menu"
-       class="md:hidden fixed top-[73px] left-0 right-0 z-40 hidden mobile-dropdown-glass p-4 space-y-2 rounded shadow-lg transition-all duration-300 ease-in-out bg-black/70 backdrop-blur">
+       class="lg:hidden fixed top-[73px] left-0 right-0 z-40 hidden mobile-dropdown-glass p-4 space-y-2 rounded shadow-lg transition-all duration-300 ease-in-out bg-black/70 backdrop-blur">
       <a href="#" class="block px-4 py-2 rounded-md hover:bg-white/10 text-white">Search</a>
       <a href="#" class="block px-4 py-2 rounded-md hover:bg-white/10 text-white">My Profile</a>
       <a href="#" class="block px-4 py-2 rounded-md hover:bg-white/10 text-white">Settings</a>
@@ -364,6 +364,8 @@
             input.focus();
         }
     });
+
+
 
 
   </script>
