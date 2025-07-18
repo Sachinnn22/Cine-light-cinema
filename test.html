@@ -328,11 +328,26 @@
             toggleBtn.addEventListener('click', () => {
                 menu.classList.toggle('hidden');
                 menu.classList.toggle('block');
+
+                if (menu.classList.contains('block')) {
+                    toggleBtn.innerHTML = `
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        `;
+                } else {
+                    toggleBtn.innerHTML = `
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        `;
+                }
             });
         } else {
             console.error('menu-toggle or mobile-menu element not found');
         }
     });
+
 
     const mobileSearchToggle = document.getElementById('search-toggle-mobile');
     const mobileSearchContainer = document.getElementById('mobile-search-container');
