@@ -617,3 +617,31 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
     color: #6a0dad;
     text-decoration: underline;
 }
+
+.foot-head{
+    font-family: "Poppins", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 5px;
+    background: linear-gradient(45deg, #c67d7d, #64a6c3, #1e5870, #96ceb4, #feca57);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.15);
+    animation: pulseGlow 4s infinite ease-in-out;
+    user-select: none;
+}
+
+.foot-sub{
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.7px;
+    width: 250px;
+}
+
+.fallow{
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
