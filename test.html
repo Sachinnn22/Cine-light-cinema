@@ -152,7 +152,7 @@
                   type="text"
                   id="mobile-search-input"
                   class="w-full pr-12 pl-4 h-9 text-sm text-white bg-white/5 rounded-full border border-white/10 placeholder-white/60 focus:outline-none focus:border-white focus:bg-white/10 transition"
-                  placeholder="Search Movie..."
+                  placeholder="Search Movie"
                   autocomplete="off"
           />
           <button
@@ -170,7 +170,8 @@
   </div>
 
   <div id="mobile-menu"
-       class="lg:hidden fixed top-[73px] left-0 right-0 z-40 hidden mobile-dropdown-glass p-4 space-y-2 rounded shadow-lg transition-all duration-300 ease-in-out bg-black/70 backdrop-blur">
+       class="lg:hidden fixed top-[73px] left-0 right-0 z-40 max-h-0 overflow-hidden transition-all duration-500 ease-in-out mobile-dropdown-glass px-4 space-y-2 rounded shadow-lg bg-black/70 backdrop-blur">
+      <!-- menu content -->
 
       <a href="#" class="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-white/10 text-white">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -251,11 +252,7 @@
           </svg>
           Buy Premium
       </a>
-
-
   </div>
-
-
 
 
   <section class="relative pt-32 pb-16 px-6 lg:px-24 min-h-[100vh] flex items-center justify-center overflow-hidden">
@@ -409,28 +406,29 @@
         const toggleBtn = document.getElementById('menu-toggle');
         const menu = document.getElementById('mobile-menu');
 
-        if (toggleBtn && menu) {
-            toggleBtn.addEventListener('click', () => {
-                menu.classList.toggle('hidden');
-                menu.classList.toggle('block');
+        let menuOpen = false;
 
-                if (menu.classList.contains('block')) {
-                    toggleBtn.innerHTML = `
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        `;
-                } else {
-                    toggleBtn.innerHTML = `
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        `;
-                }
-            });
-        } else {
-            console.error('menu-toggle or mobile-menu element not found');
-        }
+        toggleBtn.addEventListener('click', () => {
+            if (menuOpen) {
+                // Close menu
+                menu.style.maxHeight = '0';
+                menuOpen = false;
+                toggleBtn.innerHTML = `
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            `;
+            } else {
+                // Open menu
+                menu.style.maxHeight = menu.scrollHeight + 'px';
+                menuOpen = true;
+                toggleBtn.innerHTML = `
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            `;
+            }
+        });
     });
 
 
