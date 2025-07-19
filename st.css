@@ -798,7 +798,7 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
 .faq-head {
     font-size: 2.8rem;
     font-weight: 800;
-    letter-spacing: 2.3px;
+    letter-spacing: 2.5px;
     color: #ede6e6;
     font-family: 'Montserrat', sans-serif;
 }
@@ -813,23 +813,45 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
 
 /* FAQ Glass Card Styling */
 .faq-card {
-    background: rgba(255, 255, 255, 0.1); /* Light glass */
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    transition: all 0.3s ease;
+    background: rgba(192, 192, 192, 0.12) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 2px solid rgba(192, 192, 192, 0.3) !important;
+    transition: all 0.3s ease !important;
+    font-family: 'Poppins', 'Segoe UI', sans-serif !important;
+    color: rgba(230, 230, 230, 0.9) !important;
+    letter-spacing: 0.03em !important;
 }
 
-/*!* Dark mode variation *!*/
-/*.dark .faq-card {*/
-/*    background: rgba(0, 0, 0, 0.4);*/
-/*    border: 1px solid rgba(255, 255, 255, 0.2);*/
-/*}*/
-
-/* Optional: Hover effect */
 .faq-card:hover {
-    background: rgba(255, 255, 255, 0.19);
-    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(192, 192, 192, 0.29) !important;
+    border-color: rgba(192, 192, 192, 0.5) !important;
+    color: rgba(245, 245, 245, 1) !important;
+}
+
+.faq-card .hs-accordion-toggle {
+    font-size: 1.15rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.04em !important;
+    color: rgba(230, 230, 230, 0.95) !important;
+    font-family: 'Poppins', sans-serif !important;
+}
+
+.faq-card .hs-accordion-toggle:hover {
+    color: rgba(255, 255, 255, 0.95) !important;
+}
+
+.faq-card .hs-accordion-content p {
+    font-size: 1.1rem !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.02em !important;
+    color: rgba(220, 220, 220, 0.85) !important;
+    margin-top: 0.5rem !important;
+    font-family: 'Inter', sans-serif !important;
+}
+
+.hs-accordion-content {
+    transition: height 0.3s ease-in-out, padding 0.3s ease !important;
 }
 
 .hs-accordion-toggle[aria-expanded="true"] .arrow-icon {
