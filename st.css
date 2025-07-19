@@ -798,7 +798,7 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
 .faq-head {
     font-size: 2.8rem;
     font-weight: 800;
-    letter-spacing: 2.1px;
+    letter-spacing: 2.3px;
     color: #ede6e6;
     font-family: 'Montserrat', sans-serif;
 }
@@ -830,4 +830,8 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
 .faq-card:hover {
     background: rgba(255, 255, 255, 0.19);
     border-color: rgba(255, 255, 255, 0.4);
+}
+
+.hs-accordion-toggle[aria-expanded="true"] .arrow-icon {
+    transform: rotate(180deg);
 }
