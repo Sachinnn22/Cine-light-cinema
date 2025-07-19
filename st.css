@@ -1,6 +1,7 @@
 body ,html{
     font-family: 'Open Sans', sans-serif;
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 .brand-name {
