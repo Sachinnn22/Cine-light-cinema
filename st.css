@@ -810,3 +810,24 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
     letter-spacing: 0.9px;
     font-family: 'Roboto', sans-serif; /* another clean modern font */
 }
+
+/* FAQ Glass Card Styling */
+.faq-card {
+    background: rgba(255, 255, 255, 0.1); /* Light glass */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+/* Dark mode variation */
+.dark .faq-card {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Optional: Hover effect */
+.faq-card:hover {
+    background: rgba(255, 255, 255, 0.19);
+    border-color: rgba(255, 255, 255, 0.4);
+}
