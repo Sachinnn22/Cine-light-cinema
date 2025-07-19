@@ -791,3 +791,22 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
     }
 }
 
+#faq{
+    scroll-margin-top:65px;
+}
+
+.faq-head {
+    font-size: 2.8rem;
+    font-weight: 800;
+    letter-spacing: 2.1px;
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif; /* changed from generic sans-serif */
+}
+
+.faq-sub {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #ffffff;
+    letter-spacing: 0.9px;
+    font-family: 'Roboto', sans-serif; /* another clean modern font */
+}
