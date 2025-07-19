@@ -799,16 +799,16 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
     font-size: 2.8rem;
     font-weight: 800;
     letter-spacing: 2.1px;
-    color: #ffffff;
-    font-family: 'Poppins', sans-serif; /* changed from generic sans-serif */
+    color: #ede6e6;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .faq-sub {
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 500;
     color: #ffffff;
-    letter-spacing: 0.9px;
-    font-family: 'Roboto', sans-serif; /* another clean modern font */
+    letter-spacing: 0.8px;
+    font-family: 'Lato', sans-serif;
 }
 
 /* FAQ Glass Card Styling */
@@ -820,11 +820,11 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
     transition: all 0.3s ease;
 }
 
-/* Dark mode variation */
-.dark .faq-card {
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
+/*!* Dark mode variation *!*/
+/*.dark .faq-card {*/
+/*    background: rgba(0, 0, 0, 0.4);*/
+/*    border: 1px solid rgba(255, 255, 255, 0.2);*/
+/*}*/
 
 /* Optional: Hover effect */
 .faq-card:hover {
