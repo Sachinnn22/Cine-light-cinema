@@ -2,14 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sidebar Smooth Slide Only</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sidebar Smooth Slide & Beautiful Table</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+            rel="stylesheet"
+    />
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+            rel="stylesheet"
+    />
     <style>
         html {
-            font-family: 'Inter', sans-serif;
+            font-family: "Inter", sans-serif;
+        }
+        body {
+            overflow-x: hidden; /* hide horizontal scroll */
         }
         #sidebar {
             transition: transform 0.4s ease-in-out;
@@ -26,6 +35,73 @@
         }
         #content {
             transition: margin-left 0.4s ease-in-out;
+            margin-left: 0;
+            padding: 2rem 1rem;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* align top for table */
+            background-color: #f9fafb; /* subtle bg */
+        }
+        table {
+            border-collapse: separate !important;
+            border-spacing: 0;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+            overflow: hidden;
+            width: 100%;
+            max-width: 900px;
+            background-color: white;
+        }
+        thead tr {
+            background-color: #f3f4f6; /* Tailwind gray-100 */
+        }
+        th,
+        td {
+            border-bottom: 1px solid #e5e7eb; /* Tailwind gray-200 */
+            padding: 0.75rem 1rem;
+            text-align: left;
+        }
+        tbody tr:hover {
+            background-color: #fef3c7; /* Tailwind yellow-100 for highlight */
+            cursor: pointer;
+        }
+        /* Buttons inside table */
+        .btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            transition: background-color 0.2s ease;
+            color: #374151; /* Tailwind gray-700 */
+        }
+        .btn:hover {
+            background-color: #e0e7ff; /* Tailwind indigo-100 */
+            color: #4338ca; /* Tailwind indigo-700 */
+        }
+        .badge {
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.375rem;
+            display: inline-block;
+        }
+        .badge-success {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+        .badge-error {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+        .badge-info {
+            background-color: #dbeafe;
+            color: #1e40af;
+        }
+        .badge-primary {
+            background-color: #e0e7ff;
+            color: #4338ca;
         }
     </style>
 </head>
@@ -34,70 +110,112 @@
     <i class="fa-solid fa-bars text-blue-600 transition-all duration-300"></i>
 </button>
 
-<div class="flex h-screen">
-    <aside
-            id="sidebar"
-            class="fixed inset-y-0 left-0 w-64 bg-white border-r-4 border-gray-400 flex flex-col justify-between transform -translate-x-full z-1000"
-    >
-        <div>
-            <div class="flex items-center justify-center h-16 border-b border-gray-100">
-                <span class="text-lg font-semibold text-gray-700">Logo</span>
-            </div>
-            <nav class="mt-4 px-4 space-y-2 text-gray-600">
-                <a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-gray-100 hover:text-gray-900 rounded-md">
-                    <i class="fa-solid fa-fire opacity-75 w-5"></i>
-                    <span>Thriller Movie</span>
-                </a>
-                <a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-gray-100 hover:text-gray-900 rounded-md">
-                    <i class="fa-solid fa-microchip opacity-75 w-5"></i>
-                    <span>Sci-Fi Movie</span>
-                </a>
-                <a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-gray-100 hover:text-gray-900 rounded-md">
-                    <i class="fa-solid fa-heart opacity-75 w-5"></i>
-                    <span>Love Story</span>
-                </a>
-                <a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-gray-100 hover:text-gray-900 rounded-md">
-                    <i class="fa-solid fa-globe opacity-75 w-5"></i>
-                    <span>Adventure</span>
-                </a>
-                <a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-gray-100 hover:text-gray-900 rounded-md">
-                    <i class="fa-solid fa-circle-plus opacity-75 w-5"></i>
-                    <span>Add Info</span>
-                </a>
-                <a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-gray-100 hover:text-gray-900 rounded-md">
-                    <i class="fa-solid fa-clipboard-list opacity-75 w-5"></i>
-                    <span>View Question</span>
-                </a>
-                <a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-gray-100 hover:text-gray-900 rounded-md">
-                    <i class="fa-solid fa-users opacity-75 w-5"></i>
-                    <span>Members</span>
-                </a>
-            </nav>
+<aside
+        id="sidebar"
+        class="fixed inset-y-0 left-0 w-64 bg-white border-r-4 border-gray-400 flex flex-col justify-between transform -translate-x-full z-50"
+>
+    <div>
+        <div class="flex items-center justify-center h-16 border-b border-gray-100">
+            <span class="text-lg font-semibold text-gray-700">Logo</span>
         </div>
-    </aside>
-</div>
+        <nav class="mt-4 px-4 space-y-2 text-gray-600">
+            <a
+                    href="#"
+                    class="flex items-center gap-3 px-3 py-2 hover:bg-gray-100 hover:text-gray-900 rounded-md"
+            >
+                <i class="fa-solid fa-fire opacity-75 w-5"></i>
+                <span>Thriller Movie</span>
+            </a>
+            <a
+                    href="#"
+                    class="flex items-center gap-3 px-3 py-2 hover:bg-gray-100 hover:text-gray-900 rounded-md"
+            >
+                <i class="fa-solid fa-microchip opacity-75 w-5"></i>
+                <span>Sci-Fi Movie</span>
+            </a>
+            <a
+                    href="#"
+                    class="flex items-center gap-3 px-3 py-2 hover:bg-gray-100 hover:text-gray-900 rounded-md"
+            >
+                <i class="fa-solid fa-heart opacity-75 w-5"></i>
+                <span>Love Story</span>
+            </a>
+            <a
+                    href="#"
+                    class="flex items-center gap-3 px-3 py-2 hover:bg-gray-100 hover:text-gray-900 rounded-md"
+            >
+                <i class="fa-solid fa-globe opacity-75 w-5"></i>
+                <span>Adventure</span>
+            </a>
+            <a
+                    href="#"
+                    class="flex items-center gap-3 px-3 py-2 hover:bg-gray-100 hover:text-gray-900 rounded-md"
+            >
+                <i class="fa-solid fa-circle-plus opacity-75 w-5"></i>
+                <span>Add Info</span>
+            </a>
+            <a
+                    href="#"
+                    class="flex items-center gap-3 px-3 py-2 hover:bg-gray-100 hover:text-gray-900 rounded-md"
+            >
+                <i class="fa-solid fa-clipboard-list opacity-75 w-5"></i>
+                <span>View Question</span>
+            </a>
+            <a
+                    href="#"
+                    class="flex items-center gap-3 px-3 py-2 hover:bg-gray-100 hover:text-gray-900 rounded-md"
+            >
+                <i class="fa-solid fa-users opacity-75 w-5"></i>
+                <span>Members</span>
+            </a>
+        </nav>
+    </div>
+</aside>
+
+<main id="content" class="w-full overflow-x-auto transition-all duration-400">
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Join Time</th>
+            <th>Join Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>John Doe</td>
+            <td>johndoe@example.com</td>
+            <td>March 1, 2024</td>
+            <td>March 1, 2024</td>
+        </tr>
+        <!-- other rows similar -->
+        </tbody>
+
+    </table>
+</main>
 
 <script>
-    const btn = document.getElementById('menu-btn');
-    const sidebar = document.getElementById('sidebar');
-    const content = document.getElementById('content');
-    const icon = btn.querySelector('i');
+    const btn = document.getElementById("menu-btn");
+    const sidebar = document.getElementById("sidebar");
+    const content = document.getElementById("content");
+    const icon = btn.querySelector("i");
 
     let isSidebarOpen = false;
 
-    btn.addEventListener('click', () => {
+    btn.addEventListener("click", () => {
         isSidebarOpen = !isSidebarOpen;
 
         if (isSidebarOpen) {
-            sidebar.classList.remove('-translate-x-full');
-            icon.classList.remove('fa-bars', 'text-blue-600');
-            icon.classList.add('fa-xmark', 'text-red-600');
-            if (content) content.style.marginLeft = '16rem';
+            sidebar.classList.remove("-translate-x-full");
+            icon.classList.remove("fa-bars", "text-blue-600");
+            icon.classList.add("fa-xmark", "text-red-600");
+            if (content) content.style.marginLeft = "16rem";
         } else {
-            sidebar.classList.add('-translate-x-full');
-            icon.classList.remove('fa-xmark', 'text-red-600');
-            icon.classList.add('fa-bars', 'text-blue-600');
-            if (content) content.style.marginLeft = '0';
+            sidebar.classList.add("-translate-x-full");
+            icon.classList.remove("fa-xmark", "text-red-600");
+            icon.classList.add("fa-bars", "text-blue-600");
+            if (content) content.style.marginLeft = "0";
         }
     });
 </script>
