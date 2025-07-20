@@ -5,20 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Sidebar Smooth Slide & Beautiful Table</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
-            rel="stylesheet"
-    />
-    <link
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-            rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
     <style>
         html {
             font-family: "Inter", sans-serif;
         }
         body {
-            overflow-x: hidden; /* hide horizontal scroll */
+            overflow: hidden; /* hide horizontal scroll */
         }
         #sidebar {
             transition: transform 0.4s ease-in-out;
@@ -35,36 +29,73 @@
         }
         #content {
             transition: margin-left 0.4s ease-in-out;
-            margin-left: 0;
             padding: 2rem 1rem;
             min-height: 100vh;
             display: flex;
-            justify-content: center;
-            align-items: flex-start; /* align top for table */
-            background-color: #f9fafb; /* subtle bg */
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            background-color: #f9fafb;
+            margin-top: 1.4rem; /* Add some space above */
         }
+
+        /* Updated table header styling with font customization */
+        .table-header {
+            font-size: 3.3rem; /* Slightly larger font size */
+            font-weight: 900; /* Bold font weight */
+            color: #545757; /* Font color */
+            margin-bottom: 1.8rem;
+            letter-spacing: 1.8px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
+        }
+
         table {
-            border-collapse: separate !important;
-            border-spacing: 0;
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
-            overflow: hidden;
             width: 100%;
             max-width: 900px;
             background-color: white;
+            border-collapse: collapse !important;
+            border: 2px solid #c0c0c0 !important;
+            border-radius: 14px; /* Optional: rounded corners for the table border */
+            overflow: hidden; /* To clip border-radius children */
         }
-        thead tr {
-            background-color: #f3f4f6; /* Tailwind gray-100 */
+        tbody tr {
+            transition: background-color 0.6s ease; /* Smooth transition for background color */
         }
-        th,
-        td {
-            border-bottom: 1px solid #e5e7eb; /* Tailwind gray-200 */
+
+        tbody tr:hover {
+            background-color: #eae6e6 !important;
+            cursor: pointer; /* Add this line */
+        }
+
+
+        /* Table head styles */
+        table thead {
+            background-color: #ffffff !important; /* White background */
+            color: #333; /* Dark text color for readability */
+        }
+        /* Table header cells and body cells */
+        th, td {
+            border: 1px solid #c0c0c0;
+            text-align: center;
             padding: 0.75rem 1rem;
-            text-align: left;
+        }
+
+        /* Add this to align profile image at the center */
+        /* Center and shift profile image slightly left */
+        td img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            object-fit: cover;
+        }
+
+        /* Border only between header and body */
+        thead tr {
+            border-bottom: 2px solid #c0c0c0; /* Silver border between header and rows */
         }
         tbody tr:hover {
-            background-color: #fef3c7; /* Tailwind yellow-100 for highlight */
-            cursor: pointer;
+            background-color: #f5f5f5;
         }
         /* Buttons inside table */
         .btn {
@@ -103,68 +134,60 @@
             background-color: #e0e7ff;
             color: #4338ca;
         }
+        /* Overlay styles */
+        #overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.3);
+            z-index: 40;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: none;
+        }
+        #overlay.active {
+            display: block;
+            opacity: 1;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
+<!-- Menu Button -->
 <button id="menu-btn" aria-label="Toggle Menu" type="button">
     <i class="fa-solid fa-bars text-blue-600 transition-all duration-300"></i>
 </button>
 
-<aside
-        id="sidebar"
-        class="fixed inset-y-0 left-0 w-64 bg-white border-r-4 border-gray-400 flex flex-col justify-between transform -translate-x-full z-50"
->
+<!-- Sidebar -->
+<aside id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-white border-r-4 border-gray-400 flex flex-col justify-between transform -translate-x-full z-50">
     <div>
         <div class="flex items-center justify-center h-16 border-b border-gray-100">
             <span class="text-lg font-semibold text-gray-700">Logo</span>
         </div>
         <nav class="mt-4 px-4 space-y-2 text-gray-600">
-            <a
-                    href="#"
-                    class="flex items-center gap-3 px-3 py-2 hover:bg-gray-100 hover:text-gray-900 rounded-md"
-            >
+            <a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-gray-100 hover:text-gray-900 rounded-md">
                 <i class="fa-solid fa-fire opacity-75 w-5"></i>
                 <span>Thriller Movie</span>
             </a>
-            <a
-                    href="#"
-                    class="flex items-center gap-3 px-3 py-2 hover:bg-gray-100 hover:text-gray-900 rounded-md"
-            >
+            <a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-gray-100 hover:text-gray-900 rounded-md">
                 <i class="fa-solid fa-microchip opacity-75 w-5"></i>
                 <span>Sci-Fi Movie</span>
             </a>
-            <a
-                    href="#"
-                    class="flex items-center gap-3 px-3 py-2 hover:bg-gray-100 hover:text-gray-900 rounded-md"
-            >
+            <a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-gray-100 hover:text-gray-900 rounded-md">
                 <i class="fa-solid fa-heart opacity-75 w-5"></i>
                 <span>Love Story</span>
             </a>
-            <a
-                    href="#"
-                    class="flex items-center gap-3 px-3 py-2 hover:bg-gray-100 hover:text-gray-900 rounded-md"
-            >
+            <a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-gray-100 hover:text-gray-900 rounded-md">
                 <i class="fa-solid fa-globe opacity-75 w-5"></i>
                 <span>Adventure</span>
             </a>
-            <a
-                    href="#"
-                    class="flex items-center gap-3 px-3 py-2 hover:bg-gray-100 hover:text-gray-900 rounded-md"
-            >
+            <a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-gray-100 hover:text-gray-900 rounded-md">
                 <i class="fa-solid fa-circle-plus opacity-75 w-5"></i>
                 <span>Add Info</span>
             </a>
-            <a
-                    href="#"
-                    class="flex items-center gap-3 px-3 py-2 hover:bg-gray-100 hover:text-gray-900 rounded-md"
-            >
+            <a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-gray-100 hover:text-gray-900 rounded-md">
                 <i class="fa-solid fa-clipboard-list opacity-75 w-5"></i>
                 <span>View Question</span>
             </a>
-            <a
-                    href="#"
-                    class="flex items-center gap-3 px-3 py-2 hover:bg-gray-100 hover:text-gray-900 rounded-md"
-            >
+            <a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-gray-100 hover:text-gray-900 rounded-md">
                 <i class="fa-solid fa-users opacity-75 w-5"></i>
                 <span>Members</span>
             </a>
@@ -172,34 +195,49 @@
     </div>
 </aside>
 
-<main id="content" class="w-full overflow-x-auto transition-all duration-400">
+<!-- Overlay for dimming effect -->
+<div id="overlay"></div>
+
+<main id="content" class="w-full overflow-x-auto">
+
+    <!-- Table Header (Centered) -->
+    <h1 class="table-header">User Details</h1>
+
+    <!-- User Table -->
     <table>
         <thead>
         <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Join Time</th>
-            <th>Join Date</th>
+            <th class="text-center">Name</th>
+            <th class="text-center">Profile</th>
+            <th class="text-center" width="30%">Email</th>
+            <th class="text-center">Join Time</th>
+            <th class="text-center">Join Date</th>
         </tr>
         </thead>
         <tbody>
         <tr>
             <td>John Doe</td>
-            <td>johndoe@example.com</td>
-            <td>March 1, 2024</td>
+            <td>
+                <img
+                        src="https://randomuser.me/api/portraits/men/1.jpg"
+                        alt="John's Profile"
+                        class="w-10 h-10 rounded-full object-cover" />
+            </td>
+            <td>johndoeafuirus@example.com</td>
+            <td>08:30 PM</td>
             <td>March 1, 2024</td>
         </tr>
-        <!-- other rows similar -->
+        <!-- More rows -->
         </tbody>
-
     </table>
 </main>
 
+<!-- Sidebar Toggle Script -->
 <script>
     const btn = document.getElementById("menu-btn");
     const sidebar = document.getElementById("sidebar");
-    const content = document.getElementById("content");
     const icon = btn.querySelector("i");
+    const overlay = document.getElementById("overlay");
 
     let isSidebarOpen = false;
 
@@ -210,13 +248,22 @@
             sidebar.classList.remove("-translate-x-full");
             icon.classList.remove("fa-bars", "text-blue-600");
             icon.classList.add("fa-xmark", "text-red-600");
-            if (content) content.style.marginLeft = "16rem";
+            overlay.classList.add("active");
         } else {
             sidebar.classList.add("-translate-x-full");
             icon.classList.remove("fa-xmark", "text-red-600");
             icon.classList.add("fa-bars", "text-blue-600");
-            if (content) content.style.marginLeft = "0";
+            overlay.classList.remove("active");
         }
+    });
+
+    // Close sidebar when clicking on the overlay
+    overlay.addEventListener("click", () => {
+        sidebar.classList.add("-translate-x-full");
+        icon.classList.remove("fa-xmark", "text-red-600");
+        icon.classList.add("fa-bars", "text-blue-600");
+        overlay.classList.remove("active");
+        isSidebarOpen = false;
     });
 </script>
 </body>
