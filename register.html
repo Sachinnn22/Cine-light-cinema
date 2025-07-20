@@ -62,14 +62,25 @@
         }
 
         .custom-glass-footer {
-            background: #1c1c1c;/* Slightly brighter */
+            background: #1c1c1c;
             backdrop-filter: blur(16px) saturate(160%);
             -webkit-backdrop-filter: blur(16px) saturate(160%);
             border-top: 4px solid rgba(255, 255, 255, 0.2);
             box-shadow: 0 -2px 15px rgba(255, 255, 255, 0.05);
-            color: white; /* Add text color if needed */
+            color: white;
         }
-
+        .forgot-password-link {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #818cf8;
+            transition: color 0.3s ease;
+            letter-spacing: 0.7px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .forgot-password-link:hover {
+            color: #6366f1;
+        }
 
         .flip-container {
             perspective: 1000px;
@@ -136,11 +147,23 @@
                                class="w-full rounded-lg bg-white bg-opacity-20 px-4 py-3 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white" />
                     </div>
                     <div>
-                        <label for="password" class="text-sm font-semibold text-white/90">Password</label>
-                        <input id="password" name="password" type="password" required
-                               placeholder="Enter your password"
-                               class="w-full rounded-lg bg-white bg-opacity-20 px-4 py-3 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white" />
+                        <div class="flex items-center justify-between mb-1">
+                            <label for="password" class="text-sm font-semibold text-white/90">Password</label>
+                            <a href="#" class="forgot-password-link">
+                                Forgot password
+                            </a>
+
+                        </div>
+                        <input
+                                id="password"
+                                name="password"
+                                type="password"
+                                required
+                                placeholder="Enter your password"
+                                class="w-full rounded-lg bg-white bg-opacity-20 px-4 py-3 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white"
+                        />
                     </div>
+
                     <button type="submit"
                             class="w-[88%] mx-auto block rounded-lg bg-gray-700 hover:bg-gray-800 text-white font-semibold py-3 shadow-lg">
                         Login to account
