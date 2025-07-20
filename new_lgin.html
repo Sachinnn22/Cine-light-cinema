@@ -1,34 +1,123 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login - Sinhalies</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.1/dist/full.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;500&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="st.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css">
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link
+            href="https://cdn.jsdelivr.net/npm/daisyui@3.9.1/dist/full.css"
+            rel="stylesheet"
+    />
+    <link
+            href="https://fonts.googleapis.com/css2?family=Anton&family=Open+Sans:wght@400;600&display=swap"
+            rel="stylesheet"
+    />
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css"
+            rel="stylesheet"
+    />
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        }
+    </style>
 </head>
-<body class="bg-gray-900">
+<body class="bg-gradient-to-br from-slate-900 via-gray-900 to-black h-full">
 
-<!-- Navbar with brand on left and home button on right -->
-<div class="navbar fixed top-0 left-0 right-0 z-50 bg-black bg-opacity-80 text-white shadow-sm lg:flex hidden">
-    <!-- Left: Brand -->
-    <div class="navbar-start pl-6">
-        <span class="brand-name">SINHALIES</span>
-    </div>
+<!-- Navbar -->
+<nav
+        class="fixed top-0 left-0 right-0 z-50 bg-black bg-opacity-70 backdrop-blur-md text-white shadow-md flex items-center justify-between px-6 py-3"
+>
+    <div class="text-3xl font-bold tracking-wide select-none">SINHALIES</div>
+    <a
+            href="test.html"
+            class="inline-flex items-center gap-2 rounded-full border border-gray-500 bg-gradient-to-br from-gray-800 to-gray-700 px-5 py-2 text-gray-300 font-semibold hover:from-gray-600 hover:to-gray-600 hover:text-white transition"
+    ><i class="fas fa-house"></i> Home</a>
+</nav>
 
-    <!-- Right: Home Button -->
-    <div class="navbar-end pr-6">
-        <a href="test.html" class="btn btn-outline btn-sm text-white border-white hover:bg-white hover:text-black flex items-center gap-2">
-            <i class="fas fa-house"></i>
-            Home
-        </a>
+<!-- Main Section -->
+<section
+        class="h-screen flex items-center justify-center px-6 lg:px-24 bg-cover bg-center pt-0"
+        style="background-image: url('https://images.unsplash.com/photo-1606112219348-204d7d8b94ee?auto=format&fit=crop&w=1600&q=80');"
+>
+    <!-- Transparent Card with margin-top to push down -->
+    <div
+            class="w-full max-w-md bg-white bg-opacity-10 backdrop-blur-lg rounded-2xl border border-white border-opacity-20 shadow-lg p-8 mt-20"
+    >
+        <!-- Logo removed -->
+
+        <!-- Heading -->
+        <h2
+                class="mb-6 text-center text-3xl font-extrabold text-white tracking-tight"
+        >
+            Sign in to your account
+        </h2>
+
+        <!-- Form -->
+        <form action="#" method="POST" class="space-y-6">
+            <div>
+                <label
+                        for="email"
+                        class="block mb-2 text-sm font-semibold text-white/90"
+                >Email address</label>
+                <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        required
+                        autocomplete="email"
+                        placeholder="you@example.com"
+                        class="w-full rounded-lg bg-white bg-opacity-20 px-4 py-3 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-opacity-30 transition"
+                />
+            </div>
+
+            <div>
+                <div
+                        class="flex items-center justify-between mb-2"
+                >
+                    <label
+                            for="password"
+                            class="text-sm font-semibold text-white/90"
+                    >Password</label>
+                    <a
+                            href="#"
+                            class="text-indigo-400 hover:text-indigo-300 text-sm font-medium"
+                    >Forgot password?</a>
+                </div>
+                <input
+                        id="password"
+                        name="password"
+                        type="password"
+                        required
+                        autocomplete="current-password"
+                        placeholder="Enter your password"
+                        class="w-full rounded-lg bg-white bg-opacity-20 px-4 py-3 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-opacity-30 transition"
+                />
+            </div>
+
+            <button
+                    type="submit"
+                    class="w-full rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3 shadow-lg transition"
+            >
+                Sign in
+            </button>
+        </form>
+
+        <p class="mt-6 text-center text-white/70 text-sm">
+            Not a member?
+            <a href="#" class="font-semibold text-indigo-400 hover:text-indigo-300"
+            >Start a 14 day free trial</a>
+        </p>
     </div>
-</div>
+</section>
 
 </body>
 </html>
