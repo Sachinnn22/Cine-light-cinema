@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Login - Sinhalies</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="st.css">
     <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -26,16 +27,43 @@
             height: 100%;
             margin: 0;
             font-family: 'Open Sans', sans-serif;
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
         }
+
+        .custom-hero {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .custom-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url('assets/images/bpd-heroImage.jpeg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.25; /* Adjust to your liking */
+            z-index: 0;
+        }
+
+        .custom-hero > * {
+            position: relative;
+            z-index: 10;
+        }
+
+            .custom-glass-footer {
+                background: rgba(200, 200, 200, 0.1);
+                backdrop-filter: blur(20px) saturate(180%);
+                -webkit-backdrop-filter: blur(20px) saturate(180%);
+                border-top: 3px solid rgba(255, 255, 255, 0.5);
+                box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.05);
+            }
+
     </style>
 </head>
 <body class="bg-gradient-to-br from-slate-900 via-gray-900 to-black h-full">
 
 <!-- Navbar -->
-<nav
-        class="fixed top-0 left-0 right-0 z-50 bg-black bg-opacity-70 backdrop-blur-md text-white shadow-md flex items-center justify-between px-6 py-3"
->
+<nav class="fixed top-0 left-0 right-0 z-50 bg-black bg-opacity-70 backdrop-blur-xl text-white shadow-md flex items-center justify-between px-6 py-3">
     <div class="text-3xl font-bold tracking-wide select-none">SINHALIES</div>
     <a
             href="test.html"
@@ -44,29 +72,18 @@
 </nav>
 
 <!-- Main Section -->
-<section
-        class="h-screen flex items-center justify-center px-6 lg:px-24 bg-cover bg-center pt-0"
-        style="background-image: url('assets/images/bpd-heroImage.jpeg');"
->
-    <!-- Transparent Card with margin-top to push down -->
-    <div
-            class="w-full max-w-md bg-black bg-opacity-70 backdrop-blur-md rounded-2xl border-2 border-white shadow-xl p-8 mt-16"
-    >
-
-    <!-- Heading -->
-        <h2
-                class="mb-6 text-center text-3xl font-extrabold text-white tracking-tight"
-        >
+<section class="custom-hero h-screen flex items-center justify-center px-6 lg:px-24 pt-0">
+    <!-- Transparent Card -->
+    <div class="w-full max-w-lg bg-black bg-opacity-70 backdrop-blur-md rounded-2xl border-2 border-white shadow-xl p-8 mt-16">
+        <h2 class="mb-6 text-center text-3xl font-extrabold text-white tracking-tight">
             Login My Account
         </h2>
 
-        <!-- Form -->
         <form action="#" method="POST" class="space-y-6">
             <div>
-                <label
-                        for="email"
-                        class="block mb-2 text-sm font-semibold text-white/90"
-                >Your Name</label>
+                <label for="email" class="block mb-2 text-sm font-semibold text-white/90">
+                    Your Name
+                </label>
                 <input
                         id="email"
                         name="email"
@@ -74,22 +91,19 @@
                         required
                         autocomplete="email"
                         placeholder="Enter your email"
-                        class="w-full rounded-lg bg-white bg-opacity-20 px-4 py-3 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-opacity-30 transition"
+                        class="w-full rounded-lg bg-white bg-opacity-20 px-4 py-3 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white focus:bg-opacity-30 transition"
                 />
+
             </div>
 
             <div>
-                <div
-                        class="flex items-center justify-between mb-2"
-                >
-                    <label
-                            for="password"
-                            class="text-sm font-semibold text-white/90"
-                    >Password</label>
-                    <a
-                            href="#"
-                            class="text-indigo-400 hover:text-indigo-300 text-sm font-medium"
-                    >Forgot password?</a>
+                <div class="flex items-center justify-between mb-2">
+                    <label for="password" class="text-sm font-semibold text-white/90">
+                        Password
+                    </label>
+                    <a href="#" class="text-indigo-300 hover:text-indigo-400 text-sm font-medium">
+                        Forgot password
+                    </a>
                 </div>
                 <input
                         id="password"
@@ -98,26 +112,28 @@
                         required
                         autocomplete="current-password"
                         placeholder="Enter your password"
-                        class="w-full rounded-lg bg-white bg-opacity-20 px-4 py-3 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-opacity-30 transition"
+                        class="w-full rounded-lg bg-white bg-opacity-20 px-4 py-3 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white focus:bg-opacity-30 transition"
                 />
             </div>
 
             <button
                     type="submit"
-                    class="mx-auto w-4/5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3 shadow-lg transition block"
+                    class="mx-auto w-11/12 rounded-lg bg-gray-700 hover:bg-gray-800 text-white font-semibold py-3 shadow-lg transition block"
             >
-                Sign in
+                Login to account
             </button>
 
         </form>
 
-        <!-- Separator text -->
-        <p class="text-center text-white/70 my-4 font-semibold">or</p>
+        <p class="flex items-center justify-center text-white/70 my-4 font-semibold">
+            <span class="border-t border-white/40 flex-grow mr-4"></span>
+            or
+            <span class="border-t border-white/40 flex-grow ml-4"></span>
+        </p>
 
-        <!-- Google Sign-in Button with silver color & reduced width -->
         <button
                 type="button"
-                class="mx-auto w-4/5 flex items-center justify-center gap-3 rounded-lg bg-gray-300 hover:bg-gray-400 text-gray-900 font-semibold py-3 shadow-lg transition"
+                class="mx-auto w-[86%] flex items-center justify-center gap-3 rounded-lg bg-gray-200 hover:bg-gray-300 text-gray-900 font-semibold py-3 shadow-lg transition"
         >
             <svg class="w-5 h-5" viewBox="0 0 533.5 544.3" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
                 <path fill="#4285F4" d="M533.5 278.4c0-18.5-1.5-37.4-4.7-55.2H272v104.5h146.9c-6.3 33.7-26 62.2-55.2 81.4v67.5h89.4c52.4-48.3 82.4-119.6 82.4-198.2z"/>
@@ -125,16 +141,59 @@
                 <path fill="#FBBC05" d="M117.1 320.4c-5.5-16.3-8.7-33.8-8.7-51.4s3.2-35.1 8.7-51.4v-71.5H26.5c-18.7 37.5-29.4 79.5-29.4 123s10.7 85.5 29.4 123l90.6-71.7z"/>
                 <path fill="#EA4335" d="M272 107.7c40.6 0 77 14 105.7 41.3l79.2-79.2C405.3 24.7 342.6 0 272 0 166.7 0 72.5 52 26.5 137.1l90.6 71.5c22-65.3 83-113.8 154.9-113.8z"/>
             </svg>
-            Sign in with Google
+            Login with Google
         </button>
 
         <p class="mt-6 text-center text-white/70 text-sm">
             Not a member?
-            <a href="#" class="font-semibold text-indigo-400 hover:text-indigo-300"
-            >Start a 14 day free trial</a>
+            <a href="#" class="font-extrabold text-indigo-300 hover:text-indigo-400">
+                Start a 14 day free trial
+            </a>
         </p>
     </div>
 </section>
+
+<footer class="custom-glass-footer">
+    <div class="max-w-7xl mx-auto px-12 py-10 grid grid-cols-1 md:grid-cols-4 gap-2 place-items-center text-center">
+        <div class="space-y-3 pb-2">
+            <h2 class="foot-head">SINHALIES</h2>
+            <p class="foot-sub">Delivering blockbuster moments, one reel at a time, inspiring stories that captivate the soul.</p>
+        </div>
+
+        <div class="space-y-2 pt-1.5">
+            <h3 class="movie">Movies</h3>
+            <ul class="movie-sub space-y-1">
+                <li><a href="#" class="hover:underline">Action</a></li>
+                <li><a href="#" class="hover:underline">Horror</a></li>
+                <li><a href="#" class="hover:underline">Sci-Fic</a></li>
+                <li><a href="#" class="hover:underline">Romance</a></li>
+            </ul>
+        </div>
+
+        <div class="space-y-2 pb-5">
+            <h3 class="company">Company</h3>
+            <ul class="company-sub space-y-1">
+                <li><a href="#" class="hover:underline">Why Us</a></li>
+                <li><a href="#" class="hover:underline">FAQ's</a></li>
+                <li><a href="#" class="hover:underline">Buy Premium</a></li>
+            </ul>
+        </div>
+
+        <div class="space-y-3 pb-16">
+            <h2 class="fallow">Follow Us</h2>
+            <div class="flex justify-center gap-4">
+                <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" class="w-8 h-8" alt="Facebook" /></a>
+                <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" class="w-8 h-8" alt="Instagram" /></a>
+                <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" class="w-8 h-8" alt="Twitter" /></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center border-t border-gray-300/30 py-4 copy">
+        © 2025 <span class="sin">SINHALIES</span>. All rights reserved.
+    </div>
+</footer>
+
 
 </body>
 </html>
