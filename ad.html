@@ -17,6 +17,8 @@
         #sidebar {
             transition: transform 0.4s ease-in-out;
         }
+
+
         #menu-btn {
             font-size: 1.5rem;
             background: none;
@@ -38,6 +40,8 @@
             background-color: #f9fafb;
             margin-top: 1.4rem;
         }
+
+
         .table-header {
             font-size: 3.3rem;
             font-weight: 900;
@@ -241,13 +245,13 @@
 
         if (isSidebarOpen) {
             sidebar.classList.remove("-translate-x-full");
-            icon.classList.remove("fa-bars", "text-blue-600");
+            icon.classList.remove("fa-bars", "text-gray-600");
             icon.classList.add("fa-xmark", "text-red-600");
             overlay.classList.add("active");
         } else {
             sidebar.classList.add("-translate-x-full");
             icon.classList.remove("fa-xmark", "text-red-600");
-            icon.classList.add("fa-bars", "text-blue-600");
+            icon.classList.add("fa-bars", "text-gray-600");
             overlay.classList.remove("active");
         }
     });
