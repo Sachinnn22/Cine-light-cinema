@@ -279,6 +279,11 @@
     </div>
 </footer>
 
+<div id="popup-message" class="fixed top-5 right-5 hidden bg-green-500 text-white px-4 py-3 rounded shadow-lg z-50">
+    Login successfully!
+</div>
+
+
 <script>
     function toggleFlip() {
         document.getElementById('flip-container').classList.toggle('flip');
@@ -309,13 +314,20 @@
         auth.signInWithPopup(provider)
             .then((result) => {
                 const user = result.user;
-                alert(`Hello, ${user.displayName}!`);
-                // You can now use user info or redirect to your app
             })
             .catch((error) => {
-                console.error("Error signing in:", error);
             });
     });
+
+    function showPopup(message, duration = 3000) {
+        const popup = document.getElementById('popup-message');
+        popup.textContent = message;
+        popup.classList.remove('hidden');
+        setTimeout(() => {
+            popup.classList.add('hidden');
+        }, duration);
+    }
+
 </script>
 </body>
 </html>
