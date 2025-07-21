@@ -512,8 +512,27 @@
     Buy Premium To Watch
   </div>
 
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+
+
   <script>
-    document.getElementById('dropdownToggle').addEventListener('click', () => {
+      const firebaseConfig = {
+          apiKey: "AIzaSyCNH38ylbzfIORN0wmDoizj_eWKunQ1uAQ",
+          authDomain: "my-first-app-6a293.firebaseapp.com",
+          projectId: "my-first-app-6a293",
+          storageBucket: "my-first-app-6a293.appspot.com",
+          messagingSenderId: "599546991663",
+          appId: "1:599546991663:web:b07d25c55f1d00c06722da",
+          measurementId: "G-5EVKKY7KLP"
+      };
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      const auth = firebase.auth();
+
+      document.getElementById('dropdownToggle').addEventListener('click', () => {
       const dropdown = document.getElementById('mainDropdown');
       dropdown.classList.toggle('open');
     });
@@ -653,6 +672,98 @@
         });
     });
 
+      auth.onAuthStateChanged(user => {
+          const userToggle = document.getElementById('userToggle');
+          const userDropdown = document.getElementById('userDropdown');
+          if (!userToggle || !userDropdown) return;
+
+          const menu = userDropdown.querySelector('ul.menu');
+          if (!menu) return;
+
+          if (user) {
+              console.log("User photoURL:", user.photoURL);
+              console.log("User displayName:", user.displayName);
+
+              const svgIcon = userToggle.querySelector('svg');
+              if (svgIcon) svgIcon.remove();
+
+              let img = userToggle.querySelector('img');
+              if (!img) {
+                  img = document.createElement('img');
+                  img.style.borderRadius = '50%';
+                  img.style.width = '32px';
+                  img.style.height = '32px';
+                  img.style.objectFit = 'cover';
+                  userToggle.appendChild(img);
+              }
+
+              img.src = user.photoURL || 'default-avatar.png';
+              img.alt = user.displayName || 'User';
+
+              menu.innerHTML = `
+      <li>
+        <a href="/profile" class="flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="8" r="4" />
+            <path d="M6 20c0-3.31 5.33-5 6-5s6 1.69 6 5" />
+          </svg>
+          My Items
+        </a>
+      </li>
+      <li>
+        <a href="#" id="logoutBtn" class="flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path d="M17 16l4-4m0 0l-4-4m4 4H7" />
+          </svg>
+          Logout
+        </a>
+      </li>
+    `;
+
+              const logoutBtn = document.getElementById('logoutBtn');
+              if (logoutBtn) {
+                  logoutBtn.addEventListener('click', e => {
+                      e.preventDefault();
+                      auth.signOut();
+                  });
+              }
+
+          } else {
+              const img = userToggle.querySelector('img');
+              if (img) img.remove();
+
+              let svgIcon = userToggle.querySelector('svg');
+              if (!svgIcon) {
+                  userToggle.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="8" r="4" />
+          <path d="M6 20c0-3.31 5.33-5 6-5s6 1.69 6 5" />
+        </svg>
+      `;
+              }
+
+              menu.innerHTML = `
+      <li>
+        <a href="new_lgin.html" class="flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="8" r="4" />
+            <path d="M6 20c0-3.31 5.33-5 6-5s6 1.69 6 5" />
+          </svg>
+          Sign In
+        </a>
+      </li>
+      <li>
+        <a href="#" class="flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="6" width="20" height="12" rx="2" ry="2" />
+            <path d="M2 10h20" />
+          </svg>
+          Buy Premium
+        </a>
+      </li>
+    `;
+          }
+      });
 
   </script>
   <!-- HS Alpine Plugin -->

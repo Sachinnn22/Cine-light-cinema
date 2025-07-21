@@ -314,8 +314,11 @@
         auth.signInWithPopup(provider)
             .then((result) => {
                 const user = result.user;
+                alert(`Hello, ${user.displayName}! Login Successful!`);
+                window.location.href = 'test.html';  // <---- Put it here, after successful login
             })
             .catch((error) => {
+                console.error("Error signing in:", error);
             });
     });
 
