@@ -61,6 +61,40 @@
             z-index: 10;
         }
 
+        @keyframes fadeInDownSmooth {
+            0% {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            60% {
+                opacity: 1;
+                transform: translateY(5px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-down {
+            animation: fadeInDownSmooth 0.6s cubic-bezier(0.23, 1, 0.32, 1) both;
+        }
+
+        .fade-out-up {
+            animation: fadeOutUp 0.5s ease forwards;
+        }
+
+        @keyframes fadeOutUp {
+            0% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+        }
+
         .custom-glass-footer {
             background: #1c1c1c;
             backdrop-filter: blur(16px) saturate(160%);
@@ -117,6 +151,15 @@
             transform: rotateY(180deg);
         }
 
+        .error-message {
+            background-color: #f44336; /* Red */
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            text-align: center;
+        }
 
     </style>
 </head>
@@ -139,17 +182,22 @@
             <!-- 🔐 Front Side - Login Form -->
             <div class="front bg-black bg-opacity-70 backdrop-blur-md rounded-2xl border-2 border-white shadow-xl p-8">
                 <h2 class="custom-heading">Login My Account</h2>
-                <form action="#" method="POST" class="space-y-6">
+                <form  action="#" method="POST" class="space-y-6">
                     <div>
-                        <label for="email" class="block mb-2 text-sm font-semibold text-white/90">Your Email</label>
-                        <input id="email" name="email" type="email" required
-                               placeholder="Enter your email"
-                               class="w-full rounded-lg bg-white bg-opacity-20 px-4 py-3 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white" />
+                        <label for="name" class="block mb-2 text-sm font-semibold text-white/90">Your Username</label>
+                        <input
+                                id="name"
+                                name="name"
+                                type="text"
+                                required
+                                placeholder="Enter your password"
+                                class="w-full rounded-lg bg-white bg-opacity-20 px-4 py-3 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white"
+                        />
                     </div>
                     <div>
                         <div class="flex items-center justify-between mb-1">
                             <label for="password" class="text-sm font-semibold text-white/90">Password</label>
-                            <a href="#" class="forgot-password-link">
+                            <a href="javascript:void(0);" class="forgot-password-link" onclick="forgotPassword()">
                                 Forgot password
                             </a>
 
@@ -201,7 +249,7 @@
             <!-- 📝 Back Side - Register Form -->
             <div class="back bg-black bg-opacity-70 backdrop-blur-md rounded-2xl border-2 border-white shadow-xl p-8">
                 <h2 class="custom-heading">Create Account</h2>
-                <form action="#" method="POST" class="space-y-6">
+                <form id="registerForm" action="#" method="POST" class="space-y-6">
                     <div>
                         <label for="username" class="block mb-2 text-sm font-semibold text-white/90">Username</label>
                         <input id="username" name="username" type="text" required
@@ -284,53 +332,245 @@
 </div>
 
 
+
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+
+<script>
+    // Firebase Config
+    const firebaseConfig = {
+        apiKey: "AIzaSyCNH38ylbzfIORN0wmDoizj_eWKunQ1uAQ",
+        authDomain: "my-first-app-6a293.firebaseapp.com",
+        databaseURL: "https://my-first-app-6a293-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "my-first-app-6a293",
+        storageBucket: "my-first-app-6a293.firebasestorage.app",
+        messagingSenderId: "599546991663",
+        appId: "1:599546991663:web:b07d25c55f1d00c06722da",
+        measurementId: "G-5EVKKY7KLP"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.database();
+
+    // -------------------------
+    // 🔐 LOGIN FUNCTIONALITY
+    // -------------------------
+    document.querySelector('.front form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const username = document.getElementById('name').value.trim();
+        const password = document.getElementById('password').value;
+
+        if (!username || !password) {
+            showErrorMessage('❗ Username and password are required.');
+            return;
+        }
+
+        try {
+            // Step 1: Find the user by username
+            const snapshot = await db.ref('users').orderByChild('username').equalTo(username).once('value');
+
+            if (!snapshot.exists()) {
+                showErrorMessage('❌ Username not found. Please register first.');
+                return;
+            }
+
+            let email = null;
+
+            snapshot.forEach(userSnap => {
+                const data = userSnap.val();
+                if (data && data.email && typeof data.email === 'string') {
+                    email = data.email.trim().toLowerCase();
+                }
+            });
+
+            // Validate email before using it
+            if (!email || !email.includes('@')) {
+                showErrorMessage('⚠️ No valid email found for this username. Please contact support.');
+                return;
+            }
+
+            // Step 2: Login with email and password
+            const cred = await auth.signInWithEmailAndPassword(email, password);
+
+            // ✅ Login successful
+            // ✅ Login successful
+            setTimeout(() => {
+                window.location.href = 'test.html';
+            }, 1000);
+        } catch (err) {
+            const code = err.code;
+
+            if (code === 'auth/too-many-requests') {
+                showErrorMessage('🚫 Too many login attempts. Please wait a few minutes and try again.');
+            } else if (code === 'auth/wrong-password' || code === 'auth/invalid-login-credentials') {
+                showErrorMessage('🔒 Incorrect password. Please try again.');
+            } else if (code === 'auth/user-not-found') {
+                showErrorMessage('❌ Account not found. Please register.');
+            } else if (code === 'auth/invalid-email') {
+                showErrorMessage('⚠️ Invalid email format.');
+            } else if (code === 'auth/network-request-failed') {
+                showErrorMessage('⚠️ Network error. Please check your connection.');
+            } else {
+                showErrorMessage(`⚠️ Login error: ${err.message}`);
+            }
+
+            console.error("Firebase login error:", code, err.message);
+        }
+
+
+    });
+
+    // 🔁 TOGGLE LOGIN/REGISTER FORM
+    function toggleFlip() {
+        document.getElementById('flip-container').classList.toggle('flip');
+    }
+
+    function showErrorMessage(message) {
+        const existing = document.getElementById('floating-error');
+        if (existing) existing.remove();
+
+        const errorElement = document.createElement('div');
+        errorElement.id = 'floating-error';
+        errorElement.textContent = message;
+
+        errorElement.classList.add(
+            'fixed', 'top-20', 'inset-x-0', 'mx-auto',
+            'bg-red-600', 'text-white', 'px-6', 'py-3',
+            'rounded', 'shadow-lg', 'z-[9999]', 'w-[450px]', 'text-sm', 'text-center',
+            'fade-in-down'
+        );
+
+        document.body.appendChild(errorElement);
+
+        setTimeout(() => {
+            errorElement.classList.remove('fade-in-down');
+            errorElement.classList.add('fade-out-up');
+            setTimeout(() => {
+                errorElement.remove();
+            }, 500); // Duration of fade-out
+        }, 4000); // Start fade-out after 4s
+    }
+
+
+    function showSuccessMessage(message) {
+        const existing = document.getElementById('floating-success');
+        if (existing) existing.remove();
+
+        const successElement = document.createElement('div');
+        successElement.id = 'floating-success';
+        successElement.textContent = message;
+
+        successElement.classList.add(
+            'fixed', 'top-20', 'left-1/2', '-translate-x-1/2',
+            'bg-green-600', 'text-white', 'px-6', 'py-3',
+            'rounded', 'shadow-lg', 'z-[9999]', 'w-[450px]', 'text-sm', 'text-center',
+            'fade-in-down'
+        );
+
+        document.body.appendChild(successElement);
+
+        setTimeout(() => {
+            successElement.classList.remove('fade-in-down');
+            successElement.classList.add('fade-out-up');
+            setTimeout(() => {
+                successElement.remove();
+            }, 500);
+        }, 4000);
+    }
+
+    // -------------------------
+    // 📄 REGISTER FUNCTIONALITY
+    // -------------------------
+
+    // -------------------------
+    // 🔁 TOGGLE LOGIN/REGISTER FORM
+    // -------------------------
+    function toggleFlip() {
+        document.getElementById('flip-container').classList.toggle('flip');
+    }
+
+    // -------------------------
+    // ⚠️ SHOW ERROR MESSAGE
+    // -------------------------
+
+
+    // Register form submit handler
+    document.getElementById('registerForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const username = document.getElementById('username').value.trim();
+        const email = document.getElementById('register-email').value.trim().toLowerCase();
+        const password = document.getElementById('register-password').value;
+
+        if (!username || !email || !password) {
+            showErrorMessage('❗ All fields are required.');
+            return;
+        }
+
+        try {
+            // First, check if username already exists in DB to avoid duplicates
+            const snapshot = await db.ref('users').orderByChild('username').equalTo(username).once('value');
+            if (snapshot.exists()) {
+                showErrorMessage('❌ Username already taken. Please choose another.');
+                return;
+            }
+
+            // Create user with Firebase Auth
+            const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+
+            // Save username & email in Realtime Database under user UID
+            const uid = userCredential.user.uid;
+            await db.ref('users/' + uid).set({
+                username: username,
+                email: email
+            });
+
+            showSuccessMessage('✅ Registration successful! Please login now.');
+
+            // Optionally flip back to login form after registration
+            toggleFlip();
+
+            // Clear register form inputs
+            document.getElementById('registerForm').reset();
+
+        } catch (err) {
+            console.error("Registration error:", err);
+            if (err.code === 'auth/email-already-in-use') {
+                showErrorMessage('❌ Email is already in use. Please login or use another email.');
+            } else if (err.code === 'auth/weak-password') {
+                showErrorMessage('❗ Password is too weak. Please choose a stronger password.');
+            } else {
+                showErrorMessage(`⚠️ Registration error: ${err.message}`);
+            }
+        }
+    });
+
+    // -------------------------
+    // 🔐 GOOGLE LOGIN
+    // -------------------------
+    document.getElementById('googleSignInBtn').addEventListener('click', () => {
+        const provider = new firebase.auth.GoogleAuthProvider();
+        auth.signInWithPopup(provider)
+            .then(result => {
+                alert(`✅ Hello, ${result.user.displayName}! Login Successful!`);
+                window.location.href = 'test.html';
+            })
+            .catch(error => {
+                console.error("Google Sign-In Error:", error.message);
+                alert(`⚠️ Google Sign-In Error: ${error.message}`);
+            });
+    });
+</script>
+
+
 <script>
     function toggleFlip() {
         document.getElementById('flip-container').classList.toggle('flip');
     }
 </script>
 
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
-
-<script>
-    const firebaseConfig = {
-        apiKey: "AIzaSyCNH38ylbzfIORN0wmDoizj_eWKunQ1uAQ",
-        authDomain: "my-first-app-6a293.firebaseapp.com",
-        projectId: "my-first-app-6a293",
-        storageBucket: "my-first-app-6a293.appspot.com",
-        messagingSenderId: "599546991663",
-        appId: "1:599546991663:web:b07d25c55f1d00c06722da",
-        measurementId: "G-5EVKKY7KLP"
-    };
-
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-
-    // Google Sign-In function
-    document.getElementById('googleSignInBtn').addEventListener('click', () => {
-        const provider = new firebase.auth.GoogleAuthProvider();
-        auth.signInWithPopup(provider)
-            .then((result) => {
-                const user = result.user;
-                alert(`Hello, ${user.displayName}! Login Successful!`);
-                window.location.href = 'test.html';  // <---- Put it here, after successful login
-            })
-            .catch((error) => {
-                console.error("Error signing in:", error);
-            });
-    });
-
-    function showPopup(message, duration = 3000) {
-        const popup = document.getElementById('popup-message');
-        popup.textContent = message;
-        popup.classList.remove('hidden');
-        setTimeout(() => {
-            popup.classList.add('hidden');
-        }, duration);
-    }
-
-</script>
 </body>
 </html>
+
