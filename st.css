@@ -885,4 +885,35 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
         max-width: 300px;
     }
 }
+#userToggle {
+    position: relative;
+    width: 50px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #2b2b2c; /* gray-600 */
+    color: white;
+    font-weight: bold;
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+#userInitial {
+    user-select: none;
+    z-index: 10;
+}
+
+#defaultUserIcon {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    pointer-events: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+}
+
 
