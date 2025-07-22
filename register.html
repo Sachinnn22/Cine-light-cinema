@@ -327,11 +327,17 @@
     </div>
 </footer>
 
-<div id="popup-message" class="fixed top-5 right-5 hidden bg-green-500 text-white px-4 py-3 rounded shadow-lg z-50">
-    Login successfully!
+<!-- Forgot Password Modal -->
+<div id="forgotPasswordModal" class="fixed inset-0 bg-black bg-opacity-70 backdrop-blur-sm flex items-center justify-center z-[9999] hidden">
+    <div class="rounded-2xl border-2 border-white p-6 w-full max-w-md shadow-xl" style="background-color: #232121;">
+        <h2 class="text-xl font-semibold mb-4 text-white">Reset Your Password</h2>
+        <input id="resetEmail" type="email" placeholder="Enter your email" class="w-full mb-4 px-4 py-2 border-2 rounded focus:outline-none focus:ring-2 focus:ring-white" />
+        <div class="flex justify-end space-x-3">
+            <button onclick="closeForgotModal()" class="bg-gray-900 text-white px-4 py-2 rounded hover:bg-gray-900">Cancel</button>
+            <button onclick="sendResetEmail()" class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-600">Send Email</button>
+        </div>
+    </div>
 </div>
-
-
 
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
@@ -574,6 +580,38 @@
                 alert(`⚠️ Google Sign-In Error: ${error.message}`);
             });
     });
+    function forgotPassword() {
+        document.getElementById("forgotPasswordModal").classList.remove("hidden");
+    }
+
+    function closeForgotModal() {
+        document.getElementById("forgotPasswordModal").classList.add("hidden");
+        document.getElementById("resetEmail").value = '';
+    }
+
+    async function sendResetEmail() {
+        const email = document.getElementById("resetEmail").value.trim().toLowerCase();
+
+        if (!email || !email.includes("@")) {
+            showErrorMessage("⚠️ Please enter a valid email address.");
+            return;
+        }
+
+        try {
+            await firebase.auth().sendPasswordResetEmail(email);
+            showSuccessMessage("📧 Password reset email sent! Please check your inbox.");
+            closeForgotModal();
+        } catch (error) {
+            console.error("Reset email error:", error);
+            if (error.code === 'auth/user-not-found') {
+                showErrorMessage("❌ No account found with this email.");
+            } else if (error.code === 'auth/invalid-email') {
+                showErrorMessage("⚠️ Invalid email format.");
+            } else {
+                showErrorMessage(`⚠️ Error: ${error.message}`);
+            }
+        }
+    }
 </script>
 
 
