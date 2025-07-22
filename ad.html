@@ -1,314 +1,347 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Sidebar Smooth Slide & Beautiful Table</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
-    <style>
-        html {
-            font-family: "Inter", sans-serif;
-        }
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Sidebar Smooth Slide & Beautiful Table</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+        <style>
+            html {
+                font-family: "Inter", sans-serif;
+            }
 
-        #sidebar {
-            transition: transform 0.4s ease-in-out;
-        }
+            #sidebar {
+                transition: transform 0.4s ease-in-out;
+            }
 
-        #menu-btn {
-            font-size: 1.5rem;
-            background: none;
-            border: none;
-            position: fixed;
-            top: 0.8rem;
-            left: 1rem;
-            z-index: 1001;
-            cursor: pointer;
-        }
-        #content {
-            transition: margin-left 0.4s ease-in-out;
-            padding: 2rem 1rem;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            background-color: #f9fafb;
-            /*margin-top: 1.4rem;*/
-        }
+            #menu-btn {
+                font-size: 1.5rem;
+                background: none;
+                border: none;
+                position: fixed;
+                top: 0.8rem;
+                left: 1rem;
+                z-index: 1001;
+                cursor: pointer;
+            }
+            #content {
+                transition: margin-left 0.4s ease-in-out;
+                padding: 2rem 1rem;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                background-color: #f9fafb;
+                /*margin-top: 1.4rem;*/
+            }
 
-        .table-header {
-            font-size: 3.3rem;
-            font-weight: 900;
-            color: #545757;
-            margin-bottom: 1.8rem;
-            letter-spacing: 1.8px;
-            text-align: center;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .table-wrapper {
-            width: 100%;
-            max-width: 900px;
-            border: 3px solid #4e4c4c;
-            border-radius: 12px;
-            overflow: hidden;
-            background-color: white;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: white;
-        }
-        tbody tr {
-            transition: background-color 0.6s ease;
-        }
-        tbody tr:hover {
-            background-color: #eae6e6 !important;
-            cursor: pointer;
-        }
-        table thead {
-            background-color: #ffffff !important;
-            color: #333;
-        }
-        th, td {
-            border: 3px solid #4e4c4c;
-            text-align: center;
-            padding: 0.75rem 1rem;
-        }
-        td img {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            object-fit: cover;
-        }
-        thead tr {
-            border-bottom: 2px solid #c0c0c0;
-        }
-        tbody tr:hover {
-            background-color: #f5f5f5;
-        }
-        .btn {
-            background: #969698;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem 1rem;
-            border-radius: 0.375rem;
-            transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-            color: #14171b;
-            font-weight: 600;
-            user-select: none;
-        }
-        .btn:hover:not(:disabled) {
-            background-color: #676464;
-            color: #f5f5f6;
-            box-shadow: none;
-        }
-        .btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            box-shadow: none;
-        }
-        #overlay {
-            position: fixed;
-            inset: 0;
-            background-color: rgba(0, 0, 0, 0.3);
-            z-index: 40;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            display: none;
-        }
-        #overlay.active {
-            display: block;
-            opacity: 1;
-        }
+            .table-header {
+                font-size: 3.3rem;
+                font-weight: 900;
+                color: #545757;
+                margin-bottom: 1.8rem;
+                letter-spacing: 1.8px;
+                text-align: center;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            }
+            .table-wrapper {
+                width: 100%;
+                max-width: 900px;
+                border: 3px solid #4e4c4c;
+                border-radius: 12px;
+                overflow: hidden;
+                background-color: white;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                background-color: white;
+            }
+            tbody tr {
+                transition: background-color 0.6s ease;
+            }
+            tbody tr:hover {
+                background-color: #eae6e6 !important;
+                cursor: pointer;
+            }
+            table thead {
+                background-color: #ffffff !important;
+                color: #333;
+            }
+            th, td {
+                border: 3px solid #4e4c4c;
+                text-align: center;
+                padding: 0.75rem 1rem;
+            }
+            td img {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                object-fit: cover;
+            }
+            thead tr {
+                border-bottom: 2px solid #c0c0c0;
+            }
+            tbody tr:hover {
+                background-color: #f5f5f5;
+            }
+            .btn {
+                background: #969698;
+                border: none;
+                cursor: pointer;
+                padding: 0.5rem 1rem;
+                border-radius: 0.375rem;
+                transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+                color: #14171b;
+                font-weight: 600;
+                user-select: none;
+            }
+            .btn:hover:not(:disabled) {
+                background-color: #676464;
+                color: #f5f5f6;
+                box-shadow: none;
+            }
+            .btn:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+                box-shadow: none;
+            }
+            #overlay {
+                position: fixed;
+                inset: 0;
+                background-color: rgba(0, 0, 0, 0.3);
+                z-index: 40;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+                display: none;
+            }
+            #overlay.active {
+                display: block;
+                opacity: 1;
+            }
 
 
-    </style>
-</head>
-<body class="bg-gray-50">
-<button id="menu-btn" aria-label="Toggle Menu" type="button">
-    <i class="fa-solid fa-bars text-gray-600 transition-all duration-300"></i>
-</button>
+        </style>
+    </head>
+    <body class="bg-gray-50">
+    <button id="menu-btn" aria-label="Toggle Menu" type="button">
+        <i class="fa-solid fa-bars text-gray-600 transition-all duration-300"></i>
+    </button>
 
-<aside id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-white border-r-4 border-gray-600 flex flex-col justify-between transform -translate-x-full z-50">
-    <div>
-        <!-- Logo Section with thicker bottom border -->
-        <div class="flex items-center justify-center h-16 border-b-4 border-gray-500">
-            <span class="text-lg font-semibold text-gray-700">Logo</span>
+    <aside id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-white border-r-4 border-gray-600 flex flex-col justify-between transform -translate-x-full z-50">
+        <div>
+            <!-- Logo Section with thicker bottom border -->
+            <div class="flex items-center justify-center h-16 border-b-4 border-gray-500">
+                <span class="text-lg font-semibold text-gray-700">Logo</span>
+            </div>
+
+            <!-- Navigation Section with top border -->
+            <nav class="px-4 pt-4 text-gray-600 border-t-1 border-gray-300">
+                <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-200 mb-2 hover:bg-gray-200 hover:text-gray-900">
+                    <i class="fa-solid fa-fire opacity-75 w-5"></i>
+                    <span>Thriller Movie</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-200 mb-2 hover:bg-gray-200 hover:text-gray-900">
+                    <i class="fa-solid fa-microchip opacity-75 w-5"></i>
+                    <span>Sci-Fi Movie</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-200 mb-2 hover:bg-gray-100 hover:text-gray-900">
+                    <i class="fa-solid fa-heart opacity-75 w-5"></i>
+                    <span>Love Story</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-200 mb-2 hover:bg-gray-200 hover:text-gray-900">
+                    <i class="fa-solid fa-globe opacity-75 w-5"></i>
+                    <span>Adventure</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-200 mb-2 hover:bg-gray-200 hover:text-gray-900">
+                    <i class="fa-solid fa-circle-plus opacity-75 w-5"></i>
+                    <span>Add Info</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-200 mb-2 hover:bg-gray-200 hover:text-gray-900">
+                    <i class="fa-solid fa-clipboard-list opacity-75 w-5"></i>
+                    <span>View Question</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-200 hover:bg-gray-200 hover:text-gray-900">
+                    <i class="fa-solid fa-users opacity-75 w-5"></i>
+                    <span>Members</span>
+                </a>
+            </nav>
         </div>
-
-        <!-- Navigation Section with top border -->
-        <nav class="px-4 pt-4 text-gray-600 border-t-1 border-gray-300">
-            <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-200 mb-2 hover:bg-gray-200 hover:text-gray-900">
-                <i class="fa-solid fa-fire opacity-75 w-5"></i>
-                <span>Thriller Movie</span>
-            </a>
-            <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-200 mb-2 hover:bg-gray-200 hover:text-gray-900">
-                <i class="fa-solid fa-microchip opacity-75 w-5"></i>
-                <span>Sci-Fi Movie</span>
-            </a>
-            <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-200 mb-2 hover:bg-gray-100 hover:text-gray-900">
-                <i class="fa-solid fa-heart opacity-75 w-5"></i>
-                <span>Love Story</span>
-            </a>
-            <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-200 mb-2 hover:bg-gray-200 hover:text-gray-900">
-                <i class="fa-solid fa-globe opacity-75 w-5"></i>
-                <span>Adventure</span>
-            </a>
-            <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-200 mb-2 hover:bg-gray-200 hover:text-gray-900">
-                <i class="fa-solid fa-circle-plus opacity-75 w-5"></i>
-                <span>Add Info</span>
-            </a>
-            <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-200 mb-2 hover:bg-gray-200 hover:text-gray-900">
-                <i class="fa-solid fa-clipboard-list opacity-75 w-5"></i>
-                <span>View Question</span>
-            </a>
-            <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-200 hover:bg-gray-200 hover:text-gray-900">
-                <i class="fa-solid fa-users opacity-75 w-5"></i>
-                <span>Members</span>
-            </a>
-        </nav>
-    </div>
-</aside>
+    </aside>
 
 
 
-<div id="overlay"></div>
+    <div id="overlay"></div>
 
-<main id="content" class="w-full overflow-x-auto">
-    <h1 class="table-header">User Details</h1>
-    <div class="table-wrapper">
-        <table>
-            <thead>
-            <tr>
-                <th class="text-center">Name</th>
-                <th class="text-center">Profile</th>
-                <th class="text-center" width="30%">Email</th>
-                <th class="text-center">Join Time</th>
-                <th class="text-center">Join Date</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>John Doe</td>
-                <td><img src="https://randomuser.me/api/portraits/men/1.jpg" alt="John's Profile" class="w-10 h-10 rounded-full object-cover" /></td>
-                <td>johndoeafuirus@example.com</td>
-                <td>08:30 PM</td>
-                <td>March 1, 2024</td>
-            </tr>
-            <tr>
-                <td>Jane Smith</td>
-                <td><img src="https://randomuser.me/api/portraits/women/2.jpg" alt="Jane's Profile" class="w-10 h-10 rounded-full object-cover" /></td>
-                <td>janesmith@example.com</td>
-                <td>09:15 AM</td>
-                <td>February 15, 2024</td>
-            </tr>
-            <tr>
-                <td>Michael Brown</td>
-                <td><img src="https://randomuser.me/api/portraits/men/3.jpg" alt="Michael's Profile" class="w-10 h-10 rounded-full object-cover" /></td>
-                <td>michaelbrown@example.com</td>
-                <td>11:00 AM</td>
-                <td>January 10, 2024</td>
-            </tr>
-            <tr>
-                <td>Emily Johnson</td>
-                <td><img src="https://randomuser.me/api/portraits/women/4.jpg" alt="Emily's Profile" class="w-10 h-10 rounded-full object-cover" /></td>
-                <td>emilyjohnson@example.com</td>
-                <td>04:45 PM</td>
-                <td>April 22, 2024</td>
-            </tr>
-            <tr>
-                <td>David Lee</td>
-                <td><img src="https://randomuser.me/api/portraits/men/5.jpg" alt="David's Profile" class="w-10 h-10 rounded-full object-cover" /></td>
-                <td>davidlee@example.com</td>
-                <td>02:30 PM</td>
-                <td>May 3, 2024</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="flex justify-center items-center gap-4 mt-4">
-        <button id="prev-btn" class="btn px-4 py-2" disabled>Previous</button>
-        <span id="page-info" class="text-gray-700 font-semibold"></span>
-        <button id="next-btn" class="btn px-4 py-2">Next</button>
-    </div>
-</main>
+    <main id="content" class="w-full overflow-x-auto">
+        <h1 class="table-header">User Details</h1>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                <tr>
+                    <th class="text-center">Name</th>
+                    <th class="text-center">Profile</th>
+                    <th class="text-center" width="30%">Email</th>
+                    <th class="text-center">Join Time</th>
+                    <th class="text-center">Join Date</th>
+                </tr>
+                </thead>
+                <tbody>
 
-<script>
-    const btn = document.getElementById("menu-btn");
-    const sidebar = document.getElementById("sidebar");
-    const icon = btn.querySelector("i");
-    const overlay = document.getElementById("overlay");
+                </tbody>
+            </table>
+        </div>
+        <div class="flex justify-center items-center gap-4 mt-4">
+            <button id="prev-btn" class="btn px-4 py-2" disabled>Previous</button>
+            <span id="page-info" class="text-gray-700 font-semibold"></span>
+            <button id="next-btn" class="btn px-4 py-2">Next</button>
+        </div>
+    </main>
 
-    let isSidebarOpen = false;
+    <!-- Firebase App (the core Firebase SDK) -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <!-- Choose the database you're using: -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    <!-- OR use Firestore if you're using that -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
-    btn.addEventListener("click", () => {
-        isSidebarOpen = !isSidebarOpen;
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyCNH38ylbzfIORN0wmDoizj_eWKunQ1uAQ",
+            authDomain: "my-first-app-6a293.firebaseapp.com",
+            projectId: "my-first-app-6a293",
+            storageBucket: "my-first-app-6a293.appspot.com",
+            messagingSenderId: "599546991663",
+            appId: "1:599546991663:web:b07d25c55f1d00c06722da",
+            measurementId: "G-5EVKKY7KLP"
+        };
 
-        if (isSidebarOpen) {
-            sidebar.classList.remove("-translate-x-full");
-            icon.classList.remove("fa-bars", "text-gray-600");
-            icon.classList.add("fa-xmark", "text-red-600");
-            overlay.classList.add("active");
-        } else {
-            sidebar.classList.add("-translate-x-full");
-            icon.classList.remove("fa-xmark", "text-red-600");
-            icon.classList.add("fa-bars", "text-gray-600");
-            overlay.classList.remove("active");
+        firebase.initializeApp(firebaseConfig);
+
+        const db = firebase.database();
+        const tableBody = document.querySelector("table tbody");
+
+        const rowsPerPage = 5;
+        let lastKey = null;
+        let firstKey = null;
+        let currentPage = 1;
+
+        // Load users starting from a given key (or from start)
+        function loadUsers(startKey = null) {
+            let query = db.ref('users').orderByKey().limitToFirst(rowsPerPage + 1);
+            if (startKey) {
+                query = query.startAt(startKey);
+            }
+
+            query.once('value', snapshot => {
+                const users = [];
+                snapshot.forEach(childSnapshot => {
+                    users.push({ key: childSnapshot.key, val: childSnapshot.val() });
+                });
+
+                // If more than rowsPerPage, there is a next page
+                const hasNextPage = users.length > rowsPerPage;
+                if (hasNextPage) users.pop();
+
+                tableBody.innerHTML = '';
+
+                users.forEach(user => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                    <td>${user.val.name}</td>
+                    <td><img src="${user.val.profile}" alt="${user.val.name}" width="50" height="50" class="rounded-full" /></td>
+                    <td>${user.val.email}</td>
+                    <td>${user.val.joinTime}</td>
+                    <td>${user.val.joinDate}</td>
+                `;
+                    tableBody.appendChild(row);
+                });
+
+                firstKey = users.length ? users[0].key : null;
+                lastKey = users.length ? users[users.length - 1].key : null;
+
+                prevBtn.disabled = currentPage === 1;
+                nextBtn.disabled = !hasNextPage;
+
+                pageInfo.textContent = `Page ${currentPage}`;
+            });
         }
-    });
 
-    overlay.addEventListener("click", () => {
-        sidebar.classList.add("-translate-x-full");
-        icon.classList.remove("fa-xmark", "text-red-600");
-        icon.classList.add("fa-bars", "text-blue-600");
-        overlay.classList.remove("active");
-        isSidebarOpen = false;
-    });
-</script>
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const pageInfo = document.getElementById('page-info');
 
-<script>
-    const rowsPerPage = 5;
-    let currentPage = 1;
+        nextBtn.onclick = () => {
+            if (!nextBtn.disabled) {
+                currentPage++;
+                loadUsers(lastKey);
+            }
+        };
 
-    const tableBody = document.querySelector("table tbody");
-    const rows = Array.from(tableBody.querySelectorAll("tr"));
-    const totalPages = Math.ceil(rows.length / rowsPerPage);
+        prevBtn.onclick = () => {
+            if (currentPage > 1) {
+                currentPage--;
+                loadPage(currentPage);
+            }
+        };
 
-    const prevBtn = document.getElementById("prev-btn");
-    const nextBtn = document.getElementById("next-btn");
-    const pageInfo = document.getElementById("page-info");
+        // Simple approach to load previous pages by fetching from the start
+        function loadPage(page) {
+            db.ref('users').orderByKey().limitToFirst(rowsPerPage * page).once('value', snapshot => {
+                const users = [];
+                snapshot.forEach(childSnapshot => {
+                    users.push({ key: childSnapshot.key, val: childSnapshot.val() });
+                });
 
-    function renderTablePage(page) {
-        rows.forEach(row => row.style.display = "none");
+                const startIndex = (page - 1) * rowsPerPage;
+                const pageUsers = users.slice(startIndex, startIndex + rowsPerPage);
 
-        const start = (page - 1) * rowsPerPage;
-        const end = start + rowsPerPage;
+                tableBody.innerHTML = '';
+                pageUsers.forEach(user => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                    <td>${user.val.name}</td>
+                    <td><img src="${user.val.profile}" alt="${user.val.name}" width="50" height="50" class="rounded-full" /></td>
+                    <td>${user.val.email}</td>
+                    <td>${user.val.joinTime}</td>
+                    <td>${user.val.joinDate}</td>
+                `;
+                    tableBody.appendChild(row);
+                });
 
-        rows.slice(start, end).forEach(row => row.style.display = "");
+                firstKey = pageUsers.length ? pageUsers[0].key : null;
+                lastKey = pageUsers.length ? pageUsers[pageUsers.length - 1].key : null;
 
-        prevBtn.disabled = page === 1;
-        nextBtn.disabled = page === totalPages;
+                prevBtn.disabled = page === 1;
+                nextBtn.disabled = users.length <= page * rowsPerPage;
 
-        pageInfo.textContent = `Page ${page} of ${totalPages}`;
-    }
-
-    prevBtn.addEventListener("click", () => {
-        if (currentPage > 1) {
-            currentPage--;
-            renderTablePage(currentPage);
+                pageInfo.textContent = `Page ${page}`;
+            });
         }
-    });
 
-    nextBtn.addEventListener("click", () => {
-        if (currentPage < totalPages) {
-            currentPage++;
-            renderTablePage(currentPage);
-        }
-    });
+        // Initial load
+        loadUsers();
 
-    renderTablePage(currentPage);
-</script>
-</body>
-</html>
+        const menuBtn = document.getElementById('menu-btn');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+
+        menuBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+            overlay.classList.toggle('active');
+        });
+
+        overlay.addEventListener('click', () => {
+            sidebar.classList.add('-translate-x-full');
+            overlay.classList.remove('active');
+        });
+
+    </script>
+
+
+
+    </body>
+    </html>
