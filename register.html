@@ -509,6 +509,18 @@
             return;
         }
 
+        const usernameRegex = /^[a-zA-Z0-9]{3,}$/;
+        if (!usernameRegex.test(username)) {
+            showErrorMessage('❗ Username must be at least 3 characters and contain only letters or numbers.');
+            return;
+        }
+
+        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{6,}$/;
+        if (!passwordRegex.test(password)) {
+            showErrorMessage('🔒 Password must be at least 6 characters and include letters and numbers.');
+            return;
+        }
+
         try {
             // First, check if username already exists in DB to avoid duplicates
             const snapshot = await db.ref('users').orderByChild('username').equalTo(username).once('value');
