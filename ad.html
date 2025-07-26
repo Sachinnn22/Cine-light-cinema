@@ -5,11 +5,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Sidebar Smooth Slide & Beautiful Table</title>
         <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&display=swap" rel="stylesheet" />
+
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
         <style>
-            html {
+            html,body {
                 font-family: "Inter", sans-serif;
+                background-color: #01364a !important;
             }
 
             #sidebar {
@@ -21,32 +24,36 @@
                 background: none;
                 border: none;
                 position: fixed;
-                top: 0.8rem;
-                left: 1rem;
+                top: 1rem;
+                left: 1.5rem;
                 z-index: 1001;
                 cursor: pointer;
             }
+
             #content {
                 transition: margin-left 0.4s ease-in-out;
-                padding: 4rem 1rem;
+                padding: 3.7rem 1rem;
                 min-height: 100vh;
                 display: flex;
                 flex-direction: column;
                 justify-content: flex-start;
                 align-items: center;
-                background-color: #f9fafb;
+                background-color: #eceff4; /* light color blocking the dark background */
                 /*margin-top: 1.4rem;*/
             }
 
             .user {
+                font-family: 'Merriweather', 'Georgia', serif;
                 font-size: 3.3rem;
                 font-weight: 900;
                 color: #545757;
                 margin-bottom: 1.8rem;
-                letter-spacing: 1.8px;
+                letter-spacing: 2.3px;
                 text-align: center;
                 text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
             }
+
+
             .table-wrapper {
                 width: 100%;
                 max-width: 900px;
@@ -60,6 +67,18 @@
                 border-collapse: collapse;
                 background-color: white;
             }
+
+            /* Smooth scale transition on card hover */
+            #card-container > div {
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            #card-container > div:hover {
+                transform: scale(1.05);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+                cursor: pointer;
+            }
+
             tbody tr {
                 transition: background-color 0.6s ease;
             }
@@ -97,7 +116,7 @@
 
             .email {
                 font-weight: 600;   /* medium */
-                font-size: 1.2rem; /* 18px */
+                font-size: 1.08rem; /* 18px */
                 color: #353c45;     /* gray-600 */
                 margin-bottom: 0.8rem;
             }
@@ -145,7 +164,7 @@
 
         </style>
     </head>
-    <body class="bg-gray-50">
+    <body>
     <button id="menu-btn" aria-label="Toggle Menu" type="button">
         <i class="fa-solid fa-bars text-gray-600 text-3xl transition-all duration-300"></i>
     </button>
