@@ -182,31 +182,33 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
     }
 
     try {
-        // First, check if username already exists in DB to avoid duplicates
+        // Check if username already exists
         const snapshot = await db.ref('users').orderByChild('username').equalTo(username).once('value');
         if (snapshot.exists()) {
             showErrorMessage('❌ Username already taken. Please choose another.');
             return;
         }
 
-        // Create user with Firebase Auth
-        // Create user with Firebase Auth
+        // Create user in Firebase Auth
         const userCredential = await auth.createUserWithEmailAndPassword(email, password);
-
-// Save username, email, and default photoURL to Realtime Database under user UID
         const uid = userCredential.user.uid;
+
+        // Get current time & date
+        const now = new Date();
+        const registerDate = now.toISOString().slice(0, 10);  // YYYY-MM-DD
+        const registerTime = now.toTimeString().slice(0, 5);  // HH:mm
+
+        // Save user data in Realtime Database
         await db.ref('users/' + uid).set({
             username: username,
             email: email,
-            photoURL: `https://api.dicebear.com/6.x/adventurer/svg?seed=${uid}`
+            photoURL: `https://api.dicebear.com/6.x/adventurer/svg?seed=${uid}`,
+            registerDate: registerDate,
+            registerTime: registerTime
         });
 
         showSuccessMessage('✅ Registration successful! Please login now.');
-
-        // Optionally flip back to login form after registration
-        toggleFlip();
-
-        // Clear register form inputs
+        toggleFlip();  // Show login form
         document.getElementById('registerForm').reset();
 
     } catch (err) {
