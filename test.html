@@ -516,87 +516,141 @@
   </div>
 
 
-  <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-      import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
-      import { getDatabase, ref, get, child } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js";
+      <script type="module">
+          import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+          import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+          import { getDatabase, ref, get, child } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js";
 
-      const firebaseConfig = {
-          apiKey: "AIzaSyCNH38ylbzfIORN0wmDoizj_eWKunQ1uAQ",
-          authDomain: "my-first-app-6a293.firebaseapp.com",
-          databaseURL: "https://my-first-app-6a293-default-rtdb.asia-southeast1.firebasedatabase.app",
-          projectId: "my-first-app-6a293",
-          storageBucket: "my-first-app-6a293.appspot.com",
-          messagingSenderId: "599546991663",
-          appId: "1:599546991663:web:b07d25c55f1d00c06722da",
-          measurementId: "G-5EVKKY7KLP"
-      };
+          const firebaseConfig = {
+              apiKey: "AIzaSyCNH38ylbzfIORN0wmDoizj_eWKunQ1uAQ",
+              authDomain: "my-first-app-6a293.firebaseapp.com",
+              databaseURL: "https://my-first-app-6a293-default-rtdb.asia-southeast1.firebasedatabase.app",
+              projectId: "my-first-app-6a293",
+              storageBucket: "my-first-app-6a293.appspot.com",
+              messagingSenderId: "599546991663",
+              appId: "1:599546991663:web:b07d25c55f1d00c06722da",
+              measurementId: "G-5EVKKY7KLP"
+          };
 
-      const app = initializeApp(firebaseConfig);
-      const auth = getAuth(app);
-      const db = getDatabase(app);
+          const app = initializeApp(firebaseConfig);
+          const auth = getAuth(app);
+          const db = getDatabase(app);
 
-      function updateUserDropdown(username) {
-          const userInitial = document.getElementById('userInitial');
-          const defaultIcon = document.getElementById('defaultUserIcon');
-          const userMenu = document.getElementById('userMenu');
+          function updateUserDropdown(username, photoURL = null) {
+              const userInitial = document.getElementById('userInitial');
+              const defaultIcon = document.getElementById('defaultUserIcon');
+              const userToggle = document.getElementById('userToggle');
+              const userMenu = document.getElementById('userMenu');
 
-          if (!userMenu || !userInitial || !defaultIcon) return;
+              if (!userMenu || !userInitial || !defaultIcon || !userToggle) return;
 
-          if (username && username.length > 0 && username !== 'U') {
-              userInitial.textContent = username.charAt(0).toUpperCase();
-              userInitial.style.display = 'inline';
-              defaultIcon.style.display = 'none';
+              // Clear any previously added profile image
+              const existingImg = userToggle.querySelector('img.userPhoto');
+              if (existingImg) existingImg.remove();
 
-              userMenu.innerHTML = `
-        <li><a href="profile.html">My Profile</a></li>
-        <li><a href="#" id="logoutBtn">Log Out</a></li>
-      `;
+              if (photoURL) {
+                  // ✅ Show user photo
+                  userInitial.style.display = 'none';
+                  defaultIcon.style.display = 'none';
 
-              document.getElementById('logoutBtn').addEventListener('click', async (e) => {
-                  e.preventDefault();
-                  try {
-                      await signOut(auth);
-                      alert('✅ Logged out successfully.');
-                      location.reload();
-                  } catch (error) {
-                      console.error('Logout Error:', error);
-                      alert('⚠️ Error logging out. Try again.');
-                  }
-              });
+                  const img = document.createElement('img');
+                  img.src = photoURL;
+                  img.alt = "User Photo";
+                  img.className = 'userPhoto rounded-full w-10 h-10 object-cover';
+                  userToggle.appendChild(img);
+              } else if (username && username !== 'U') {
+                  // ✅ Show first letter of username
+                  userInitial.textContent = username.charAt(0).toUpperCase();
+                  userInitial.style.display = 'inline';
+                  defaultIcon.style.display = 'none';
+              } else {
+                  // ❌ Logged out or anonymous
+                  userInitial.textContent = '';
+                  userInitial.style.display = 'none';
+                  defaultIcon.style.display = 'inline';
+              }
 
-          } else {
-              userInitial.textContent = '';
-              userInitial.style.display = 'none';
-              defaultIcon.style.display = 'inline';
+              // ✅ Update user menu
+              if (username && username !== 'U') {
+                  userMenu.innerHTML = `
+            <li><a href="profile.html">My Profile</a></li>
+            <li><a href="#" id="logoutBtn">Log Out</a></li>
+        `;
 
-              userMenu.innerHTML = `
-        <li><a href="register.html" id="signInLink">Sign In</a></li>
-        <li><a href="#" id="buyPremiumLink">Buy Premium</a></li>
-      `;
+                  // Attach logout listener
+                  document.getElementById('logoutBtn').addEventListener('click', async (e) => {
+                      e.preventDefault();
+                      try {
+                          await signOut(auth);  // ✅ correct usage
+                          alert('✅ Logged out successfully.');
+                      } catch (error) {
+                          console.error('Logout Error:', error);
+                          alert('⚠️ Error logging out. Try again.');
+                      }
+                  });
+
+              } else {
+                  userMenu.innerHTML = `
+            <li>
+                <a href="register.html" class="flex items-center gap-2">
+                    <!-- User Icon SVG -->
+                    Sign In
+                </a>
+            </li>
+            <li>
+                <a href="#" id="buyPremiumLink" class="flex items-center gap-2">
+                    <!-- Premium Icon SVG -->
+                    Buy Premium
+                </a>
+            </li>
+        `;
+              }
           }
-      }
 
-      // 👇 Automatically called on every page load
-      onAuthStateChanged(auth, async (user) => {
-          if (user) {
-              try {
-                  const snapshot = await get(child(ref(db), 'users/' + user.uid));
-                  const userData = snapshot.val();
-                  if (userData && userData.username) {
-                      updateUserDropdown(userData.username);
-                  } else {
-                      updateUserDropdown('U');
+
+
+
+          // document.getElementById('logoutBtn').addEventListener('click', async (e) => {
+          //         e.preventDefault();
+          //         try {
+          //             await signOut(auth);
+          //             alert('✅ Logged out successfully.');
+          //         } catch (error) {
+          //             console.error('Logout Error:', error);
+          //             alert('⚠️ Error logging out. Try again.');
+          //         }
+          //     });
+          // }
+
+          // 👇 Automatically called on every page load
+          onAuthStateChanged(auth, async (user) => {
+              if (user) {
+                  try {
+                      const snapshot = await get(child(ref(db), 'users/' + user.uid));
+                      const userData = snapshot.val();
+
+                      let displayName = 'U';
+
+                      if (userData && userData.username) {
+                          displayName = userData.username.charAt(0).toUpperCase();  // 👈 First letter
+                      } else if (user.displayName) {
+                          displayName = user.displayName.charAt(0).toUpperCase();  // 👈 First letter
+                      }
+
+                      const photoURL = userData?.photoURL || user.photoURL || `https://api.dicebear.com/6.x/pixel-art-neutral/svg?seed=${user.uid}`;
+                      updateUserDropdown(displayName, photoURL);
+
+                  } catch (err) {
+                      console.error('Error fetching user data:', err);
+                      updateUserDropdown(user.displayName?.charAt(0).toUpperCase() || 'U', user.photoURL);
                   }
-              } catch (err) {
-                  console.error('Error fetching user data:', err);
+              } else {
                   updateUserDropdown('U');
               }
-          } else {
-              updateUserDropdown('U');
-          }
-      });
-  </script>
+          });
+
+
+      </script>
 
   <script>
 
