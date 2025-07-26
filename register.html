@@ -173,6 +173,100 @@
             font-size: 14px;
             text-align: center;
         }
+        @media (min-width: 1400px) and (max-width: 1440px){
+            .custom-hero {
+                padding-left: 3rem !important;
+                padding-right: 3rem !important;
+                padding-top: 7rem !important;   /* clear space from fixed header */
+                padding-bottom: 2rem !important; /* space above footer */
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                justify-content: center !important;
+                min-height: 100vh !important;
+            }
+
+            #flip-container {
+                margin-top: 0 !important;
+                max-width: 55% !important;
+                min-height: 800px !important; /* increased minimum height */
+                /* or use height: 600px !important; if you want fixed height */
+            }
+
+            .custom-heading,
+            .custom-head {
+                font-size: 2.6rem !important;
+                text-align: center !important;
+            }
+
+            footer.custom-glass-footer {
+                margin-top: auto !important;
+                padding-top: 2rem !important;
+            }
+        }
+
+
+        @media (min-width: 1000px) and (max-width: 1024px){
+            .custom-hero {
+                padding-left: 2rem !important;
+                padding-right: 2rem !important;
+                padding-top: 23rem !important;  /* enough space below fixed navbar */
+                padding-bottom: 19rem !important; /* extra space before footer */
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                justify-content: center !important;
+                min-height: 100vh !important;
+            }
+
+            #flip-container {
+                margin-top: 0 !important;
+                max-width: 68% !important;
+            }
+
+            .custom-heading,
+            .custom-head {
+                font-size: 2.4rem !important;
+                text-align: center !important;
+            }
+
+            footer.custom-glass-footer {
+                margin-top: auto !important;
+                padding-top: 2rem !important;
+            }
+        }
+
+
+        @media (max-width: 768px) {
+            .custom-hero {
+                padding-left: 1.5rem !important;
+                padding-right: 1.5rem !important;
+                padding-top: 23rem !important;  /* enough space below fixed menu */
+                padding-bottom: 19rem !important; /* prevents footer overlap */
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                justify-content: center !important;
+                min-height: 100vh !important; /* takes full viewport height */
+            }
+
+            #flip-container {
+                margin-top: 0 !important; /* no top margin, flex handles positioning */
+                max-width: 75% !important;
+                width: 75% !important;
+            }
+
+            .custom-heading,
+            .custom-head {
+                font-size: 1.6rem !important;
+                text-align: center !important;
+            }
+
+            footer.custom-glass-footer {
+                margin-top: auto !important; /* ensures footer stays at the bottom */
+                padding-top: 2rem !important;
+            }
+        }
 
         @media (max-width: 425px) {
             .custom-hero {
