@@ -38,7 +38,7 @@
                 /*margin-top: 1.4rem;*/
             }
 
-            .table-header {
+            .user {
                 font-size: 3.3rem;
                 font-weight: 900;
                 color: #545757;
@@ -179,28 +179,13 @@
         </div>
     </aside>
 
-
-
     <div id="overlay"></div>
 
     <main id="content" class="w-full overflow-x-auto">
-        <h1 class="table-header">User Details</h1>
-        <div class="table-wrapper">
-            <table>
-                <thead>
-                <tr>
-                    <th class="text-center">Name</th>
-                    <th class="text-center">Profile</th>
-                    <th class="text-center" width="30%">Email</th>
-                    <th class="text-center">Join Time</th>
-                    <th class="text-center">Join Date</th>
-                </tr>
-                </thead>
-                <tbody>
+        <h3 class="mb-4 user" >User Details</h3>
 
-                </tbody>
-            </table>
-        </div>
+        <div id="card-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 max-w-4xl mx-auto"></div>
+
         <div class="flex justify-center items-center gap-4 mt-4">
             <button id="prev-btn" class="btn px-4 py-2" disabled>Previous</button>
             <span id="page-info" class="text-gray-700 font-semibold"></span>
@@ -237,7 +222,7 @@
         const db = firebase.database();
         const tableBody = document.querySelector("table tbody");
 
-        const rowsPerPage = 4;
+        const rowsPerPage = 3;
         let lastKey = null;
         let firstKey = null;
         let currentPage = 1;
@@ -265,20 +250,26 @@
                 if (hasNextPage) users.pop();  // Remove the extra user
 
                 // Clear the table before appending new rows
-                tableBody.innerHTML = '';
+                const cardContainer = document.getElementById("card-container");
 
-                // Loop through the users and create rows for the table
+// Clear previous cards
+                cardContainer.innerHTML = "";
+
                 users.forEach(user => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-            <td>${user.val.username}</td>
-            <td><img src="${user.val.photoURL}" alt="${user.val.username}" width="50" height="50" class="rounded-full" /></td>
-            <td>${user.val.email}</td>
-            <td>${user.val.registerTime ? user.val.registerTime : "N/A"}</td>
-            <td>${user.val.registerDate ? user.val.registerDate : "N/A"}</td>
-        `;
-                    tableBody.appendChild(row);
+                    const card = document.createElement("div");
+                    card.className = "bg-white border border-gray-300 rounded-lg p-5 shadow-md flex flex-col items-center text-center";
+
+                    card.innerHTML = `
+        <img src="${user.val.photoURL}" alt="${user.val.username}" class="w-24 h-24 rounded-full object-cover mb-4 shadow" />
+        <h2 class="text-xl font-semibold text-gray-800 mb-1">${user.val.username}</h2>
+        <p class="text-gray-600 mb-2">${user.val.email}</p>
+        <p class="text-sm text-gray-500">Join Time: ${user.val.registerTime ? user.val.registerTime : "N/A"}</p>
+        <p class="text-sm text-gray-500">Join Date: ${user.val.registerDate ? user.val.registerDate : "N/A"}</p>
+    `;
+
+                    cardContainer.appendChild(card);
                 });
+
 
                 // Set the pagination variables
                 firstKey = users.length ? users[0].key : null;
