@@ -128,7 +128,7 @@
     </head>
     <body class="bg-gray-50">
     <button id="menu-btn" aria-label="Toggle Menu" type="button">
-        <i class="fa-solid fa-bars text-gray-600 transition-all duration-300"></i>
+        <i class="fa-solid fa-bars text-gray-600 text-3xl transition-all duration-300"></i>
     </button>
 
     <aside id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-white border-r-4 border-gray-600 flex flex-col justify-between transform -translate-x-full z-50">
@@ -139,36 +139,43 @@
             </div>
 
             <!-- Navigation Section with top border -->
-            <nav class="px-4 pt-4 text-gray-600 border-t-1 border-gray-300">
-                <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-200 mb-2 hover:bg-gray-200 hover:text-gray-900">
+            <nav class="px-4 pt-4 text-gray-600 border-t border-gray-300">
+                <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-400 mb-4 text-gray-500 hover:bg-gray-300 hover:text-gray-900 font-bold">
                     <i class="fa-solid fa-fire opacity-75 w-5"></i>
                     <span>Thriller Movie</span>
                 </a>
-                <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-200 mb-2 hover:bg-gray-200 hover:text-gray-900">
+
+                <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-400 mb-4 text-gray-500 hover:bg-gray-300 hover:text-gray-900 font-bold">
                     <i class="fa-solid fa-microchip opacity-75 w-5"></i>
                     <span>Sci-Fi Movie</span>
                 </a>
-                <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-200 mb-2 hover:bg-gray-100 hover:text-gray-900">
+
+                <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-400 mb-4 text-gray-500 hover:bg-gray-300 hover:text-gray-900 font-bold">
                     <i class="fa-solid fa-heart opacity-75 w-5"></i>
                     <span>Love Story</span>
                 </a>
-                <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-200 mb-2 hover:bg-gray-200 hover:text-gray-900">
+
+                <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-400 mb-4 text-gray-500 hover:bg-gray-300 hover:text-gray-900 font-bold">
                     <i class="fa-solid fa-globe opacity-75 w-5"></i>
                     <span>Adventure</span>
                 </a>
-                <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-200 mb-2 hover:bg-gray-200 hover:text-gray-900">
+
+                <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-400 mb-4 text-gray-500 hover:bg-gray-300 hover:text-gray-900 font-bold">
                     <i class="fa-solid fa-circle-plus opacity-75 w-5"></i>
                     <span>Add Info</span>
                 </a>
-                <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-200 mb-2 hover:bg-gray-200 hover:text-gray-900">
+
+                <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-400 mb-4 text-gray-500 hover:bg-gray-300 hover:text-gray-900 font-bold">
                     <i class="fa-solid fa-clipboard-list opacity-75 w-5"></i>
                     <span>View Question</span>
                 </a>
-                <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-200 hover:bg-gray-200 hover:text-gray-900">
+
+                <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-400 mb-4 text-gray-500 hover:bg-gray-300 hover:text-gray-900 font-bold">
                     <i class="fa-solid fa-users opacity-75 w-5"></i>
                     <span>Members</span>
                 </a>
             </nav>
+
         </div>
     </aside>
 
@@ -307,6 +314,44 @@
 
         // Initial load
         loadUsers();
+
+        const menuBtn = document.getElementById("menu-btn");
+        const sidebar = document.getElementById("sidebar");
+        const overlay = document.getElementById("overlay");
+        const icon = menuBtn.querySelector("i"); // Get the <i> inside the button
+
+        menuBtn.addEventListener("click", () => {
+            const isVisible = !sidebar.classList.contains("-translate-x-full");
+
+            if (isVisible) {
+                // Close sidebar
+                sidebar.classList.add("-translate-x-full");
+                overlay.classList.remove("active");
+
+                // Change icon back to hamburger
+                icon.classList.remove("fa-times", "text-red-600");
+                icon.classList.add("fa-bars", "text-gray-600");
+            } else {
+                // Open sidebar
+                sidebar.classList.remove("-translate-x-full");
+                overlay.classList.add("active");
+
+                // Change icon to close (X) and make it red
+                icon.classList.remove("fa-bars", "text-gray-600");
+                icon.classList.add("fa-times", "text-red-600");
+            }
+        });
+
+        // Close sidebar if clicking outside (on overlay)
+        overlay.addEventListener("click", () => {
+            sidebar.classList.add("-translate-x-full");
+            overlay.classList.remove("active");
+
+            // Reset icon to hamburger
+            icon.classList.remove("fa-times", "text-red-600");
+            icon.classList.add("fa-bars", "text-gray-600");
+        });
+
     </script>
 
 
