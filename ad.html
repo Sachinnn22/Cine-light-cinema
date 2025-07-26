@@ -267,8 +267,8 @@
             <td>${user.val.username}</td>
             <td><img src="${user.val.photoURL}" alt="${user.val.username}" width="50" height="50" class="rounded-full" /></td>
             <td>${user.val.email}</td>
-            <td>${user.val.joinTime ? user.val.joinTime : "N/A"}</td> <!-- Assuming you want to display this -->
-            <td>${user.val.joinDate ? user.val.joinDate : "N/A"}</td> <!-- Same here -->
+            <td>${user.val.registerTime ? user.val.registerTime : "N/A"}</td>
+            <td>${user.val.registerDate ? user.val.registerDate : "N/A"}</td>
         `;
                     tableBody.appendChild(row);
                 });
