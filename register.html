@@ -176,15 +176,21 @@
 
         @media (max-width: 425px) {
             .custom-hero {
-                padding-left: 1.5rem !important;
-                padding-right: 1.5rem !important;
-                padding-top: 5.5rem !important; /* push below menu */
-                padding-bottom: 10rem !important; /* add space below content to push footer down */
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+                padding-top: 22rem !important;  /* adjusts for menu height */
+                padding-bottom: 18rem !important; /* keeps content above footer */
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                justify-content: center !important;
+                min-height: 100vh !important; /* fills screen height */
             }
 
             #flip-container {
-                margin-top: 3rem !important;
+                margin-top: 0 !important; /* no extra spacing needed */
                 max-width: 90% !important;
+                width: 100% !important;
             }
 
             .custom-heading,
@@ -194,8 +200,8 @@
             }
 
             footer.custom-glass-footer {
-                margin-top: 0 !important; /* no margin */
-                padding-top: 2rem !important; /* footer internal padding */
+                margin-top: auto !important; /* pushes to bottom of page */
+                padding-top: 2rem !important;
             }
         }
 
@@ -203,24 +209,33 @@
             .custom-hero {
                 padding-left: 1rem !important;
                 padding-right: 1rem !important;
-                padding-top: 4rem !important;
-                padding-bottom: 10rem !important; /* slightly less bottom padding */
+                padding-top: 22rem !important;  /* clears fixed top menu */
+                padding-bottom: 18rem !important; /* just enough to breathe */
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                justify-content: center !important;
+                min-height: 100vh !important; /* takes full screen height */
             }
 
             #flip-container {
-                margin-top: 4.4rem !important;
+                margin-top: 0 !important; /* let flexbox control positioning */
+                max-width: 90% !important;
+                width: 100% !important;
             }
 
             .custom-heading,
             .custom-head {
                 font-size: 1.4rem !important;
+                text-align: center !important;
             }
 
             footer.custom-glass-footer {
-                margin-top: 0 !important;
+                margin-top: auto !important; /* push footer to bottom */
                 padding-top: 2rem !important;
             }
         }
+
 
         @media (max-width: 320px) {
             .custom-hero {
