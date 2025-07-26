@@ -163,16 +163,24 @@
 
     </style>
 </head>
-<body class="bg-gradient-to-br from-slate-900 via-gray-900 to-black h-full">
+<body>
 
-<!-- Navbar -->
-<nav class="fixed top-0 left-0 right-0 z-50 bg-black bg-opacity-70 backdrop-blur-xl text-white shadow-md flex items-center justify-between px-6 py-3">
-    <div class="text-3xl font-bold tracking-wide select-none">SINHALIES</div>
-    <a
-            href="test.html"
-            class="inline-flex items-center gap-2 rounded-full border border-gray-500 bg-gradient-to-br from-gray-800 to-gray-700 px-5 py-2 text-gray-300 font-semibold hover:from-gray-600 hover:to-gray-600 hover:text-white transition"
-    ><i class="fas fa-house"></i> Home</a>
+<nav class="fixed top-0 left-0 right-0 z-50 bg-black bg-opacity-70 backdrop-blur-xl text-white shadow-md px-4 py-3">
+    <div class="flex items-center justify-between w-full">
+        <!-- Wrapper for brand and button -->
+        <div class="flex items-center space-x-6 sm:space-x-8">
+            <div class="text-2xl sm:text-3xl font-bold tracking-wide select-none">සිංහLIES</div>
+        </div>
+
+        <a
+                href="test.html"
+                class="inline-flex items-center gap-2 rounded-full border-2 border-white bg-gradient-to-br from-gray-600 to-gray-600 px-4 py-2 text-white font-semibold hover:from-gray-800 hover:to-gray-600 hover:text-white transition text-sm sm:text-base"
+        >
+            <i class="fas fa-house"></i> Home
+        </a>
+    </div>
 </nav>
+
 
 <!-- Main Section -->
 <section class="custom-hero h-screen flex justify-center items-center px-6 lg:px-24 pt-0">
@@ -546,7 +554,7 @@
                 await db.ref('users/' + uid).set({
                     username: username,
                     email: email,
-                    photoURL: `https://api.dicebear.com/6.x/pixel-art-neutral/svg?seed=${uid}`
+                    photoURL: `https://api.dicebear.com/6.x/adventurer/svg?seed=${uid}`
                 });
 
                 showSuccessMessage('✅ Registration successful! Please login now.');

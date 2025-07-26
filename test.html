@@ -637,7 +637,7 @@
                           displayName = user.displayName.charAt(0).toUpperCase();  // 👈 First letter
                       }
 
-                      const photoURL = userData?.photoURL || user.photoURL || `https://api.dicebear.com/6.x/pixel-art-neutral/svg?seed=${user.uid}`;
+                      const photoURL = userData?.photoURL || user.photoURL || `https://api.dicebear.com/6.x/adventurer/svg?seed=${user.uid}`;
                       updateUserDropdown(displayName, photoURL);
 
                   } catch (err) {
