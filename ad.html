@@ -202,36 +202,42 @@
     </main>
 
     <!-- Firebase App (the core Firebase SDK) -->
+    <!-- Firebase App (the core Firebase SDK) -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-    <!-- Choose the database you're using: -->
+    <!-- Firebase Database SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
-    <!-- OR use Firestore if you're using that -->
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
     <script>
+        // Your web app's Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyCNH38ylbzfIORN0wmDoizj_eWKunQ1uAQ",
             authDomain: "my-first-app-6a293.firebaseapp.com",
+            databaseURL: "https://my-first-app-6a293-default-rtdb.asia-southeast1.firebasedatabase.app",
             projectId: "my-first-app-6a293",
-            storageBucket: "my-first-app-6a293.appspot.com",
+            storageBucket: "my-first-app-6a293.firebasestorage.app",
             messagingSenderId: "599546991663",
             appId: "1:599546991663:web:b07d25c55f1d00c06722da",
             measurementId: "G-5EVKKY7KLP"
         };
 
-        firebase.initializeApp(firebaseConfig);
+        // Initialize Firebase
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        } else {
+            firebase.app();  // Use the default app
+        }
 
         const db = firebase.database();
         const tableBody = document.querySelector("table tbody");
 
-        const rowsPerPage = 5;
+        const rowsPerPage = 4;
         let lastKey = null;
         let firstKey = null;
         let currentPage = 1;
 
-        // Load users starting from a given key (or from start)
+        // Load users with pagination
         function loadUsers(startKey = null) {
-            let query = db.ref('users').orderByKey().limitToFirst(rowsPerPage + 1);
+            let query = db.ref('users').orderByKey().limitToFirst(rowsPerPage + 1);  // Fetch one extra user for pagination
             if (startKey) {
                 query = query.startAt(startKey);
             }
@@ -239,30 +245,39 @@
             query.once('value', snapshot => {
                 const users = [];
                 snapshot.forEach(childSnapshot => {
-                    users.push({ key: childSnapshot.key, val: childSnapshot.val() });
+                    // Access the user data
+                    const user = childSnapshot.val();
+                    users.push({
+                        key: childSnapshot.key, // user ID
+                        val: user // user data (username, email, photoURL)
+                    });
                 });
 
-                // If more than rowsPerPage, there is a next page
+                // Handle pagination (remove the extra user if there is more than 'rowsPerPage' users)
                 const hasNextPage = users.length > rowsPerPage;
-                if (hasNextPage) users.pop();
+                if (hasNextPage) users.pop();  // Remove the extra user
 
+                // Clear the table before appending new rows
                 tableBody.innerHTML = '';
 
+                // Loop through the users and create rows for the table
                 users.forEach(user => {
                     const row = document.createElement('tr');
                     row.innerHTML = `
-                    <td>${user.val.name}</td>
-                    <td><img src="${user.val.profile}" alt="${user.val.name}" width="50" height="50" class="rounded-full" /></td>
-                    <td>${user.val.email}</td>
-                    <td>${user.val.joinTime}</td>
-                    <td>${user.val.joinDate}</td>
-                `;
+            <td>${user.val.username}</td>
+            <td><img src="${user.val.photoURL}" alt="${user.val.username}" width="50" height="50" class="rounded-full" /></td>
+            <td>${user.val.email}</td>
+            <td>${user.val.joinTime ? user.val.joinTime : "N/A"}</td> <!-- Assuming you want to display this -->
+            <td>${user.val.joinDate ? user.val.joinDate : "N/A"}</td> <!-- Same here -->
+        `;
                     tableBody.appendChild(row);
                 });
 
+                // Set the pagination variables
                 firstKey = users.length ? users[0].key : null;
                 lastKey = users.length ? users[users.length - 1].key : null;
 
+                // Enable/Disable pagination buttons based on the data
                 prevBtn.disabled = currentPage === 1;
                 nextBtn.disabled = !hasNextPage;
 
@@ -274,6 +289,7 @@
         const nextBtn = document.getElementById('next-btn');
         const pageInfo = document.getElementById('page-info');
 
+        // Next page button
         nextBtn.onclick = () => {
             if (!nextBtn.disabled) {
                 currentPage++;
@@ -281,66 +297,17 @@
             }
         };
 
+        // Previous page button
         prevBtn.onclick = () => {
             if (currentPage > 1) {
                 currentPage--;
-                loadPage(currentPage);
+                loadUsers(firstKey);
             }
         };
 
-        // Simple approach to load previous pages by fetching from the start
-        function loadPage(page) {
-            db.ref('users').orderByKey().limitToFirst(rowsPerPage * page).once('value', snapshot => {
-                const users = [];
-                snapshot.forEach(childSnapshot => {
-                    users.push({ key: childSnapshot.key, val: childSnapshot.val() });
-                });
-
-                const startIndex = (page - 1) * rowsPerPage;
-                const pageUsers = users.slice(startIndex, startIndex + rowsPerPage);
-
-                tableBody.innerHTML = '';
-                pageUsers.forEach(user => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                    <td>${user.val.name}</td>
-                    <td><img src="${user.val.profile}" alt="${user.val.name}" width="50" height="50" class="rounded-full" /></td>
-                    <td>${user.val.email}</td>
-                    <td>${user.val.joinTime}</td>
-                    <td>${user.val.joinDate}</td>
-                `;
-                    tableBody.appendChild(row);
-                });
-
-                firstKey = pageUsers.length ? pageUsers[0].key : null;
-                lastKey = pageUsers.length ? pageUsers[pageUsers.length - 1].key : null;
-
-                prevBtn.disabled = page === 1;
-                nextBtn.disabled = users.length <= page * rowsPerPage;
-
-                pageInfo.textContent = `Page ${page}`;
-            });
-        }
-
         // Initial load
         loadUsers();
-
-        const menuBtn = document.getElementById('menu-btn');
-        const sidebar = document.getElementById('sidebar');
-        const overlay = document.getElementById('overlay');
-
-        menuBtn.addEventListener('click', () => {
-            sidebar.classList.toggle('-translate-x-full');
-            overlay.classList.toggle('active');
-        });
-
-        overlay.addEventListener('click', () => {
-            sidebar.classList.add('-translate-x-full');
-            overlay.classList.remove('active');
-        });
-
     </script>
-
 
 
     </body>
