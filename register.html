@@ -629,7 +629,7 @@
         const password = document.getElementById('password').value;
 
         if (!username || !password) {
-            showErrorMessage('❗ Username and password are required.');
+            showErrorMessage('Username and password are required.');
             return;
         }
 
@@ -638,7 +638,7 @@
             const snapshot = await db.ref('users').orderByChild('username').equalTo(username).once('value');
 
             if (!snapshot.exists()) {
-                showErrorMessage('❌ Username not found. Please register first.');
+                showErrorMessage('Username not found. Please register first.');
                 return;
             }
 
@@ -669,17 +669,17 @@
             const code = err.code;
 
             if (code === 'auth/too-many-requests') {
-                showErrorMessage('🚫 Too many login attempts. Please wait a few minutes and try again.');
+                showErrorMessage('Too many login attempts. Please wait a few minutes and try again.');
             } else if (code === 'auth/wrong-password' || code === 'auth/invalid-login-credentials') {
-                showErrorMessage('🔒 Incorrect password. Please try again.');
+                showErrorMessage('Incorrect password. Please try again.');
             } else if (code === 'auth/user-not-found') {
-                showErrorMessage('❌ Account not found. Please register.');
+                showErrorMessage('Account not found. Please register.');
             } else if (code === 'auth/invalid-email') {
-                showErrorMessage('⚠️ Invalid email format.');
+                showErrorMessage('Invalid email format.');
             } else if (code === 'auth/network-request-failed') {
-                showErrorMessage('⚠️ Network error. Please check your connection.');
+                showErrorMessage('Network error. Please check your connection.');
             } else {
-                showErrorMessage(`⚠️ Login error: ${err.message}`);
+                showErrorMessage(`Login error: ${err.message}`);
             }
 
             console.error("Firebase login error:", code, err.message);
@@ -702,7 +702,7 @@
         errorElement.textContent = message;
 
         errorElement.classList.add(
-            'fixed', 'top-20', 'inset-x-0', 'mx-auto',
+            'fixed', 'top-20', 'left-1/2', '-translate-x-1/2',
             'bg-red-600', 'text-white', 'px-6', 'py-3',
             'rounded', 'shadow-lg', 'z-[9999]', 'w-[450px]', 'text-sm', 'text-center',
             'fade-in-down'
@@ -771,19 +771,19 @@
         const password = document.getElementById('register-password').value;
 
         if (!username || !email || !password) {
-            showErrorMessage('❗ All fields are required.');
+            showErrorMessage('All fields are required.');
             return;
         }
 
         const usernameRegex = /^[a-zA-Z0-9]{3,}$/;
         if (!usernameRegex.test(username)) {
-            showErrorMessage('❗ Username must be at least 3 characters and contain only letters or numbers.');
+            showErrorMessage('Username must be at least 3 characters and contain only letters or numbers.');
             return;
         }
 
         const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{6,}$/;
         if (!passwordRegex.test(password)) {
-            showErrorMessage('🔒 Password must be at least 6 characters and include letters and numbers.');
+            showErrorMessage('Password must be at least 6 characters and include letters and numbers.');
             return;
         }
 
@@ -791,7 +791,7 @@
             // Check if username already exists
             const snapshot = await db.ref('users').orderByChild('username').equalTo(username).once('value');
             if (snapshot.exists()) {
-                showErrorMessage('❌ Username already taken. Please choose another.');
+                showErrorMessage('Username already taken. Please choose another.');
                 return;
             }
 
@@ -813,18 +813,18 @@
                 registerTime: registerTime
             });
 
-            showSuccessMessage('✅ Registration successful! Please login now.');
+            showSuccessMessage('Registration successful! Please login now.');
             toggleFlip();  // Show login form
             document.getElementById('registerForm').reset();
 
         } catch (err) {
             console.error("Registration error:", err);
             if (err.code === 'auth/email-already-in-use') {
-                showErrorMessage('❌ Email is already in use. Please login or use another email.');
+                showErrorMessage('Email is already in use. Please login or use another email.');
             } else if (err.code === 'auth/weak-password') {
-                showErrorMessage('❗ Password is too weak. Please choose a stronger password.');
+                showErrorMessage('Password is too weak. Please choose a stronger password.');
             } else {
-                showErrorMessage(`⚠️ Registration error: ${err.message}`);
+                showErrorMessage(`Registration error: ${err.message}`);
             }
         }
     });
