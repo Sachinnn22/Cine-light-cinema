@@ -389,7 +389,7 @@
                     const card = document.createElement("div");
                     card.className = "bg-white rounded-xl p-8 shadow-lg flex flex-col items-center text-center w-[310px] h-[320px] custom-border";
                     card.innerHTML = `
-  <img src="${user.val.photoURL}" alt="${user.val.username}" class="w-24 h-24 rounded-full object-cover mb-5 shadow-lg" />
+  <img src="${user.val.photoURL}" alt="${user.val.username}" class="w-20 h-20 rounded-full object-cover mb-5 shadow-lg" />
   <h2 class="username">${user.val.username}</h2>
   <p class="email">${user.val.email}</p>
   <p class="text-base text-gray-700">Join Time: ${user.val.registerTime ? user.val.registerTime : "N/A"}</p>
