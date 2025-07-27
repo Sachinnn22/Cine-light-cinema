@@ -162,15 +162,6 @@
             transform: rotateY(180deg);
         }
 
-        .error-message {
-            background-color: #f44336; /* Red */
-            color: white;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            font-size: 14px;
-            text-align: center;
-        }
         @media (min-width: 1400px) and (max-width: 1440px){
             .custom-hero {
                 padding-left: 3rem !important;
@@ -653,7 +644,7 @@
 
             // Validate email before using it
             if (!email || !email.includes('@')) {
-                showErrorMessage('⚠️ No valid email found for this username. Please contact support.');
+                showErrorMessage('⚠️ No valid email found for this username.');
                 return;
             }
 
@@ -669,7 +660,7 @@
             const code = err.code;
 
             if (code === 'auth/too-many-requests') {
-                showErrorMessage('Too many login attempts. Please wait a few minutes and try again.');
+                showErrorMessage('Too many attempts please wait');
             } else if (code === 'auth/wrong-password' || code === 'auth/invalid-login-credentials') {
                 showErrorMessage('Incorrect password. Please try again.');
             } else if (code === 'auth/user-not-found') {
@@ -699,24 +690,50 @@
 
         const errorElement = document.createElement('div');
         errorElement.id = 'floating-error';
-        errorElement.textContent = message;
+        errorElement.innerHTML = `
+        <div style="
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            color: white;
+            background-color: #dc2626;
+            border-radius: 0.75rem;
+            padding: 0.5rem 1rem;
+        ">
+        <i class="fas fa-info-circle" style="font-size: 1rem; margin-right: 0.5rem;"></i>
+            <span style="font-weight: 500;">${message}</span>
+        </div>
+    `;
 
-        errorElement.classList.add(
-            'fixed', 'top-20', 'left-1/2', '-translate-x-1/2',
-            'bg-red-600', 'text-white', 'px-6', 'py-3',
-            'rounded', 'shadow-lg', 'z-[9999]', 'w-[450px]', 'text-sm', 'text-center',
-            'fade-in-down'
-        );
+        // Use inline styles for accurate positioning
+        errorElement.style.position = 'fixed';
+        errorElement.style.top = '5.8rem';
+        errorElement.style.left = '50%';
+        errorElement.style.transform = 'translateX(-50%) translateY(-20px)';
+        errorElement.style.zIndex = '9999';
+        errorElement.style.width = '460px';
+        errorElement.style.maxWidth = '90%';
+        errorElement.style.textAlign = 'center';
+        errorElement.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)';
+        errorElement.style.opacity = '0';
+        errorElement.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
 
         document.body.appendChild(errorElement);
 
+        // Trigger fade-in animation
+        requestAnimationFrame(() => {
+            errorElement.style.opacity = '1';
+            errorElement.style.transform = 'translateX(-50%) translateY(0)';
+        });
+
         setTimeout(() => {
-            errorElement.classList.remove('fade-in-down');
-            errorElement.classList.add('fade-out-up');
+            errorElement.style.opacity = '0';
+            errorElement.style.transform = 'translateX(-50%) translateY(-20px)';
             setTimeout(() => {
                 errorElement.remove();
-            }, 500); // Duration of fade-out
-        }, 4000); // Start fade-out after 4s
+            }, 500);
+        }, 4000);
     }
 
 
@@ -726,20 +743,47 @@
 
         const successElement = document.createElement('div');
         successElement.id = 'floating-success';
-        successElement.textContent = message;
 
-        successElement.classList.add(
-            'fixed', 'top-20', 'left-1/2', '-translate-x-1/2',
-            'bg-green-600', 'text-white', 'px-6', 'py-3',
-            'rounded', 'shadow-lg', 'z-[9999]', 'w-[450px]', 'text-sm', 'text-center',
-            'fade-in-down'
-        );
+        successElement.innerHTML = `
+        <div style="
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            color: white;
+            background-color: #16a34a; /* Tailwind green-600 */
+            border-radius: 0.75rem;
+            padding: 0.5rem 1rem;
+        ">
+            <i class="fas fa-check-circle" style="font-size: 1rem; margin-right: 0.6rem;"></i>
+            <span style="font-weight: 500;">${message}</span>
+        </div>
+    `;
+
+        // Apply floating styles
+        successElement.style.position = 'fixed';
+        successElement.style.top = '5.8rem';
+        successElement.style.left = '50%';
+        successElement.style.transform = 'translateX(-50%) translateY(-20px)';
+        successElement.style.zIndex = '9999';
+        successElement.style.width = '460px';
+        successElement.style.maxWidth = '90%';
+        successElement.style.textAlign = 'center';
+        successElement.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)';
+        successElement.style.opacity = '0';
+        successElement.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
 
         document.body.appendChild(successElement);
 
+        // Trigger fade-in animation
+        requestAnimationFrame(() => {
+            successElement.style.opacity = '1';
+            successElement.style.transform = 'translateX(-50%) translateY(0)';
+        });
+
         setTimeout(() => {
-            successElement.classList.remove('fade-in-down');
-            successElement.classList.add('fade-out-up');
+            successElement.style.opacity = '0';
+            successElement.style.transform = 'translateX(-50%) translateY(-20px)';
             setTimeout(() => {
                 successElement.remove();
             }, 500);
@@ -764,13 +808,13 @@
 
         const usernameRegex = /^[a-zA-Z0-9]{3,}$/;
         if (!usernameRegex.test(username)) {
-            showErrorMessage('Username must be at least 3 characters and contain only letters or numbers.');
+            showErrorMessage('Username need at least 3 letters or numbers only');
             return;
         }
 
         const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{6,}$/;
         if (!passwordRegex.test(password)) {
-            showErrorMessage('Password must be at least 6 characters and include letters and numbers.');
+            showErrorMessage('make strong password with minimum 6 characters');
             return;
         }
 
@@ -800,16 +844,16 @@
                 registerTime: registerTime
             });
 
-            showSuccessMessage('Registration successful! Please login now.');
+            showSuccessMessage('Registration successful. Please Login now.');
             toggleFlip();  // Show login form
             document.getElementById('registerForm').reset();
 
         } catch (err) {
             console.error("Registration error:", err);
             if (err.code === 'auth/email-already-in-use') {
-                showErrorMessage('Email is already in use. Please login or use another email.');
+                showErrorMessage('Email is already taken choose another');
             } else if (err.code === 'auth/weak-password') {
-                showErrorMessage('Password is too weak. Please choose a stronger password.');
+                showErrorMessage('Password is too weak.make strong one');
             } else {
                 showErrorMessage(`Registration error: ${err.message}`);
             }
@@ -824,7 +868,7 @@
         firebase.auth().signInWithPopup(provider)
             .then(result => {
                 const user = result.user;
-                alert(`✅ Hello, ${user.displayName}! Login Successful!`);
+                showSuccessMessage(`✅ Hello, ${user.displayName}! Login Successful!`);
 
                 // Save user photoURL to Realtime Database (optional)
                 const dbRef = firebase.database().ref('users/' + user.uid);
@@ -839,7 +883,7 @@
             })
             .catch(error => {
                 console.error("Google Sign-In Error:", error.message);
-                alert(`⚠️ Google Sign-In Error: ${error.message}`);
+                showErrorMessage(`Google Sign-In Error: ${error.message}`);
             });
     });
 
