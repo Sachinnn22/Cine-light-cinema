@@ -199,7 +199,7 @@
 
             footer.custom-glass-footer {
                 margin-top: auto !important;
-                padding-top: 2rem !important;
+                padding-bottom: 0.5rem !important;
             }
         }
 
@@ -230,7 +230,7 @@
 
             footer.custom-glass-footer {
                 margin-top: auto !important;
-                padding-top: 2rem !important;
+                padding-bottom: 0.5rem !important;
             }
         }
 
@@ -262,7 +262,7 @@
 
             footer.custom-glass-footer {
                 margin-top: auto !important; /* ensures footer stays at the bottom */
-                padding-top: 2rem !important;
+                padding-top: 1.5rem !important;
             }
         }
 
@@ -293,7 +293,7 @@
 
             footer.custom-glass-footer {
                 margin-top: auto !important; /* pushes to bottom of page */
-                padding-top: 2rem !important;
+                padding-top: 0.5rem !important;
             }
         }
 
@@ -324,7 +324,7 @@
 
             footer.custom-glass-footer {
                 margin-top: auto !important; /* push footer to bottom */
-                padding-top: 2rem !important;
+                padding-top: 0.5rem !important;
             }
         }
 
@@ -389,7 +389,7 @@
 
             footer.custom-glass-footer {
                 margin-top: 0 !important;
-                padding-top: 2rem !important;
+                padding-top: 0.5rem !important;
             }
         }
 
@@ -746,23 +746,10 @@
         }, 4000);
     }
 
-    // -------------------------
-    // 📄 REGISTER FUNCTIONALITY
-    // -------------------------
-
-    // -------------------------
-    // 🔁 TOGGLE LOGIN/REGISTER FORM
-    // -------------------------
     function toggleFlip() {
         document.getElementById('flip-container').classList.toggle('flip');
     }
 
-    // -------------------------
-    // ⚠️ SHOW ERROR MESSAGE
-    // -------------------------
-
-
-    // Register form submit handler
     document.getElementById('registerForm').addEventListener('submit', async (e) => {
         e.preventDefault();
 
