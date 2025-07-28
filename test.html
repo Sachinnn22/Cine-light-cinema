@@ -244,24 +244,35 @@
 
     <div class="border-t border-white/20 my-2"></div>
 
-    <!-- 🌐 MOBILE NAVBAR PROFILE SECTION -->
     <div class="relative px-4 pt-0 pb-1" id="mobileUserDropdown">
-        <button id="mobileUserToggle" class="flex items-center gap-2 w-full rounded-md text-white font-extrabold font-serif hover:bg-white/10">
-            <!-- Username Initial -->
-            <span id="mobileUserInitial" class="select-none text-xl"></span>
-
-            <!-- Default User Icon (shown when logged out) -->
-            <svg id="mobileDefaultUserIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="display: none;">
+        <button id="mobileUserToggle" class="w-full flex items-center justify-between px-2 py-2 rounded-md hover:bg-white/10 text-white">
+            <!-- Left section: icon + text -->
+            <span class="flex items-center gap-5 -ml-1">
+            <!-- Profile icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <circle cx="12" cy="8" r="4" />
                 <path d="M6 20c0-3.31 5.33-5 6-5s6 1.69 6 5" />
             </svg>
+            User options
+        </span>
+
+            <!-- Right: dropdown arrow with margin-left -->
+            <svg id="mobileUserArrow" class="w-4 h-4 transition-transform duration-300 transform ml-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
         </button>
 
-        <!-- Dropdown Menu -->
-        <ul id="mobileUserMenu" class="absolute right-4 top-full mt-2 bg-white text-black rounded-md shadow-md w-48 hidden z-50">
-            <!-- Injected dynamically by JS -->
-        </ul>
+        <!-- User submenu -->
+        <div id="mobileUserMenu" class="ml-6 mt-1 space-y-1 hidden">
+            <a href="#" class="mobile-menu-link flex items-center gap-2 px-4 py-2 rounded-md hover:bg-white/10 text-white custom-font-size">Profile</a>
+            <a href="#" class="mobile-menu-link flex items-center gap-2 px-4 py-2 rounded-md hover:bg-white/10 text-white custom-font-size">Settings</a>
+            <a href="#" class="mobile-menu-link flex items-center gap-2 px-4 py-2 rounded-md hover:bg-white/10 text-white custom-font-size">Logout</a>
+        </div>
+
     </div>
+
+
+
     <div class="h-4"></div>
 
 </div>
