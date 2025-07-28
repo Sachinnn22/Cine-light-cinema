@@ -443,14 +443,21 @@
                                 Forgot password
                             </a>
                         </div>
-                        <input
-                                id="password"
-                                name="password"
-                                type="password"
-                                required
-                                placeholder="Enter your password"
-                                class="w-full rounded-lg bg-white bg-opacity-20 px-4 py-3 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white"
-                        />
+                        <div class="flex items-center w-full bg-white bg-opacity-20 rounded-lg px-4 py-3">
+                            <input
+                                    id="password"
+                                    name="password"
+                                    type="password"
+                                    required
+                                    placeholder="Enter your password"
+                                    class="flex-1 bg-transparent text-white placeholder-white/60 focus:outline-none focus:ring-0"
+                            />
+                            <button type="button"  class=" re-togglePassword ml-2">
+                                <i class="fa-solid fa-eye fa-lg text-gray-300"></i>
+                            </button>
+
+                        </div>
+
                     </div>
 
                     <button
@@ -520,14 +527,20 @@
                     </div>
                     <div>
                         <label for="register-password" class="block mb-2 text-sm font-semibold text-white/90">Password</label>
-                        <input
-                                id="register-password"
-                                name="password"
-                                type="password"
-                                required
-                                placeholder="Create a password"
-                                class="w-full rounded-lg bg-white bg-opacity-20 px-4 py-3 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white"
-                        />
+                        <div class="flex items-center w-full bg-white bg-opacity-20 rounded-lg px-4 py-3">
+                            <input
+                                    id="register-password"
+                                    name="password"
+                                    type="password"
+                                    required
+                                    placeholder="Enter your password"
+                                    class="flex-1 bg-transparent text-white placeholder-white/60 focus:outline-none focus:ring-0"
+                            />
+                            <button type="button"  class="ml-2 re-togglePassword">
+                                <i class="fa-solid fa-eye fa-lg text-gray-300"></i>
+                            </button>
+
+                        </div>
                     </div>
 
                     <button
@@ -789,6 +802,26 @@
             }, 500);
         }, 4000);
     }
+
+    // Select all toggle buttons with class 're-togglePassword'
+    const toggleBtns = document.querySelectorAll('.re-togglePassword');
+
+    toggleBtns.forEach(toggleBtn => {
+        const passwordInput = toggleBtn.previousElementSibling; // assuming input is just before button
+        const icon = toggleBtn.querySelector('i');
+
+        toggleBtn.addEventListener('click', () => {
+            if (!passwordInput) return;
+
+            const isPassword = passwordInput.type === 'password';
+            passwordInput.type = isPassword ? 'text' : 'password';
+
+            // Toggle icons
+            icon.classList.toggle('fa-eye-slash');
+            icon.classList.toggle('fa-eye');
+        });
+    });
+
 
     function toggleFlip() {
         document.getElementById('flip-container').classList.toggle('flip');
