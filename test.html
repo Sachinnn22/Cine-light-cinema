@@ -243,21 +243,25 @@
 
       <div class="border-t border-white/20 my-2"></div>
 
-      <a href="#" class="mobile-menu-link flex items-center gap-2 px-4 py-2 rounded-md hover:bg-white/10 text-white font-extrabold font-serif" id="mobile-login">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="8" r="4" />
-              <path d="M6 20c0-3.31 5.33-5 6-5s6 1.69 6 5" />
-          </svg>
-          Sign In
-      </a>
+      <!-- 🌐 MOBILE NAVBAR PROFILE SECTION -->
+      <div class="relative px-4 py-2" id="mobileUserDropdown">
+          <button id="mobileUserToggle" class="flex items-center gap-2 w-full rounded-md text-white font-extrabold font-serif hover:bg-white/10">
+              <!-- Username Initial -->
+              <span id="mobileUserInitial" class="select-none text-xl"></span>
 
-      <a href="#" class="mobile-menu-link flex items-center gap-2 px-4 py-2 rounded-md hover:bg-white/10 text-white font-extrabold font-serif" id="mobile-premium">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <rect x="2" y="6" width="20" height="12" rx="2" ry="2" />
-              <path d="M2 10h20" />
-          </svg>
-          Buy Premium
-      </a>
+              <!-- Default User Icon (shown when logged out) -->
+              <svg id="mobileDefaultUserIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="display: none;">
+                  <circle cx="12" cy="8" r="4" />
+                  <path d="M6 20c0-3.31 5.33-5 6-5s6 1.69 6 5" />
+              </svg>
+          </button>
+
+          <!-- Dropdown Menu -->
+          <ul id="mobileUserMenu" class="absolute right-4 top-full mt-2 bg-white text-black rounded-md shadow-md w-48 hidden z-50">
+              <!-- Injected dynamically by JS -->
+          </ul>
+      </div>
+
   </div>
 
 
@@ -608,21 +612,6 @@
           }
 
 
-
-
-          // document.getElementById('logoutBtn').addEventListener('click', async (e) => {
-          //         e.preventDefault();
-          //         try {
-          //             await signOut(auth);
-          //             alert('✅ Logged out successfully.');
-          //         } catch (error) {
-          //             console.error('Logout Error:', error);
-          //             alert('⚠️ Error logging out. Try again.');
-          //         }
-          //     });
-          // }
-
-          // 👇 Automatically called on every page load
           onAuthStateChanged(auth, async (user) => {
               if (user) {
                   try {
@@ -640,15 +629,95 @@
                       const photoURL = userData?.photoURL
                           || user.photoURL
                           || `https://api.dicebear.com/6.x/bottts-neutral/svg?seed=${user.uid}`;
+
+                      // ✅ Desktop dropdown
                       updateUserDropdown(displayName, photoURL);
+
+                      // ✅ Mobile dropdown
+                      updateMobileUserDropdown(displayName, photoURL);
 
                   } catch (err) {
                       console.error('Error fetching user data:', err);
-                      updateUserDropdown(user.displayName?.charAt(0).toUpperCase() || 'U', user.photoURL);
+
+                      const fallbackName = user.displayName?.charAt(0).toUpperCase() || 'U';
+                      const fallbackPhoto = user.photoURL;
+
+                      updateUserDropdown(fallbackName, fallbackPhoto);
+                      updateMobileUserDropdown(fallbackName, fallbackPhoto);
                   }
               } else {
+                  // Logged out: show default icons
                   updateUserDropdown('U');
+                  updateMobileUserDropdown('U');
               }
+          });
+
+
+
+          function updateMobileUserDropdown(username, photoURL = null) {
+              const mobileUserInitial = document.getElementById('mobileUserInitial');
+              const mobileDefaultIcon = document.getElementById('mobileDefaultUserIcon');
+              const mobileUserToggle = document.getElementById('mobileUserToggle');
+              const mobileUserMenu = document.getElementById('mobileUserMenu');
+
+              if (!mobileUserMenu || !mobileUserInitial || !mobileDefaultIcon || !mobileUserToggle) return;
+
+              // Remove existing profile image
+              const existingImg = mobileUserToggle.querySelector('img.mobileUserPhoto');
+              if (existingImg) existingImg.remove();
+
+              // ✅ Show photo if available
+              if (photoURL) {
+                  mobileUserInitial.style.display = 'none';
+                  mobileDefaultIcon.style.display = 'none';
+
+                  const img = document.createElement('img');
+                  img.src = photoURL;
+                  img.alt = "User Photo";
+                  img.className = 'mobileUserPhoto rounded-full w-8 h-8 object-cover';
+                  mobileUserToggle.appendChild(img);
+              } else if (username && username !== 'U') {
+                  // ✅ Show initial
+                  mobileUserInitial.textContent = username.charAt(0).toUpperCase();
+                  mobileUserInitial.style.display = 'inline';
+                  mobileDefaultIcon.style.display = 'none';
+              } else {
+                  // ❌ Logged out
+                  mobileUserInitial.textContent = '';
+                  mobileUserInitial.style.display = 'none';
+                  mobileDefaultIcon.style.display = 'inline';
+              }
+
+              // ✅ Update dropdown options
+              if (username && username !== 'U') {
+                  mobileUserMenu.innerHTML = `
+            <li><a href="profile.html" class="block px-4 py-2 hover:bg-gray-100">My Profile</a></li>
+            <li><a href="#" id="mobileLogoutBtn" class="block px-4 py-2 hover:bg-gray-100">Log Out</a></li>
+        `;
+
+                  document.getElementById('mobileLogoutBtn').addEventListener('click', async (e) => {
+                      e.preventDefault();
+                      try {
+                          await signOut(auth);
+                          alert('✅ Logged out successfully.');
+                          mobileUserMenu.classList.add('hidden');
+                      } catch (error) {
+                          console.error('Logout Error:', error);
+                          alert('⚠️ Error logging out. Try again.');
+                      }
+                  });
+              } else {
+                  mobileUserMenu.innerHTML = `
+            <li><a href="register.html" class="block px-4 py-2 hover:bg-gray-100">Sign In</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Buy Premium</a></li>
+        `;
+              }
+          }
+
+          // ✅ Toggle mobile dropdown menu on icon click
+          document.getElementById('mobileUserToggle')?.addEventListener('click', () => {
+              const menu = document.getElementById('mobileUserMenu');
+              if (menu) menu.classList.toggle('hidden');
           });
 
 
@@ -721,37 +790,64 @@
         }
       });
     }
-    document.addEventListener('DOMContentLoaded', () => {
-        const toggleBtn = document.getElementById('menu-toggle');
-        const menu = document.getElementById('mobile-menu');
+      document.addEventListener('DOMContentLoaded', () => {
+          const toggleBtn = document.getElementById('menu-toggle');
+          const menu = document.getElementById('mobile-menu');
 
-        let menuOpen = false;
+          let menuOpen = false;
 
-        toggleBtn.addEventListener('click', () => {
-            if (menuOpen) {
-                // Close menu
-                menu.style.maxHeight = '0';
-                menuOpen = false;
-                toggleBtn.innerHTML = `
+          toggleBtn.addEventListener('click', () => {
+              if (menuOpen) {
+                  // CLOSE
+                  menu.style.maxHeight = '0px';
+                  menuOpen = false;
+                  toggleBtn.innerHTML = `
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
             `;
-            } else {
-                // Open menu
-                menu.style.maxHeight = menu.scrollHeight + 'px';
-                menuOpen = true;
-                toggleBtn.innerHTML = `
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            `;
-            }
-        });
-    });
+              } else {
+                  // OPEN
+                  // Step 1: temporarily show all hidden children (like submenu or user menu)
+                  const submenu = document.getElementById('mobileMoviesSubmenu');
+                  const userMenu = document.getElementById('mobileUserMenu');
+
+                  const hiddenEls = [];
+
+                  if (submenu?.classList.contains('hidden')) {
+                      submenu.classList.remove('hidden');
+                      hiddenEls.push(submenu);
+                  }
+
+                  if (userMenu?.classList.contains('hidden')) {
+                      userMenu.classList.remove('hidden');
+                      hiddenEls.push(userMenu);
+                  }
+
+                  // Step 2: force reflow so height includes them
+                  requestAnimationFrame(() => {
+                      const fullHeight = menu.scrollHeight + 100;  // Add 100px extra height
+
+                      // Step 3: restore hidden state AFTER measuring
+                      hiddenEls.forEach(el => el.classList.add('hidden'));
+
+                      // Step 4: set max-height for transition
+                      menu.style.maxHeight = fullHeight + 'px';
+                      menuOpen = true;
+
+                      toggleBtn.innerHTML = `
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                `;
+                  });
+              }
+          });
+      });
 
 
-    const mobileSearchToggle = document.getElementById('search-toggle-mobile');
+
+      const mobileSearchToggle = document.getElementById('search-toggle-mobile');
     const mobileSearchContainer = document.getElementById('mobile-search-container');
 
     mobileSearchToggle.addEventListener('click', () => {
