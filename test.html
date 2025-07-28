@@ -699,8 +699,8 @@
         // Update menu items as before
         if (username && username !== 'U') {
             mobileUserMenu.innerHTML = `
-            <a href="profile.html" class="block px-4 py-2 hover:bg-gray-100 text-white">My Profile</a>
-            <a href="#" id="mobileLogoutBtn" class="block px-4 py-2 hover:bg-gray-100 text-white">Log Out</a>
+            <a href="profile.html" class="block px-4 py-2 hover:bg-white/10 text-white">My Profile</a>
+            <a href="#" id="mobileLogoutBtn" class="block px-4 py-2 hover:bg-white/10 text-white">Log Out</a>
         `;
 
             // Attach logout click handler
@@ -720,8 +720,8 @@
             });
         } else {
             mobileUserMenu.innerHTML = `
-            <a href="register.html" class="block px-4 py-2 hover:bg-gray-100 text-white">Sign In</a>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-white">Buy Premium</a>
+            <a href="register.html" class="block px-4 py-2 hover:bg-white/10 text-white">Sign In</a>
+            <a href="#" class="block px-4 py-2 hover:bg-white/10 text-white">Buy Premium</a>
         `;
         }
     }
