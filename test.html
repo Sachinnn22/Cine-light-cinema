@@ -247,16 +247,16 @@
     <div class="relative px-4 pt-0 pb-1" id="mobileUserDropdown">
         <button id="mobileUserToggle" class="w-full flex items-center justify-between px-2 py-2 rounded-md hover:bg-white/10 text-white">
             <!-- Left section: icon + text -->
-            <span class="flex items-center gap-5 -ml-1">
+            <span id="mobileUserDisplay" class="flex items-center gap-5 -ml-1">
             <!-- Profile icon -->
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <svg id="xray" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <circle cx="12" cy="8" r="4" />
                 <path d="M6 20c0-3.31 5.33-5 6-5s6 1.69 6 5" />
             </svg>
             User options
         </span>
 
-            <!-- Right: dropdown arrow with margin-left -->
+            <!-- Right: dropdown arrow -->
             <svg id="mobileUserArrow" class="w-4 h-4 transition-transform duration-300 transform ml-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
@@ -264,11 +264,8 @@
 
         <!-- User submenu -->
         <div id="mobileUserMenu" class="ml-6 mt-1 space-y-1 hidden">
-            <a href="#" class="mobile-menu-link flex items-center gap-2 px-4 py-2 rounded-md hover:bg-white/10 text-white custom-font-size">Profile</a>
-            <a href="#" class="mobile-menu-link flex items-center gap-2 px-4 py-2 rounded-md hover:bg-white/10 text-white custom-font-size">Settings</a>
-            <a href="#" class="mobile-menu-link flex items-center gap-2 px-4 py-2 rounded-md hover:bg-white/10 text-white custom-font-size">Logout</a>
-        </div>
 
+        </div>
     </div>
 
 
@@ -665,54 +662,56 @@
         }
     });
 
-
-
     function updateMobileUserDropdown(username, photoURL = null) {
-        const mobileUserInitial = document.getElementById('mobileUserInitial');
-        const mobileDefaultIcon = document.getElementById('mobileDefaultUserIcon');
+        const mobileUserDisplay = document.getElementById('mobileUserDisplay');
         const mobileUserToggle = document.getElementById('mobileUserToggle');
         const mobileUserMenu = document.getElementById('mobileUserMenu');
+        const mobileUserArrow = document.getElementById('mobileUserArrow');
 
-        if (!mobileUserMenu || !mobileUserInitial || !mobileDefaultIcon || !mobileUserToggle) return;
+        if (!mobileUserMenu || !mobileUserDisplay || !mobileUserToggle || !mobileUserArrow) return;
 
-        // Remove existing profile image
+        // Remove any existing profile image
         const existingImg = mobileUserToggle.querySelector('img.mobileUserPhoto');
         if (existingImg) existingImg.remove();
 
-        // ✅ Show photo if available
         if (photoURL) {
-            mobileUserInitial.style.display = 'none';
-            mobileDefaultIcon.style.display = 'none';
+            // Hide the icon SVG inside the text span
+            const iconSVG = mobileUserDisplay.querySelector('svg');
+            if (iconSVG) iconSVG.style.display = 'none';
 
+            // Create profile photo img
             const img = document.createElement('img');
             img.src = photoURL;
             img.alt = "User Photo";
             img.className = 'mobileUserPhoto rounded-full w-8 h-8 object-cover';
-            mobileUserToggle.appendChild(img);
-        } else if (username && username !== 'U') {
-            // ✅ Show initial
-            mobileUserInitial.textContent = username.charAt(0).toUpperCase();
-            mobileUserInitial.style.display = 'inline';
-            mobileDefaultIcon.style.display = 'none';
+
+            // Insert profile picture as the first child inside the button
+            mobileUserToggle.insertBefore(img, mobileUserToggle.firstChild);
+
+            // Make sure text and arrow are after the image
+            // The text and arrow already exist in the button, so no changes needed here
         } else {
-            // ❌ Logged out
-            mobileUserInitial.textContent = '';
-            mobileUserInitial.style.display = 'none';
-            mobileDefaultIcon.style.display = 'inline';
+            // Show the icon SVG if no photo
+            const iconSVG = mobileUserDisplay.querySelector('svg');
+            if (iconSVG) iconSVG.style.display = 'inline-block';
         }
 
-        // ✅ Update dropdown options
+        // Update menu items as before
         if (username && username !== 'U') {
             mobileUserMenu.innerHTML = `
-            <li><a href="profile.html" class="block px-4 py-2 hover:bg-gray-100">My Profile</a></li>
-            <li><a href="#" id="mobileLogoutBtn" class="block px-4 py-2 hover:bg-gray-100">Log Out</a></li>
+            <a href="profile.html" class="block px-4 py-2 hover:bg-gray-100 text-white">My Profile</a>
+            <a href="#" id="mobileLogoutBtn" class="block px-4 py-2 hover:bg-gray-100 text-white">Log Out</a>
         `;
 
+            // Attach logout click handler
             document.getElementById('mobileLogoutBtn').addEventListener('click', async (e) => {
                 e.preventDefault();
                 try {
                     await signOut(auth);
                     alert('✅ Logged out successfully.');
+
+                    // Reset dropdown to logged out state
+                    updateMobileUserDropdown('U', null);
                     mobileUserMenu.classList.add('hidden');
                 } catch (error) {
                     console.error('Logout Error:', error);
@@ -721,13 +720,11 @@
             });
         } else {
             mobileUserMenu.innerHTML = `
-            <li><a href="register.html" class="block px-4 py-2 hover:bg-gray-100">Sign In</a></li>
-            <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Buy Premium</a></li>
+            <a href="register.html" class="block px-4 py-2 hover:bg-gray-100 text-white">Sign In</a>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 text-white">Buy Premium</a>
         `;
         }
     }
-
-    // ✅ Toggle mobile dropdown menu on icon click
     document.getElementById('mobileUserToggle')?.addEventListener('click', () => {
         const menu = document.getElementById('mobileUserMenu');
         if (menu) menu.classList.toggle('hidden');
