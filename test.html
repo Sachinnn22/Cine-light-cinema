@@ -1,600 +1,602 @@
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>SINHALIES - Watch Movies</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-      <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.1/dist/full.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.1/dist/full.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-      <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;500&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;500&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
 
 
-      <link rel="stylesheet" href="st.css">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="st.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css">
 
 
-      <style>
+    <style>
 
     </style>
-  </head>
-  <body class="bg-black text-white">
+</head>
+<body class="bg-black text-white">
 
-  <div id="desktopNavbar" class="navbar navbar-transparent shadow-sm fixed top-0 left-0 right-0 z-50 lg:flex hidden">
+<div id="desktopNavbar" class="navbar navbar-transparent shadow-sm fixed top-0 left-0 right-0 z-50 lg:flex hidden">
     <div class="navbar-start">
-      <div class="dropdown" id="mainDropdown">
-        <button id="dropdownToggle" class="btn btn-ghost btn-circle">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-               viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h7"/>
-          </svg>
-        </button>
-        <ul class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow dropdown-glass rounded-box w-52">
-          <li><a href="#home">Home Page</a></li>
-          <li>
-            <a href="#" id="newReleaseLock" class="flex justify-between items-center px-3 py-2 w-full rounded disabled-link">
-              <span class="pr-3">New Release</span>
-            </a>
-          </li>
-          <li>
-            <details>
-              <summary>Movies</summary>
-              <ul class="p-2 dropdown-glass-movie rounded-box mt-1 space-y-1">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Horror</a></li>
-                <li><a href="#">Sci-Fic</a></li>
-                <li><a href="#">Romance</a></li>
-              </ul>
-            </details>
-          </li>
-          <li><a href="#faq">FAQ's</a></li>
-          <li><a href="#why-us">Why Us</a></li>
-        </ul>
-      </div>
+        <div class="dropdown" id="mainDropdown">
+            <button id="dropdownToggle" class="btn btn-ghost btn-circle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h7"/>
+                </svg>
+            </button>
+            <ul class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow dropdown-glass rounded-box w-52">
+                <li><a href="#home">Home Page</a></li>
+                <li>
+                    <a href="#" id="newReleaseLock" class="flex justify-between items-center px-3 py-2 w-full rounded disabled-link">
+                        <span class="pr-3">New Release</span>
+                    </a>
+                </li>
+                <li>
+                    <details>
+                        <summary>Movies</summary>
+                        <ul class="p-2 dropdown-glass-movie rounded-box mt-1 space-y-1">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Horror</a></li>
+                            <li><a href="#">Sci-Fic</a></li>
+                            <li><a href="#">Romance</a></li>
+                        </ul>
+                    </details>
+                </li>
+                <li><a href="#faq">FAQ's</a></li>
+                <li><a href="#why-us">Why Us</a></li>
+            </ul>
+        </div>
     </div>
 
     <div class="navbar-center">
-      <span class="brand-name">SINHALIES</span>
+        <span class="brand-name">SINHALIES</span>
     </div>
 
     <div class="navbar-end flex gap-2 items-center">
-      <div id="searchContainer" class="flex items-center relative">
-        <input id="searchInput" type="text" placeholder="Search Movie" autocomplete="off" />
-        <button id="searchToggle" class="btn btn-ghost btn-circle ml-2">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-               viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-          </svg>
-        </button>
-      </div>
-
-      <button id="notificationBtn" class="btn btn-ghost btn-circle">
-        <div class="indicator">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-               viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.4-1.4A2 2 0 0118 14.2V11a6 6 0 00-4-5.7V5a2 2 0 10-4 0v.3C7.7 6.2 6 8.4 6 11v3.2c0 .5-.2 1.1-.6 1.4L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
-          </svg>
+        <div id="searchContainer" class="flex items-center relative">
+            <input id="searchInput" type="text" placeholder="Search Movie" autocomplete="off" />
+            <button id="searchToggle" class="btn btn-ghost btn-circle ml-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                </svg>
+            </button>
         </div>
-      </button>
 
-      <div id="notificationPopup" class="fixed bottom-16 right-4 w-72 bg-black bg-opacity-90 text-white rounded-lg shadow-lg p-4 z-60 hidden">
-        <h3 class="font-semibold mb-2 border-b border-gray-600 pb-1">Notifications</h3>
-        <ul class="text-sm max-h-48 overflow-y-auto">
-          <li class="mb-2">New movie "Inception 2" added!</li>
-          <li class="mb-2">Your subscription will expire in 3 days.</li>
-          <li class="mb-2">Server maintenance scheduled for tomorrow.</li>
-        </ul>
-      </div>
+        <button id="notificationBtn" class="btn btn-ghost btn-circle">
+            <div class="indicator">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.4-1.4A2 2 0 0118 14.2V11a6 6 0 00-4-5.7V5a2 2 0 10-4 0v.3C7.7 6.2 6 8.4 6 11v3.2c0 .5-.2 1.1-.6 1.4L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+                </svg>
+            </div>
+        </button>
 
-      <div class="dropdown dropdown-end" id="userDropdown">
-          <button id="userToggle" class="btn btn-ghost btn-circle flex items-center justify-center text-white font-bold text-xl bg-gray-600 rounded-full w-10 h-10 relative">
-              <span id="userInitial" class="select-none"></span>
+        <div id="notificationPopup" class="fixed bottom-16 right-4 w-72 bg-black bg-opacity-90 text-white rounded-lg shadow-lg p-4 z-60 hidden">
+            <h3 class="font-semibold mb-2 border-b border-gray-600 pb-1">Notifications</h3>
+            <ul class="text-sm max-h-48 overflow-y-auto">
+                <li class="mb-2">New movie "Inception 2" added!</li>
+                <li class="mb-2">Your subscription will expire in 3 days.</li>
+                <li class="mb-2">Server maintenance scheduled for tomorrow.</li>
+            </ul>
+        </div>
 
-              <svg id="defaultUserIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 absolute" fill="none"
-                   viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="display:none;">
-                  <circle cx="12" cy="8" r="4" />
-                  <path d="M6 20c0-3.31 5.33-5 6-5s6 1.69 6 5" />
-              </svg>
-          </button>
+        <div class="dropdown dropdown-end" id="userDropdown">
+            <button id="userToggle" class="btn btn-ghost btn-circle flex items-center justify-center text-white font-bold text-xl bg-gray-600 rounded-full w-10 h-10 relative">
+                <span id="userInitial" class="select-none"></span>
 
-          <ul id="userMenu" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow dropdown-glass rounded-box w-52">
-          <li>
-            <a  id="signInLink" href="register.html" class="flex items-center gap-2">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none"
-                   viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="8" r="4" />
-                <path d="M6 20c0-3.31 5.33-5 6-5s6 1.69 6 5" />
-              </svg>
-              Sign In
-            </a>
-          </li>
-          <li>
-            <a id="buyPremiumLink" href="#" class="flex items-center gap-2">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none"
-                   viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <rect x="2" y="6" width="20" height="12" rx="2" ry="2" />
-                <path d="M2 10h20" />
-              </svg>
-              Buy Premium
-            </a>
-          </li>
-        </ul>
-      </div>
+                <svg id="defaultUserIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 absolute" fill="none"
+                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="display:none;">
+                    <circle cx="12" cy="8" r="4" />
+                    <path d="M6 20c0-3.31 5.33-5 6-5s6 1.69 6 5" />
+                </svg>
+            </button>
+
+            <ul id="userMenu" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow dropdown-glass rounded-box w-52">
+                <li>
+                    <a  id="signInLink" href="register.html" class="flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none"
+                             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="8" r="4" />
+                            <path d="M6 20c0-3.31 5.33-5 6-5s6 1.69 6 5" />
+                        </svg>
+                        Sign In
+                    </a>
+                </li>
+                <li>
+                    <a id="buyPremiumLink" href="#" class="flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none"
+                             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="6" width="20" height="12" rx="2" ry="2" />
+                            <path d="M2 10h20" />
+                        </svg>
+                        Buy Premium
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
-  </div>
+</div>
 
-  <nav id="mobileNavbar" class="mobile-navbar-transparent p-4 shadow-md lg:hidden fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur">
-      <div class="flex items-center justify-between">
-          <button id="search-toggle-mobile"
-                  class="text-white p-2 rounded-full bg-transparent  border-none outline-none focus:outline-none"
-                  aria-label="Toggle Search">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-          </button>
+<nav id="mobileNavbar" class="mobile-navbar-transparent p-4 shadow-md lg:hidden fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur">
+    <div class="flex items-center justify-between">
+        <button id="search-toggle-mobile"
+                class="text-white p-2 rounded-full bg-transparent  border-none outline-none focus:outline-none"
+                aria-label="Toggle Search">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+        </button>
 
-          <a href="#" class="text-xl font-bold text-white flex-grow text-center select-none mobil-brand">SINHALIES</a>
+        <a href="#" class="text-xl font-bold text-white flex-grow text-center select-none mobil-brand">SINHALIES</a>
 
-          <button id="menu-toggle"
-                  class="text-white p-2 rounded-full bg-transparent hover:bg-white/10 transition border-none outline-none focus:outline-none"
-                  aria-label="Toggle Menu">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-          </button>
-      </div>
-  </nav>
+        <button id="menu-toggle"
+                class="text-white p-2 rounded-full bg-transparent hover:bg-white/10 transition border-none outline-none focus:outline-none"
+                aria-label="Toggle Menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+    </div>
+</nav>
 
-  <div id="mobile-search-container"
-       class="lg:hidden fixed top-[64px] left-0 right-0 bg-black/80 backdrop-blur px-4 py-3 z-40 hidden transition-all duration-300 flex justify-center">
-      <div class="relative max-w-[320px] w-full">
-          <input
-                  type="text"
-                  id="mobile-search-input"
-                  class="w-full pr-12 pl-4 h-9 text-sm text-white bg-white/5 rounded-full border border-white/10 placeholder-white/60 focus:outline-none focus:border-white focus:bg-white/10 transition"
-                  placeholder="Search Movie"
-                  autocomplete="off"
-          />
-          <button
-                  id="search-submit-mobile"
-                  class="absolute top-1/2 -translate-y-1/2 p-2 rounded-full hover:bg-white/10 transition text-white"
-                  style="right: -10px;"
-                  aria-label="Submit search"
-          >
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-          </button>
-      </div>
-  </div>
+<div id="mobile-search-container"
+     class="lg:hidden fixed top-[64px] left-0 right-0 bg-black/80 backdrop-blur px-4 py-3 z-40 hidden transition-all duration-300 flex justify-center">
+    <div class="relative max-w-[320px] w-full">
+        <input
+                type="text"
+                id="mobile-search-input"
+                class="w-full pr-12 pl-4 h-9 text-sm text-white bg-white/5 rounded-full border border-white/10 placeholder-white/60 focus:outline-none focus:border-white focus:bg-white/10 transition"
+                placeholder="Search Movie"
+                autocomplete="off"
+        />
+        <button
+                id="search-submit-mobile"
+                class="absolute top-1/2 -translate-y-1/2 p-2 rounded-full hover:bg-white/10 transition text-white"
+                style="right: -10px;"
+                aria-label="Submit search"
+        >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+        </button>
+    </div>
+</div>
 
-  <div id="mobile-menu"
-       class="lg:hidden fixed top-[73px] left-0 right-0 z-40 max-h-0 overflow-hidden transition-all duration-500 ease-in-out mobile-dropdown-glass px-4 space-y-2 rounded shadow-lg bg-black/70 backdrop-blur">
+<div id="mobile-menu"
+     class="lg:hidden fixed top-[73px] left-0 right-0 z-40 overflow-hidden transition-all duration-500 ease-in-out overflow-y-auto px-4 space-y-4 rounded shadow-lg bg-black/70 backdrop-blur"
+     style="max-height: 0px;">
 
-      <a href="#home" class="mobile-menu-link flex items-center gap-2 px-4 py-2 rounded-md hover:bg-white/10 text-white">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3" />
-          </svg>
-          Home Page
-      </a>
+    <a href="#home" class="mobile-menu-link mt-3 flex items-center gap-2 px-4 py-2 rounded-md hover:bg-white/10 text-white">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3" />
+        </svg>
+        Home Page
+    </a>
 
-      <a href="#" class="mobile-menu-link flex items-center gap-2 px-4 py-2 rounded-md hover:bg-white/10 text-white">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553 2.276A1 1 0 0120 13.118V17a1 1 0 01-1 1h-2.5M4 6h16M4 10h16M4 14h4m-4 4h4" />
-          </svg>
-          New Release
-      </a>
+    <a href="#" class="mobile-menu-link flex items-center gap-2 px-4 py-2 rounded-md hover:bg-white/10 text-white">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553 2.276A1 1 0 0120 13.118V17a1 1 0 01-1 1h-2.5M4 6h16M4 10h16M4 14h4m-4 4h4" />
+        </svg>
+        New Release
+    </a>
 
-      <div>
-          <button id="mobileMoviesToggle" class="w-full flex items-center gap-2 justify-between px-4 py-2 rounded-md hover:bg-white/10 text-white">
+    <div>
+        <button id="mobileMoviesToggle" class="w-full flex items-center gap-2 justify-between px-4 py-2 rounded-md hover:bg-white/10 text-white">
             <span class="flex items-center gap-2">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h3l2 4h6l2-4h3a1 1 0 011 1v16a1 1 0 01-1 1h-3l-2-4H9l-2 4H4a1 1 0 01-1-1V4z" />
                 </svg>
                 Movies
             </span>
-              <svg id="mobileMoviesArrow" class="w-4 h-4 transition-transform duration-300 transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-          </button>
+            <svg id="mobileMoviesArrow" class="w-4 h-4 transition-transform duration-300 transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+        </button>
 
-          <div id="mobileMoviesSubmenu" class="ml-6 mt-1 space-y-1 hidden">
-              <a href="#" class="mobile-menu-link flex items-center gap-2 px-4 py-2 rounded-md hover:bg-white/10 text-white text-sm">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z" />
-                  </svg>
-                  Action
-              </a>
-              <a href="#" class="mobile-menu-link flex items-center gap-2 px-4 py-2 rounded-md hover:bg-white/10 text-white text-sm">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 9.75a1.5 1.5 0 00-3 0m10.5 0a1.5 1.5 0 10-3 0M6 16.5a6 6 0 0112 0M12 20.5a8.5 8.5 0 01-8.5-8.5A8.5 8.5 0 0112 3.5a8.5 8.5 0 018.5 8.5 8.5 8.5 0 01-8.5 8.5z" />
-                  </svg>
-                  Horror
-              </a>
-              <a href="#" class="mobile-menu-link flex items-center gap-2 px-4 py-2 rounded-md hover:bg-white/10 text-white text-sm">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v18m9-9H3" />
-                  </svg>
-                  Sci-Fi
-              </a>
-              <a href="#" class="mobile-menu-link mobile-menu-link flex items-center gap-2 px-4 py-2 rounded-md hover:bg-white/10 text-white text-sm">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 4.5 0 116.364 6.364L12 21.682l-7.682-7.682a4.5 4.5 0 010-6.364z" />
-                  </svg>
-                  Romance
-              </a>
-          </div>
-      </div>
+        <div id="mobileMoviesSubmenu" class="ml-6 mt-1 space-y-1 hidden">
+            <a href="#" class="mobile-menu-link flex items-center gap-2 px-4 py-2 rounded-md hover:bg-white/10 text-white text-sm">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z" />
+                </svg>
+                Action
+            </a>
+            <a href="#" class="mobile-menu-link flex items-center gap-2 px-4 py-2 rounded-md hover:bg-white/10 text-white text-sm">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 9.75a1.5 1.5 0 00-3 0m10.5 0a1.5 1.5 0 10-3 0M6 16.5a6 6 0 0112 0M12 20.5a8.5 8.5 0 01-8.5-8.5A8.5 8.5 0 0112 3.5a8.5 8.5 0 018.5 8.5 8.5 8.5 0 01-8.5 8.5z" />
+                </svg>
+                Horror
+            </a>
+            <a href="#" class="mobile-menu-link flex items-center gap-2 px-4 py-2 rounded-md hover:bg-white/10 text-white text-sm">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v18m9-9H3" />
+                </svg>
+                Sci-Fi
+            </a>
+            <a href="#" class="mobile-menu-link mobile-menu-link flex items-center gap-2 px-4 py-2 rounded-md hover:bg-white/10 text-white text-sm">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 4.5 0 116.364 6.364L12 21.682l-7.682-7.682a4.5 4.5 0 010-6.364z" />
+                </svg>
+                Romance
+            </a>
+        </div>
+    </div>
 
-      <a href="#" class="mobile-menu-link flex items-center gap-2 px-4 py-2 rounded-md hover:bg-white/10 text-white">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M12 20a8 8 0 100-16 8 8 0 000 16z" />
-          </svg>
-          About Us
-      </a>
+    <a href="#" class="mobile-menu-link flex items-center gap-2 px-4 py-2 rounded-md hover:bg-white/10 text-white">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M12 20a8 8 0 100-16 8 8 0 000 16z" />
+        </svg>
+        About Us
+    </a>
 
-      <div class="border-t border-white/20 my-2"></div>
+    <div class="border-t border-white/20 my-2"></div>
 
-      <!-- 🌐 MOBILE NAVBAR PROFILE SECTION -->
-      <div class="relative px-4 py-2" id="mobileUserDropdown">
-          <button id="mobileUserToggle" class="flex items-center gap-2 w-full rounded-md text-white font-extrabold font-serif hover:bg-white/10">
-              <!-- Username Initial -->
-              <span id="mobileUserInitial" class="select-none text-xl"></span>
+    <!-- 🌐 MOBILE NAVBAR PROFILE SECTION -->
+    <div class="relative px-4 pt-0 pb-1" id="mobileUserDropdown">
+        <button id="mobileUserToggle" class="flex items-center gap-2 w-full rounded-md text-white font-extrabold font-serif hover:bg-white/10">
+            <!-- Username Initial -->
+            <span id="mobileUserInitial" class="select-none text-xl"></span>
 
-              <!-- Default User Icon (shown when logged out) -->
-              <svg id="mobileDefaultUserIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="display: none;">
-                  <circle cx="12" cy="8" r="4" />
-                  <path d="M6 20c0-3.31 5.33-5 6-5s6 1.69 6 5" />
-              </svg>
-          </button>
+            <!-- Default User Icon (shown when logged out) -->
+            <svg id="mobileDefaultUserIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="display: none;">
+                <circle cx="12" cy="8" r="4" />
+                <path d="M6 20c0-3.31 5.33-5 6-5s6 1.69 6 5" />
+            </svg>
+        </button>
 
-          <!-- Dropdown Menu -->
-          <ul id="mobileUserMenu" class="absolute right-4 top-full mt-2 bg-white text-black rounded-md shadow-md w-48 hidden z-50">
-              <!-- Injected dynamically by JS -->
-          </ul>
-      </div>
+        <!-- Dropdown Menu -->
+        <ul id="mobileUserMenu" class="absolute right-4 top-full mt-2 bg-white text-black rounded-md shadow-md w-48 hidden z-50">
+            <!-- Injected dynamically by JS -->
+        </ul>
+    </div>
+    <div class="h-4"></div>
 
-  </div>
+</div>
 
 
-  <section class="relative pt-32 pb-16 px-6 lg:px-24 min-h-[100vh] flex items-center justify-center overflow-hidden" id="home">
+<section class="relative pt-32 pb-16 px-6 lg:px-24 min-h-[100vh] flex items-center justify-center overflow-hidden" id="home">
     <div class="absolute inset-0 bg-cover bg-center scale-105" style="background-image: url('assets/images/bpd-heroImage.jpeg'); opacity: 0.3;"></div>
     <div class="absolute inset-0 "></div>
     <div class="relative z-10 max-w-xl hero-text text-center" data-aos="fade-up">
-      <h1 class="mb-4 drop-shadow-lg" >Find Your Movie</h1>
-      <p class="mb-6 drop-shadow">
-        Discover the latest blockbusters, timeless classics, and hidden gems all in one place. Enjoy thrilling adventures, emotional dramas, and unforgettable stories, handpicked for every movie lover. Dive into a world where stories come alive and entertainment never ends.
-      </p>
-      <div class="flex gap-3 justify-center">
-        <button class="btn btn-custom-primary flex items-center gap-2" onclick="document.getElementById('trending').scrollIntoView({behavior: 'smooth'})">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M6 4l15 8-15 8V4z" />
-          </svg>
-          Watch Movies
-        </button>
-        <button class="btn btn-outline btn-custom-outline flex items-center gap-2">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M2 6l5 5 5-5 5 5 5-5v13H2V6z" />
-          </svg>
-          Buy Premium
-        </button>
-      </div>
+        <h1 class="mb-4 drop-shadow-lg" >Find Your Movie</h1>
+        <p class="mb-6 drop-shadow">
+            Discover the latest blockbusters, timeless classics, and hidden gems all in one place. Enjoy thrilling adventures, emotional dramas, and unforgettable stories, handpicked for every movie lover. Dive into a world where stories come alive and entertainment never ends.
+        </p>
+        <div class="flex gap-3 justify-center">
+            <button class="btn btn-custom-primary flex items-center gap-2" onclick="document.getElementById('trending').scrollIntoView({behavior: 'smooth'})">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M6 4l15 8-15 8V4z" />
+                </svg>
+                Watch Movies
+            </button>
+            <button class="btn btn-outline btn-custom-outline flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M2 6l5 5 5-5 5 5 5-5v13H2V6z" />
+                </svg>
+                Buy Premium
+            </button>
+        </div>
     </div>
-  </section>
+</section>
 
-  <section id="faq">
-      <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-          <!-- Title -->
-          <div class="max-w-2xl mx-auto text-center mb-10 lg:mb-14">
-              <h2 class="faq-head">What People Ask</h2>
-              <p class="mt-1 faq-sub">Answers to the most frequently asked questions</p>
-          </div>
-          <!-- End Title -->
+<section id="faq">
+    <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+        <!-- Title -->
+        <div class="max-w-2xl mx-auto text-center mb-10 lg:mb-14">
+            <h2 class="faq-head">What People Ask</h2>
+            <p class="mt-1 faq-sub">Answers to the most frequently asked questions</p>
+        </div>
+        <!-- End Title -->
 
-          <div class="max-w-6xl mx-auto">
-              <!-- Accordion Grid -->
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 hs-accordion-group">
-                  <!-- LEFT Column -->
-                  <div class="flex flex-col gap-6">
-                      <!-- Accordion Item 1 -->
-                      <div class="hs-accordion faq-card w-full flex-1 rounded-xl p-6 dark:faq-card" id="hs-heading-1" data-aos="fade-right">
-                          <button class="hs-accordion-toggle group pb-3 inline-flex items-center justify-between gap-x-3 w-full md:text-lg font-semibold text-start text-gray-800 transition hover:text-gray-500 focus:outline-hidden dark:text-neutral-200 dark:hover:text-neutral-400" aria-expanded="false" aria-controls="hs-collapse-1">
-                              How does Preline's pricing work?
-                              <svg class="arrow-icon transition-transform duration-300 ease-in-out size-5 text-white group-hover:text-gray-300 dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="5">
-                                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
-                              </svg>
-                          </button>
-                          <div id="hs-collapse-1" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" role="region" aria-labelledby="hs-heading-1">
-                              <p class="text-gray-800 dark:text-neutral-200">
-                                  Our pricing is tiered based on usage. Choose a plan that fits your needs, and scale as you grow.
-                              </p>
-                          </div>
-                      </div>
+        <div class="max-w-6xl mx-auto">
+            <!-- Accordion Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 hs-accordion-group">
+                <!-- LEFT Column -->
+                <div class="flex flex-col gap-6">
+                    <!-- Accordion Item 1 -->
+                    <div class="hs-accordion faq-card w-full flex-1 rounded-xl p-6 dark:faq-card" id="hs-heading-1" data-aos="fade-right">
+                        <button class="hs-accordion-toggle group pb-3 inline-flex items-center justify-between gap-x-3 w-full md:text-lg font-semibold text-start text-gray-800 transition hover:text-gray-500 focus:outline-hidden dark:text-neutral-200 dark:hover:text-neutral-400" aria-expanded="false" aria-controls="hs-collapse-1">
+                            How does Preline's pricing work?
+                            <svg class="arrow-icon transition-transform duration-300 ease-in-out size-5 text-white group-hover:text-gray-300 dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
+                            </svg>
+                        </button>
+                        <div id="hs-collapse-1" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" role="region" aria-labelledby="hs-heading-1">
+                            <p class="text-gray-800 dark:text-neutral-200">
+                                Our pricing is tiered based on usage. Choose a plan that fits your needs, and scale as you grow.
+                            </p>
+                        </div>
+                    </div>
 
-                      <!-- Accordion Item 2 -->
-                      <div class="hs-accordion faq-card w-full flex-1 rounded-xl p-6 dark:faq-card" id="hs-heading-2" data-aos="fade-right">
-                          <button class="hs-accordion-toggle group pb-3 inline-flex items-center justify-between gap-x-3 w-full md:text-lg font-semibold text-start text-gray-800 transition hover:text-gray-500 focus:outline-hidden dark:text-neutral-200 dark:hover:text-neutral-400" aria-expanded="false" aria-controls="hs-collapse-2">
-                              My team has credits. How do we use them?
-                              <svg class="arrow-icon transition-transform duration-300 ease-in-out size-5 text-white group-hover:text-gray-300 dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="5">
-                                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
-                              </svg>
-                          </button>
-                          <div id="hs-collapse-2" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" role="region" aria-labelledby="hs-heading-2">
-                              <p class="text-gray-800 dark:text-neutral-200">
-                                  Once your team signs up for a subscription plan, we’ll help you configure everything and walk you through how to redeem credits.
-                              </p>
-                          </div>
-                      </div>
+                    <!-- Accordion Item 2 -->
+                    <div class="hs-accordion faq-card w-full flex-1 rounded-xl p-6 dark:faq-card" id="hs-heading-2" data-aos="fade-right">
+                        <button class="hs-accordion-toggle group pb-3 inline-flex items-center justify-between gap-x-3 w-full md:text-lg font-semibold text-start text-gray-800 transition hover:text-gray-500 focus:outline-hidden dark:text-neutral-200 dark:hover:text-neutral-400" aria-expanded="false" aria-controls="hs-collapse-2">
+                            My team has credits. How do we use them?
+                            <svg class="arrow-icon transition-transform duration-300 ease-in-out size-5 text-white group-hover:text-gray-300 dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
+                            </svg>
+                        </button>
+                        <div id="hs-collapse-2" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" role="region" aria-labelledby="hs-heading-2">
+                            <p class="text-gray-800 dark:text-neutral-200">
+                                Once your team signs up for a subscription plan, we’ll help you configure everything and walk you through how to redeem credits.
+                            </p>
+                        </div>
+                    </div>
 
-                      <!-- Accordion Item 3 -->
-                      <div class="hs-accordion faq-card w-full flex-1 rounded-xl p-6 dark:faq-card" id="hs-heading-3" data-aos="fade-right">
-                          <button class="hs-accordion-toggle group pb-3 inline-flex items-center justify-between gap-x-3 w-full md:text-lg font-semibold text-start text-gray-800 transition hover:text-gray-500 focus:outline-hidden dark:text-neutral-200 dark:hover:text-neutral-400" aria-expanded="false" aria-controls="hs-collapse-3">
-                              How secure is Preline?
-                              <svg class="arrow-icon transition-transform duration-300 ease-in-out size-5 text-white group-hover:text-gray-300 dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="5">
-                                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
-                              </svg>
-                          </button>
-                          <div id="hs-collapse-3" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" role="region" aria-labelledby="hs-heading-3">
-                              <p class="text-gray-800 dark:text-neutral-200">
-                                  We prioritize your data’s safety using modern encryption and compliance standards.
-                              </p>
-                          </div>
-                      </div>
-                  </div>
+                    <!-- Accordion Item 3 -->
+                    <div class="hs-accordion faq-card w-full flex-1 rounded-xl p-6 dark:faq-card" id="hs-heading-3" data-aos="fade-right">
+                        <button class="hs-accordion-toggle group pb-3 inline-flex items-center justify-between gap-x-3 w-full md:text-lg font-semibold text-start text-gray-800 transition hover:text-gray-500 focus:outline-hidden dark:text-neutral-200 dark:hover:text-neutral-400" aria-expanded="false" aria-controls="hs-collapse-3">
+                            How secure is Preline?
+                            <svg class="arrow-icon transition-transform duration-300 ease-in-out size-5 text-white group-hover:text-gray-300 dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
+                            </svg>
+                        </button>
+                        <div id="hs-collapse-3" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" role="region" aria-labelledby="hs-heading-3">
+                            <p class="text-gray-800 dark:text-neutral-200">
+                                We prioritize your data’s safety using modern encryption and compliance standards.
+                            </p>
+                        </div>
+                    </div>
+                </div>
 
-                  <!-- RIGHT Column -->
-                  <div class="flex flex-col gap-6">
-                      <!-- Accordion Item 4 -->
-                      <div class="hs-accordion faq-card w-full flex-1 rounded-xl p-6 dark:faq-card" id="hs-heading-4" data-aos="fade-left">
-                          <button class="hs-accordion-toggle group pb-3 inline-flex items-center justify-between gap-x-3 w-full md:text-lg font-semibold text-start text-gray-800 transition hover:text-gray-500 focus:outline-hidden dark:text-neutral-200 dark:hover:text-neutral-400" aria-expanded="false" aria-controls="hs-collapse-4">
-                              How do I get access to a theme I purchased?
-                              <svg class="arrow-icon transition-transform duration-300 ease-in-out size-5 text-white group-hover:text-gray-300 dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="5">
-                                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
-                              </svg>
-                          </button>
-                          <div id="hs-collapse-4" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" role="region" aria-labelledby="hs-heading-4">
-                              <p class="text-gray-800 dark:text-neutral-200">
-                                  After purchasing a theme, you'll receive a download link via email. If you lose it, just contact support for a reissue.
-                              </p>
-                          </div>
-                      </div>
+                <!-- RIGHT Column -->
+                <div class="flex flex-col gap-6">
+                    <!-- Accordion Item 4 -->
+                    <div class="hs-accordion faq-card w-full flex-1 rounded-xl p-6 dark:faq-card" id="hs-heading-4" data-aos="fade-left">
+                        <button class="hs-accordion-toggle group pb-3 inline-flex items-center justify-between gap-x-3 w-full md:text-lg font-semibold text-start text-gray-800 transition hover:text-gray-500 focus:outline-hidden dark:text-neutral-200 dark:hover:text-neutral-400" aria-expanded="false" aria-controls="hs-collapse-4">
+                            How do I get access to a theme I purchased?
+                            <svg class="arrow-icon transition-transform duration-300 ease-in-out size-5 text-white group-hover:text-gray-300 dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
+                            </svg>
+                        </button>
+                        <div id="hs-collapse-4" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" role="region" aria-labelledby="hs-heading-4">
+                            <p class="text-gray-800 dark:text-neutral-200">
+                                After purchasing a theme, you'll receive a download link via email. If you lose it, just contact support for a reissue.
+                            </p>
+                        </div>
+                    </div>
 
-                      <!-- Accordion Item 5 -->
-                      <div class="hs-accordion faq-card w-full flex-1 rounded-xl p-6 dark:faq-card" id="hs-heading-5" data-aos="fade-left">
-                          <button class="hs-accordion-toggle group pb-3 inline-flex items-center justify-between gap-x-3 w-full md:text-lg font-semibold text-start text-gray-800 transition hover:text-gray-500 focus:outline-hidden dark:text-neutral-200 dark:hover:text-neutral-400" aria-expanded="false" aria-controls="hs-collapse-5">
-                              Can I upgrade my license later?
-                              <svg class="arrow-icon transition-transform duration-300 ease-in-out size-5 text-white group-hover:text-gray-300 dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="5">
-                                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
-                              </svg>
-                          </button>
-                          <div id="hs-collapse-5" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" role="region" aria-labelledby="hs-heading-5">
-                              <p class="text-gray-800 dark:text-neutral-200">
-                                  You can upgrade your license anytime and apply your previous purchase toward the new license cost.
-                              </p>
-                          </div>
-                      </div>
+                    <!-- Accordion Item 5 -->
+                    <div class="hs-accordion faq-card w-full flex-1 rounded-xl p-6 dark:faq-card" id="hs-heading-5" data-aos="fade-left">
+                        <button class="hs-accordion-toggle group pb-3 inline-flex items-center justify-between gap-x-3 w-full md:text-lg font-semibold text-start text-gray-800 transition hover:text-gray-500 focus:outline-hidden dark:text-neutral-200 dark:hover:text-neutral-400" aria-expanded="false" aria-controls="hs-collapse-5">
+                            Can I upgrade my license later?
+                            <svg class="arrow-icon transition-transform duration-300 ease-in-out size-5 text-white group-hover:text-gray-300 dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
+                            </svg>
+                        </button>
+                        <div id="hs-collapse-5" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" role="region" aria-labelledby="hs-heading-5">
+                            <p class="text-gray-800 dark:text-neutral-200">
+                                You can upgrade your license anytime and apply your previous purchase toward the new license cost.
+                            </p>
+                        </div>
+                    </div>
 
-                      <!-- Accordion Item 6 -->
-                      <div class="hs-accordion faq-card w-full flex-1 rounded-xl p-6 dark:faq-card" id="hs-heading-6" data-aos="fade-left">
-                          <button class="hs-accordion-toggle group pb-3 inline-flex items-center justify-between gap-x-3 w-full md:text-lg font-semibold text-start text-gray-800 transition hover:text-gray-500 focus:outline-hidden dark:text-neutral-200 dark:hover:text-neutral-400" aria-expanded="false" aria-controls="hs-collapse-6">
-                              Is support included with the theme?
-                              <svg class="arrow-icon transition-transform duration-300 ease-in-out size-5 text-white group-hover:text-gray-300 dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="5">
-                                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
-                              </svg>
-                          </button>
-                          <div id="hs-collapse-6" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" role="region" aria-labelledby="hs-heading-6">
-                              <p class="text-gray-800 dark:text-neutral-200">
-                                  Yes! All plans include access to our support team for any setup or technical questions.
-                              </p>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <!-- End Accordion Grid -->
+                    <!-- Accordion Item 6 -->
+                    <div class="hs-accordion faq-card w-full flex-1 rounded-xl p-6 dark:faq-card" id="hs-heading-6" data-aos="fade-left">
+                        <button class="hs-accordion-toggle group pb-3 inline-flex items-center justify-between gap-x-3 w-full md:text-lg font-semibold text-start text-gray-800 transition hover:text-gray-500 focus:outline-hidden dark:text-neutral-200 dark:hover:text-neutral-400" aria-expanded="false" aria-controls="hs-collapse-6">
+                            Is support included with the theme?
+                            <svg class="arrow-icon transition-transform duration-300 ease-in-out size-5 text-white group-hover:text-gray-300 dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
+                            </svg>
+                        </button>
+                        <div id="hs-collapse-6" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" role="region" aria-labelledby="hs-heading-6">
+                            <p class="text-gray-800 dark:text-neutral-200">
+                                Yes! All plans include access to our support team for any setup or technical questions.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Accordion Grid -->
 
-              <!-- Question Submission Form -->
-              <div class="mt-12 max-w-4xl mx-auto text-center">
-                  <form class="flex flex-col sm:flex-row items-center gap-4">
-                      <input type="text" placeholder="Add your valuable question" class="w-full px-5 py-3 sm:px-6 sm:text-base rounded-md border-2 border-white bg-transparent text-gray-800 placeholder-gray-500 dark:bg-transparent dark:text-neutral-200 dark:placeholder-neutral-400 transition-all duration-500 ease-in-out" />
+            <!-- Question Submission Form -->
+            <div class="mt-12 max-w-4xl mx-auto text-center">
+                <form class="flex flex-col sm:flex-row items-center gap-4">
+                    <input type="text" placeholder="Add your valuable question" class="w-full px-5 py-3 sm:px-6 sm:text-base rounded-md border-2 border-white bg-transparent text-gray-800 placeholder-gray-500 dark:bg-transparent dark:text-neutral-200 dark:placeholder-neutral-400 transition-all duration-500 ease-in-out" />
 
-                      <button type="submit" class="px-8 py-3 sm:px-8 sm:py-3 rounded-md bg-red-600 text-white border border-white hover:bg-red-800 transition-colors duration-300 dark:bg-red-500 dark:text-white dark:border-red-500 dark:hover:bg-red-600 font-extrabold text-lg">
-                          Submit
-                      </button>
-                  </form>
-              </div>
-              <!-- End Form -->
-          </div>
-      </div>
+                    <button type="submit" class="px-8 py-3 sm:px-8 sm:py-3 rounded-md bg-red-600 text-white border border-white hover:bg-red-800 transition-colors duration-300 dark:bg-red-500 dark:text-white dark:border-red-500 dark:hover:bg-red-600 font-extrabold text-lg">
+                        Submit
+                    </button>
+                </form>
+            </div>
+            <!-- End Form -->
+        </div>
+    </div>
 
-      <!-- AOS CSS -->
+    <!-- AOS CSS -->
 
-      <!-- AOS JS -->
+    <!-- AOS JS -->
 
-      <script>
-          AOS.init({
-              duration: 600,
-              easing: 'ease-in-out',
-              once: true,
-              mirror: false
-          });
-      </script>
-  </section>
+    <script>
+        AOS.init({
+            duration: 600,
+            easing: 'ease-in-out',
+            once: true,
+            mirror: false
+        });
+    </script>
+</section>
 
-  <hr class="my-12 border-t-4 border-gray-700 dark:border-gray-400 w-full" />
+<hr class="my-12 border-t-4 border-gray-700 dark:border-gray-400 w-full" />
 
-  <section style="background: rgba(0, 0, 0, 0.5);" class="py-20 px-6 pb-20 -mt-16" id="why-us">
-      <div class="max-w-7xl mx-auto text-center text-white mb-12">
-          <h2 class="mb-2 faq-head">Why Choose Us</h2>
-          <p class="faq-sub">Creators’ secure and simple movie watch and control.</p>
-      </div>
+<section style="background: rgba(0, 0, 0, 0.5);" class="py-20 px-6 pb-20 -mt-16" id="why-us">
+    <div class="max-w-7xl mx-auto text-center text-white mb-12">
+        <h2 class="mb-2 faq-head">Why Choose Us</h2>
+        <p class="faq-sub">Creators’ secure and simple movie watch and control.</p>
+    </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          <!-- Card 1 -->
-          <div class="bg-white bg-opacity-10 backdrop-blur-md rounded-xl p-8 shadow-lg transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl">
-              <div class="mb-4 text-4xl">
-                  <i class="fas fa-play-circle text-blue-400"></i>
-              </div>
-              <h3 class="text-2xl font-extrabold text-white mb-3">Easily Watch</h3>
-              <p class="text-white/80">
-                  Upload your movie files quickly with drag-and-drop. Our platform supports large video formats and ensures fast, reliable playback without compatibility issues or delays.
-              </p>
-          </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <!-- Card 1 -->
+        <div class="bg-white bg-opacity-10 backdrop-blur-md rounded-xl p-8 shadow-lg transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl">
+            <div class="mb-4 text-4xl">
+                <i class="fas fa-play-circle text-blue-400"></i>
+            </div>
+            <h3 class="text-2xl font-extrabold text-white mb-3">Easily Watch</h3>
+            <p class="text-white/80">
+                Upload your movie files quickly with drag-and-drop. Our platform supports large video formats and ensures fast, reliable playback without compatibility issues or delays.
+            </p>
+        </div>
 
-          <!-- Card 2 -->
-          <div class="bg-white bg-opacity-10 backdrop-blur-md rounded-xl p-8 shadow-lg transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl">
-              <div class="mb-4 text-4xl">
-                  <i class="fas fa-shield-alt text-yellow-400"></i>
-              </div>
-              <h3 class="text-2xl font-extrabold text-white mb-3">Full Control</h3>
-              <p class="text-white/80">
-                  Easily set permissions to control who can view or download your movies. Track all activity and manage distribution securely, keeping full ownership of your content at all times.
-              </p>
-          </div>
+        <!-- Card 2 -->
+        <div class="bg-white bg-opacity-10 backdrop-blur-md rounded-xl p-8 shadow-lg transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl">
+            <div class="mb-4 text-4xl">
+                <i class="fas fa-shield-alt text-yellow-400"></i>
+            </div>
+            <h3 class="text-2xl font-extrabold text-white mb-3">Full Control</h3>
+            <p class="text-white/80">
+                Easily set permissions to control who can view or download your movies. Track all activity and manage distribution securely, keeping full ownership of your content at all times.
+            </p>
+        </div>
 
-          <!-- Card 3 -->
-          <div class="bg-white bg-opacity-10 backdrop-blur-md rounded-xl p-8 shadow-lg transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl">
-              <div class="mb-4 text-4xl">
-                  <i class="fas fa-download text-green-400"></i>
-              </div>
-              <h3 class="text-2xl font-extrabold text-white mb-3">Secure Downloads</h3>
-              <p class="text-white/80">
-                  Provide trusted users with safe download access. Monitor downloads in real time to ensure your movies are securely shared, giving you peace of mind over your valuable content.
-              </p>
-          </div>
-      </div>
+        <!-- Card 3 -->
+        <div class="bg-white bg-opacity-10 backdrop-blur-md rounded-xl p-8 shadow-lg transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl">
+            <div class="mb-4 text-4xl">
+                <i class="fas fa-download text-green-400"></i>
+            </div>
+            <h3 class="text-2xl font-extrabold text-white mb-3">Secure Downloads</h3>
+            <p class="text-white/80">
+                Provide trusted users with safe download access. Monitor downloads in real time to ensure your movies are securely shared, giving you peace of mind over your valuable content.
+            </p>
+        </div>
+    </div>
 
-  </section>
+</section>
 
-  <footer class="custom-glass-footer">
-      <div class="max-w-7xl mx-auto px-12 py-10 grid grid-cols-1 md:grid-cols-4 gap-2 place-items-center text-center">
-          <div class="space-y-3 pb-2">
-              <h2 class="foot-head">SINHALIES</h2>
-              <p class="foot-sub">Delivering blockbuster moments, one reel at a time, inspiring stories that captivate the soul.</p>
-          </div>
+<footer class="custom-glass-footer">
+    <div class="max-w-7xl mx-auto px-12 py-10 grid grid-cols-1 md:grid-cols-4 gap-2 place-items-center text-center">
+        <div class="space-y-3 pb-2">
+            <h2 class="foot-head">SINHALIES</h2>
+            <p class="foot-sub">Delivering blockbuster moments, one reel at a time, inspiring stories that captivate the soul.</p>
+        </div>
 
-          <div class="space-y-2 pt-1.5">
-              <h3 class="movie">Movies</h3>
-              <ul class="movie-sub space-y-1">
-                  <li><a href="#" class="hover:underline">Action</a></li>
-                  <li><a href="#" class="hover:underline">Horror</a></li>
-                  <li><a href="#" class="hover:underline">Sci-Fic</a></li>
-                  <li><a href="#" class="hover:underline">Romance</a></li>
-              </ul>
-          </div>
+        <div class="space-y-2 pt-1.5">
+            <h3 class="movie">Movies</h3>
+            <ul class="movie-sub space-y-1">
+                <li><a href="#" class="hover:underline">Action</a></li>
+                <li><a href="#" class="hover:underline">Horror</a></li>
+                <li><a href="#" class="hover:underline">Sci-Fic</a></li>
+                <li><a href="#" class="hover:underline">Romance</a></li>
+            </ul>
+        </div>
 
-          <div class="space-y-2 pb-5">
-              <h3 class="company">Company</h3>
-              <ul class="company-sub space-y-1">
-                  <li><a href="#" class="hover:underline">Why Us</a></li>
-                  <li><a href="#" class="hover:underline">FAQ's</a></li>
-                  <li><a href="#" class="hover:underline">Buy Premium</a></li>
-              </ul>
-          </div>
+        <div class="space-y-2 pb-5">
+            <h3 class="company">Company</h3>
+            <ul class="company-sub space-y-1">
+                <li><a href="#" class="hover:underline">Why Us</a></li>
+                <li><a href="#" class="hover:underline">FAQ's</a></li>
+                <li><a href="#" class="hover:underline">Buy Premium</a></li>
+            </ul>
+        </div>
 
-          <div class="space-y-3 pb-16">
-              <h2 class="fallow">Follow Us</h2>
-              <div class="flex justify-center gap-4">
-                  <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" class="w-8 h-8" alt="Facebook" /></a>
-                  <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" class="w-8 h-8" alt="Instagram" /></a>
-                  <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" class="w-8 h-8" alt="Twitter" /></a>
-              </div>
-          </div>
-      </div>
+        <div class="space-y-3 pb-16">
+            <h2 class="fallow">Follow Us</h2>
+            <div class="flex justify-center gap-4">
+                <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" class="w-8 h-8" alt="Facebook" /></a>
+                <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" class="w-8 h-8" alt="Instagram" /></a>
+                <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" class="w-8 h-8" alt="Twitter" /></a>
+            </div>
+        </div>
+    </div>
 
-      <div class="text-center border-t border-gray-300/30 py-4 copy">
-          © 2025 <span class="sin">SINHALIES</span>. All rights reserved.
-      </div>
-  </footer>
+    <div class="text-center border-t border-gray-300/30 py-4 copy">
+        © 2025 <span class="sin">SINHALIES</span>. All rights reserved.
+    </div>
+</footer>
 
 
-  <div id="premiumToast" aria-live="assertive" aria-atomic="true" role="alert" aria-relevant="additions" aria-live="polite">
+<div id="premiumToast" aria-live="assertive" aria-atomic="true" role="alert" aria-relevant="additions" aria-live="polite">
     Buy Premium To Watch
-  </div>
+</div>
 
 
-      <script type="module">
-          import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-          import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
-          import { getDatabase, ref, get, child } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js";
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+    import { getDatabase, ref, get, child } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js";
 
-          const firebaseConfig = {
-              apiKey: "AIzaSyCNH38ylbzfIORN0wmDoizj_eWKunQ1uAQ",
-              authDomain: "my-first-app-6a293.firebaseapp.com",
-              databaseURL: "https://my-first-app-6a293-default-rtdb.asia-southeast1.firebasedatabase.app",
-              projectId: "my-first-app-6a293",
-              storageBucket: "my-first-app-6a293.appspot.com",
-              messagingSenderId: "599546991663",
-              appId: "1:599546991663:web:b07d25c55f1d00c06722da",
-              measurementId: "G-5EVKKY7KLP"
-          };
+    const firebaseConfig = {
+        apiKey: "AIzaSyCNH38ylbzfIORN0wmDoizj_eWKunQ1uAQ",
+        authDomain: "my-first-app-6a293.firebaseapp.com",
+        databaseURL: "https://my-first-app-6a293-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "my-first-app-6a293",
+        storageBucket: "my-first-app-6a293.appspot.com",
+        messagingSenderId: "599546991663",
+        appId: "1:599546991663:web:b07d25c55f1d00c06722da",
+        measurementId: "G-5EVKKY7KLP"
+    };
 
-          const app = initializeApp(firebaseConfig);
-          const auth = getAuth(app);
-          const db = getDatabase(app);
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getDatabase(app);
 
-          function updateUserDropdown(username, photoURL = null) {
-              const userInitial = document.getElementById('userInitial');
-              const defaultIcon = document.getElementById('defaultUserIcon');
-              const userToggle = document.getElementById('userToggle');
-              const userMenu = document.getElementById('userMenu');
+    function updateUserDropdown(username, photoURL = null) {
+        const userInitial = document.getElementById('userInitial');
+        const defaultIcon = document.getElementById('defaultUserIcon');
+        const userToggle = document.getElementById('userToggle');
+        const userMenu = document.getElementById('userMenu');
 
-              if (!userMenu || !userInitial || !defaultIcon || !userToggle) return;
+        if (!userMenu || !userInitial || !defaultIcon || !userToggle) return;
 
-              // Clear any previously added profile image
-              const existingImg = userToggle.querySelector('img.userPhoto');
-              if (existingImg) existingImg.remove();
+        // Clear any previously added profile image
+        const existingImg = userToggle.querySelector('img.userPhoto');
+        if (existingImg) existingImg.remove();
 
-              if (photoURL) {
-                  // ✅ Show user photo
-                  userInitial.style.display = 'none';
-                  defaultIcon.style.display = 'none';
+        if (photoURL) {
+            // ✅ Show user photo
+            userInitial.style.display = 'none';
+            defaultIcon.style.display = 'none';
 
-                  const img = document.createElement('img');
-                  img.src = photoURL;
-                  img.alt = "User Photo";
-                  img.className = 'userPhoto rounded-full w-10 h-10 object-cover';
-                  userToggle.appendChild(img);
-              } else if (username && username !== 'U') {
-                  // ✅ Show first letter of username
-                  userInitial.textContent = username.charAt(0).toUpperCase();
-                  userInitial.style.display = 'inline';
-                  defaultIcon.style.display = 'none';
-              } else {
-                  // ❌ Logged out or anonymous
-                  userInitial.textContent = '';
-                  userInitial.style.display = 'none';
-                  defaultIcon.style.display = 'inline';
-              }
+            const img = document.createElement('img');
+            img.src = photoURL;
+            img.alt = "User Photo";
+            img.className = 'userPhoto rounded-full w-10 h-10 object-cover';
+            userToggle.appendChild(img);
+        } else if (username && username !== 'U') {
+            // ✅ Show first letter of username
+            userInitial.textContent = username.charAt(0).toUpperCase();
+            userInitial.style.display = 'inline';
+            defaultIcon.style.display = 'none';
+        } else {
+            // ❌ Logged out or anonymous
+            userInitial.textContent = '';
+            userInitial.style.display = 'none';
+            defaultIcon.style.display = 'inline';
+        }
 
-              // ✅ Update user menu
-              if (username && username !== 'U') {
-                  userMenu.innerHTML = `
+        // ✅ Update user menu
+        if (username && username !== 'U') {
+            userMenu.innerHTML = `
             <li><a href="profile.html">My Profile</a></li>
             <li><a href="#" id="logoutBtn">Log Out</a></li>
         `;
 
-                  // Attach logout listener
-                  document.getElementById('logoutBtn').addEventListener('click', async (e) => {
-                      e.preventDefault();
-                      try {
-                          await signOut(auth);  // ✅ correct usage
-                          alert('✅ Logged out successfully.');
-                      } catch (error) {
-                          console.error('Logout Error:', error);
-                          alert('⚠️ Error logging out. Try again.');
-                      }
-                  });
+            // Attach logout listener
+            document.getElementById('logoutBtn').addEventListener('click', async (e) => {
+                e.preventDefault();
+                try {
+                    await signOut(auth);  // ✅ correct usage
+                    alert('✅ Logged out successfully.');
+                } catch (error) {
+                    console.error('Logout Error:', error);
+                    alert('⚠️ Error logging out. Try again.');
+                }
+            });
 
-              } else {
-                  userMenu.innerHTML = `
+        } else {
+            userMenu.innerHTML = `
             <li>
                 <a href="register.html" class="flex items-center gap-2">
                     <!-- User Icon SVG -->
@@ -608,174 +610,174 @@
                 </a>
             </li>
         `;
-              }
-          }
+        }
+    }
 
 
-          onAuthStateChanged(auth, async (user) => {
-              if (user) {
-                  try {
-                      const snapshot = await get(child(ref(db), 'users/' + user.uid));
-                      const userData = snapshot.val();
+    onAuthStateChanged(auth, async (user) => {
+        if (user) {
+            try {
+                const snapshot = await get(child(ref(db), 'users/' + user.uid));
+                const userData = snapshot.val();
 
-                      let displayName = 'U';
+                let displayName = 'U';
 
-                      if (userData && userData.username) {
-                          displayName = userData.username.charAt(0).toUpperCase();  // 👈 First letter
-                      } else if (user.displayName) {
-                          displayName = user.displayName.charAt(0).toUpperCase();  // 👈 First letter
-                      }
+                if (userData && userData.username) {
+                    displayName = userData.username.charAt(0).toUpperCase();  // 👈 First letter
+                } else if (user.displayName) {
+                    displayName = user.displayName.charAt(0).toUpperCase();  // 👈 First letter
+                }
 
-                      const photoURL = userData?.photoURL
-                          || user.photoURL
-                          || `https://api.dicebear.com/6.x/bottts-neutral/svg?seed=${user.uid}`;
+                const photoURL = userData?.photoURL
+                    || user.photoURL
+                    || `https://api.dicebear.com/6.x/bottts-neutral/svg?seed=${user.uid}`;
 
-                      // ✅ Desktop dropdown
-                      updateUserDropdown(displayName, photoURL);
+                // ✅ Desktop dropdown
+                updateUserDropdown(displayName, photoURL);
 
-                      // ✅ Mobile dropdown
-                      updateMobileUserDropdown(displayName, photoURL);
+                // ✅ Mobile dropdown
+                updateMobileUserDropdown(displayName, photoURL);
 
-                  } catch (err) {
-                      console.error('Error fetching user data:', err);
+            } catch (err) {
+                console.error('Error fetching user data:', err);
 
-                      const fallbackName = user.displayName?.charAt(0).toUpperCase() || 'U';
-                      const fallbackPhoto = user.photoURL;
+                const fallbackName = user.displayName?.charAt(0).toUpperCase() || 'U';
+                const fallbackPhoto = user.photoURL;
 
-                      updateUserDropdown(fallbackName, fallbackPhoto);
-                      updateMobileUserDropdown(fallbackName, fallbackPhoto);
-                  }
-              } else {
-                  // Logged out: show default icons
-                  updateUserDropdown('U');
-                  updateMobileUserDropdown('U');
-              }
-          });
+                updateUserDropdown(fallbackName, fallbackPhoto);
+                updateMobileUserDropdown(fallbackName, fallbackPhoto);
+            }
+        } else {
+            // Logged out: show default icons
+            updateUserDropdown('U');
+            updateMobileUserDropdown('U');
+        }
+    });
 
 
 
-          function updateMobileUserDropdown(username, photoURL = null) {
-              const mobileUserInitial = document.getElementById('mobileUserInitial');
-              const mobileDefaultIcon = document.getElementById('mobileDefaultUserIcon');
-              const mobileUserToggle = document.getElementById('mobileUserToggle');
-              const mobileUserMenu = document.getElementById('mobileUserMenu');
+    function updateMobileUserDropdown(username, photoURL = null) {
+        const mobileUserInitial = document.getElementById('mobileUserInitial');
+        const mobileDefaultIcon = document.getElementById('mobileDefaultUserIcon');
+        const mobileUserToggle = document.getElementById('mobileUserToggle');
+        const mobileUserMenu = document.getElementById('mobileUserMenu');
 
-              if (!mobileUserMenu || !mobileUserInitial || !mobileDefaultIcon || !mobileUserToggle) return;
+        if (!mobileUserMenu || !mobileUserInitial || !mobileDefaultIcon || !mobileUserToggle) return;
 
-              // Remove existing profile image
-              const existingImg = mobileUserToggle.querySelector('img.mobileUserPhoto');
-              if (existingImg) existingImg.remove();
+        // Remove existing profile image
+        const existingImg = mobileUserToggle.querySelector('img.mobileUserPhoto');
+        if (existingImg) existingImg.remove();
 
-              // ✅ Show photo if available
-              if (photoURL) {
-                  mobileUserInitial.style.display = 'none';
-                  mobileDefaultIcon.style.display = 'none';
+        // ✅ Show photo if available
+        if (photoURL) {
+            mobileUserInitial.style.display = 'none';
+            mobileDefaultIcon.style.display = 'none';
 
-                  const img = document.createElement('img');
-                  img.src = photoURL;
-                  img.alt = "User Photo";
-                  img.className = 'mobileUserPhoto rounded-full w-8 h-8 object-cover';
-                  mobileUserToggle.appendChild(img);
-              } else if (username && username !== 'U') {
-                  // ✅ Show initial
-                  mobileUserInitial.textContent = username.charAt(0).toUpperCase();
-                  mobileUserInitial.style.display = 'inline';
-                  mobileDefaultIcon.style.display = 'none';
-              } else {
-                  // ❌ Logged out
-                  mobileUserInitial.textContent = '';
-                  mobileUserInitial.style.display = 'none';
-                  mobileDefaultIcon.style.display = 'inline';
-              }
+            const img = document.createElement('img');
+            img.src = photoURL;
+            img.alt = "User Photo";
+            img.className = 'mobileUserPhoto rounded-full w-8 h-8 object-cover';
+            mobileUserToggle.appendChild(img);
+        } else if (username && username !== 'U') {
+            // ✅ Show initial
+            mobileUserInitial.textContent = username.charAt(0).toUpperCase();
+            mobileUserInitial.style.display = 'inline';
+            mobileDefaultIcon.style.display = 'none';
+        } else {
+            // ❌ Logged out
+            mobileUserInitial.textContent = '';
+            mobileUserInitial.style.display = 'none';
+            mobileDefaultIcon.style.display = 'inline';
+        }
 
-              // ✅ Update dropdown options
-              if (username && username !== 'U') {
-                  mobileUserMenu.innerHTML = `
+        // ✅ Update dropdown options
+        if (username && username !== 'U') {
+            mobileUserMenu.innerHTML = `
             <li><a href="profile.html" class="block px-4 py-2 hover:bg-gray-100">My Profile</a></li>
             <li><a href="#" id="mobileLogoutBtn" class="block px-4 py-2 hover:bg-gray-100">Log Out</a></li>
         `;
 
-                  document.getElementById('mobileLogoutBtn').addEventListener('click', async (e) => {
-                      e.preventDefault();
-                      try {
-                          await signOut(auth);
-                          alert('✅ Logged out successfully.');
-                          mobileUserMenu.classList.add('hidden');
-                      } catch (error) {
-                          console.error('Logout Error:', error);
-                          alert('⚠️ Error logging out. Try again.');
-                      }
-                  });
-              } else {
-                  mobileUserMenu.innerHTML = `
+            document.getElementById('mobileLogoutBtn').addEventListener('click', async (e) => {
+                e.preventDefault();
+                try {
+                    await signOut(auth);
+                    alert('✅ Logged out successfully.');
+                    mobileUserMenu.classList.add('hidden');
+                } catch (error) {
+                    console.error('Logout Error:', error);
+                    alert('⚠️ Error logging out. Try again.');
+                }
+            });
+        } else {
+            mobileUserMenu.innerHTML = `
             <li><a href="register.html" class="block px-4 py-2 hover:bg-gray-100">Sign In</a></li>
             <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Buy Premium</a></li>
         `;
-              }
-          }
+        }
+    }
 
-          // ✅ Toggle mobile dropdown menu on icon click
-          document.getElementById('mobileUserToggle')?.addEventListener('click', () => {
-              const menu = document.getElementById('mobileUserMenu');
-              if (menu) menu.classList.toggle('hidden');
-          });
-
-
-      </script>
-
-  <script>
+    // ✅ Toggle mobile dropdown menu on icon click
+    document.getElementById('mobileUserToggle')?.addEventListener('click', () => {
+        const menu = document.getElementById('mobileUserMenu');
+        if (menu) menu.classList.toggle('hidden');
+    });
 
 
-      document.getElementById('dropdownToggle').addEventListener('click', () => {
-      const dropdown = document.getElementById('mainDropdown');
-      dropdown.classList.toggle('open');
+</script>
+
+<script>
+
+
+    document.getElementById('dropdownToggle').addEventListener('click', () => {
+        const dropdown = document.getElementById('mainDropdown');
+        dropdown.classList.toggle('open');
     });
 
     document.getElementById('userToggle').addEventListener('click', () => {
-      const dropdown = document.getElementById('userDropdown');
-      dropdown.classList.toggle('open');
+        const dropdown = document.getElementById('userDropdown');
+        dropdown.classList.toggle('open');
     });
 
     const searchInput = document.getElementById('searchInput');
     const searchToggle = document.getElementById('searchToggle');
     searchToggle.addEventListener('click', () => {
-      if (searchInput.classList.contains('show')) {
-        searchInput.classList.remove('show');
-        searchInput.value = '';
-        searchInput.blur();
-      } else {
-        searchInput.classList.add('show');
-        searchInput.focus();
-      }
+        if (searchInput.classList.contains('show')) {
+            searchInput.classList.remove('show');
+            searchInput.value = '';
+            searchInput.blur();
+        } else {
+            searchInput.classList.add('show');
+            searchInput.focus();
+        }
     });
 
     const newReleaseLock = document.getElementById('newReleaseLock');
     const premiumToast = document.getElementById('premiumToast');
 
     newReleaseLock.addEventListener('click', (e) => {
-      e.preventDefault();
-      if (!premiumToast.classList.contains('show')) {
-        premiumToast.classList.add('show');
-        setTimeout(() => {
-          premiumToast.classList.remove('show');
-        }, 3000);
-      }
+        e.preventDefault();
+        if (!premiumToast.classList.contains('show')) {
+            premiumToast.classList.add('show');
+            setTimeout(() => {
+                premiumToast.classList.remove('show');
+            }, 3000);
+        }
     });
 
     const notificationBtn = document.getElementById('notificationBtn');
     const notificationPopup = document.getElementById('notificationPopup');
 
     if (notificationBtn && notificationPopup) {
-      notificationBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        if (notificationPopup.classList.contains('show')) {
-          notificationPopup.classList.remove('show');
-          notificationPopup.classList.add('hidden');
-        } else {
-          notificationPopup.classList.add('show');
-          notificationPopup.classList.remove('hidden');
-        }
-      });
+        notificationBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (notificationPopup.classList.contains('show')) {
+                notificationPopup.classList.remove('show');
+                notificationPopup.classList.add('hidden');
+            } else {
+                notificationPopup.classList.add('show');
+                notificationPopup.classList.remove('hidden');
+            }
+        });
 
         const searchToggleMobile = document.getElementById('search-toggle-mobile');
 
@@ -783,71 +785,65 @@
             searchToggleMobile.classList.toggle('big-icon');
         });
 
-      document.addEventListener('click', (e) => {
-        if (!notificationPopup.contains(e.target) && !notificationBtn.contains(e.target)) {
-          notificationPopup.classList.remove('show');
-          notificationPopup.classList.add('hidden');
-        }
-      });
+        document.addEventListener('click', (e) => {
+            if (!notificationPopup.contains(e.target) && !notificationBtn.contains(e.target)) {
+                notificationPopup.classList.remove('show');
+                notificationPopup.classList.add('hidden');
+            }
+        });
     }
-      document.addEventListener('DOMContentLoaded', () => {
-          const toggleBtn = document.getElementById('menu-toggle');
-          const menu = document.getElementById('mobile-menu');
+    document.addEventListener('DOMContentLoaded', () => {
+        const toggleBtn = document.getElementById('menu-toggle');
+        const menu = document.getElementById('mobile-menu');
 
-          let menuOpen = false;
+        let menuOpen = false;
 
-          toggleBtn.addEventListener('click', () => {
-              if (menuOpen) {
-                  // CLOSE
-                  menu.style.maxHeight = '0px';
-                  menuOpen = false;
-                  toggleBtn.innerHTML = `
+        toggleBtn.addEventListener('click', () => {
+            if (menuOpen) {
+                // CLOSE MENU
+                menu.style.maxHeight = '0px';
+                menuOpen = false;
+                toggleBtn.innerHTML = `
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
             `;
-              } else {
-                  // OPEN
-                  // Step 1: temporarily show all hidden children (like submenu or user menu)
-                  const submenu = document.getElementById('mobileMoviesSubmenu');
-                  const userMenu = document.getElementById('mobileUserMenu');
+            } else {
+                // TEMPORARILY REVEAL hidden elements for accurate height
+                const submenu = document.getElementById('mobileMoviesSubmenu');
+                const userMenu = document.getElementById('mobileUserMenu');
 
-                  const hiddenEls = [];
+                const originallyHidden = [];
 
-                  if (submenu?.classList.contains('hidden')) {
-                      submenu.classList.remove('hidden');
-                      hiddenEls.push(submenu);
-                  }
+                [submenu, userMenu].forEach(el => {
+                    if (el && el.classList.contains('hidden')) {
+                        el.classList.remove('hidden');
+                        originallyHidden.push(el);
+                    }
+                });
 
-                  if (userMenu?.classList.contains('hidden')) {
-                      userMenu.classList.remove('hidden');
-                      hiddenEls.push(userMenu);
-                  }
+                // Wait for DOM to reflow so we can measure scrollHeight
+                requestAnimationFrame(() => {
+                    const fullHeight = menu.scrollHeight + 50; // Optional padding
 
-                  // Step 2: force reflow so height includes them
-                  requestAnimationFrame(() => {
-                      const fullHeight = menu.scrollHeight + 100;  // Add 100px extra height
+                    // Hide them again after measuring
+                    originallyHidden.forEach(el => el.classList.add('hidden'));
 
-                      // Step 3: restore hidden state AFTER measuring
-                      hiddenEls.forEach(el => el.classList.add('hidden'));
+                    // OPEN MENU
+                    menu.style.maxHeight = fullHeight + 'px';
+                    menuOpen = true;
 
-                      // Step 4: set max-height for transition
-                      menu.style.maxHeight = fullHeight + 'px';
-                      menuOpen = true;
-
-                      toggleBtn.innerHTML = `
+                    toggleBtn.innerHTML = `
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 `;
-                  });
-              }
-          });
-      });
+                });
+            }
+        });
+    });
 
-
-
-      const mobileSearchToggle = document.getElementById('search-toggle-mobile');
+    const mobileSearchToggle = document.getElementById('search-toggle-mobile');
     const mobileSearchContainer = document.getElementById('mobile-search-container');
 
     mobileSearchToggle.addEventListener('click', () => {
@@ -896,18 +892,18 @@
 
 
 
-  </script>
-  <!-- HS Alpine Plugin -->
-  <script src="https://unpkg.com/preline@latest/dist/preline.js"></script>
+</script>
+<!-- HS Alpine Plugin -->
+<script src="https://unpkg.com/preline@latest/dist/preline.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-  <script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
     AOS.init({
-      duration: 2000,
-      easing: 'ease-in-out',
-      once: true,
+        duration: 2000,
+        easing: 'ease-in-out',
+        once: true,
     });
-  </script>
+</script>
 
-  </body>
-  </html>
+</body>
+</html>
