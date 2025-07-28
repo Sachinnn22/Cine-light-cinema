@@ -244,17 +244,17 @@
 
     <div class="border-t border-white/20 my-2"></div>
 
-    <div class="relative px-4 pt-0 pb-1" id="mobileUserDropdown">
-        <button id="mobileUserToggle" class="w-full flex items-center justify-between px-2 py-2 rounded-md hover:bg-white/10 text-white">
-            <!-- Left section: icon + text -->
-            <span id="mobileUserDisplay" class="flex items-center gap-5 -ml-1">
-            <!-- Profile icon -->
-            <svg id="xray" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="8" r="4" />
-                <path d="M6 20c0-3.31 5.33-5 6-5s6 1.69 6 5" />
-            </svg>
-            User options
-        </span>
+    <div class="relative pt-0 pb-1" id="mobileUserDropdown">
+        <button id="mobileUserToggle"
+                class="w-full flex items-center justify-between px-4 py-2 rounded-md hover:bg-white/10 text-white">
+    <span id="mobileUserDisplay" class="flex items-center gap-3 -ml-1">
+      <!-- Profile icon -->
+      <svg id="xray" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="8" r="4" />
+        <path d="M6 20c0-3.31 5.33-5 6-5s6 1.69 6 5" />
+      </svg>
+      User options
+    </span>
 
             <!-- Right: dropdown arrow -->
             <svg id="mobileUserArrow" class="w-4 h-4 transition-transform duration-300 transform ml-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -263,11 +263,8 @@
         </button>
 
         <!-- User submenu -->
-        <div id="mobileUserMenu" class="ml-6 mt-1 space-y-1 hidden">
-
-        </div>
+        <div id="mobileUserMenu" class="ml-8 mt-1 space-y-1 hidden"></div>
     </div>
-
 
 
     <div class="h-4"></div>
@@ -587,9 +584,10 @@
         // ✅ Update user menu
         if (username && username !== 'U') {
             userMenu.innerHTML = `
-            <li><a href="profile.html">My Profile</a></li>
-            <li><a href="#" id="logoutBtn">Log Out</a></li>
-        `;
+    <li><a href="profile.html"><i class="fas fa-user"></i> My Profile</a></li>
+    <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
+`;
+
 
             // Attach logout listener
             document.getElementById('logoutBtn').addEventListener('click', async (e) => {
@@ -605,18 +603,19 @@
 
         } else {
             userMenu.innerHTML = `
-            <li>
-                <a href="register.html" class="flex items-center gap-2">
-                    <!-- User Icon SVG -->
-                    Sign In
-                </a>
-            </li>
-            <li>
-                <a href="#" id="buyPremiumLink" class="flex items-center gap-2">
-                    <!-- Premium Icon SVG -->
-                    Buy Premium
-                </a>
-            </li>
+          <li>
+  <a href="register.html" class="flex items-center gap-2">
+    <i class="fas fa-user"></i> <!-- User Icon -->
+    Sign In
+  </a>
+</li>
+<li>
+  <a href="#" id="buyPremiumLink" class="flex items-center gap-2">
+    <i class="fas fa-crown"></i> <!-- Premium Icon -->
+    Buy Premium
+  </a>
+</li>
+
         `;
         }
     }
@@ -720,9 +719,15 @@
             });
         } else {
             mobileUserMenu.innerHTML = `
-            <a href="register.html" class="block px-4 py-2 hover:bg-white/10 text-white">Sign In</a>
-            <a href="#" class="block px-4 py-2 hover:bg-white/10 text-white">Buy Premium</a>
-        `;
+    <a href="register.html" class="block px-4 py-2 hover:bg-white/10 text-white font-light rounded-md">
+        <i class="fas fa-sign-in-alt mr-2"></i>Sign In
+    </a>
+    <a href="#" class="block px-4 py-2 hover:bg-white/10 text-white font-light rounded-md">
+        <i class="fas fa-crown mr-2"></i>Buy Premium
+    </a>
+`;
+
+
         }
     }
     document.getElementById('mobileUserToggle')?.addEventListener('click', () => {
