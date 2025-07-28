@@ -685,7 +685,7 @@
             img.className = 'mobileUserPhoto rounded-full w-8 h-8 object-cover';
 
             // Insert profile picture as the first child inside the button
-            mobileUserToggle.insertBefore(img, mobileUserToggle.firstChild);
+            mobileUserDisplay.insertBefore(img, mobileUserDisplay.firstChild);
 
             // Make sure text and arrow are after the image
             // The text and arrow already exist in the button, so no changes needed here
@@ -698,9 +698,13 @@
         // Update menu items as before
         if (username && username !== 'U') {
             mobileUserMenu.innerHTML = `
-            <a href="profile.html" class="block px-4 py-2 hover:bg-white/10 text-white">My Profile</a>
-            <a href="#" id="mobileLogoutBtn" class="block px-4 py-2 hover:bg-white/10 text-white">Log Out</a>
-        `;
+<a href="profile.html" class="block px-4 py-2 hover:bg-white/10 text-white rounded-md font-light ml-4">
+        <i class="fas fa-user mr-2"></i>My Profile
+    </a>
+    <a href="#" id="mobileLogoutBtn" class="block px-4 py-2 hover:bg-white/10 text-white rounded-md font-light ml-4">
+        <i class="fas fa-sign-out-alt mr-2"></i>Log Out
+    </a>
+`;
 
             // Attach logout click handler
             document.getElementById('mobileLogoutBtn').addEventListener('click', async (e) => {
