@@ -941,3 +941,12 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
     background-size: 20px 20px;
     padding-right: 2.5rem; /* leave space for icon */
 }
+
+#why{
+    scroll-margin-top: 50px;
+}
+
+.custom-font {
+font-family: cursive
+}
+
