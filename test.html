@@ -715,12 +715,38 @@
 
                     // Reset dropdown to logged out state
                     updateMobileUserDropdown('U', null);
-                    mobileUserMenu.classList.add('hidden');
+
+                    // ✅ CLOSE user submenu
+                    const mobileUserMenu = document.getElementById('mobileUserMenu');
+                    if (mobileUserMenu) {
+                        mobileUserMenu.classList.add('hidden');
+                        mobileUserMenu.classList.remove('show');
+                    }
+
+                    // ✅ CLOSE the entire mobile menu
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    const menuToggle = document.getElementById('menu-toggle');
+
+                    if (mobileMenu && menuToggle) {
+                        mobileMenu.style.maxHeight = '0';
+
+                        // Optional: reset toggle icon if you use icon switching
+                        menuToggle.innerHTML = `
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            `;
+
+                        // Remove any open/active classes
+                        menuToggle.classList.remove('open', 'active', 'menu-open');
+                    }
+
                 } catch (error) {
                     console.error('Logout Error:', error);
                     showErrorMessage('Error logging out. Try again.');
                 }
             });
+
         } else {
             mobileUserMenu.innerHTML = `
     <a href="register.html" class="block px-4 py-2 hover:bg-white/10 text-white font-light rounded-md">
