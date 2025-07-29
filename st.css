@@ -943,9 +943,29 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
 }
 
 .custom-font {
-font-family: cursive
+    font-family: "Poppins", sans-serif;
 }
 
 #why{
     scroll-margin-top: 40rem !important;
+}
+
+.mk{
+    font-size: 2.19rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 2px !important;
+    background: linear-gradient(45deg, #cca549, #738c97, #275163, #96ceb4, #feca57) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    text-fill-color: transparent !important;
+    text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.15) !important;
+    animation: pulseGlow 4s infinite ease-in-out !important;
+
+}
+
+.mn{
+    font-family: cursive;
+    font-size: 21.5px !important;
+    font-weight: 600 !important;
 }
