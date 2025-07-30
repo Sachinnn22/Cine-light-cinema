@@ -806,11 +806,17 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
 }
 
 .faq-head {
-    font-size: 2.8rem;
-    font-weight: 800;
-    letter-spacing: 2.5px;
-    color: #ede6e6;
-    font-family: 'Montserrat', sans-serif;
+    font-size: 2.8rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 2px !important;
+    background: linear-gradient(45deg, #cca549, #738c97, #275163, #96ceb4, #feca57) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    text-fill-color: transparent !important;
+    text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.15) !important;
+    animation: pulseGlow 4s infinite ease-in-out !important;
+    font-family: "Poppins", sans-serif;
 }
 
 .faq-sub {
@@ -823,6 +829,7 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
 
 /* FAQ Glass Card Styling */
 .faq-card {
+
     background: rgba(192, 192, 192, 0.12) !important;
     backdrop-filter: blur(12px) !important;
     -webkit-backdrop-filter: blur(12px) !important;
@@ -969,6 +976,50 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
     font-size: 21.5px !important;
     font-weight: 600 !important;
 }
+
+@media (min-width: 1400px) and (max-width: 1450px) {
+    #why {
+        padding-top: 3rem !important;
+        padding-bottom: 3rem !important;
+    }
+
+    #why h2 {
+        font-size: 1.9rem !important;
+        margin-bottom: 2.3rem !important; /* space below h2 */
+    }
+
+    #why .custom-font {
+        font-size: 3rem !important;
+        margin-top: 1rem !important; /* space above custom-font */
+        margin-bottom: 2rem !important; /* space below custom-font */
+    }
+
+    #why p {
+        font-size: 1.23rem !important;
+        margin-top: 1rem !important; /* space above paragraph */
+        margin-bottom: 1rem !important; /* space below paragraph */
+    }
+
+    #why dd {
+        font-size: 1.2rem !important;
+        margin-top: 0.5rem !important;
+    }
+
+    #why-img {
+        width: 35rem !important;
+        height: auto !important;
+        margin-top: 4.8rem !important;
+    }
+
+    footer.custom-glass-footer {
+        margin-top: 5rem !important;
+    }
+
+    #blur {
+        display: none !important;
+    }
+}
+
 
 @media (max-width: 1024px) {
     #why {
