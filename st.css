@@ -970,9 +970,92 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
     font-weight: 600 !important;
 }
 
+@media (max-width: 1024px) {
+    #why {
+        padding-top: 2rem !important;
+        padding-bottom: 2rem !important;
+    }
+
+    /* Use flex layout for side-by-side positioning */
+    #why > .max-w-7xl > .grid {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 2rem !important;
+        justify-content: space-between !important;
+        flex-wrap: wrap; /* fallback if space gets tight */
+    }
+
+    /* Text block (left side) */
+    #why .lg\:pr-8 {
+        flex: 1 1 50% !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+
+    /* Image (right side) */
+    #why-img {
+        flex: 1 1 45% !important;
+        width: 100% !important;
+        height: auto !important;
+        margin: 0 auto !important;
+        display: block !important;
+        max-width: 28rem !important;
+    }
+
+    footer.custom-glass-footer {
+        margin-top: 4rem !important;
+    }
+
+    #blur {
+        display: none;
+    }
+}
 
 
-/* 425px */
+@media (max-width: 768px) {
+    #why {
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important;
+    }
+
+    #why h2 {
+        font-size: 1.5rem !important;
+    }
+
+    #why .custom-font {
+        font-size: 2.75rem !important;
+    }
+
+    #why p,
+    #why dd {
+        font-size: 1.05rem !important;
+    }
+
+    /* Corrected: move text content slightly to the right */
+    #why .lg\:pr-8 {
+        padding-left: 1rem !important;
+        padding-right: 0.5rem !important;
+    }
+
+    /* Make image smaller and centered */
+    #why-img {
+        width: 80% !important;
+        height: auto !important;
+        margin: -0.75rem auto 2.5rem auto !important;
+        display: block !important;
+    }
+
+    footer.custom-glass-footer {
+        margin-top: 3rem !important;
+    }
+
+    #blur {
+        display: none;
+    }
+}
+
+
 @media (max-width: 425px) {
     #why {
         padding-top: 0.5rem !important;
