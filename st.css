@@ -969,3 +969,111 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
     font-size: 21.5px !important;
     font-weight: 600 !important;
 }
+
+
+
+/* 425px */
+@media (max-width: 425px) {
+    #why {
+        padding-top: 0.5rem !important;
+        padding-bottom: 0.5rem !important;
+    }
+
+    #why h2 {
+        font-size: 1.25rem !important;
+    }
+
+    #why .custom-font {
+        font-size: 2.25rem !important;
+    }
+
+    #why p,
+    #why dd {
+        font-size: 0.95rem !important;
+    }
+
+    #why-img {
+        width: 100% !important;
+        height: auto !important;
+        margin-top: -1rem !important;
+        margin-bottom: 2rem !important; /* Add space below image */
+    }
+
+    footer.custom-glass-footer {
+        margin-top: 2.5rem !important;
+    }
+
+    #blur{
+        display: none;
+    }
+}
+
+/* 375px */
+@media (max-width: 375px) {
+    #why {
+        padding-top: 0.25rem !important;
+        padding-bottom: 0.25rem !important;
+    }
+
+    #why h2 {
+        font-size: 1.1rem !important;
+    }
+
+    #why .custom-font {
+        font-size: 2rem !important;
+    }
+
+    #why p,
+    #why dd {
+        font-size: 0.9rem !important;
+    }
+
+    #why-img {
+        width: 100% !important;
+        height: auto !important;
+        margin-top: -1.25rem !important;
+        margin-bottom: 2rem !important;
+    }
+
+    footer.custom-glass-footer {
+        margin-top: 2rem !important;
+    }
+    #blur{
+        display: none;
+    }
+}
+
+/* 320px */
+@media (max-width: 320px) {
+    #why {
+        padding-top: 0rem !important;
+        padding-bottom: 0rem !important;
+    }
+
+    #why h2 {
+        font-size: 1rem !important;
+    }
+
+    #why .custom-font {
+        font-size: 1.75rem !important;
+    }
+
+    #why p,
+    #why dd {
+        font-size: 0.85rem !important;
+    }
+
+    #why-img {
+        width: 100% !important;
+        height: auto !important;
+        margin-top: -2rem !important;
+        margin-bottom: 2rem !important;
+    }
+
+    footer.custom-glass-footer {
+        margin-top: 1.5rem !important;
+    }
+    #blur{
+        display: none;
+    }
+}
