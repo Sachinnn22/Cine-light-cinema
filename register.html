@@ -990,13 +990,21 @@
 
 </script>
 
-<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript">
+    (function(){
+        emailjs.init({
+            publicKey: "5XLl5sOItZwvb3IDJ",
+        });
+    })();
+</script>
 <script>
     // Initialize EmailJS with your Public Key
-    const publicKey = 'public_Xu1ZnYvNik9DpwFaF';
-    emailjs.init(publicKey);
-    console.log('Public key used:', publicKey);
+    // const publicKey = 'Xu1ZnYvNik9DpwFaF';
+    // emailjs.init(publicKey);
+    // console.log('Public key used:', publicKey);
     // Should print your public key
 
 
@@ -1039,13 +1047,14 @@
 
     async function sendOTP(email) {
         const otp = generateOTP();
-        const expiresAt = Date.now() + 5 * 60 * 1000; // OTP valid for 5 minutes
+        const expiresAt = Date.now() + 5 * 60 * 1000;
         await db.ref('passwordResetOtps/' + email.replace('.', '_')).set({ otp, expiresAt });
 
         const templateParams = {
-            name: email,          // or fetch user's actual name if available
-            user_name: 'YourApp', // Your app or company name
+            name: email,
+            user_name: 'YourApp',
             otp: otp,
+            to_email: email, // <-- 🔥 this is key
         };
 
         try {
@@ -1139,17 +1148,6 @@
         }
     }
 
-    function testEmail() {
-        const testParams = {
-            name: "Test User",
-            user_name: "YourApp",
-            otp: "123456",
-        };
-
-        emailjs.send('service_8ke883v', 'template_ou2hgcb', testParams)
-            .then(() => alert('Test email sent!'))
-            .catch(err => alert('Test email failed: ' + err.text));
-    }
 
 </script>
 
