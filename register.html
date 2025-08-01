@@ -873,7 +873,13 @@
             // Get current time & date
             const now = new Date();
             const registerDate = now.toISOString().slice(0, 10);  // YYYY-MM-DD
-            const registerTime = now.toTimeString().slice(0, 5);  // HH:mm
+            let hours = now.getHours();
+            const minutes = now.getMinutes();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12;  // convert '0' to '12'
+            const minutesStr = minutes < 10 ? '0' + minutes : minutes;
+            const registerTime = `${hours}:${minutesStr} ${ampm}`;
 
             // Save user data in Realtime Database
             await db.ref('users/' + uid).set({
