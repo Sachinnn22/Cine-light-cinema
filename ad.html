@@ -365,7 +365,7 @@
 
         function loadInitialPage() {
             db.ref("users")
-                .orderByKey()
+                .orderByChild('registerTimestamp')
                 .limitToFirst(rowsPerPage + 1)
                 .once("value", snapshot => {
                     handleSnapshot(snapshot, true);
@@ -384,20 +384,19 @@
             renderUsers(users);
 
             if (isInitial) {
-                pageKeys.push(users[0]?.key || null);
+                pageKeys.push(users[0]?.val.registerTimestamp || null); // ✅ This stores the correct timestamp
                 currentPage = 0;
             }
-
             updateButtons(hasMore);
         }
 
         function goToNextPage() {
-            const lastKey = cardContainer.lastElementChild?.dataset.key;
-            if (!lastKey) return;
+            const lastTimestamp = +cardContainer.lastElementChild?.dataset.timestamp;
+            if (!lastTimestamp) return;
 
             db.ref("users")
-                .orderByKey()
-                .startAfter(lastKey)   // <-- changed here
+                .orderByChild('registerTimestamp')
+                .startAfter(lastTimestamp)
                 .limitToFirst(rowsPerPage + 1)
                 .once("value", snapshot => {
                     const users = [];
@@ -413,33 +412,44 @@
                     renderUsers(users);
 
                     currentPage++;
-                    pageKeys[currentPage] = users[0]?.key || null;
+                    pageKeys[currentPage] = users[0]?.val.registerTimestamp || null;
 
                     updateButtons(hasMore);
                 });
         }
 
+
         function goToPreviousPage() {
             if (currentPage <= 0) return;
 
-            const prevKey = pageKeys[currentPage - 1];
-            if (!prevKey) return;
+            const prevTimestamp = pageKeys[currentPage - 1];
+            if (typeof prevTimestamp !== "number") {
+                console.error("Invalid previous timestamp:", prevTimestamp);
+                return;
+            }
 
             db.ref("users")
-                .orderByKey()
-                .startAt(prevKey)
-                .limitToFirst(rowsPerPage)
+                .orderByChild('registerTimestamp')
+                .startAt(prevTimestamp)
+                .limitToFirst(rowsPerPage + 1)
                 .once("value", snapshot => {
                     const users = [];
                     snapshot.forEach(child => {
                         users.push({ key: child.key, val: child.val() });
                     });
 
+                    const hasMore = users.length > rowsPerPage;
+                    if (hasMore) users.pop();
+
+                    if (users.length === 0) return;
+
                     renderUsers(users);
+
                     currentPage--;
                     updateButtons(true);
                 });
         }
+
 
         function renderUsers(users) {
             cardContainer.innerHTML = "";
@@ -449,18 +459,21 @@
                 card.className =
                     "bg-white rounded-xl p-8 shadow-lg flex flex-col items-center text-center w-[310px] h-[320px] custom-border";
                 card.dataset.key = user.key;
+                card.dataset.timestamp = user.val.registerTimestamp;  // <-- Add this
+
                 card.innerHTML = `
-      <img src="${user.val.photoURL}" alt="${user.val.username}" class="w-20 h-20 rounded-full object-cover mb-5 shadow-lg" />
-      <h2 class="username">${user.val.username}</h2>
-      <p class="email">${user.val.email}</p>
-      <p class="text-base text-gray-700">Join Time: ${user.val.registerTime ?? "N/A"}</p>
-      <p class="text-base text-gray-700">Join Date: ${user.val.registerDate ?? "N/A"}</p>
-    `;
+          <img src="${user.val.photoURL}" alt="${user.val.username}" class="w-20 h-20 rounded-full object-cover mb-5 shadow-lg" />
+          <h2 class="username">${user.val.username}</h2>
+          <p class="email">${user.val.email}</p>
+          <p class="text-base text-gray-700">Join Time: ${user.val.registerTime ?? "N/A"}</p>
+          <p class="text-base text-gray-700">Join Date: ${user.val.registerDate ?? "N/A"}</p>
+        `;
                 cardContainer.appendChild(card);
             });
 
             pageInfo.textContent = `Page ${currentPage + 1}`;
         }
+
 
         function updateButtons(hasMore) {
             prevBtn.disabled = currentPage === 0;

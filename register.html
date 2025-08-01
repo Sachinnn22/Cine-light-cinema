@@ -1140,11 +1140,24 @@
         }
 
         try {
-            await auth.sendPasswordResetEmail(email);
-            showSuccessMessage('Password reset link sent! Please check your email.');
-            closeForgotModal();
+            const response = await fetch("http://localhost:3000/reset-password", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    email: email,
+                    newPassword: newPassword
+                })
+            });
+
+            if (response.ok) {
+                showSuccessMessage('✅ Password reset successfully.');
+                closeForgotModal();
+            } else {
+                const errorText = await response.text();
+                showErrorMessage('❌ Failed: ' + errorText);
+            }
         } catch (err) {
-            showErrorMessage('Error sending reset email: ' + err.message);
+            showErrorMessage('❌ Error: ' + err.message);
         }
     }
 
