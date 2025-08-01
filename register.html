@@ -909,14 +909,18 @@
 
             // Get current time & date
             const now = new Date();
-            const registerDate = now.toISOString().slice(0, 10);  // YYYY-MM-DD
-            let hours = now.getHours();
-            const minutes = now.getMinutes();
-            const ampm = hours >= 12 ? 'PM' : 'AM';
-            hours = hours % 12;
-            hours = hours ? hours : 12;  // convert '0' to '12'
-            const minutesStr = minutes < 10 ? '0' + minutes : minutes;
-            const registerTime = `${hours}:${minutesStr} ${ampm}`;
+
+            const registerDate = now.toLocaleDateString('en-CA', {
+                timeZone: 'Asia/Colombo'
+            });
+
+            const registerTime = now.toLocaleTimeString('en-US', {
+                hour: 'numeric',
+                minute: '2-digit',
+                hour12: true,
+                timeZone: 'Asia/Colombo'
+            });
+
 
             const registerTimestamp = now.getTime();
             // Save user data in Realtime Database
