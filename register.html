@@ -91,6 +91,11 @@
             animation: fadeInDownSmooth 0.6s cubic-bezier(0.23, 1, 0.32, 1) both;
         }
 
+        .hidden {
+            display: none;
+        }
+
+
         .fade-out-up {
             animation: fadeOutUp 0.5s ease forwards;
         }
@@ -569,6 +574,35 @@
     </div>
 </section>
 
+<!-- Forgot Password Modal -->
+<div id="forgotPasswordModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white rounded-lg p-6 w-80 space-y-4 shadow-lg">
+        <h2 id="modalTitle" class="text-xl font-semibold">Forgot Password</h2>
+
+        <!-- Step 1: Enter Email -->
+        <div id="stepEmail" class="step-section">
+            <input id="resetEmail" type="email" placeholder="Enter your email" class="w-full p-2 border rounded" />
+            <button onclick="handleSendOtp()" class="mt-3 w-full bg-blue-600 text-white p-2 rounded">Send OTP</button>
+        </div>
+
+        <!-- Step 2: Enter OTP -->
+        <div id="stepOtp" class="step-section hidden">
+            <input id="otpInput" type="text" maxlength="6" placeholder="Enter OTP" class="w-full p-2 border rounded" />
+            <button onclick="handleVerifyOtp()" class="mt-3 w-full bg-green-600 text-white p-2 rounded">Verify OTP</button>
+            <button onclick="resendOtp()" class="mt-2 w-full text-sm text-blue-600 underline">Resend OTP</button>
+        </div>
+
+        <!-- Step 3: Enter New Password -->
+        <div id="stepNewPassword" class="step-section hidden">
+            <input id="newPassword" type="password" placeholder="Enter new password" class="w-full p-2 border rounded" />
+            <button onclick="handleResetPassword()" class="mt-3 w-full bg-green-700 text-white p-2 rounded">Reset Password</button>
+        </div>
+
+        <button onclick="closeForgotModal()" class="mt-4 w-full bg-gray-400 text-black p-2 rounded">Cancel</button>
+    </div>
+</div>
+
+
 <footer class="custom-glass-footer text-white">
     <div class="max-w-7xl mx-auto px-12 py-10 grid grid-cols-1 md:grid-cols-4 gap-2 place-items-center text-center">
         <div class="space-y-3 pb-2">
@@ -604,6 +638,7 @@
             </div>
         </div>
     </div>
+    <button onclick="testEmail()">Test EmailJS</button>
 
     <div class="text-center border-t border-gray-300/30 py-4 copy">
         © 2025 <span class="sin">SINHALIES</span>. All rights reserved.
@@ -613,6 +648,8 @@
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+
+
 
 <script>
     // Firebase Config
@@ -881,13 +918,15 @@
             const minutesStr = minutes < 10 ? '0' + minutes : minutes;
             const registerTime = `${hours}:${minutesStr} ${ampm}`;
 
+            const registerTimestamp = now.getTime();
             // Save user data in Realtime Database
             await db.ref('users/' + uid).set({
                 username: username,
                 email: email,
                 photoURL: `https://api.dicebear.com/6.x/bottts-neutral/svg?seed=${uid}`,
                 registerDate: registerDate,
-                registerTime: registerTime
+                registerTime: registerTime,
+                registerTimestamp: registerTimestamp  // <-- Add this field here
             });
 
             showSuccessMessage('Registration successful. Please Login now.');
@@ -909,63 +948,211 @@
     // -------------------------
     // 🔐 GOOGLE LOGIN
     // -------------------------
+    // Google Sign-In Button Handler
     document.getElementById('googleSignInBtn').addEventListener('click', () => {
         const provider = new firebase.auth.GoogleAuthProvider();
-        firebase.auth().signInWithPopup(provider)
-            .then(result => {
-                const user = result.user;
-                showSuccessMessage(`✅ Hello, ${user.displayName}! Login Successful!`);
-
-                // Save user photoURL to Realtime Database (optional)
-                const dbRef = firebase.database().ref('users/' + user.uid);
-                dbRef.set({
-                    username: user.displayName,
-                    email: user.email,
-                    photoURL: user.photoURL // Save photo URL
-                });
-
-                // Optionally redirect
-                window.location.href = 'test.html';
-            })
-            .catch(error => {
-                console.error("Google Sign-In Error:", error.message);
-                showErrorMessage(`Google Sign-In Error: ${error.message}`);
-            });
+        auth.signInWithRedirect(provider);
     });
 
+    // Handle redirect result on page load
+    auth.getRedirectResult()
+        .then(result => {
+            if (result.user) {
+                const user = result.user;
+                console.log("User signed in:", user.displayName, user.email);
+
+                // Save or update user data in Realtime Database
+                db.ref('users/' + user.uid).set({
+                    username: user.displayName,
+                    email: user.email,
+                    photoURL: user.photoURL,
+                    lastLogin: new Date().toISOString()
+                }).then(() => {
+                    console.log('User data saved to Realtime Database');
+
+                    // Redirect to protected page after successful sign-in
+                    window.location.href = 'register.html'; // Adjust path
+                }).catch(error => {
+                    console.error('Error saving user data:', error.message);
+                    alert('Error saving user data: ' + error.message);
+                });
+            } else {
+                // No user signed in after redirect
+                console.log('No user found in redirect result.');
+            }
+        })
+        .catch(error => {
+            console.error('Error during getRedirectResult:', error.message);
+            alert('Google Sign-In Error: ' + error.message);
+        });
+
+
+
+</script>
+
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
+<script>
+    // Initialize EmailJS with your Public Key
+    const publicKey = 'public_Xu1ZnYvNik9DpwFaF';
+    emailjs.init(publicKey);
+    console.log('Public key used:', publicKey);
+    // Should print your public key
+
+
+    // === Your existing forgot password & OTP logic ===
+
     function forgotPassword() {
-        document.getElementById("forgotPasswordModal").classList.remove("hidden");
+        openForgotModal();
+    }
+
+
+    function openForgotModal() {
+        document.getElementById('forgotPasswordModal').classList.remove('hidden');
+        showStep('stepEmail');
     }
 
     function closeForgotModal() {
-        document.getElementById("forgotPasswordModal").classList.add("hidden");
-        document.getElementById("resetEmail").value = '';
+        document.getElementById('forgotPasswordModal').classList.add('hidden');
+        resetForgotModal();
     }
 
-    async function sendResetEmail() {
-        const email = document.getElementById("resetEmail").value.trim().toLowerCase();
+    function showStep(stepId) {
+        document.querySelectorAll('.step-section').forEach(el => el.classList.add('hidden'));
+        document.getElementById(stepId).classList.remove('hidden');
+    }
 
-        if (!email || !email.includes("@")) {
-            showErrorMessage("⚠️ Please enter a valid email address.");
+    function resetForgotModal() {
+        document.getElementById('resetEmail').value = '';
+        document.getElementById('otpInput').value = '';
+        document.getElementById('newPassword').value = '';
+        showStep('stepEmail');
+    }
+
+    function generateOTP(length = 6) {
+        let otp = '';
+        for (let i = 0; i < length; i++) {
+            otp += Math.floor(Math.random() * 10);
+        }
+        return otp;
+    }
+
+    async function sendOTP(email) {
+        const otp = generateOTP();
+        const expiresAt = Date.now() + 5 * 60 * 1000; // OTP valid for 5 minutes
+        await db.ref('passwordResetOtps/' + email.replace('.', '_')).set({ otp, expiresAt });
+
+        const templateParams = {
+            name: email,          // or fetch user's actual name if available
+            user_name: 'YourApp', // Your app or company name
+            otp: otp,
+        };
+
+        try {
+            await emailjs.send('service_8ke883v', 'template_ou2hgcb', templateParams);
+            showSuccessMessage("📨 OTP sent to your email address.");
+        } catch (error) {
+            console.error("EmailJS error:", error);
+            showErrorMessage("❌ Failed to send OTP email.");
+        }
+    }
+
+
+    async function handleSendOtp() {
+        const email = document.getElementById('resetEmail').value.trim().toLowerCase();
+
+        if (!email || !email.includes('@')) {
+            showErrorMessage('Please enter a valid email address.');
+            return;
+        }
+
+        const snapshot = await db.ref('users').orderByChild('email').equalTo(email).once('value');
+        if (!snapshot.exists()) {
+            showErrorMessage('No account found with this email.');
+            return;
+        }
+
+        await sendOTP(email);
+        showStep('stepOtp');
+    }
+
+    async function verifyOTP(email, enteredOtp) {
+        const snapshot = await db.ref('passwordResetOtps/' + email.replace('.', '_')).once('value');
+        if (!snapshot.exists()) {
+            showErrorMessage('No OTP request found. Please send OTP first.');
+            return false;
+        }
+
+        const data = snapshot.val();
+
+        if (Date.now() > data.expiresAt) {
+            showErrorMessage('OTP expired. Please resend OTP.');
+            await db.ref('passwordResetOtps/' + email.replace('.', '_')).remove();
+            return false;
+        }
+
+        if (data.otp !== enteredOtp) {
+            showErrorMessage('Incorrect OTP. Try again.');
+            return false;
+        }
+
+        await db.ref('passwordResetOtps/' + email.replace('.', '_')).remove();
+        return true;
+    }
+
+    async function handleVerifyOtp() {
+        const email = document.getElementById('resetEmail').value.trim().toLowerCase();
+        const otp = document.getElementById('otpInput').value.trim();
+
+        if (!otp) {
+            showErrorMessage('Please enter OTP.');
+            return;
+        }
+
+        const valid = await verifyOTP(email, otp);
+        if (valid) {
+            showSuccessMessage('OTP verified! Please enter your new password.');
+            showStep('stepNewPassword');
+        }
+    }
+
+    function resendOtp() {
+        showStep('stepEmail');
+        showSuccessMessage('You can resend OTP now.');
+    }
+
+    async function handleResetPassword() {
+        const email = document.getElementById('resetEmail').value.trim().toLowerCase();
+        const newPassword = document.getElementById('newPassword').value;
+
+        if (!newPassword || newPassword.length < 6) {
+            showErrorMessage('Password must be at least 6 characters.');
             return;
         }
 
         try {
-            await firebase.auth().sendPasswordResetEmail(email);
-            showSuccessMessage("📧 Password reset email sent! Please check your inbox.");
+            await auth.sendPasswordResetEmail(email);
+            showSuccessMessage('Password reset link sent! Please check your email.');
             closeForgotModal();
-        } catch (error) {
-            console.error("Reset email error:", error);
-            if (error.code === 'auth/user-not-found') {
-                showErrorMessage("❌ No account found with this email.");
-            } else if (error.code === 'auth/invalid-email') {
-                showErrorMessage("⚠️ Invalid email format.");
-            } else {
-                showErrorMessage(`⚠️ Error: ${error.message}`);
-            }
+        } catch (err) {
+            showErrorMessage('Error sending reset email: ' + err.message);
         }
     }
+
+    function testEmail() {
+        const testParams = {
+            name: "Test User",
+            user_name: "YourApp",
+            otp: "123456",
+        };
+
+        emailjs.send('service_8ke883v', 'template_ou2hgcb', testParams)
+            .then(() => alert('Test email sent!'))
+            .catch(err => alert('Test email failed: ' + err.text));
+    }
+
 </script>
+
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script>
     AOS.init();
