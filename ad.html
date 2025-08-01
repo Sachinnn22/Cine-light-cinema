@@ -331,146 +331,178 @@
 
     <script>
         // Your web app's Firebase configuration
+        // =================== Firebase Config ===================
         const firebaseConfig = {
             apiKey: "AIzaSyCNH38ylbzfIORN0wmDoizj_eWKunQ1uAQ",
             authDomain: "my-first-app-6a293.firebaseapp.com",
             databaseURL: "https://my-first-app-6a293-default-rtdb.asia-southeast1.firebasedatabase.app",
             projectId: "my-first-app-6a293",
-            storageBucket: "my-first-app-6a293.firebasestorage.app",
+            storageBucket: "my-first-app-6a293.appspot.com",
             messagingSenderId: "599546991663",
             appId: "1:599546991663:web:b07d25c55f1d00c06722da",
             measurementId: "G-5EVKKY7KLP"
         };
 
-        // Initialize Firebase
+        // =================== Initialize Firebase ===================
         if (!firebase.apps.length) {
             firebase.initializeApp(firebaseConfig);
         } else {
-            firebase.app();  // Use the default app
+            firebase.app();
         }
 
         const db = firebase.database();
-        const tableBody = document.querySelector("table tbody");
 
+        // =================== DOM Elements ===================
+        const cardContainer = document.getElementById("card-container");
+        const prevBtn = document.getElementById("prev-btn");
+        const nextBtn = document.getElementById("next-btn");
+        const pageInfo = document.getElementById("page-info");
+
+        // =================== Pagination Logic ===================
         const rowsPerPage = 3;
-        let lastKey = null;
-        let firstKey = null;
-        let currentPage = 1;
+        let currentPage = 0;
+        const pageKeys = [];
 
-        // Load users with pagination
-        function loadUsers(startKey = null) {
-            let query = db.ref('users').orderByKey().limitToFirst(rowsPerPage + 1);  // Fetch one extra user for pagination
-            if (startKey) {
-                query = query.startAt(startKey);
-            }
-
-            query.once('value', snapshot => {
-                const users = [];
-                snapshot.forEach(childSnapshot => {
-                    // Access the user data
-                    const user = childSnapshot.val();
-                    users.push({
-                        key: childSnapshot.key, // user ID
-                        val: user // user data (username, email, photoURL)
-                    });
+        function loadInitialPage() {
+            db.ref("users")
+                .orderByKey()
+                .limitToFirst(rowsPerPage + 1)
+                .once("value", snapshot => {
+                    handleSnapshot(snapshot, true);
                 });
-
-                // Handle pagination (remove the extra user if there is more than 'rowsPerPage' users)
-                const hasNextPage = users.length > rowsPerPage;
-                if (hasNextPage) users.pop();  // Remove the extra user
-
-                // Clear the table before appending new rows
-                const cardContainer = document.getElementById("card-container");
-
-// Clear previous cards
-                cardContainer.innerHTML = "";
-
-                users.forEach(user => {
-                    const card = document.createElement("div");
-                    card.className = "bg-white rounded-xl p-8 shadow-lg flex flex-col items-center text-center w-[310px] h-[320px] custom-border";
-                    card.innerHTML = `
-  <img src="${user.val.photoURL}" alt="${user.val.username}" class="w-20 h-20 rounded-full object-cover mb-5 shadow-lg" />
-  <h2 class="username">${user.val.username}</h2>
-  <p class="email">${user.val.email}</p>
-  <p class="text-base text-gray-700">Join Time: ${user.val.registerTime ? user.val.registerTime : "N/A"}</p>
-  <p class="text-base text-gray-700">Join Date: ${user.val.registerDate ? user.val.registerDate : "N/A"}</p>
-`;
-
-                    cardContainer.appendChild(card);
-                });
-
-
-                // Set the pagination variables
-                firstKey = users.length ? users[0].key : null;
-                lastKey = users.length ? users[users.length - 1].key : null;
-
-                // Enable/Disable pagination buttons based on the data
-                prevBtn.disabled = currentPage === 1;
-                nextBtn.disabled = !hasNextPage;
-
-                pageInfo.textContent = `Page ${currentPage}`;
-            });
         }
 
-        const prevBtn = document.getElementById('prev-btn');
-        const nextBtn = document.getElementById('next-btn');
-        const pageInfo = document.getElementById('page-info');
+        function handleSnapshot(snapshot, isInitial = false) {
+            const users = [];
+            snapshot.forEach(child => {
+                users.push({ key: child.key, val: child.val() });
+            });
 
-        // Next page button
-        nextBtn.onclick = () => {
-            if (!nextBtn.disabled) {
-                currentPage++;
-                loadUsers(lastKey);
+            const hasMore = users.length > rowsPerPage;
+            if (hasMore) users.pop(); // Remove extra
+
+            renderUsers(users);
+
+            if (isInitial) {
+                pageKeys.push(users[0]?.key || null);
+                currentPage = 0;
             }
-        };
 
-        // Previous page button
-        prevBtn.onclick = () => {
-            if (currentPage > 1) {
-                currentPage--;
-                loadUsers(firstKey);
-            }
-        };
+            updateButtons(hasMore);
+        }
 
-        // Initial load
-        loadUsers();
+        function goToNextPage() {
+            const lastKey = cardContainer.lastElementChild?.dataset.key;
+            if (!lastKey) return;
 
+            db.ref("users")
+                .orderByKey()
+                .startAfter(lastKey)   // <-- changed here
+                .limitToFirst(rowsPerPage + 1)
+                .once("value", snapshot => {
+                    const users = [];
+                    snapshot.forEach(child => {
+                        users.push({ key: child.key, val: child.val() });
+                    });
+
+                    const hasMore = users.length > rowsPerPage;
+                    if (hasMore) users.pop();
+
+                    if (users.length === 0) return;
+
+                    renderUsers(users);
+
+                    currentPage++;
+                    pageKeys[currentPage] = users[0]?.key || null;
+
+                    updateButtons(hasMore);
+                });
+        }
+
+        function goToPreviousPage() {
+            if (currentPage <= 0) return;
+
+            const prevKey = pageKeys[currentPage - 1];
+            if (!prevKey) return;
+
+            db.ref("users")
+                .orderByKey()
+                .startAt(prevKey)
+                .limitToFirst(rowsPerPage)
+                .once("value", snapshot => {
+                    const users = [];
+                    snapshot.forEach(child => {
+                        users.push({ key: child.key, val: child.val() });
+                    });
+
+                    renderUsers(users);
+                    currentPage--;
+                    updateButtons(true);
+                });
+        }
+
+        function renderUsers(users) {
+            cardContainer.innerHTML = "";
+
+            users.forEach(user => {
+                const card = document.createElement("div");
+                card.className =
+                    "bg-white rounded-xl p-8 shadow-lg flex flex-col items-center text-center w-[310px] h-[320px] custom-border";
+                card.dataset.key = user.key;
+                card.innerHTML = `
+      <img src="${user.val.photoURL}" alt="${user.val.username}" class="w-20 h-20 rounded-full object-cover mb-5 shadow-lg" />
+      <h2 class="username">${user.val.username}</h2>
+      <p class="email">${user.val.email}</p>
+      <p class="text-base text-gray-700">Join Time: ${user.val.registerTime ?? "N/A"}</p>
+      <p class="text-base text-gray-700">Join Date: ${user.val.registerDate ?? "N/A"}</p>
+    `;
+                cardContainer.appendChild(card);
+            });
+
+            pageInfo.textContent = `Page ${currentPage + 1}`;
+        }
+
+        function updateButtons(hasMore) {
+            prevBtn.disabled = currentPage === 0;
+            nextBtn.disabled = !hasMore;
+        }
+
+        // =================== Sidebar Logic ===================
         const menuBtn = document.getElementById("menu-btn");
         const sidebar = document.getElementById("sidebar");
         const overlay = document.getElementById("overlay");
-        const icon = menuBtn.querySelector("i"); // Get the <i> inside the button
+        const icon = menuBtn.querySelector("i");
 
         menuBtn.addEventListener("click", () => {
             const isVisible = !sidebar.classList.contains("-translate-x-full");
 
             if (isVisible) {
-                // Close sidebar
                 sidebar.classList.add("-translate-x-full");
                 overlay.classList.remove("active");
-
-                // Change icon back to hamburger
                 icon.classList.remove("fa-times", "text-red-600");
                 icon.classList.add("fa-bars", "text-gray-600");
             } else {
-                // Open sidebar
                 sidebar.classList.remove("-translate-x-full");
                 overlay.classList.add("active");
-
-                // Change icon to close (X) and make it red
                 icon.classList.remove("fa-bars", "text-gray-600");
                 icon.classList.add("fa-times", "text-red-600");
             }
         });
 
-        // Close sidebar if clicking outside (on overlay)
         overlay.addEventListener("click", () => {
             sidebar.classList.add("-translate-x-full");
             overlay.classList.remove("active");
-
-            // Reset icon to hamburger
             icon.classList.remove("fa-times", "text-red-600");
             icon.classList.add("fa-bars", "text-gray-600");
         });
+
+        // =================== Attach Events ===================
+        nextBtn.onclick = goToNextPage;
+        prevBtn.onclick = goToPreviousPage;
+
+        // =================== Initial Load ===================
+        loadInitialPage();
+
 
     </script>
 
