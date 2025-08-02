@@ -404,7 +404,7 @@
     <div class="flex items-center justify-between w-full">
         <!-- Wrapper for brand and button -->
         <div class="flex items-center space-x-6 sm:space-x-8">
-            <div class="text-2xl sm:text-3xl font-bold tracking-wide select-none">සිංහLIES</div>
+            <div class="text-2xl sm:text-3xl font-bold tracking-wide select-none">CINELIGHT</div>
         </div>
 
         <a
@@ -606,11 +606,11 @@
 <footer class="custom-glass-footer text-white">
     <div class="max-w-7xl mx-auto px-12 py-10 grid grid-cols-1 md:grid-cols-4 gap-2 place-items-center text-center">
         <div class="space-y-3 pb-2">
-            <h2 class="foot-head">SINHALIES</h2>
+            <h2 class="foot-head">CINE-LIGHT</h2>
             <p class="foot-sub">Delivering blockbuster moments, one reel at a time, inspiring stories that captivate the soul.</p>
         </div>
 
-        <div class="space-y-2 pt-1.5">
+        <div class="space-y-2 pt-1.7">
             <h3 class="movie">Movies</h3>
             <ul class="movie-sub space-y-1">
                 <li><a href="#" class="hover:underline">Action</a></li>
@@ -632,16 +632,21 @@
         <div class="space-y-3 pb-16">
             <h2 class="fallow">Follow Us</h2>
             <div class="flex justify-center gap-4">
-                <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" class="w-8 h-8" alt="Facebook" /></a>
-                <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" class="w-8 h-8" alt="Instagram" /></a>
-                <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" class="w-8 h-8" alt="Twitter" /></a>
+                <a href="#">
+                    <img src="https://cdn-icons-png.flaticon.com/128/5968/5968764.png" class="w-9 h-9 rounded-full" alt="Facebook" />
+                </a>
+                <a href="#">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" class="w-9 h-9 rounded-full" alt="Instagram" />
+                </a>
+                <a href="#">
+                    <img src="https://cdn-icons-png.flaticon.com/512/5968/5968804.png" class="w-9 h-9 rounded-full" alt="Telegram" />
+                </a>
             </div>
+
         </div>
     </div>
-    <button onclick="testEmail()">Test EmailJS</button>
-
     <div class="text-center border-t border-gray-300/30 py-4 copy">
-        © 2025 <span class="sin">SINHALIES</span>. All rights reserved.
+        © 2025 <span class="sin">CINE-LIGHT</span>. All rights reserved.
     </div>
 </footer>
 
@@ -949,48 +954,57 @@
         }
     });
 
-    // -------------------------
-    // 🔐 GOOGLE LOGIN
-    // -------------------------
-    // Google Sign-In Button Handler
+
+    const googleProvider = new firebase.auth.GoogleAuthProvider();
+
     document.getElementById('googleSignInBtn').addEventListener('click', () => {
-        const provider = new firebase.auth.GoogleAuthProvider();
-        auth.signInWithRedirect(provider);
+        auth.signInWithRedirect(googleProvider);
     });
 
-    // Handle redirect result on page load
+    // Check redirect result after returning from Google
     auth.getRedirectResult()
-        .then(result => {
+        .then((result) => {
             if (result.user) {
+                // User signed in successfully via redirect
                 const user = result.user;
-                console.log("User signed in:", user.displayName, user.email);
 
-                // Save or update user data in Realtime Database
-                db.ref('users/' + user.uid).set({
-                    username: user.displayName,
-                    email: user.email,
-                    photoURL: user.photoURL,
-                    lastLogin: new Date().toISOString()
-                }).then(() => {
-                    console.log('User data saved to Realtime Database');
+                // Optional: Save user to DB if new (check via UID or metadata)
+                db.ref('users/' + user.uid).once('value').then(snapshot => {
+                    if (!snapshot.exists()) {
+                        const now = new Date();
 
-                    // Redirect to protected page after successful sign-in
-                    window.location.href = 'register.html'; // Adjust path
-                }).catch(error => {
-                    console.error('Error saving user data:', error.message);
-                    alert('Error saving user data: ' + error.message);
+                        const registerDate = now.toLocaleDateString('en-CA', {
+                            timeZone: 'Asia/Colombo'
+                        });
+
+                        const registerTime = now.toLocaleTimeString('en-US', {
+                            hour: 'numeric',
+                            minute: '2-digit',
+                            hour12: true,
+                            timeZone: 'Asia/Colombo'
+                        });
+
+                        const registerTimestamp = now.getTime();
+
+                        db.ref('users/' + user.uid).set({
+                            username: user.displayName || 'google_user',
+                            email: user.email,
+                            photoURL: user.photoURL,
+                            registerDate,
+                            registerTime,
+                            registerTimestamp
+                        });
+                    }
                 });
-            } else {
-                // No user signed in after redirect
-                console.log('No user found in redirect result.');
+
+                // Redirect to another page
+                window.location.href = 'test.html';
             }
         })
-        .catch(error => {
-            console.error('Error during getRedirectResult:', error.message);
-            alert('Google Sign-In Error: ' + error.message);
+        .catch((error) => {
+            console.error('Google redirect error:', error);
+            showErrorMessage(`Google login failed: ${error.message}`);
         });
-
-
 
 </script>
 
@@ -1005,14 +1019,7 @@
     })();
 </script>
 <script>
-    // Initialize EmailJS with your Public Key
-    // const publicKey = 'Xu1ZnYvNik9DpwFaF';
-    // emailjs.init(publicKey);
-    // console.log('Public key used:', publicKey);
-    // Should print your public key
 
-
-    // === Your existing forgot password & OTP logic ===
 
     function forgotPassword() {
         openForgotModal();
