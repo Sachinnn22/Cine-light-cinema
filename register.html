@@ -575,7 +575,7 @@
 </section>
 
 <div id="forgotPasswordModal" class="hidden fixed inset-0 bg-black bg-opacity-80 backdrop-blur-md flex items-center justify-center z-50 p-4">
-    <div class="bg-gray-700 rounded-lg p-6 w-full max-w-md space-y-4 shadow-lg text-white border-2 border-white">
+    <div class="bg-gray-700 rounded-lg p-6 w-full max-w-sm space-y-4 shadow-lg text-white border-2 border-white">
         <h2 id="modalTitle" class="text-xl font-semibold text-gray-300 text-center">Forgot Password</h2>
 
         <!-- Step 1: Email Input -->
@@ -627,6 +627,7 @@
         </button>
     </div>
 </div>
+
 
 <footer class="custom-glass-footer text-white">
     <div class="max-w-7xl mx-auto px-12 py-10 grid grid-cols-1 md:grid-cols-4 gap-2 place-items-center text-center">
@@ -1093,8 +1094,8 @@
         const recentAttempts = attempts.filter(ts => now - ts < 30 * 60 * 1000);
 
         if (recentAttempts.length >= 4) {
-            showErrorMessage('Too many request, Try after 30 minutes');
-            return;
+            showErrorMessage('Too many requests. Try again after 30 minutes.');
+            return false; // Don't proceed
         }
 
         // Log this attempt
@@ -1114,11 +1115,14 @@
         try {
             await emailjs.send('service_8ke883v', 'template_ou2hgcb', templateParams);
             showSuccessMessage("OTP sent to your email address.");
+            return true;
         } catch (error) {
             console.error("EmailJS error:", error);
             showErrorMessage("Failed to send OTP email.");
+            return false;
         }
     }
+
 
     async function handleSendOtp() {
         const email = document.getElementById('resetEmail').value.trim().toLowerCase();
@@ -1134,9 +1138,15 @@
             return;
         }
 
-        await sendOTP(email);
-        showStep('stepOtp');
+        const otpSent = await sendOTP(email);
+
+        if (otpSent) {
+            showStep('stepOtp');
+        } else {
+            showStep('stepEmail');
+        }
     }
+
 
     async function verifyOTP(email, enteredOtp) {
         const snapshot = await db.ref('passwordResetOtps/' + email.replace('.', '_')).once('value');
