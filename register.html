@@ -574,22 +574,29 @@
     </div>
 </section>
 
-<!-- Forgot Password Modal -->
-<div id="forgotPasswordModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-    <div class="bg-white rounded-lg p-6 w-80 space-y-4 shadow-lg">
-        <h2 id="modalTitle" class="text-xl font-semibold">Forgot Password</h2>
+<div id="forgotPasswordModal" class="hidden fixed inset-0 bg-black bg-opacity-80 backdrop-blur-md flex items-center justify-center z-50">
+    <div class="bg-gray-700 rounded-lg p-6 w-80 space-y-4 shadow-lg text-white border-2 border-white">
+        <h2 id="modalTitle" class="text-xl font-semibold text-gray-300 text-center">Forgot Password</h2>
 
         <!-- Step 1: Enter Email -->
-        <div id="stepEmail" class="step-section">
-            <input id="resetEmail" type="email" placeholder="Enter your email" class="w-full p-2 border rounded" />
-            <button onclick="handleSendOtp()" class="mt-3 w-full bg-blue-600 text-white p-2 rounded">Send OTP</button>
+        <div id="stepEmail" class="step-section" >
+            <input
+                    id="resetEmail"
+                    type="email"
+                    placeholder="Enter your email"
+                    class="w-full placeholder-white p-2 border rounded focus:outline-none focus:border-white focus:ring-2 focus:ring-white"
+            />
+            <button onclick="handleSendOtp()" class="mt-3 w-full bg-indigo-500 text-white p-2 rounded font-bold">
+                Send OTP
+            </button>
+
         </div>
 
         <!-- Step 2: Enter OTP -->
         <div id="stepOtp" class="step-section hidden">
-            <input id="otpInput" type="text" maxlength="6" placeholder="Enter OTP" class="w-full p-2 border rounded" />
+            <input id="otpInput" type="text" maxlength="6" placeholder="Enter your OTP"  class="w-full placeholder-white p-2 border rounded focus:outline-none focus:border-white focus:ring-2 focus:ring-white"/>
             <button onclick="handleVerifyOtp()" class="mt-3 w-full bg-green-600 text-white p-2 rounded">Verify OTP</button>
-            <button onclick="resendOtp()" class="mt-2 w-full text-sm text-blue-600 underline">Resend OTP</button>
+            <button onclick="resendOtp()" class="mt-3 w-full bg-indigo-500 text-white rounded font-bold p-2 ">Resend OTP</button>
         </div>
 
         <!-- Step 3: Enter New Password -->
@@ -598,7 +605,10 @@
             <button onclick="handleResetPassword()" class="mt-3 w-full bg-green-700 text-white p-2 rounded">Reset Password</button>
         </div>
 
-        <button onclick="closeForgotModal()" class="mt-4 w-full bg-gray-400 text-black p-2 rounded">Cancel</button>
+        <button onclick="closeForgotModal()" class="mt-1 w-full bg-red-500 text-white p-2 rounded font-bold">
+            Cancel
+        </button>
+
     </div>
 </div>
 
@@ -706,15 +716,13 @@
 
             // Validate email before using it
             if (!email || !email.includes('@')) {
-                showErrorMessage('⚠️ No valid email found for this username.');
+                showErrorMessage(' No valid email found for this username.');
                 return;
             }
 
             // Step 2: Login with email and password
             const cred = await auth.signInWithEmailAndPassword(email, password);
 
-            // ✅ Login successful
-            // ✅ Login successful
             setTimeout(() => {
                 window.location.href = 'test.html';
             }, 1000);
@@ -1070,10 +1078,10 @@
 
         try {
             await emailjs.send('service_8ke883v', 'template_ou2hgcb', templateParams);
-            showSuccessMessage("📨 OTP sent to your email address.");
+            showSuccessMessage("OTP sent to your email address.");
         } catch (error) {
             console.error("EmailJS error:", error);
-            showErrorMessage("❌ Failed to send OTP email.");
+            showErrorMessage("Failed to send OTP email.");
         }
     }
 
@@ -1138,7 +1146,7 @@
 
     function resendOtp() {
         showStep('stepEmail');
-        showSuccessMessage('You can resend OTP now.');
+        showSuccessMessage('Get your OTP again.');
     }
 
     async function handleResetPassword() {
