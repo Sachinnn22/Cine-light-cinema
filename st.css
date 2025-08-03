@@ -985,19 +985,19 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
 
     #why h2 {
         font-size: 1.9rem !important;
-        margin-bottom: 2.3rem !important; /* space below h2 */
+        margin-bottom: 2.3rem !important;
     }
 
     #why .custom-font {
         font-size: 3rem !important;
-        margin-top: 1rem !important; /* space above custom-font */
-        margin-bottom: 2rem !important; /* space below custom-font */
+        margin-top: 1rem !important;
+        margin-bottom: 2rem !important;
     }
 
     #why p {
         font-size: 1.23rem !important;
-        margin-top: 1rem !important; /* space above paragraph */
-        margin-bottom: 1rem !important; /* space below paragraph */
+        margin-top: 1rem !important;
+        margin-bottom: 1rem !important;
     }
 
     #why dd {
@@ -1020,31 +1020,27 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
     }
 }
 
-
 @media (max-width: 1024px) {
     #why {
         padding-top: 2rem !important;
         padding-bottom: 2rem !important;
     }
 
-    /* Use flex layout for side-by-side positioning */
     #why > .max-w-7xl > .grid {
         display: flex !important;
         flex-direction: row !important;
         align-items: center !important;
         gap: 2rem !important;
         justify-content: space-between !important;
-        flex-wrap: wrap; /* fallback if space gets tight */
+        flex-wrap: wrap;
     }
 
-    /* Text block (left side) */
     #why .lg\:pr-8 {
         flex: 1 1 50% !important;
         padding-left: 1rem !important;
         padding-right: 1rem !important;
     }
 
-    /* Image (right side) */
     #why-img {
         flex: 1 1 45% !important;
         width: 100% !important;
@@ -1059,10 +1055,9 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
     }
 
     #blur {
-        display: none;
+        display: block !important;
     }
 }
-
 
 @media (max-width: 768px) {
     #why {
@@ -1083,13 +1078,10 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
         font-size: 1.05rem !important;
     }
 
-    /* Corrected: move text content slightly to the right */
     #why .lg\:pr-8 {
-        padding-left: 1rem !important;
-        padding-right: 0.5rem !important;
+        padding-left: 4rem !important;
     }
 
-    /* Make image smaller and centered */
     #why-img {
         width: 80% !important;
         height: auto !important;
@@ -1102,10 +1094,9 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
     }
 
     #blur {
-        display: none;
+        display: block !important;
     }
 }
-
 
 @media (max-width: 425px) {
     #why {
@@ -1130,7 +1121,7 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
         width: 100% !important;
         height: auto !important;
         margin-top: -1rem !important;
-        margin-bottom: 2rem !important; /* Add space below image */
+        margin-bottom: 2rem !important;
     }
 
     footer.custom-glass-footer {
@@ -1142,7 +1133,6 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
     }
 }
 
-/* 375px */
 @media (max-width: 375px) {
     #why {
         padding-top: 0.25rem !important;
@@ -1177,7 +1167,6 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
     }
 }
 
-/* 320px */
 @media (max-width: 320px) {
     #why {
         padding-top: 0rem !important;
