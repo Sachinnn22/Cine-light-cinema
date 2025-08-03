@@ -298,7 +298,14 @@
     </div>
 </section>
 
-<section id="faq">
+<section id="faq" class="relative overflow-hidden">
+
+    <!-- Spray Effect Left -->
+    <div class="absolute -z-10 left-0 top-1/2 transform -translate-y-1/2 w-64 h-64 bg-gradient-to-br from-red-400 via-pink-300 to-purple-400 rounded-full blur-3xl opacity-30"></div>
+
+    <!-- Spray Effect Right -->
+    <div class="absolute -z-10 right-0 top-1/2 transform -translate-y-1/2 w-64 h-64 bg-gradient-to-bl from-blue-400 via-cyan-300 to-teal-400 rounded-full blur-3xl opacity-30"></div>
+
     <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
         <div class="max-w-2xl mx-auto text-center mb-10 lg:mb-14">
             <h2 class="faq-head">What People Ask</h2>
@@ -308,13 +315,12 @@
         <div class="max-w-6xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 hs-accordion-group">
                 <div class="flex flex-col gap-6">
-                    <!-- Accordion 1 -->
                     <div class="hs-accordion faq-card w-full flex-1 rounded-xl p-6 dark:faq-card"
                          id="hs-heading-1"
                          data-aos="zoom-in" data-aos-duration="1500" data-aos-easing="ease-in-out">
                         <button class="hs-accordion-toggle group pb-3 inline-flex items-center justify-between gap-x-3 w-full md:text-lg font-semibold text-start text-gray-800 transition duration-1500 hover:text-gray-500 focus:outline-hidden dark:text-neutral-200 dark:hover:text-neutral-400"
                                 aria-expanded="false" aria-controls="hs-collapse-1">
-                            How does Preline's pricing work?
+                            Do I need an account to watch movies?
                             <svg class="arrow-icon transition-transform duration-1500 ease-in-out size-5 text-white group-hover:text-gray-300 dark:text-white"
                                  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="5">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
@@ -324,18 +330,17 @@
                              class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-1500"
                              role="region" aria-labelledby="hs-heading-1">
                             <p class="text-gray-800 dark:text-neutral-200">
-                                Our pricing is tiered based on usage. Choose a plan that fits your needs, and scale as you grow.
+                                No account is needed to browse our library, but you'll need to sign up (free or premium) to stream or download full movies.
                             </p>
                         </div>
                     </div>
 
-                    <!-- Accordion 2 -->
                     <div class="hs-accordion faq-card w-full flex-1 rounded-xl p-6 dark:faq-card"
                          id="hs-heading-2"
                          data-aos="zoom-in" data-aos-duration="1500" data-aos-easing="ease-in-out">
                         <button class="hs-accordion-toggle group pb-3 inline-flex items-center justify-between gap-x-3 w-full md:text-lg font-semibold text-start text-gray-800 transition duration-1500 hover:text-gray-500 focus:outline-hidden dark:text-neutral-200 dark:hover:text-neutral-400"
                                 aria-expanded="false" aria-controls="hs-collapse-2">
-                            My team has credits. How do we use them?
+                            Is there a free plan available?
                             <svg class="arrow-icon transition-transform duration-1500 ease-in-out size-5 text-white group-hover:text-gray-300 dark:text-white"
                                  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="5">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
@@ -345,18 +350,17 @@
                              class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-1500"
                              role="region" aria-labelledby="hs-heading-2">
                             <p class="text-gray-800 dark:text-neutral-200">
-                                Once your team signs up for a subscription plan, we’ll help you configure everything and walk you through how to redeem credits.
+                                Yes! You can stream a selection of films with ads for free. Upgrade to Premium for ad-free access and exclusive titles.
                             </p>
                         </div>
                     </div>
 
-                    <!-- Accordion 3 -->
                     <div class="hs-accordion faq-card w-full flex-1 rounded-xl p-6 dark:faq-card"
                          id="hs-heading-3"
                          data-aos="zoom-in" data-aos-duration="1500" data-aos-easing="ease-in-out">
                         <button class="hs-accordion-toggle group pb-3 inline-flex items-center justify-between gap-x-3 w-full md:text-lg font-semibold text-start text-gray-800 transition duration-1500 hover:text-gray-500 focus:outline-hidden dark:text-neutral-200 dark:hover:text-neutral-400"
                                 aria-expanded="false" aria-controls="hs-collapse-3">
-                            How secure is Preline?
+                            Can I download movies to watch offline?
                             <svg class="arrow-icon transition-transform duration-1500 ease-in-out size-5 text-white group-hover:text-gray-300 dark:text-white"
                                  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="5">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
@@ -366,21 +370,19 @@
                              class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-1500"
                              role="region" aria-labelledby="hs-heading-3">
                             <p class="text-gray-800 dark:text-neutral-200">
-                                We prioritize your data’s safety using modern encryption and compliance standards.
+                                Yes, Premium users can download movies to watch offline anytime using our mobile app or desktop player.
                             </p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Column 2 -->
                 <div class="flex flex-col gap-6">
-                    <!-- Accordion 4 -->
                     <div class="hs-accordion faq-card w-full flex-1 rounded-xl p-6 dark:faq-card"
                          id="hs-heading-4"
                          data-aos="zoom-in" data-aos-duration="1500" data-aos-easing="ease-in-out">
                         <button class="hs-accordion-toggle group pb-3 inline-flex items-center justify-between gap-x-3 w-full md:text-lg font-semibold text-start text-gray-800 transition duration-1500 hover:text-gray-500 focus:outline-hidden dark:text-neutral-200 dark:hover:text-neutral-400"
                                 aria-expanded="false" aria-controls="hs-collapse-4">
-                            How do I get access to a theme I purchased?
+                            What devices can I watch on?
                             <svg class="arrow-icon transition-transform duration-1500 ease-in-out size-5 text-white group-hover:text-gray-300 dark:text-white"
                                  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="5">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
@@ -390,18 +392,17 @@
                              class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-1500"
                              role="region" aria-labelledby="hs-heading-4">
                             <p class="text-gray-800 dark:text-neutral-200">
-                                After purchasing a theme, you'll receive a download link via email. If you lose it, just contact support for a reissue.
+                                Our platform supports all major devices: smartphones, tablets, smart TVs, laptops, and streaming boxes like Roku and Fire TV.
                             </p>
                         </div>
                     </div>
 
-                    <!-- Accordion 5 -->
                     <div class="hs-accordion faq-card w-full flex-1 rounded-xl p-6 dark:faq-card"
                          id="hs-heading-5"
                          data-aos="zoom-in" data-aos-duration="1500" data-aos-easing="ease-in-out">
                         <button class="hs-accordion-toggle group pb-3 inline-flex items-center justify-between gap-x-3 w-full md:text-lg font-semibold text-start text-gray-800 transition duration-1500 hover:text-gray-500 focus:outline-hidden dark:text-neutral-200 dark:hover:text-neutral-400"
                                 aria-expanded="false" aria-controls="hs-collapse-5">
-                            Can I upgrade my license later?
+                            How often is new content added?
                             <svg class="arrow-icon transition-transform duration-1500 ease-in-out size-5 text-white group-hover:text-gray-300 dark:text-white"
                                  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="5">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
@@ -411,18 +412,17 @@
                              class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-1500"
                              role="region" aria-labelledby="hs-heading-5">
                             <p class="text-gray-800 dark:text-neutral-200">
-                                You can upgrade your license anytime and apply your previous purchase toward the new license cost.
+                                We add new movies and shows every week. You can follow our newsletter or social channels to stay updated.
                             </p>
                         </div>
                     </div>
 
-                    <!-- Accordion 6 -->
                     <div class="hs-accordion faq-card w-full flex-1 rounded-xl p-6 dark:faq-card"
                          id="hs-heading-6"
                          data-aos="zoom-in" data-aos-duration="1500" data-aos-easing="ease-in-out">
                         <button class="hs-accordion-toggle group pb-3 inline-flex items-center justify-between gap-x-3 w-full md:text-lg font-semibold text-start text-gray-800 transition duration-1500 hover:text-gray-500 focus:outline-hidden dark:text-neutral-200 dark:hover:text-neutral-400"
                                 aria-expanded="false" aria-controls="hs-collapse-6">
-                            Is support included with the theme?
+                            Is there parental control?
                             <svg class="arrow-icon transition-transform duration-1500 ease-in-out size-5 text-white group-hover:text-gray-300 dark:text-white"
                                  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="5">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
@@ -432,15 +432,13 @@
                              class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-1500"
                              role="region" aria-labelledby="hs-heading-6">
                             <p class="text-gray-800 dark:text-neutral-200">
-                                Yes! All plans include access to our support team for any setup or technical questions.
+                                Yes. You can set content restrictions and create kid-safe profiles with age-appropriate filters.
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-
 
         <div class="mt-12 max-w-4xl mx-auto text-center">
                 <form class="flex flex-col sm:flex-row items-center gap-4">
