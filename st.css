@@ -841,7 +841,7 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
 }
 
 .faq-card:hover {
-    background: rgba(192, 192, 192, 0.29) !important;
+    background-color: #2a2a2c !important;
     border-color: rgba(192, 192, 192, 0.5) !important;
     color: rgba(245, 245, 245, 1) !important;
 }
@@ -1200,3 +1200,12 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
         display: none;
     }
 }
+.faq-card {
+    box-shadow: 0 8px 15px rgb(19, 83, 104) !important;
+    transition: box-shadow 0.3s ease !important;
+}
+
+.faq-card:hover {
+    box-shadow: 0 10px 24px rgb(24, 130, 166) !important;
+}
+
