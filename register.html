@@ -4,27 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Login - Sinhalies</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="st.css">
-    <!-- AOS CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
 
-    <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
-    <link
-            href="https://cdn.jsdelivr.net/npm/daisyui@3.9.1/dist/full.css"
-            rel="stylesheet"
-    />
-    <link
-            href="https://fonts.googleapis.com/css2?family=Anton&family=Open+Sans:wght@400;600&display=swap"
-            rel="stylesheet"
-    />
-    <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css"
-            rel="stylesheet"
-    />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="st.css">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.1/dist/full.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css" rel="stylesheet"/>
+
     <style>
         html, body {
             height: 100%;
@@ -95,7 +84,6 @@
             display: none;
         }
 
-
         .fade-out-up {
             animation: fadeOutUp 0.5s ease forwards;
         }
@@ -119,6 +107,7 @@
             box-shadow: 0 -2px 15px rgba(255, 255, 255, 0.05);
             color: white;
         }
+
         .forgot-password-link {
             font-size: 1.08rem;
             font-weight: 600;
@@ -128,6 +117,7 @@
             cursor: pointer;
             text-decoration: none;
         }
+
         .forgot-password-link:hover {
             color: #6366f1;
         }
@@ -135,7 +125,7 @@
         .flip-container {
             perspective: 1000px;
             width: 100%;
-            height: 100%; /* Allow flex centering */
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -144,7 +134,7 @@
         .flipper {
             position: relative;
             width: 100%;
-            min-height: 540px; /* Adjust based on your form height */
+            min-height: 540px;
             transform-style: preserve-3d;
             transition: transform 0.8s ease-in-out;
         }
@@ -171,8 +161,8 @@
             .custom-hero {
                 padding-left: 3rem !important;
                 padding-right: 3rem !important;
-                padding-top: 7rem !important;   /* clear space from fixed header */
-                padding-bottom: 2rem !important; /* space above footer */
+                padding-top: 7rem !important;
+                padding-bottom: 2rem !important;
                 display: flex !important;
                 flex-direction: column !important;
                 align-items: center !important;
@@ -183,8 +173,7 @@
             #flip-container {
                 margin-top: 0 !important;
                 max-width: 55% !important;
-                min-height: 800px !important; /* increased minimum height */
-                /* or use height: 600px !important; if you want fixed height */
+                min-height: 800px !important;
             }
 
             .custom-heading,
@@ -204,8 +193,8 @@
             .custom-hero {
                 padding-left: 2rem !important;
                 padding-right: 2rem !important;
-                padding-top: 23rem !important;  /* enough space below fixed navbar */
-                padding-bottom: 19rem !important; /* extra space before footer */
+                padding-top: 23rem !important;
+                padding-bottom: 19rem !important;
                 display: flex !important;
                 flex-direction: column !important;
                 align-items: center !important;
@@ -235,17 +224,17 @@
             .custom-hero {
                 padding-left: 1.5rem !important;
                 padding-right: 1.5rem !important;
-                padding-top: 23rem !important;  /* enough space below fixed menu */
-                padding-bottom: 19rem !important; /* prevents footer overlap */
+                padding-top: 23rem !important;
+                padding-bottom: 19rem !important;
                 display: flex !important;
                 flex-direction: column !important;
                 align-items: center !important;
                 justify-content: center !important;
-                min-height: 100vh !important; /* takes full viewport height */
+                min-height: 100vh !important;
             }
 
             #flip-container {
-                margin-top: 0 !important; /* no top margin, flex handles positioning */
+                margin-top: 0 !important;
                 max-width: 75% !important;
                 width: 75% !important;
             }
@@ -257,7 +246,7 @@
             }
 
             footer.custom-glass-footer {
-                margin-top: auto !important; /* ensures footer stays at the bottom */
+                margin-top: auto !important;
                 padding-top: 1.5rem !important;
             }
         }
@@ -266,17 +255,17 @@
             .custom-hero {
                 padding-left: 1rem !important;
                 padding-right: 1rem !important;
-                padding-top: 22rem !important;  /* adjusts for menu height */
-                padding-bottom: 18rem !important; /* keeps content above footer */
+                padding-top: 22rem !important;
+                padding-bottom: 18rem !important;
                 display: flex !important;
                 flex-direction: column !important;
                 align-items: center !important;
                 justify-content: center !important;
-                min-height: 100vh !important; /* fills screen height */
+                min-height: 100vh !important;
             }
 
             #flip-container {
-                margin-top: 0 !important; /* no extra spacing needed */
+                margin-top: 0 !important;
                 max-width: 90% !important;
                 width: 100% !important;
             }
@@ -288,7 +277,7 @@
             }
 
             footer.custom-glass-footer {
-                margin-top: auto !important; /* pushes to bottom of page */
+                margin-top: auto !important;
                 padding-top: 0.5rem !important;
             }
         }
@@ -330,10 +319,10 @@
 
         @media (max-width: 320px) {
             .custom-hero {
-                margin-top: 66px !important; /* clear fixed menu height */
+                margin-top: 66px !important;
                 padding-right: 0.75rem !important;
                 padding-top: 12rem !important;
-                padding-bottom: 14rem !important; /* more space for very small screens */
+                padding-bottom: 14rem !important;
             }
 
             #flip-container {
@@ -341,27 +330,23 @@
                 max-width: 95% !important;
             }
 
-            /* Smaller headings */
             .custom-heading,
             .custom-head {
                 font-size: 1.3rem !important;
                 text-align: center !important;
             }
 
-            /* Smaller labels for username and password */
             label[for="name"],
             label[for="username"],
             label[for="password"] {
                 font-size: 0.85rem !important;
             }
 
-            /* Inputs and buttons smaller font */
             button,
             input {
                 font-size: 0.85rem !important;
             }
 
-            /* Keep Password label and Forgot password in one row */
             .custom-hero .flex.items-center.justify-between {
                 display: flex !important;
                 justify-content: space-between !important;
@@ -370,18 +355,15 @@
                 margin-bottom: 0.5rem !important;
             }
 
-            /* Forgot password link slightly larger */
             .forgot-password-link {
                 font-size: 0.95rem !important;
                 white-space: nowrap !important;
             }
 
-            /* Make buttons full width */
             button {
                 width: 100% !important;
             }
 
-            /* Optional: reduce vertical spacing in forms */
             form.space-y-6 > * {
                 margin-bottom: 1rem !important;
             }
@@ -395,29 +377,22 @@
                 margin-top: 0.2rem !important;
             }
         }
-
     </style>
 </head>
 <body>
 
 <nav class="fixed top-0 left-0 right-0 z-50 bg-black bg-opacity-50 backdrop-blur-md text-white shadow-md px-4 py-3">
     <div class="flex items-center justify-between w-full">
-        <!-- Wrapper for brand and button -->
         <div class="flex items-center space-x-6 sm:space-x-8">
             <div class="text-2xl sm:text-3xl font-bold tracking-wide select-none">CINELIGHT</div>
         </div>
 
-        <a
-                href="test.html"
-                class="inline-flex items-center gap-2 rounded-full border-2 border-white bg-gradient-to-br from-gray-600 to-gray-600 px-4 py-2 text-white font-semibold hover:from-gray-800 hover:to-gray-600 hover:text-white transition text-sm sm:text-base"
-        >
+        <a href="index.html" class="inline-flex items-center gap-2 rounded-full border-2 border-white bg-gradient-to-br from-gray-600 to-gray-600 px-4 py-2 text-white font-semibold hover:from-gray-800 hover:to-gray-600 hover:text-white transition text-sm sm:text-base">
             <i class="fas fa-house"></i> Home
         </a>
     </div>
 </nav>
 
-
-<!-- Main Section -->
 <section class="custom-hero h-screen flex justify-center items-center px-6 lg:px-24 pt-0">
     <div
             id="flip-container"
@@ -430,11 +405,7 @@
     >
         <div class="flipper">
 
-            <!-- 🔐 Front Side - Login Form -->
-            <div
-                    class="front rounded-2xl border-2 border-white shadow-xl p-8"
-                    style="background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(12px);"
-            >
+            <div class="front rounded-2xl border-2 border-white shadow-xl p-8" style="background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(12px);">
                 <h2 class="custom-heading">Login My Account</h2>
                 <form action="#" method="POST" class="space-y-6">
                     <div>
@@ -508,11 +479,7 @@
                 </p>
             </div>
 
-            <!-- 📝 Back Side - Register Form -->
-            <div
-                    class="back rounded-2xl border-2 border-white shadow-xl p-8"
-                    style="background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(12px);"
-            >
+            <div class="back rounded-2xl border-2 border-white shadow-xl p-8" style="background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(12px);">
                 <h2 class="custom-head">Create Account</h2>
                 <form id="registerForm" action="#" method="POST" class="space-y-6">
                     <div>
@@ -578,7 +545,6 @@
     <div class="bg-gray-700 rounded-lg p-6 w-full max-w-sm space-y-4 shadow-lg text-white border-2 border-white">
         <h2 id="modalTitle" class="text-xl font-semibold text-gray-300 text-center">Forgot Password</h2>
 
-        <!-- Step 1: Email Input -->
         <div id="stepEmail" class="step-section">
             <input
                     id="resetEmail"
@@ -591,7 +557,6 @@
             </button>
         </div>
 
-        <!-- Step 2: OTP Input -->
         <div id="stepOtp" class="step-section hidden">
             <input
                     id="otpInput"
@@ -608,7 +573,6 @@
             </button>
         </div>
 
-        <!-- Step 3: New Password -->
         <div id="stepNewPassword" class="step-section hidden">
             <input
                     id="newPassword"
@@ -621,7 +585,6 @@
             </button>
         </div>
 
-        <!-- Cancel Button -->
         <button onclick="closeForgotModal()" class="mt-1 w-full bg-red-500 text-white p-2 rounded font-bold">
             Cancel
         </button>
@@ -679,11 +642,22 @@
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
-
-
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript">
+    (function(){
+        emailjs.init({
+            publicKey: "5XLl5sOItZwvb3IDJ",
+        });
+    })();
+</script>
 
 <script>
-    // Firebase Config
     const firebaseConfig = {
         apiKey: "AIzaSyCNH38ylbzfIORN0wmDoizj_eWKunQ1uAQ",
         authDomain: "my-first-app-6a293.firebaseapp.com",
@@ -699,9 +673,6 @@
     const auth = firebase.auth();
     const db = firebase.database();
 
-    // -------------------------
-    // 🔐 LOGIN FUNCTIONALITY
-    // -------------------------
     document.querySelector('.front form').addEventListener('submit', async (e) => {
         e.preventDefault();
         const username = document.getElementById('name').value.trim();
@@ -713,7 +684,6 @@
         }
 
         try {
-            // Step 1: Find the user by username
             const snapshot = await db.ref('users').orderByChild('username').equalTo(username).once('value');
 
             if (!snapshot.exists()) {
@@ -730,13 +700,11 @@
                 }
             });
 
-            // Validate email before using it
             if (!email || !email.includes('@')) {
                 showErrorMessage(' No valid email found for this username.');
                 return;
             }
 
-            // Step 2: Login with email and password
             const cred = await auth.signInWithEmailAndPassword(email, password);
 
             setTimeout(() => {
@@ -761,11 +729,8 @@
 
             console.error("Firebase login error:", code, err.message);
         }
-
-
     });
 
-    // 🔁 TOGGLE LOGIN/REGISTER FORM
     function toggleFlip() {
         document.getElementById('flip-container').classList.toggle('flip');
     }
@@ -792,7 +757,6 @@
         </div>
     `;
 
-        // Use inline styles for accurate positioning
         errorElement.style.position = 'fixed';
         errorElement.style.top = '5.8rem';
         errorElement.style.left = '50%';
@@ -807,7 +771,6 @@
 
         document.body.appendChild(errorElement);
 
-        // Trigger fade-in animation
         requestAnimationFrame(() => {
             errorElement.style.opacity = '1';
             errorElement.style.transform = 'translateX(-50%) translateY(0)';
@@ -821,7 +784,6 @@
             }, 500);
         }, 4000);
     }
-
 
     function showSuccessMessage(message) {
         const existing = document.getElementById('floating-success');
@@ -837,7 +799,7 @@
             justify-content: center;
             gap: 0.5rem;
             color: white;
-            background-color: #16a34a; /* Tailwind green-600 */
+            background-color: #16a34a;
             border-radius: 0.75rem;
             padding: 0.5rem 1rem;
         ">
@@ -846,7 +808,6 @@
         </div>
     `;
 
-        // Apply floating styles
         successElement.style.position = 'fixed';
         successElement.style.top = '5.8rem';
         successElement.style.left = '50%';
@@ -861,7 +822,6 @@
 
         document.body.appendChild(successElement);
 
-        // Trigger fade-in animation
         requestAnimationFrame(() => {
             successElement.style.opacity = '1';
             successElement.style.transform = 'translateX(-50%) translateY(0)';
@@ -876,11 +836,10 @@
         }, 4000);
     }
 
-    // Select all toggle buttons with class 're-togglePassword'
     const toggleBtns = document.querySelectorAll('.re-togglePassword');
 
     toggleBtns.forEach(toggleBtn => {
-        const passwordInput = toggleBtn.previousElementSibling; // assuming input is just before button
+        const passwordInput = toggleBtn.previousElementSibling;
         const icon = toggleBtn.querySelector('i');
 
         toggleBtn.addEventListener('click', () => {
@@ -889,16 +848,10 @@
             const isPassword = passwordInput.type === 'password';
             passwordInput.type = isPassword ? 'text' : 'password';
 
-            // Toggle icons
             icon.classList.toggle('fa-eye-slash');
             icon.classList.toggle('fa-eye');
         });
     });
-
-
-    function toggleFlip() {
-        document.getElementById('flip-container').classList.toggle('flip');
-    }
 
     document.getElementById('registerForm').addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -925,18 +878,15 @@
         }
 
         try {
-            // Check if username already exists
             const snapshot = await db.ref('users').orderByChild('username').equalTo(username).once('value');
             if (snapshot.exists()) {
                 showErrorMessage('Username already taken. Please choose another.');
                 return;
             }
 
-            // Create user in Firebase Auth
             const userCredential = await auth.createUserWithEmailAndPassword(email, password);
             const uid = userCredential.user.uid;
 
-            // Get current time & date
             const now = new Date();
 
             const registerDate = now.toLocaleDateString('en-CA', {
@@ -950,20 +900,18 @@
                 timeZone: 'Asia/Colombo'
             });
 
-
             const registerTimestamp = now.getTime();
-            // Save user data in Realtime Database
             await db.ref('users/' + uid).set({
                 username: username,
                 email: email,
                 photoURL: `https://api.dicebear.com/6.x/bottts-neutral/svg?seed=${uid}`,
                 registerDate: registerDate,
                 registerTime: registerTime,
-                registerTimestamp: registerTimestamp  // <-- Add this field here
+                registerTimestamp: registerTimestamp
             });
 
             showSuccessMessage('Registration successful. Please Login now.');
-            toggleFlip();  // Show login form
+            toggleFlip();
             document.getElementById('registerForm').reset();
 
         } catch (err) {
@@ -978,21 +926,17 @@
         }
     });
 
-
     const googleProvider = new firebase.auth.GoogleAuthProvider();
 
     document.getElementById('googleSignInBtn').addEventListener('click', () => {
         auth.signInWithRedirect(googleProvider);
     });
 
-    // Check redirect result after returning from Google
     auth.getRedirectResult()
         .then((result) => {
             if (result.user) {
-                // User signed in successfully via redirect
                 const user = result.user;
 
-                // Optional: Save user to DB if new (check via UID or metadata)
                 db.ref('users/' + user.uid).once('value').then(snapshot => {
                     if (!snapshot.exists()) {
                         const now = new Date();
@@ -1021,7 +965,6 @@
                     }
                 });
 
-                // Redirect to another page
                 window.location.href = 'test.html';
             }
         })
@@ -1032,23 +975,11 @@
 
 </script>
 
-<script type="text/javascript"
-        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
-</script>
-<script type="text/javascript">
-    (function(){
-        emailjs.init({
-            publicKey: "5XLl5sOItZwvb3IDJ",
-        });
-    })();
-</script>
 <script>
-
 
     function forgotPassword() {
         openForgotModal();
     }
-
 
     function openForgotModal() {
         document.getElementById('forgotPasswordModal').classList.remove('hidden');
@@ -1090,19 +1021,16 @@
         const snapshot = await attemptsRef.once('value');
         const attempts = snapshot.val() || [];
 
-        // Filter attempts within the last 30 minutes
         const recentAttempts = attempts.filter(ts => now - ts < 30 * 60 * 1000);
 
         if (recentAttempts.length >= 4) {
             showErrorMessage('Too many requests. Try again after 30 minutes.');
-            return false; // Don't proceed
+            return false;
         }
 
-        // Log this attempt
         recentAttempts.push(now);
         await attemptsRef.set(recentAttempts);
 
-        // Save OTP with expiry
         await db.ref('passwordResetOtps/' + emailKey).set({ otp, expiresAt });
 
         const templateParams = {
@@ -1122,7 +1050,6 @@
             return false;
         }
     }
-
 
     async function handleSendOtp() {
         const email = document.getElementById('resetEmail').value.trim().toLowerCase();
@@ -1146,7 +1073,6 @@
             showStep('stepEmail');
         }
     }
-
 
     async function verifyOTP(email, enteredOtp) {
         const snapshot = await db.ref('passwordResetOtps/' + email.replace('.', '_')).once('value');
@@ -1224,20 +1150,7 @@
         }
     }
 
-
 </script>
-
-<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-<script>
-    AOS.init();
-</script>
-
-<script>
-    function toggleFlip() {
-        document.getElementById('flip-container').classList.toggle('flip');
-    }
-</script>
-
 
 </body>
 </html>

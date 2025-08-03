@@ -57,7 +57,7 @@ document.querySelector('.front form').addEventListener('submit', async (e) => {
         // ✅ Login successful
         // ✅ Login successful
         setTimeout(() => {
-            window.location.href = 'test.html';
+            window.location.href = 'index.html';
         }, 1000);
     } catch (err) {
         const code = err.code;
@@ -242,7 +242,7 @@ document.getElementById('googleSignInBtn').addEventListener('click', () => {
             });
 
             // Optionally redirect
-            window.location.href = 'test.html';
+            window.location.href = 'index.html';
         })
         .catch(error => {
             console.error("Google Sign-In Error:", error.message);
