@@ -528,29 +528,28 @@
             </div>
         </section>
 
-        <!-- Modal -->
-        <div id="replyModal" class="fixed inset-0 hidden z-50 flex items-center justify-center backdrop-blur-lg bg-black/50">
-            <div class="bg-white p-6 rounded shadow-md w-96">
-                <h2 class="text-lg font-semibold mb-2">Reply to Question</h2>
-                <textarea id="replyText" class="w-full h-24 border p-2 mb-4"></textarea>
-                <div class="flex justify-end gap-2">
-                    <button id="cancelBtn" class="bg-gray-400 px-4 py-2 rounded">Cancel</button>
-                    <button id="sendReplyBtn" class="bg-gray-700 text-white px-4 py-2 rounded">Send</button>
+        <div id="replyModal" class="fixed inset-0 hidden z-50 flex items-center justify-center bg-black/50 backdrop-blur-lg">
+            <div class="bg-white p-4 sm:p-6 rounded-md shadow-lg w-[90%] max-w-md mx-4">
+                <h2 class="text-lg font-semibold mb-3 text-center">Reply to Question</h2>
+
+                <textarea id="replyText" class="w-full h-32 border border-gray-300 rounded p-2 resize-none mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+
+                <div class="flex justify-end gap-3">
+                    <button id="cancelBtn" class="bg-gray-300 hover:bg-gray-400 text-black px-4 py-2 rounded transition">Cancel</button>
+                    <button id="sendReplyBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition">Send</button>
                 </div>
             </div>
         </div>
 
+
     </main>
 
-    <!-- Firebase App (the core Firebase SDK) -->
-    <!-- Firebase App (the core Firebase SDK) -->
+
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-    <!-- Firebase Database SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
     <script>
-        // Your web app's Firebase configuration
-        // =================== Firebase Config ===================
+
         const firebaseConfig = {
             apiKey: "AIzaSyCNH38ylbzfIORN0wmDoizj_eWKunQ1uAQ",
             authDomain: "my-first-app-6a293.firebaseapp.com",
@@ -562,7 +561,6 @@
             measurementId: "G-5EVKKY7KLP"
         };
 
-        // =================== Initialize Firebase ===================
         if (!firebase.apps.length) {
             firebase.initializeApp(firebaseConfig);
         } else {
@@ -571,13 +569,11 @@
 
         const db = firebase.database();
 
-        // =================== DOM Elements ===================
         const cardContainer = document.getElementById("card-container");
         const prevBtn = document.getElementById("prev-btn");
         const nextBtn = document.getElementById("next-btn");
         const pageInfo = document.getElementById("page-info");
 
-        // =================== Pagination Logic ===================
         const rowsPerPage = 3;
         let currentPage = 0;
         const pageKeys = [];
@@ -808,10 +804,10 @@
                 })
             }).then(res => {
                 if (res.ok) {
-                    alert('Reply sent successfully!');
+                    showSuccessMessage('Reply sent successfully!');
                     document.getElementById('replyModal').classList.add('hidden');
                 } else {
-                    alert('Failed to send reply');
+                    showErrorMessage('Failed to send reply');
                 }
             });
         });
@@ -832,14 +828,11 @@
 
         window.onload = loadQuestions;
 
-        // Map sidebar links to page sections
         const routes = {
             'Members': 'user-details',
             'View Question': 'questions-list',
-            // Add more as needed, mapping link text to section ids
         };
 
-        // Select all sidebar links
         const navLinks = document.querySelectorAll('aside nav a');
 
         navLinks.forEach(link => {
@@ -870,7 +863,6 @@
             });
         });
 
-        // Optional: On page load, show page based on URL hash
         window.addEventListener('load', () => {
             const hash = window.location.hash.slice(1); // remove #
             if (hash && document.getElementById(hash)) {
@@ -879,6 +871,108 @@
             }
         });
 
+        function showErrorMessage(message) {
+            const existing = document.getElementById('floating-error');
+            if (existing) existing.remove();
+
+            const errorElement = document.createElement('div');
+            errorElement.id = 'floating-error';
+            errorElement.innerHTML = `
+        <div style="
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            color: white;
+            background-color: #dc2626;
+            border-radius: 0.75rem;
+            padding: 0.5rem 1rem;
+        ">
+        <i class="fas fa-info-circle" style="font-size: 1rem; margin-right: 0.5rem;"></i>
+            <span style="font-weight: 500;">${message}</span>
+        </div>
+    `;
+
+            // Use inline styles for accurate positioning
+            errorElement.style.position = 'fixed';
+            errorElement.style.top = '3rem';
+            errorElement.style.left = '50%';
+            errorElement.style.transform = 'translateX(-50%) translateY(-20px)';
+            errorElement.style.zIndex = '9999';
+            errorElement.style.width = '460px';
+            errorElement.style.maxWidth = '90%';
+            errorElement.style.textAlign = 'center';
+            errorElement.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)';
+            errorElement.style.opacity = '0';
+            errorElement.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+
+            document.body.appendChild(errorElement);
+
+            // Trigger fade-in animation
+            requestAnimationFrame(() => {
+                errorElement.style.opacity = '1';
+                errorElement.style.transform = 'translateX(-50%) translateY(0)';
+            });
+
+            setTimeout(() => {
+                errorElement.style.opacity = '0';
+                errorElement.style.transform = 'translateX(-50%) translateY(-20px)';
+                setTimeout(() => {
+                    errorElement.remove();
+                }, 500);
+            }, 4000);
+        }
+
+        function showSuccessMessage(message) {
+            const existing = document.getElementById('floating-success');
+            if (existing) existing.remove();
+
+            const successElement = document.createElement('div');
+            successElement.id = 'floating-success';
+
+            successElement.innerHTML = `
+        <div style="
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            color: white;
+            background-color: #16a34a; /* Tailwind green-600 */
+            border-radius: 0.75rem;
+            padding: 0.5rem 1rem;
+        ">
+            <i class="fas fa-check-circle" style="font-size: 1rem; margin-right: 0.6rem;"></i>
+            <span style="font-weight: 500;">${message}</span>
+        </div>
+    `;
+
+            successElement.style.position = 'fixed';
+            successElement.style.top = '3rem';
+            successElement.style.left = '50%';
+            successElement.style.transform = 'translateX(-50%) translateY(-20px)';
+            successElement.style.zIndex = '9999';
+            successElement.style.width = '460px';
+            successElement.style.maxWidth = '90%';
+            successElement.style.textAlign = 'center';
+            successElement.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)';
+            successElement.style.opacity = '0';
+            successElement.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+
+            document.body.appendChild(successElement);
+
+            requestAnimationFrame(() => {
+                successElement.style.opacity = '1';
+                successElement.style.transform = 'translateX(-50%) translateY(0)';
+            });
+
+            setTimeout(() => {
+                successElement.style.opacity = '0';
+                successElement.style.transform = 'translateX(-50%) translateY(-20px)';
+                setTimeout(() => {
+                    successElement.remove();
+                }, 500);
+            }, 4000);
+        }
     </script>
 
     </body>

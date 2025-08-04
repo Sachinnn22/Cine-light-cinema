@@ -1092,16 +1092,12 @@
     // Close the mobile menu when any mobile menu link is clicked
     document.querySelectorAll('.mobile-menu-link').forEach(link => {
         link.addEventListener('click', () => {
-            // Close the mobile menu
             mobileMenu.style.maxHeight = '0';
 
-            // Remove active/open classes from toggle icon if used
             menuToggle.classList.remove('open', 'active', 'menu-open');
 
-            // Optional: Reset icon manually if using icon switching
             const menuIcon = menuToggle.querySelector('svg');
             if (menuIcon) {
-                // Replace with hamburger icon if you use different icons
                 menuIcon.innerHTML = `
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M4 6h16M4 12h16M4 18h16" />
