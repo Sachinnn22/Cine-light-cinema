@@ -141,9 +141,10 @@
                 display: flex;
                 flex-wrap: wrap;
                 gap: 19px;
-                justify-content: center; /* center cards horizontally on page */
+                justify-content: center;
             }
             .card {
+                cursor: pointer;
                 background: #ffffff;
                 border-radius: 10px;
                 border: 5px solid #6a6868;
@@ -156,7 +157,7 @@
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
-                justify-content: flex-start;  /* stack items tightly */
+                justify-content: flex-start;
             }
 
             .card:hover {
@@ -669,26 +670,27 @@
             link.addEventListener('click', function(event) {
                 event.preventDefault();
 
-                // Get the text of clicked link (e.g., "Thriller Movie")
                 const linkText = this.textContent.trim();
-
-                // Find corresponding section id
                 const pageId = routes[linkText];
                 if (!pageId) return;
 
-                // Hide all pages
                 document.querySelectorAll('#content .page').forEach(page => {
                     page.style.display = 'none';
                 });
 
-                // Show selected page
                 const page = document.getElementById(pageId);
                 if (page) {
                     page.style.display = 'block';
                 }
 
-                // Optionally update URL hash for bookmarking
                 window.location.hash = pageId;
+
+                // Close the sidebar menu
+                sidebar.classList.add("-translate-x-full");
+                overlay.classList.remove("active");
+                icon.classList.remove("fa-times", "text-red-600");
+                icon.classList.add("fa-bars", "text-gray-600");
+
             });
         });
 
