@@ -528,6 +528,18 @@
             </div>
         </section>
 
+        <!-- Modal -->
+        <div id="replyModal" class="fixed inset-0 hidden z-50 flex items-center justify-center backdrop-blur-lg bg-black/50">
+            <div class="bg-white p-6 rounded shadow-md w-96">
+                <h2 class="text-lg font-semibold mb-2">Reply to Question</h2>
+                <textarea id="replyText" class="w-full h-24 border p-2 mb-4"></textarea>
+                <div class="flex justify-end gap-2">
+                    <button id="cancelBtn" class="bg-gray-400 px-4 py-2 rounded">Cancel</button>
+                    <button id="sendReplyBtn" class="bg-gray-700 text-white px-4 py-2 rounded">Send</button>
+                </div>
+            </div>
+        </div>
+
     </main>
 
     <!-- Firebase App (the core Firebase SDK) -->
@@ -743,19 +755,24 @@
                             card.className = 'card';
 
                             card.innerHTML = `
- <h2 class="username_quiz">${escapeHtml(q.username ?? "Anonymous")}</h2>
-<p class="email_quiz">${escapeHtml(q.email ?? "N/A")}</p>
-<p class="question"> ${escapeHtml(q.content ?? "No content available")}</p>
+            <h2 class="username_quiz">${escapeHtml(q.username ?? "Anonymous")}</h2>
+            <p class="email_quiz">${escapeHtml(q.email ?? "N/A")}</p>
+            <p class="question">${escapeHtml(q.content ?? "No content available")}</p>
+            <button class="replyBtn mt-4 px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition">
+              Reply
+            </button>
+          `;
 
-  <button class="mt-4 px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition">
-    Reply
-  </button>
-`;
+                            // Attach reply click logic
+                            const replyBtn = card.querySelector('.replyBtn');
+                            replyBtn.addEventListener('click', () => {
+                                openReplyModal(q.email, q.username);
+                            });
+
                             container.appendChild(card);
                         });
                     } else {
                         container.innerHTML = '<p>Failed to load questions. Please try again later.</p>';
-                        console.error('Error fetching questions:', xhr.statusText);
                     }
                 }
             };
@@ -763,9 +780,42 @@
             xhr.send();
         }
 
-        function handleButtonClick(id) {
-            alert('Button clicked for question ID: ' + id);
+        let selectedEmail = '';
+        let selectedUsername = '';
+
+        function openReplyModal(email, username) {
+            selectedEmail = email;
+            selectedUsername = username;
+            document.getElementById('replyText').value = '';
+            document.getElementById('replyModal').classList.remove('hidden');
         }
+
+        document.getElementById('cancelBtn').addEventListener('click', () => {
+            document.getElementById('replyModal').classList.add('hidden');
+        });
+
+        document.getElementById('sendReplyBtn').addEventListener('click', () => {
+            const message = document.getElementById('replyText').value.trim();
+            if (!message) return alert('Reply message is empty');
+
+            fetch('http://localhost:8080/api/send-reply', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    to: selectedEmail,
+                    username: selectedUsername,
+                    message: message
+                })
+            }).then(res => {
+                if (res.ok) {
+                    alert('Reply sent successfully!');
+                    document.getElementById('replyModal').classList.add('hidden');
+                } else {
+                    alert('Failed to send reply');
+                }
+            });
+        });
+
 
         function escapeHtml(text) {
             if (!text) return '';
