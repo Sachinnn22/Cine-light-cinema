@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Questions List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f9fc;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center; /* center cards horizontally on page */
+        }
+        .card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 280px;
+            padding: 20px;
+            transition: transform 0.2s ease;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;   /* center children horizontally */
+            text-align: center;    /* center text */
+            justify-content: space-between;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+        .card h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        .card p {
+            color: #555;
+            margin: 6px 0;
+            flex-grow: 1;
+        }
+        .card strong {
+            color: #34495e;
+        }
+        .card button {
+            margin-top: 12px;
+            padding: 8px 12px;
+            background-color: #3498db;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+        .card button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Questions</h1>
+<div id="questionsContainer" class="card-container">
+    <!-- Cards will be loaded here -->
+</div>
+
+<script>
+    function loadQuestions() {
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', 'http://localhost:8080/api/questions', true);
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                const container = document.getElementById('questionsContainer');
+                if (xhr.status === 200) {
+                    const questions = JSON.parse(xhr.responseText);
+                    container.innerHTML = '';
+
+                    questions.forEach(q => {
+                        const card = document.createElement('div');
+                        card.className = 'card';
+
+                        card.innerHTML = `
+              <h3>${escapeHtml(q.username)}</h3>
+              <p><strong>Email:</strong> ${escapeHtml(q.email)}</p>
+              <p><strong>Question:</strong> ${escapeHtml(q.content)}</p>
+              <button onclick="handleButtonClick(${q.id})">Reply</button>
+            `;
+
+                        container.appendChild(card);
+                    });
+                } else {
+                    container.innerHTML = '<p>Failed to load questions. Please try again later.</p>';
+                    console.error('Error fetching questions:', xhr.statusText);
+                }
+            }
+        };
+
+        xhr.send();
+    }
+
+    function handleButtonClick(id) {
+        alert('Button clicked for question ID: ' + id);
+    }
+
+    function escapeHtml(text) {
+        if (!text) return '';
+        return text.replace(/[&<>"']/g, function(m) {
+            return ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#39;'
+            })[m];
+        });
+    }
+
+    window.onload = loadQuestions;
+</script>
+
+</body>
+</html>

@@ -133,6 +133,61 @@
                 opacity: 1;
             }
 
+            h1 {
+                text-align: center;
+                color: #2c3e50;
+            }
+            .card-container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 16px;
+                justify-content: center; /* center cards horizontally on page */
+            }
+            .card {
+                background: #fff;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                width: 280px;
+                padding: 20px;
+                transition: transform 0.2s ease;
+
+                display: flex;
+                flex-direction: column;
+                align-items: center;   /* center children horizontally */
+                text-align: center;    /* center text */
+                justify-content: space-between;
+            }
+            .card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+            }
+            .card h3 {
+                margin-top: 0;
+                color: #2c3e50;
+            }
+            .card p {
+                color: #555;
+                margin: 6px 0;
+                flex-grow: 1;
+            }
+            .card strong {
+                color: #34495e;
+            }
+            .card button {
+                margin-top: 12px;
+                padding: 8px 12px;
+                background-color: #3498db;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                cursor: pointer;
+                font-size: 14px;
+                transition: background-color 0.3s ease;
+            }
+            .card button:hover {
+                background-color: #2980b9;
+            }
+
             @media (min-width: 1400px) and (max-width: 1440px){
                 #content {
                     padding: 6.3rem 0.8rem;
@@ -312,15 +367,23 @@
     <div id="overlay"></div>
 
     <main id="content" class="w-full overflow-x-auto">
-        <h3 class="mb-8 user" >User Details</h3>
+        <!-- User Details Page -->
+        <section id="user-details" class="page">
+            <h3 class="mb-8 user">User Details</h3>
+            <div id="card-container" class="grid grid-cols-3 gap-8 max-w-7xl mx-auto cd"></div>
+            <div class="flex justify-center items-center gap-4 mt-10">
+                <button id="prev-btn" class="btn px-4 py-2" disabled>Previous</button>
+                <span id="page-info" class="text-gray-700 font-semibold"></span>
+                <button id="next-btn" class="btn px-4 py-2">Next</button>
+            </div>
+        </section>
 
-        <div id="card-container" class="grid grid-cols-3 gap-8 max-w-7xl mx-auto cd"></div>
+        <section id="questions-list" class="page" style="display:none;">
+            <h1>Questions</h1>
+            <div id="questionsContainer" class="card-container">
+            </div>
+        </section>
 
-        <div class="flex justify-center items-center gap-4 mt-10">
-            <button id="prev-btn" class="btn px-4 py-2" disabled>Previous</button>
-            <span id="page-info" class="text-gray-700 font-semibold"></span>
-            <button id="next-btn" class="btn px-4 py-2">Next</button>
-        </div>
     </main>
 
     <!-- Firebase App (the core Firebase SDK) -->
@@ -450,7 +513,6 @@
                 });
         }
 
-
         function renderUsers(users) {
             cardContainer.innerHTML = "";
 
@@ -519,6 +581,108 @@
 
     </script>
 
+
+    <script>
+        function loadQuestions() {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', 'http://localhost:8080/api/questions', true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    const container = document.getElementById('questionsContainer');
+                    if (xhr.status === 200) {
+                        const questions = JSON.parse(xhr.responseText);
+                        container.innerHTML = '';
+
+                        questions.forEach(q => {
+                            const card = document.createElement('div');
+                            card.className = 'card';
+
+                            card.innerHTML = `
+              <h3>${escapeHtml(q.username)}</h3>
+              <p><strong>Email:</strong> ${escapeHtml(q.email)}</p>
+              <p><strong>Question:</strong> ${escapeHtml(q.content)}</p>
+              <button onclick="handleButtonClick(${q.id})">Reply</button>
+            `;
+
+                            container.appendChild(card);
+                        });
+                    } else {
+                        container.innerHTML = '<p>Failed to load questions. Please try again later.</p>';
+                        console.error('Error fetching questions:', xhr.statusText);
+                    }
+                }
+            };
+
+            xhr.send();
+        }
+
+        function handleButtonClick(id) {
+            alert('Button clicked for question ID: ' + id);
+        }
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            return text.replace(/[&<>"']/g, function(m) {
+                return ({
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#39;'
+                })[m];
+            });
+        }
+
+        window.onload = loadQuestions;
+
+        // Map sidebar links to page sections
+        const routes = {
+            'Members': 'user-details',
+            'View Question': 'questions-list',
+            // Add more as needed, mapping link text to section ids
+        };
+
+        // Select all sidebar links
+        const navLinks = document.querySelectorAll('aside nav a');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+
+                // Get the text of clicked link (e.g., "Thriller Movie")
+                const linkText = this.textContent.trim();
+
+                // Find corresponding section id
+                const pageId = routes[linkText];
+                if (!pageId) return;
+
+                // Hide all pages
+                document.querySelectorAll('#content .page').forEach(page => {
+                    page.style.display = 'none';
+                });
+
+                // Show selected page
+                const page = document.getElementById(pageId);
+                if (page) {
+                    page.style.display = 'block';
+                }
+
+                // Optionally update URL hash for bookmarking
+                window.location.hash = pageId;
+            });
+        });
+
+        // Optional: On page load, show page based on URL hash
+        window.addEventListener('load', () => {
+            const hash = window.location.hash.slice(1); // remove #
+            if (hash && document.getElementById(hash)) {
+                document.querySelectorAll('#content .page').forEach(page => page.style.display = 'none');
+                document.getElementById(hash).style.display = 'block';
+            }
+        });
+
+    </script>
 
     </body>
     </html>
