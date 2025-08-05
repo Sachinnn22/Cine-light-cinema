@@ -1210,7 +1210,6 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
 }
 
 #questionInput::placeholder {
-    /* Vertically center placeholder */
     padding-top: 10px; /* remove any top padding if needed */
     line-height: normal; /* or set a line-height close to textarea height */
     display: flex;

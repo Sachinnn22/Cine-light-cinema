@@ -6,6 +6,8 @@
     <title>Pricing Plans</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="st.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&display=swap" rel="stylesheet" />
 
     <link
@@ -15,6 +17,11 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
     <style>
 
+        .custom-title {
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 2.5px !important;
+        }
+
         .pricing-card {
             background-color: rgba(0, 0, 0, 0.9);
             color: white;
@@ -22,8 +29,7 @@
             border-radius: 1rem;
             padding: 2rem;
             text-align: center;
-            width: 100%;
-            max-width: 320px;
+            width: 600px;
             transform: scale(0.9);
             opacity: 0.6;
         }
@@ -88,7 +94,7 @@
 <div class="fixed inset-0 bg-black bg-opacity-50 -z-10"></div>
 
 <section class="custom-pricing-section relative pt-28 pb-12 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-    <div class="relative mx-auto max-w-screen-md text-center mt-6 lg:mb-12 text-white">
+    <div class="relative mx-auto max-w-screen-md text-center mt-7 lg:mb-12 text-white">
         <h2 class="mb-4 text-6xl tracking-tight font-extrabold custom-title">Select your plan</h2>
     </div>
 
@@ -97,91 +103,69 @@
         <!-- Card 1 -->
         <div class="pricing-card shrink-card transition-all duration-300 ease-in-out cursor-pointer" onclick="setActiveCard(0)">
             <h3 class="mb-4 text-2xl font-semibold">Enterprise</h3>
-            <div class="flex justify-center items-baseline my-4">
+            <div class="flex justify-center items-baseline my-3">
                 <span class="mr-2 text-5xl font-extrabold">$499</span>
                 <span class="text-gray-300">/month</span>
             </div>
-            <ul role="list" class="mb-8 space-y-4 text-left text-sm sm:text-base">
-                <li class="flex items-center space-x-3">
-                    ✅ <span>Individual configuration</span>
-                </li>
-                <li class="flex items-center space-x-3">
-                    ✅ <span>No setup, or hidden fees</span>
-                </li>
-                <li class="flex items-center space-x-3">
-                    ✅ <span>Team size: <span class="font-semibold">100+ developers</span></span>
-                </li>
-                <li class="flex items-center space-x-3">
-                    ✅ <span>Premium support: <span class="font-semibold">36 months</span></span>
-                </li>
-                <li class="flex items-center space-x-3">
-                    ✅ <span>Free updates: <span class="font-semibold">36 months</span></span>
-                </li>
+            <ul role="list" class="mt-5 mb-6 space-y-4 text-center text-sm sm:text-base">
+                <li>✅ Individual configuration</li>
+                <li>✅ Individual configuration</li>
+                <li>✅ Individual configuration</li>
+                <li>✅ Individual configuration</li>
             </ul>
-            <a href="#" class="w-full mx-auto text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:ring-blue-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Get started</a>
+            <a href="#"
+               class="block w-[85%] mx-auto text-white bg-gray-700 hover:bg-gray-800 font-medium rounded-lg text-sm px-5 py-3 text-center">
+                Get started
+            </a>
+
         </div>
 
-        <!-- Card 2 (Active by Default) -->
         <div class="pricing-card active-card transition-all duration-300 ease-in-out cursor-pointer" onclick="setActiveCard(1)">
             <h3 class="mb-4 text-2xl font-semibold">Enterprise</h3>
-            <div class="flex justify-center items-baseline my-6">
+            <div class="flex justify-center items-baseline my-3">
                 <span class="mr-2 text-5xl font-extrabold">$499</span>
                 <span class="text-gray-300">/month</span>
             </div>
-            <ul role="list" class="mb-8 space-y-4 text-left text-sm sm:text-base">
-                <li class="flex items-center space-x-3">
-                    ✅ <span>Individual configuration</span>
-                </li>
-                <li class="flex items-center space-x-3">
-                    ✅ <span>No setup, or hidden fees</span>
-                </li>
-                <li class="flex items-center space-x-3">
-                    ✅ <span>Team size: <span class="font-semibold">100+ developers</span></span>
-                </li>
-                <li class="flex items-center space-x-3">
-                    ✅ <span>Premium support: <span class="font-semibold">36 months</span></span>
-                </li>
-                <li class="flex items-center space-x-3">
-                    ✅ <span>Free updates: <span class="font-semibold">36 months</span></span>
-                </li>
+            <ul role="list" class="mt-5 mb-8 space-y-4 text-center text-sm sm:text-base">
+                <li>✅ Individual configuration</li>
+                <li>✅ Individual configuration</li>
+                <li>✅ Individual configuration</li>
+                <li>✅ Individual configuration</li>
             </ul>
-            <a href="#" class="w-full mx-auto text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:ring-blue-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Get started</a>
+            <a href="#"
+               class="block w-[85%] mx-auto text-white bg-gray-700 hover:bg-gray-800 font-medium rounded-lg text-sm px-5 py-3 text-center">
+                Get started
+            </a>
         </div>
 
         <!-- Card 3 -->
-        <div class="pricing-card shrink-card transition-all duration-300 ease-in-out cursor-pointer" onclick="setActiveCard(2)">
+        <div class="pricing-card  shrink-card transition-all duration-300 ease-in-out cursor-pointer" onclick="setActiveCard(2)">
             <h3 class="mb-4 text-2xl font-semibold">Enterprise</h3>
-            <div class="flex justify-center items-baseline my-6">
+            <div class="flex justify-center items-baseline my-3">
                 <span class="mr-2 text-5xl font-extrabold">$499</span>
                 <span class="text-gray-300">/month</span>
             </div>
-            <ul role="list" class="mb-8 space-y-4 text-left text-sm sm:text-base">
-                <li class="flex items-center space-x-3">
-                    ✅ <span>Individual configuration</span>
-                </li>
-                <li class="flex items-center space-x-3">
-                    ✅ <span>No setup, or hidden fees</span>
-                </li>
-                <li class="flex items-center space-x-3">
-                    ✅ <span>Team size: <span class="font-semibold">100+ developers</span></span>
-                </li>
-                <li class="flex items-center space-x-3">
-                    ✅ <span>Premium support: <span class="font-semibold">36 months</span></span>
-                </li>
-                <li class="flex items-center space-x-3">
-                    ✅ <span>Free updates: <span class="font-semibold">36 months</span></span>
-                </li>
+            <ul role="list" class="mt-5 mb-8 space-y-4 text-center text-sm sm:text-base">
+                <li>✅ Individual configuration</li>
+                <li>✅ Individual configuration</li>
+                <li>✅ Individual configuration</li>
+                <li>✅ Individual configuration</li>
             </ul>
-            <a href="#" class="w-full mx-auto text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:ring-blue-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Get started</a>
+            <a href="#"
+               class="block w-[85%] mx-auto text-white bg-gray-700 hover:bg-gray-800 font-medium rounded-lg text-sm px-5 py-3 text-center">
+                Get started
+            </a>
+
         </div>
 
     </div>
 </section>
 
 
+
 <footer class="custom-glass-footer text-white">
     <div class="max-w-7xl mx-auto px-12 py-10 grid grid-cols-1 md:grid-cols-4 gap-2 place-items-center text-center">
-        <div class="space-y-3 pb-5">
+        <div class="space-y-3 pb-2">
             <h2 class="foot-head">CINE-LIGHT</h2>
             <p class="foot-sub">Delivering blockbuster moments, one reel at a time, inspiring stories that captivate the soul.</p>
         </div>
