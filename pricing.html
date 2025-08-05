@@ -46,24 +46,6 @@
             opacity: 0.4;
         }
 
-        @media (min-width: 1440px) {
-            .custom-pricing-section {
-                margin-top: 4rem;
-            }
-            .custom-pricing-grid {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: 2rem;
-                justify-items: center;
-            }
-            .custom-title {
-                font-size: 3.5rem;
-                margin-bottom: 3rem;
-                font-family: 'Merriweather', 'Georgia', serif;
-
-            }
-        }
-
         .custom-glass-footer {
             background: #1c1c1c;/* Slightly brighter */
             backdrop-filter: blur(16px) saturate(160%);
@@ -71,6 +53,55 @@
             border-top: 4px solid rgba(255, 255, 255, 0.2);
             box-shadow: 0 -2px 15px rgba(255, 255, 255, 0.05);
             color: white; /* Add text color if needed */
+        }
+
+        /* For screens 425px wide and below */
+        @media (max-width: 425px) {
+            .pricing-card {
+                width: 90vw;
+                padding: 1.5rem;
+                font-size: 14px;
+            }
+
+            h2.custom-title {
+                font-size: 3rem;
+                margin-bottom: 2.2rem;
+                margin-top: -2rem;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .pricing-card {
+                width: 95vw;
+                padding: 1rem;
+                font-size: 13px;
+            }
+
+            h2.custom-title {
+                font-size: 3rem;
+                margin-bottom: 2.2rem;
+                margin-top: -2rem;
+            }
+        }
+
+        /* For screens 320px wide and below */
+        @media (max-width: 320px) {
+            .pricing-card {
+                width: 100vw;
+                padding: 0.8rem;
+                font-size: 12px;
+            }
+
+            h2.custom-title {
+                font-size: 3rem;
+                margin-bottom: 2.2rem;
+                margin-top: -2rem;
+
+            }
+
+            nav div.text-2xl {
+                font-size: 1.5rem;
+            }
         }
 
     </style>
