@@ -167,7 +167,7 @@
 
         .username_quiz {
             margin-top: 1.2rem;
-            font-size: 22px;
+            font-size: 24px;
             font-weight: bold;
             color: #2f4459;
         }
@@ -180,7 +180,7 @@
         }
 
         .question {
-            font-size: 18px;
+            font-size: 20px;
             color: #444;
             font-weight: 700;
             margin: 0 0 14px 0;
@@ -445,10 +445,10 @@
             }
         }
 
-
-
-
-
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
 
     </style>
 </head>
@@ -524,7 +524,7 @@
         <div id="questionsContainer" class="card-container"></div>
         <div class="flex justify-center items-center gap-4 mt-10">
             <button  class="btn px-4 py-2" id="pre">Previous</button>
-            <span  class="text-gray-700 font-semibold"></span>
+            <span id="currentPageDisplay" class="text-gray-700 font-semibold">Page 1</span>
             <button  class="btn px-4 py-2" id="next">Next</button>
         </div>
     </section>
@@ -632,7 +632,6 @@
             });
     }
 
-
     function goToPreviousPage() {
         if (currentPage <= 0) return;
 
@@ -739,19 +738,31 @@
 
     document.addEventListener('DOMContentLoaded', function () {
         loadQuestions(currentQuiz);
+        updatePageDisplay()
 
         document.getElementById('next').addEventListener('click', function () {
             currentQuiz++;
             loadQuestions(currentQuiz);
+            updatePageDisplay()
         });
 
         document.getElementById('pre').addEventListener('click', function () {
             if (currentQuiz > 0) {
                 currentQuiz--;
                 loadQuestions(currentQuiz);
+                updatePageDisplay()
             }
         });
     });
+
+    function updatePageDisplay() {
+        const pageDisplay = document.getElementById('currentPageDisplay');
+        const preBtn = document.getElementById('pre');
+
+        pageDisplay.textContent = `Page ${currentQuiz + 1}`;
+
+        preBtn.disabled = currentQuiz === 0;
+    }
 
     function loadQuestions(page) {
         fetch('http://localhost:8080/api/questions/pagination/' + page)
@@ -763,12 +774,18 @@
             })
             .then(questions => {
                 const container = document.getElementById('questionsContainer');
+                const nextBtn = document.getElementById('next');
+
                 container.innerHTML = '';
 
                 if (questions.length === 0) {
                     container.innerHTML = '<p>No questions available.</p>';
+                    nextBtn.disabled = true; // 🚫 Disable NEXT when no data
                     return;
                 }
+
+                // ✅ Enable NEXT if there are questions
+                nextBtn.disabled = false;
 
                 questions.forEach(q => {
                     const card = document.createElement('div');
@@ -782,7 +799,6 @@
                         Reply
                     </button>
                 `;
-
 
                     const replyBtn = card.querySelector('.replyBtn');
                     replyBtn.addEventListener('click', () => {
@@ -798,6 +814,7 @@
                 container.innerHTML = '<p>Error loading questions.</p>';
             });
     }
+
     let selectedEmail = '';
     let selectedUsername = '';
 
