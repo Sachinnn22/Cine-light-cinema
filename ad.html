@@ -891,19 +891,23 @@
                 page.style.display = 'block';
             }
 
+            if (linkText === 'View Question') {
+                currentQuiz = 0;
+                loadQuestions(currentQuiz);
+                updatePageDisplay();
+            }
+
             window.location.hash = pageId;
 
-            // Close the sidebar menu
             sidebar.classList.add("-translate-x-full");
             overlay.classList.remove("active");
             icon.classList.remove("fa-times", "text-red-600");
             icon.classList.add("fa-bars", "text-gray-600");
-
         });
     });
 
     window.addEventListener('load', () => {
-        const hash = window.location.hash.slice(1); // remove #
+        const hash = window.location.hash.slice(1);
         if (hash && document.getElementById(hash)) {
             document.querySelectorAll('#content .page').forEach(page => page.style.display = 'none');
             document.getElementById(hash).style.display = 'block';
