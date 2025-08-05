@@ -1,882 +1,905 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Sidebar Smooth Slide & Beautiful Table</title>
-        <script src="https://cdn.tailwindcss.com"></script>
-        <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&display=swap" rel="stylesheet" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sidebar Smooth Slide & Beautiful Table</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&display=swap" rel="stylesheet" />
 
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
-        <style>
-            html,body {
-                font-family: "Inter", sans-serif;
-                background-color: #01364a !important;
-            }
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        html,body {
+            font-family: "Inter", sans-serif;
+            background-color: #01364a !important;
+        }
 
-            #sidebar {
-                transition: transform 0.4s ease-in-out;
-            }
+        #sidebar {
+            transition: transform 0.4s ease-in-out;
+        }
 
-            #menu-btn {
-                font-size: 1.5rem;
-                background: none;
-                border: none;
-                position: fixed;
-                top: 1rem;
-                left: 1.5rem;
-                z-index: 1001;
-                cursor: pointer;
-            }
+        #menu-btn {
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            position: fixed;
+            top: 1rem;
+            left: 1.5rem;
+            z-index: 1001;
+            cursor: pointer;
+        }
 
+        #content {
+            transition: margin-left 0.4s ease-in-out;
+            padding: 3.7rem 1rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            background-color: #eceff4; /* light color blocking the dark background */
+            /*margin-top: 1.4rem;*/
+        }
+
+        .user {
+            font-family: 'Merriweather', 'Georgia', serif;
+            font-size: 3.3rem;
+            font-weight: 900;
+            color: #545757;
+            margin-bottom: 1.8rem;
+            letter-spacing: 2.3px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+
+        .table-wrapper {
+            width: 100%;
+            max-width: 900px;
+            border: 3px solid #4e4c4c;
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: white;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+        }
+
+        /* Smooth scale transition on card hover */
+        #card-container > div {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #card-container > div:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+            cursor: pointer;
+        }
+
+        .username {
+            font-weight: 700;  /* bold */
+            font-size: 1.895rem; /* 36px */
+            color: #1e2e42;     /* dark slate */
+            margin-bottom: 0.3rem;
+        }
+
+        .email {
+            font-weight: 600;   /* medium */
+            font-size: 1.08rem; /* 18px */
+            color: #353c45;     /* gray-600 */
+            margin-bottom: 0.8rem;
+        }
+
+        .custom-border {
+            border-width: 4px;
+            border-color: #3d3e3e;
+        }
+
+        .btn {
+            background: #969698;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+            color: #14171b;
+            font-weight: 600;
+            user-select: none;
+        }
+        .btn:hover:not(:disabled) {
+            background-color: #676464;
+            color: #f5f5f6;
+            box-shadow: none;
+        }
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+        #overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.3);
+            z-index: 40;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: none;
+        }
+        #overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 19px;
+            justify-content: center;
+        }
+        .card {
+            cursor: pointer;
+            background: #ffffff;
+            border-radius: 10px;
+            border: 5px solid #6a6868;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 320px;
+            min-height: 300px;
+            padding: 20px;
+            transition: transform 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            justify-content: flex-start;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+
+        .username_quiz {
+            margin-top: 1.2rem;
+            font-size: 22px;
+            font-weight: bold;
+            color: #2f4459;
+        }
+
+        .email_quiz {
+            font-size: 19px;
+            color: #2f4459;
+            margin: 5px 0 16px 0;
+            flex-grow: 0;
+        }
+
+        .question {
+            font-size: 18px;
+            color: #444;
+            font-weight: 700;
+            margin: 0 0 14px 0;
+        }
+
+        .card button {
+            width: 200px;
+            margin-top: 20px;
+            padding: 8px 12px;
+            background-color: #4a4848;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            font-size: 17px;
+            transition: background-color 0.3s ease;
+        }
+
+        .card button:hover {
+            background-color: #353739;
+        }
+
+        @media (min-width: 1400px) and (max-width: 1440px){
             #content {
-                transition: margin-left 0.4s ease-in-out;
-                padding: 3.7rem 1rem;
-                min-height: 100vh;
+                padding: 6.3rem 0.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #card-container {
                 display: flex;
-                flex-direction: column;
-                justify-content: flex-start;
-                align-items: center;
-                background-color: #eceff4; /* light color blocking the dark background */
-                /*margin-top: 1.4rem;*/
+                flex-wrap: wrap;
+                justify-content: center;
+                column-gap: 1rem;
+                row-gap: 1.3rem;
             }
 
             .user {
-                font-family: 'Merriweather', 'Georgia', serif;
-                font-size: 3.3rem;
-                font-weight: 900;
-                color: #545757;
-                margin-bottom: 1.8rem;
-                letter-spacing: 2.3px;
-                text-align: center;
-                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-            }
-
-
-            .table-wrapper {
-                width: 100%;
-                max-width: 900px;
-                border: 3px solid #4e4c4c;
-                border-radius: 12px;
-                overflow: hidden;
-                background-color: white;
-            }
-            table {
-                width: 100%;
-                border-collapse: collapse;
-                background-color: white;
-            }
-
-            /* Smooth scale transition on card hover */
-            #card-container > div {
-                transition: transform 0.3s ease, box-shadow 0.3s ease;
-            }
-
-            #card-container > div:hover {
-                transform: scale(1.05);
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
-                cursor: pointer;
+                font-size: 3rem;
+                margin-bottom: 1.5rem;
+                letter-spacing: 1.8px;
             }
 
             .username {
-                font-weight: 700;  /* bold */
-                font-size: 1.895rem; /* 36px */
-                color: #1e2e42;     /* dark slate */
-                margin-bottom: 0.3rem;
+                font-size: 1.5rem;
             }
 
             .email {
-                font-weight: 600;   /* medium */
-                font-size: 1.08rem; /* 18px */
-                color: #353c45;     /* gray-600 */
+                font-size: 1rem;
+            }
+
+            #card-container > div {
+                flex: 1 1 47%;
+                max-width: 300px;
+                min-width: 240px;
+                margin: 0;
+            }
+        }
+
+        @media (max-width: 425px) {
+            #content {
+                padding: 4.2rem 0.8rem;
+            }
+
+            .user {
+                font-size: 2.7rem;
+                letter-spacing: 1.5px;
+                margin-bottom: 1.2rem;
+            }
+
+            .username {
+                font-size: 1.6rem; /* smaller */
+                margin-bottom: 0.2rem;
+            }
+
+            .email {
+                font-size: 1.03rem;
+                margin-bottom: 0.5rem;
+            }
+
+            #card-container {
+                grid-template-columns: repeat(1, 1fr);
+                gap: 1rem;
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 375px) {
+            #content {
+                padding: 4rem 0.6rem;
+            }
+
+            .user {
+                font-size: 2.3rem;
+                letter-spacing: 1px;
+                margin-bottom: 1rem;
+            }
+
+            .username {
+                font-size: 1.7rem;
+            }
+
+            .email {
+                font-size: 1.1rem;
+            }
+
+            #card-container {
+                gap: 0.8rem;
+            }
+        }
+
+        @media (max-width: 320px) {
+            #content {
+                padding: 4.5rem 0.5rem;
+            }
+
+            .user {
+                font-size: 2.2rem;
+                letter-spacing: 0.8px;
                 margin-bottom: 0.8rem;
             }
 
-            .custom-border {
-                border-width: 4px;
-                border-color: #3d3e3e;
+            .username {
+                font-size: 1.7rem;
             }
 
-            .btn {
-                background: #969698;
-                border: none;
-                cursor: pointer;
-                padding: 0.5rem 1rem;
-                border-radius: 0.375rem;
-                transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-                color: #14171b;
-                font-weight: 600;
-                user-select: none;
-            }
-            .btn:hover:not(:disabled) {
-                background-color: #676464;
-                color: #f5f5f6;
-                box-shadow: none;
-            }
-            .btn:disabled {
-                opacity: 0.5;
-                cursor: not-allowed;
-                box-shadow: none;
-            }
-            #overlay {
-                position: fixed;
-                inset: 0;
-                background-color: rgba(0, 0, 0, 0.3);
-                z-index: 40;
-                opacity: 0;
-                transition: opacity 0.3s ease;
-                display: none;
-            }
-            #overlay.active {
-                display: block;
-                opacity: 1;
+            .email {
+                font-size: 1.1rem;
             }
 
-            h1 {
-                text-align: center;
-                color: #2c3e50;
+            #card-container {
+                gap: 0.6rem;
+                grid-template-columns: 1fr;
+                justify-items: center;
             }
-            .card-container {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 19px;
-                justify-content: center;
-            }
+        }
+
+        @media (min-width: 1400px) and (max-width: 1440px){
             .card {
-                cursor: pointer;
-                background: #ffffff;
-                border-radius: 10px;
-                border: 5px solid #6a6868;
-                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-                width: 320px;
-                min-height: 320px;
-                padding: 20px;
-                transition: transform 0.2s ease;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-                justify-content: flex-start;
-            }
-
-            .card:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+                width: 360px;
+                min-height: 360px;
+                padding: 28px;
             }
 
             .username_quiz {
-                font-size: 22px;
-                font-weight: bold;
-                color: #2f4459;
+                font-size: 26px;
             }
 
             .email_quiz {
-                font-size: 19px;
-                color: #2f4459;
-                margin: 0 0 14px 0;
-                flex-grow: 0;
+                font-size: 22px;
             }
 
             .question {
-                font-size: 18px;
-                color: #444;
-                font-weight: 700;
-                margin: 0 0 14px 0;
+                font-size: 21px;
+            }
+
+            .card button {
+                width: 220px;
+                font-size: 19px;
+            }
+        }
+
+        @media (min-width: 1000px) and (max-width: 1024px) {
+            .card-container {
+                justify-content: center;
+                gap: 24px;
+            }
+
+            .card {
+                width: 30%;
+                min-height: 340px;
+                padding: 24px;
+            }
+
+            .username_quiz {
+                font-size: 24px;
+            }
+
+            .email_quiz {
+                font-size: 20px;
+            }
+
+            .question {
+                font-size: 20px;
             }
 
             .card button {
                 width: 200px;
-                margin-top: 15px;
-                padding: 8px 12px;
-                background-color: #4a4848;
-                border: none;
-                border-radius: 5px;
-                color: white;
-                cursor: pointer;
+                font-size: 18px;
+            }
+        }
+
+
+        @media (max-width: 425px) {
+            .card {
+                width: 90%; /* Responsive width */
+                min-height: 300px;
+            }
+
+            .card button {
+                width: 90%; /* Make button full width on small screens */
+            }
+
+            .username_quiz {
+                font-size: 20px;
+            }
+
+            .email_quiz {
                 font-size: 17px;
-                transition: background-color 0.3s ease;
             }
 
-            .card button:hover {
-                background-color: #353739;
+            .question {
+                font-size: 16px;
             }
-
-            @media (min-width: 1400px) and (max-width: 1440px){
-                #content {
-                    padding: 6.3rem 0.8rem;
-                }
-            }
-
-            @media (max-width: 768px) {
-                #card-container {
-                    display: flex;
-                    flex-wrap: wrap;
-                    justify-content: center;
-                    column-gap: 1rem;
-                    row-gap: 1.3rem;
-                }
-
-                .user {
-                    font-size: 3rem;
-                    margin-bottom: 1.5rem;
-                    letter-spacing: 1.8px;
-                }
-
-                .username {
-                    font-size: 1.5rem;
-                }
-
-                .email {
-                    font-size: 1rem;
-                }
-
-                #card-container > div {
-                    flex: 1 1 47%;
-                    max-width: 300px;
-                    min-width: 240px;
-                    margin: 0;
-                }
-            }
-
-            @media (max-width: 425px) {
-                #content {
-                    padding: 4.2rem 0.8rem;
-                }
-
-                .user {
-                    font-size: 2.7rem;
-                    letter-spacing: 1.5px;
-                    margin-bottom: 1.2rem;
-                }
-
-                .username {
-                    font-size: 1.6rem; /* smaller */
-                    margin-bottom: 0.2rem;
-                }
-
-                .email {
-                    font-size: 1.03rem;
-                    margin-bottom: 0.5rem;
-                }
-
-                #card-container {
-                    grid-template-columns: repeat(1, 1fr);
-                    gap: 1rem;
-                    max-width: 100%;
-                }
-            }
-
-            @media (max-width: 375px) {
-                #content {
-                    padding: 4rem 0.6rem;
-                }
-
-                .user {
-                    font-size: 2.3rem;
-                    letter-spacing: 1px;
-                    margin-bottom: 1rem;
-                }
-
-                .username {
-                    font-size: 1.7rem;
-                }
-
-                .email {
-                    font-size: 1.1rem;
-                }
-
-                #card-container {
-                    gap: 0.8rem;
-                }
-            }
-
-            @media (max-width: 320px) {
-                #content {
-                    padding: 4.5rem 0.5rem;
-                }
-
-                .user {
-                    font-size: 2.2rem;
-                    letter-spacing: 0.8px;
-                    margin-bottom: 0.8rem;
-                }
-
-                .username {
-                    font-size: 1.7rem;
-                }
-
-                .email {
-                    font-size: 1.1rem;
-                }
-
-                #card-container {
-                    gap: 0.6rem;
-                    grid-template-columns: 1fr;
-                    justify-items: center;
-                }
-            }
-
-            @media (min-width: 1400px) and (max-width: 1440px){
-                .card {
-                    width: 360px;
-                    min-height: 360px;
-                    padding: 28px;
-                }
-
-                .username_quiz {
-                    font-size: 26px;
-                }
-
-                .email_quiz {
-                    font-size: 22px;
-                }
-
-                .question {
-                    font-size: 21px;
-                }
-
-                .card button {
-                    width: 220px;
-                    font-size: 19px;
-                }
-            }
-
-            @media (min-width: 1000px) and (max-width: 1024px) {
-                .card-container {
-                    justify-content: center;
-                    gap: 24px;
-                }
-
-                .card {
-                    width: 30%;
-                    min-height: 340px;
-                    padding: 24px;
-                }
-
-                .username_quiz {
-                    font-size: 24px;
-                }
-
-                .email_quiz {
-                    font-size: 20px;
-                }
-
-                .question {
-                    font-size: 20px;
-                }
-
-                .card button {
-                    width: 200px;
-                    font-size: 18px;
-                }
-            }
-
-
-            @media (max-width: 425px) {
-                .card {
-                    width: 90%; /* Responsive width */
-                    min-height: 300px;
-                }
-
-                .card button {
-                    width: 90%; /* Make button full width on small screens */
-                }
-
-                .username_quiz {
-                    font-size: 20px;
-                }
-
-                .email_quiz {
-                    font-size: 17px;
-                }
-
-                .question {
-                    font-size: 16px;
-                }
-            }
-
-            @media (max-width: 375px) {
-                .card {
-                    width: 95%;
-                    min-height: 280px;
-                }
-
-                .username_quiz {
-                    font-size: 18px;
-                }
-
-                .email_quiz {
-                    font-size: 16px;
-                }
-
-                .question {
-                    font-size: 15px;
-                }
-
-                .card button {
-                    font-size: 16px;
-                }
-            }
-
-            @media (max-width: 320px) {
-                .card {
-                    width: 98%;
-                    min-height: 260px;
-                    padding: 15px;
-                }
-
-                .username_quiz {
-                    font-size: 17px;
-                }
-
-                .email_quiz {
-                    font-size: 15px;
-                }
-
-                .question {
-                    font-size: 14px;
-                }
-
-                .card button {
-                    font-size: 15px;
-                    padding: 8px 10px;
-                }
-            }
-
-
-
-
-
-
-        </style>
-    </head>
-    <body>
-    <button id="menu-btn" aria-label="Toggle Menu" type="button">
-        <i class="fa-solid fa-bars text-gray-600 text-3xl transition-all duration-300"></i>
-    </button>
-
-    <aside id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-white border-r-4 border-gray-600 flex flex-col justify-between transform -translate-x-full z-50">
-        <div>
-            <!-- Logo Section with thicker bottom border -->
-            <div class="flex items-center justify-center h-16 border-b-4 border-gray-500">
-                <span class="text-lg font-semibold text-gray-700">Logo</span>
-            </div>
-
-            <!-- Navigation Section with top border -->
-            <nav class="px-4 pt-4 text-gray-600 border-t border-gray-300">
-                <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-400 mb-4 text-gray-500 hover:bg-gray-300 hover:text-gray-900 font-bold">
-                    <i class="fa-solid fa-fire opacity-75 w-5"></i>
-                    <span>Thriller Movie</span>
-                </a>
-
-                <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-400 mb-4 text-gray-500 hover:bg-gray-300 hover:text-gray-900 font-bold">
-                    <i class="fa-solid fa-microchip opacity-75 w-5"></i>
-                    <span>Sci-Fi Movie</span>
-                </a>
-
-                <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-400 mb-4 text-gray-500 hover:bg-gray-300 hover:text-gray-900 font-bold">
-                    <i class="fa-solid fa-heart opacity-75 w-5"></i>
-                    <span>Love Story</span>
-                </a>
-
-                <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-400 mb-4 text-gray-500 hover:bg-gray-300 hover:text-gray-900 font-bold">
-                    <i class="fa-solid fa-globe opacity-75 w-5"></i>
-                    <span>Adventure</span>
-                </a>
-
-                <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-400 mb-4 text-gray-500 hover:bg-gray-300 hover:text-gray-900 font-bold">
-                    <i class="fa-solid fa-circle-plus opacity-75 w-5"></i>
-                    <span>Add Info</span>
-                </a>
-
-                <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-400 mb-4 text-gray-500 hover:bg-gray-300 hover:text-gray-900 font-bold">
-                    <i class="fa-solid fa-clipboard-list opacity-75 w-5"></i>
-                    <span>View Question</span>
-                </a>
-
-                <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-400 mb-4 text-gray-500 hover:bg-gray-300 hover:text-gray-900 font-bold">
-                    <i class="fa-solid fa-users opacity-75 w-5"></i>
-                    <span>Members</span>
-                </a>
-            </nav>
-
-        </div>
-    </aside>
-
-    <div id="overlay"></div>
-
-    <main id="content" class="w-full overflow-x-auto">
-        <!-- User Details Page -->
-        <section id="user-details" class="page">
-            <h3 class="mb-8 user">User Details</h3>
-            <div id="card-container" class="grid grid-cols-3 gap-8 max-w-7xl mx-auto cd"></div>
-            <div class="flex justify-center items-center gap-4 mt-10">
-                <button id="prev-btn" class="btn px-4 py-2" disabled>Previous</button>
-                <span id="page-info" class="text-gray-700 font-semibold"></span>
-                <button id="next-btn" class="btn px-4 py-2">Next</button>
-            </div>
-        </section>
-
-        <section id="questions-list" class="page" style="display:none;">
-            <h3 class="mb-8 user">View Question</h3>
-            <div id="questionsContainer" class="card-container"></div>
-            <div class="flex justify-center items-center gap-4 mt-10">
-                <button  class="btn px-4 py-2" disabled>Previous</button>
-                <span  class="text-gray-700 font-semibold"></span>
-                <button  class="btn px-4 py-2">Next</button>
-            </div>
-        </section>
-
-        <div id="replyModal" class="fixed inset-0 hidden z-50 flex items-center justify-center bg-black/50 backdrop-blur-lg">
-            <div class="bg-white p-4 sm:p-6 rounded-md shadow-lg w-[90%] max-w-md mx-4">
-                <h2 class="text-lg font-semibold mb-3 text-center">Reply to Question</h2>
-
-                <textarea id="replyText" class="w-full h-32 border border-gray-300 rounded p-2 resize-none mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
-
-                <div class="flex justify-end gap-3">
-                    <button id="cancelBtn" class="bg-gray-300 hover:bg-gray-400 text-black px-4 py-2 rounded transition">Cancel</button>
-                    <button id="sendReplyBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition">Send</button>
-                </div>
-            </div>
-        </div>
-
-
-    </main>
-
-
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
-
-    <script>
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyCNH38ylbzfIORN0wmDoizj_eWKunQ1uAQ",
-            authDomain: "my-first-app-6a293.firebaseapp.com",
-            databaseURL: "https://my-first-app-6a293-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "my-first-app-6a293",
-            storageBucket: "my-first-app-6a293.appspot.com",
-            messagingSenderId: "599546991663",
-            appId: "1:599546991663:web:b07d25c55f1d00c06722da",
-            measurementId: "G-5EVKKY7KLP"
-        };
-
-        if (!firebase.apps.length) {
-            firebase.initializeApp(firebaseConfig);
-        } else {
-            firebase.app();
         }
 
-        const db = firebase.database();
+        @media (max-width: 375px) {
+            .card {
+                width: 95%;
+                min-height: 280px;
+            }
 
-        const cardContainer = document.getElementById("card-container");
-        const prevBtn = document.getElementById("prev-btn");
-        const nextBtn = document.getElementById("next-btn");
-        const pageInfo = document.getElementById("page-info");
+            .username_quiz {
+                font-size: 18px;
+            }
 
-        const rowsPerPage = 3;
-        let currentPage = 0;
-        const pageKeys = [];
+            .email_quiz {
+                font-size: 16px;
+            }
 
-        function loadInitialPage() {
-            db.ref("users")
-                .orderByChild('registerTimestamp')
-                .limitToFirst(rowsPerPage + 1)
-                .once("value", snapshot => {
-                    handleSnapshot(snapshot, true);
-                });
+            .question {
+                font-size: 15px;
+            }
+
+            .card button {
+                font-size: 16px;
+            }
         }
 
-        function handleSnapshot(snapshot, isInitial = false) {
-            const users = [];
-            snapshot.forEach(child => {
-                users.push({ key: child.key, val: child.val() });
+        @media (max-width: 320px) {
+            .card {
+                width: 98%;
+                min-height: 260px;
+                padding: 15px;
+            }
+
+            .username_quiz {
+                font-size: 17px;
+            }
+
+            .email_quiz {
+                font-size: 15px;
+            }
+
+            .question {
+                font-size: 14px;
+            }
+
+            .card button {
+                font-size: 15px;
+                padding: 8px 10px;
+            }
+        }
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+<button id="menu-btn" aria-label="Toggle Menu" type="button">
+    <i class="fa-solid fa-bars text-gray-600 text-3xl transition-all duration-300"></i>
+</button>
+
+<aside id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-white border-r-4 border-gray-600 flex flex-col justify-between transform -translate-x-full z-50">
+    <div>
+        <!-- Logo Section with thicker bottom border -->
+        <div class="flex items-center justify-center h-16 border-b-4 border-gray-500">
+            <span class="text-lg font-semibold text-gray-700">Logo</span>
+        </div>
+
+        <!-- Navigation Section with top border -->
+        <nav class="px-4 pt-4 text-gray-600 border-t border-gray-300">
+            <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-400 mb-4 text-gray-500 hover:bg-gray-300 hover:text-gray-900 font-bold">
+                <i class="fa-solid fa-fire opacity-75 w-5"></i>
+                <span>Thriller Movie</span>
+            </a>
+
+            <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-400 mb-4 text-gray-500 hover:bg-gray-300 hover:text-gray-900 font-bold">
+                <i class="fa-solid fa-microchip opacity-75 w-5"></i>
+                <span>Sci-Fi Movie</span>
+            </a>
+
+            <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-400 mb-4 text-gray-500 hover:bg-gray-300 hover:text-gray-900 font-bold">
+                <i class="fa-solid fa-heart opacity-75 w-5"></i>
+                <span>Love Story</span>
+            </a>
+
+            <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-400 mb-4 text-gray-500 hover:bg-gray-300 hover:text-gray-900 font-bold">
+                <i class="fa-solid fa-globe opacity-75 w-5"></i>
+                <span>Adventure</span>
+            </a>
+
+            <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-400 mb-4 text-gray-500 hover:bg-gray-300 hover:text-gray-900 font-bold">
+                <i class="fa-solid fa-circle-plus opacity-75 w-5"></i>
+                <span>Add Info</span>
+            </a>
+
+            <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-400 mb-4 text-gray-500 hover:bg-gray-300 hover:text-gray-900 font-bold">
+                <i class="fa-solid fa-clipboard-list opacity-75 w-5"></i>
+                <span>View Question</span>
+            </a>
+
+            <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-400 mb-4 text-gray-500 hover:bg-gray-300 hover:text-gray-900 font-bold">
+                <i class="fa-solid fa-users opacity-75 w-5"></i>
+                <span>Members</span>
+            </a>
+        </nav>
+
+    </div>
+</aside>
+
+<div id="overlay"></div>
+
+<main id="content" class="w-full overflow-x-auto">
+    <!-- User Details Page -->
+    <section id="user-details" class="page">
+        <h3 class="mb-8 user">User Details</h3>
+        <div id="card-container" class="grid grid-cols-3 gap-8 max-w-7xl mx-auto cd"></div>
+        <div class="flex justify-center items-center gap-4 mt-10">
+            <button id="prev-btn" class="btn px-4 py-2" disabled>Previous</button>
+            <span id="page-info" class="text-gray-700 font-semibold"></span>
+            <button id="next-btn" class="btn px-4 py-2">Next</button>
+        </div>
+    </section>
+
+    <section id="questions-list" class="page" style="display:none;">
+        <h3 class="mb-8 user">View Question</h3>
+        <div id="questionsContainer" class="card-container"></div>
+        <div class="flex justify-center items-center gap-4 mt-10">
+            <button  class="btn px-4 py-2" id="pre">Previous</button>
+            <span  class="text-gray-700 font-semibold"></span>
+            <button  class="btn px-4 py-2" id="next">Next</button>
+        </div>
+    </section>
+
+    <div id="replyModal" class="fixed inset-0 hidden z-50 flex items-center justify-center bg-black/50 backdrop-blur-lg">
+        <div class="bg-white p-4 sm:p-6 rounded-md shadow-lg w-[90%] max-w-md mx-4">
+            <h2 class="text-lg font-semibold mb-3 text-center">Reply to Question</h2>
+
+            <textarea id="replyText" class="w-full h-32 border border-gray-300 rounded p-2 resize-none mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+
+            <div class="flex justify-end gap-3">
+                <button id="cancelBtn" class="bg-gray-300 hover:bg-gray-400 text-black px-4 py-2 rounded transition">Cancel</button>
+                <button id="sendReplyBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition">Send</button>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+<script>
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyCNH38ylbzfIORN0wmDoizj_eWKunQ1uAQ",
+        authDomain: "my-first-app-6a293.firebaseapp.com",
+        databaseURL: "https://my-first-app-6a293-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "my-first-app-6a293",
+        storageBucket: "my-first-app-6a293.appspot.com",
+        messagingSenderId: "599546991663",
+        appId: "1:599546991663:web:b07d25c55f1d00c06722da",
+        measurementId: "G-5EVKKY7KLP"
+    };
+
+    if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+    } else {
+        firebase.app();
+    }
+
+    const db = firebase.database();
+
+    const cardContainer = document.getElementById("card-container");
+    const prevBtn = document.getElementById("prev-btn");
+    const nextBtn = document.getElementById("next-btn");
+    const pageInfo = document.getElementById("page-info");
+
+    const rowsPerPage = 3;
+    let currentPage = 0;
+    const pageKeys = [];
+
+    function loadInitialPage() {
+        db.ref("users")
+            .orderByChild('registerTimestamp')
+            .limitToFirst(rowsPerPage + 1)
+            .once("value", snapshot => {
+                handleSnapshot(snapshot, true);
             });
+    }
 
-            const hasMore = users.length > rowsPerPage;
-            if (hasMore) users.pop(); // Remove extra
+    function handleSnapshot(snapshot, isInitial = false) {
+        const users = [];
+        snapshot.forEach(child => {
+            users.push({ key: child.key, val: child.val() });
+        });
 
-            renderUsers(users);
+        const hasMore = users.length > rowsPerPage;
+        if (hasMore) users.pop(); // Remove extra
 
-            if (isInitial) {
-                pageKeys.push(users[0]?.val.registerTimestamp || null); // ✅ This stores the correct timestamp
-                currentPage = 0;
-            }
-            updateButtons(hasMore);
+        renderUsers(users);
+
+        if (isInitial) {
+            pageKeys.push(users[0]?.val.registerTimestamp || null); // ✅ This stores the correct timestamp
+            currentPage = 0;
         }
+        updateButtons(hasMore);
+    }
 
-        function goToNextPage() {
-            const lastTimestamp = +cardContainer.lastElementChild?.dataset.timestamp;
-            if (!lastTimestamp) return;
+    function goToNextPage() {
+        const lastTimestamp = +cardContainer.lastElementChild?.dataset.timestamp;
+        if (!lastTimestamp) return;
 
-            db.ref("users")
-                .orderByChild('registerTimestamp')
-                .startAfter(lastTimestamp)
-                .limitToFirst(rowsPerPage + 1)
-                .once("value", snapshot => {
-                    const users = [];
-                    snapshot.forEach(child => {
-                        users.push({ key: child.key, val: child.val() });
-                    });
-
-                    const hasMore = users.length > rowsPerPage;
-                    if (hasMore) users.pop();
-
-                    if (users.length === 0) return;
-
-                    renderUsers(users);
-
-                    currentPage++;
-                    pageKeys[currentPage] = users[0]?.val.registerTimestamp || null;
-
-                    updateButtons(hasMore);
+        db.ref("users")
+            .orderByChild('registerTimestamp')
+            .startAfter(lastTimestamp)
+            .limitToFirst(rowsPerPage + 1)
+            .once("value", snapshot => {
+                const users = [];
+                snapshot.forEach(child => {
+                    users.push({ key: child.key, val: child.val() });
                 });
+
+                const hasMore = users.length > rowsPerPage;
+                if (hasMore) users.pop();
+
+                if (users.length === 0) return;
+
+                renderUsers(users);
+
+                currentPage++;
+                pageKeys[currentPage] = users[0]?.val.registerTimestamp || null;
+
+                updateButtons(hasMore);
+            });
+    }
+
+
+    function goToPreviousPage() {
+        if (currentPage <= 0) return;
+
+        const prevTimestamp = pageKeys[currentPage - 1];
+        if (typeof prevTimestamp !== "number") {
+            console.error("Invalid previous timestamp:", prevTimestamp);
+            return;
         }
 
-
-        function goToPreviousPage() {
-            if (currentPage <= 0) return;
-
-            const prevTimestamp = pageKeys[currentPage - 1];
-            if (typeof prevTimestamp !== "number") {
-                console.error("Invalid previous timestamp:", prevTimestamp);
-                return;
-            }
-
-            db.ref("users")
-                .orderByChild('registerTimestamp')
-                .startAt(prevTimestamp)
-                .limitToFirst(rowsPerPage + 1)
-                .once("value", snapshot => {
-                    const users = [];
-                    snapshot.forEach(child => {
-                        users.push({ key: child.key, val: child.val() });
-                    });
-
-                    const hasMore = users.length > rowsPerPage;
-                    if (hasMore) users.pop();
-
-                    if (users.length === 0) return;
-
-                    renderUsers(users);
-
-                    currentPage--;
-                    updateButtons(true);
+        db.ref("users")
+            .orderByChild('registerTimestamp')
+            .startAt(prevTimestamp)
+            .limitToFirst(rowsPerPage + 1)
+            .once("value", snapshot => {
+                const users = [];
+                snapshot.forEach(child => {
+                    users.push({ key: child.key, val: child.val() });
                 });
-        }
 
-        function renderUsers(users) {
-            cardContainer.innerHTML = "";
+                const hasMore = users.length > rowsPerPage;
+                if (hasMore) users.pop();
 
-            users.forEach(user => {
-                const card = document.createElement("div");
-                card.className =
-                    "bg-white rounded-xl p-8 shadow-lg flex flex-col items-center text-center w-[310px] h-[320px] custom-border";
-                card.dataset.key = user.key;
-                card.dataset.timestamp = user.val.registerTimestamp;  // <-- Add this
+                if (users.length === 0) return;
 
-                card.innerHTML = `
+                renderUsers(users);
+
+                currentPage--;
+                updateButtons(true);
+            });
+    }
+
+    function renderUsers(users) {
+        cardContainer.innerHTML = "";
+
+        users.forEach(user => {
+            const card = document.createElement("div");
+            card.className =
+                "bg-white rounded-xl p-8 shadow-lg flex flex-col items-center text-center w-[310px] h-[320px] custom-border";
+            card.dataset.key = user.key;
+            card.dataset.timestamp = user.val.registerTimestamp;  // <-- Add this
+
+            card.innerHTML = `
           <img src="${user.val.photoURL}" alt="${user.val.username}" class="w-20 h-20 rounded-full object-cover mb-5 shadow-lg" />
           <h2 class="username">${user.val.username}</h2>
           <p class="email">${user.val.email}</p>
           <p class="text-base text-gray-700">Join Time: ${user.val.registerTime ?? "N/A"}</p>
           <p class="text-base text-gray-700">Join Date: ${user.val.registerDate ?? "N/A"}</p>
         `;
-                cardContainer.appendChild(card);
-            });
-
-            pageInfo.textContent = `Page ${currentPage + 1}`;
-        }
-
-
-        function updateButtons(hasMore) {
-            prevBtn.disabled = currentPage === 0;
-            nextBtn.disabled = !hasMore;
-        }
-
-        // =================== Sidebar Logic ===================
-        const menuBtn = document.getElementById("menu-btn");
-        const sidebar = document.getElementById("sidebar");
-        const overlay = document.getElementById("overlay");
-        const icon = menuBtn.querySelector("i");
-
-        menuBtn.addEventListener("click", () => {
-            const isVisible = !sidebar.classList.contains("-translate-x-full");
-
-            if (isVisible) {
-                sidebar.classList.add("-translate-x-full");
-                overlay.classList.remove("active");
-                icon.classList.remove("fa-times", "text-red-600");
-                icon.classList.add("fa-bars", "text-gray-600");
-            } else {
-                sidebar.classList.remove("-translate-x-full");
-                overlay.classList.add("active");
-                icon.classList.remove("fa-bars", "text-gray-600");
-                icon.classList.add("fa-times", "text-red-600");
-            }
+            cardContainer.appendChild(card);
         });
 
-        overlay.addEventListener("click", () => {
+        pageInfo.textContent = `Page ${currentPage + 1}`;
+    }
+
+
+    function updateButtons(hasMore) {
+        prevBtn.disabled = currentPage === 0;
+        nextBtn.disabled = !hasMore;
+    }
+
+    // =================== Sidebar Logic ===================
+    const menuBtn = document.getElementById("menu-btn");
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+    const icon = menuBtn.querySelector("i");
+
+    menuBtn.addEventListener("click", () => {
+        const isVisible = !sidebar.classList.contains("-translate-x-full");
+
+        if (isVisible) {
             sidebar.classList.add("-translate-x-full");
             overlay.classList.remove("active");
             icon.classList.remove("fa-times", "text-red-600");
             icon.classList.add("fa-bars", "text-gray-600");
-        });
-
-        // =================== Attach Events ===================
-        nextBtn.onclick = goToNextPage;
-        prevBtn.onclick = goToPreviousPage;
-
-        // =================== Initial Load ===================
-        loadInitialPage();
-
-
-    </script>
-
-
-    <script>
-        function loadQuestions() {
-            const xhr = new XMLHttpRequest();
-            xhr.open('GET', 'http://localhost:8080/api/questions', true);
-
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4) {
-                    const container = document.getElementById('questionsContainer');
-                    if (xhr.status === 200) {
-                        const questions = JSON.parse(xhr.responseText);
-                        container.innerHTML = '';
-
-                        questions.forEach(q => {
-                            const card = document.createElement('div');
-                            card.className = 'card';
-
-                            card.innerHTML = `
-            <h2 class="username_quiz">${escapeHtml(q.username ?? "Anonymous")}</h2>
-            <p class="email_quiz">${escapeHtml(q.email ?? "N/A")}</p>
-            <p class="question">${escapeHtml(q.content ?? "No content available")}</p>
-            <button class="replyBtn mt-4 px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition">
-              Reply
-            </button>
-          `;
-
-                            const replyBtn = card.querySelector('.replyBtn');
-                            replyBtn.addEventListener('click', () => {
-                                openReplyModal(q.email, q.username);
-                            });
-
-                            container.appendChild(card);
-                        });
-                    } else {
-                        container.innerHTML = '<p>There is no questions</p>';
-                    }
-                }
-            };
-
-            xhr.send();
+        } else {
+            sidebar.classList.remove("-translate-x-full");
+            overlay.classList.add("active");
+            icon.classList.remove("fa-bars", "text-gray-600");
+            icon.classList.add("fa-times", "text-red-600");
         }
+    });
 
-        let selectedEmail = '';
-        let selectedUsername = '';
+    overlay.addEventListener("click", () => {
+        sidebar.classList.add("-translate-x-full");
+        overlay.classList.remove("active");
+        icon.classList.remove("fa-times", "text-red-600");
+        icon.classList.add("fa-bars", "text-gray-600");
+    });
 
-        function openReplyModal(email, username) {
-            selectedEmail = email;
-            selectedUsername = username;
-            document.getElementById('replyText').value = '';
-            document.getElementById('replyModal').classList.remove('hidden');
-        }
+    // =================== Attach Events ===================
+    nextBtn.onclick = goToNextPage;
+    prevBtn.onclick = goToPreviousPage;
 
-        document.getElementById('cancelBtn').addEventListener('click', () => {
-            document.getElementById('replyModal').classList.add('hidden');
+    // =================== Initial Load ===================
+    loadInitialPage();
+
+
+</script>
+
+
+<script>
+
+    let currentQuiz = 0;
+
+    document.addEventListener('DOMContentLoaded', function () {
+        loadQuestions(currentQuiz);
+
+        document.getElementById('next').addEventListener('click', function () {
+            currentQuiz++;
+            loadQuestions(currentQuiz);
         });
 
-        document.getElementById('sendReplyBtn').addEventListener('click', () => {
-            const message = document.getElementById('replyText').value.trim();
-            if (!message) return alert('Reply message is empty');
-
-            fetch('http://localhost:8080/api/send-reply', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    to: selectedEmail,
-                    username: selectedUsername,
-                    message: message
-                })
-            }).then(res => {
-                if (res.ok) {
-                    showSuccessMessage('Reply sent successfully!');
-                    document.getElementById('replyModal').classList.add('hidden');
-                } else {
-                    showErrorMessage('Failed to send reply');
-                }
-            });
-        });
-
-
-        function escapeHtml(text) {
-            if (!text) return '';
-            return text.replace(/[&<>"']/g, function(m) {
-                return ({
-                    '&': '&amp;',
-                    '<': '&lt;',
-                    '>': '&gt;',
-                    '"': '&quot;',
-                    "'": '&#39;'
-                })[m];
-            });
-        }
-
-        window.onload = loadQuestions;
-
-        const routes = {
-            'Members': 'user-details',
-            'View Question': 'questions-list',
-        };
-
-        const navLinks = document.querySelectorAll('aside nav a');
-
-        navLinks.forEach(link => {
-            link.addEventListener('click', function(event) {
-                event.preventDefault();
-
-                const linkText = this.textContent.trim();
-                const pageId = routes[linkText];
-                if (!pageId) return;
-
-                document.querySelectorAll('#content .page').forEach(page => {
-                    page.style.display = 'none';
-                });
-
-                const page = document.getElementById(pageId);
-                if (page) {
-                    page.style.display = 'block';
-                }
-
-                window.location.hash = pageId;
-
-                // Close the sidebar menu
-                sidebar.classList.add("-translate-x-full");
-                overlay.classList.remove("active");
-                icon.classList.remove("fa-times", "text-red-600");
-                icon.classList.add("fa-bars", "text-gray-600");
-
-            });
-        });
-
-        window.addEventListener('load', () => {
-            const hash = window.location.hash.slice(1); // remove #
-            if (hash && document.getElementById(hash)) {
-                document.querySelectorAll('#content .page').forEach(page => page.style.display = 'none');
-                document.getElementById(hash).style.display = 'block';
+        document.getElementById('pre').addEventListener('click', function () {
+            if (currentQuiz > 0) {
+                currentQuiz--;
+                loadQuestions(currentQuiz);
             }
         });
+    });
 
-        function showErrorMessage(message) {
-            const existing = document.getElementById('floating-error');
-            if (existing) existing.remove();
+    function loadQuestions(page) {
+        fetch('http://localhost:8080/api/questions/pagination/' + page)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('HTTP error! Status: ' + response.status);
+                }
+                return response.json();
+            })
+            .then(questions => {
+                const container = document.getElementById('questionsContainer');
+                container.innerHTML = '';
 
-            const errorElement = document.createElement('div');
-            errorElement.id = 'floating-error';
-            errorElement.innerHTML = `
+                if (questions.length === 0) {
+                    container.innerHTML = '<p>No questions available.</p>';
+                    return;
+                }
+
+                questions.forEach(q => {
+                    const card = document.createElement('div');
+                    card.className = 'card';
+
+                    card.innerHTML = `
+                    <h2 class="username_quiz">${escapeHtml(q.username ?? "Anonymous")}</h2>
+                    <p class="email_quiz">${escapeHtml(q.email ?? "N/A")}</p>
+                    <p class="question">${escapeHtml(q.content ?? "No content available")}</p>
+                    <button class="replyBtn mt-4 px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition">
+                        Reply
+                    </button>
+                `;
+
+
+                    const replyBtn = card.querySelector('.replyBtn');
+                    replyBtn.addEventListener('click', () => {
+                        openReplyModal(q.email, q.username);
+                    });
+
+                    container.appendChild(card);
+                });
+            })
+            .catch(error => {
+                console.log("Error:", error);
+                const container = document.getElementById('questionsContainer');
+                container.innerHTML = '<p>Error loading questions.</p>';
+            });
+    }
+    let selectedEmail = '';
+    let selectedUsername = '';
+
+    function openReplyModal(email, username) {
+        selectedEmail = email;
+        selectedUsername = username;
+        document.getElementById('replyText').value = '';
+        document.getElementById('replyModal').classList.remove('hidden');
+    }
+
+    document.getElementById('cancelBtn').addEventListener('click', () => {
+        document.getElementById('replyModal').classList.add('hidden');
+    });
+
+    document.getElementById('sendReplyBtn').addEventListener('click', () => {
+        const message = document.getElementById('replyText').value.trim();
+        if (!message) return alert('Reply message is empty');
+
+        fetch('http://localhost:8080/api/send-reply', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                to: selectedEmail,
+                username: selectedUsername,
+                message: message
+            })
+        }).then(res => {
+            if (res.ok) {
+                showSuccessMessage('Reply sent successfully!');
+                document.getElementById('replyModal').classList.add('hidden');
+            } else {
+                showErrorMessage('Failed to send reply');
+            }
+        });
+    });
+
+
+    function escapeHtml(text) {
+        if (!text) return '';
+        return text.replace(/[&<>"']/g, function(m) {
+            return ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#39;'
+            })[m];
+        });
+    }
+
+    window.onload = () => loadQuestions(currentQuiz);
+
+    const routes = {
+        'Members': 'user-details',
+        'View Question': 'questions-list',
+    };
+
+    const navLinks = document.querySelectorAll('aside nav a');
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+
+            const linkText = this.textContent.trim();
+            const pageId = routes[linkText];
+            if (!pageId) return;
+
+            document.querySelectorAll('#content .page').forEach(page => {
+                page.style.display = 'none';
+            });
+
+            const page = document.getElementById(pageId);
+            if (page) {
+                page.style.display = 'block';
+            }
+
+            window.location.hash = pageId;
+
+            // Close the sidebar menu
+            sidebar.classList.add("-translate-x-full");
+            overlay.classList.remove("active");
+            icon.classList.remove("fa-times", "text-red-600");
+            icon.classList.add("fa-bars", "text-gray-600");
+
+        });
+    });
+
+    window.addEventListener('load', () => {
+        const hash = window.location.hash.slice(1); // remove #
+        if (hash && document.getElementById(hash)) {
+            document.querySelectorAll('#content .page').forEach(page => page.style.display = 'none');
+            document.getElementById(hash).style.display = 'block';
+        }
+    });
+
+    function showErrorMessage(message) {
+        const existing = document.getElementById('floating-error');
+        if (existing) existing.remove();
+
+        const errorElement = document.createElement('div');
+        errorElement.id = 'floating-error';
+        errorElement.innerHTML = `
         <div style="
             display: flex;
             align-items: center;
@@ -892,43 +915,43 @@
         </div>
     `;
 
-            errorElement.style.position = 'fixed';
-            errorElement.style.top = '3rem';
-            errorElement.style.left = '50%';
-            errorElement.style.transform = 'translateX(-50%) translateY(-20px)';
-            errorElement.style.zIndex = '9999';
-            errorElement.style.width = '460px';
-            errorElement.style.maxWidth = '90%';
-            errorElement.style.textAlign = 'center';
-            errorElement.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)';
+        errorElement.style.position = 'fixed';
+        errorElement.style.top = '3rem';
+        errorElement.style.left = '50%';
+        errorElement.style.transform = 'translateX(-50%) translateY(-20px)';
+        errorElement.style.zIndex = '9999';
+        errorElement.style.width = '460px';
+        errorElement.style.maxWidth = '90%';
+        errorElement.style.textAlign = 'center';
+        errorElement.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)';
+        errorElement.style.opacity = '0';
+        errorElement.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+
+        document.body.appendChild(errorElement);
+
+        // Trigger fade-in animation
+        requestAnimationFrame(() => {
+            errorElement.style.opacity = '1';
+            errorElement.style.transform = 'translateX(-50%) translateY(0)';
+        });
+
+        setTimeout(() => {
             errorElement.style.opacity = '0';
-            errorElement.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-
-            document.body.appendChild(errorElement);
-
-            // Trigger fade-in animation
-            requestAnimationFrame(() => {
-                errorElement.style.opacity = '1';
-                errorElement.style.transform = 'translateX(-50%) translateY(0)';
-            });
-
+            errorElement.style.transform = 'translateX(-50%) translateY(-20px)';
             setTimeout(() => {
-                errorElement.style.opacity = '0';
-                errorElement.style.transform = 'translateX(-50%) translateY(-20px)';
-                setTimeout(() => {
-                    errorElement.remove();
-                }, 500);
-            }, 4000);
-        }
+                errorElement.remove();
+            }, 500);
+        }, 4000);
+    }
 
-        function showSuccessMessage(message) {
-            const existing = document.getElementById('floating-success');
-            if (existing) existing.remove();
+    function showSuccessMessage(message) {
+        const existing = document.getElementById('floating-success');
+        if (existing) existing.remove();
 
-            const successElement = document.createElement('div');
-            successElement.id = 'floating-success';
+        const successElement = document.createElement('div');
+        successElement.id = 'floating-success';
 
-            successElement.innerHTML = `
+        successElement.innerHTML = `
         <div style="
             display: flex;
             align-items: center;
@@ -944,34 +967,34 @@
         </div>
     `;
 
-            successElement.style.position = 'fixed';
-            successElement.style.top = '3rem';
-            successElement.style.left = '50%';
-            successElement.style.transform = 'translateX(-50%) translateY(-20px)';
-            successElement.style.zIndex = '9999';
-            successElement.style.width = '460px';
-            successElement.style.maxWidth = '90%';
-            successElement.style.textAlign = 'center';
-            successElement.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)';
+        successElement.style.position = 'fixed';
+        successElement.style.top = '3rem';
+        successElement.style.left = '50%';
+        successElement.style.transform = 'translateX(-50%) translateY(-20px)';
+        successElement.style.zIndex = '9999';
+        successElement.style.width = '460px';
+        successElement.style.maxWidth = '90%';
+        successElement.style.textAlign = 'center';
+        successElement.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)';
+        successElement.style.opacity = '0';
+        successElement.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+
+        document.body.appendChild(successElement);
+
+        requestAnimationFrame(() => {
+            successElement.style.opacity = '1';
+            successElement.style.transform = 'translateX(-50%) translateY(0)';
+        });
+
+        setTimeout(() => {
             successElement.style.opacity = '0';
-            successElement.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-
-            document.body.appendChild(successElement);
-
-            requestAnimationFrame(() => {
-                successElement.style.opacity = '1';
-                successElement.style.transform = 'translateX(-50%) translateY(0)';
-            });
-
+            successElement.style.transform = 'translateX(-50%) translateY(-20px)';
             setTimeout(() => {
-                successElement.style.opacity = '0';
-                successElement.style.transform = 'translateX(-50%) translateY(-20px)';
-                setTimeout(() => {
-                    successElement.remove();
-                }, 500);
-            }, 4000);
-        }
-    </script>
+                successElement.remove();
+            }, 500);
+        }, 4000);
+    }
+</script>
 
-    </body>
-    </html>
+</body>
+</html>
