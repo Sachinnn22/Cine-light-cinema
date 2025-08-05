@@ -759,7 +759,6 @@
             </button>
           `;
 
-                            // Attach reply click logic
                             const replyBtn = card.querySelector('.replyBtn');
                             replyBtn.addEventListener('click', () => {
                                 openReplyModal(q.email, q.username);
@@ -768,7 +767,7 @@
                             container.appendChild(card);
                         });
                     } else {
-                        container.innerHTML = '<p>Failed to load questions. Please try again later.</p>';
+                        container.innerHTML = '<p>There is no questions</p>';
                     }
                 }
             };
@@ -893,7 +892,6 @@
         </div>
     `;
 
-            // Use inline styles for accurate positioning
             errorElement.style.position = 'fixed';
             errorElement.style.top = '3rem';
             errorElement.style.left = '50%';
