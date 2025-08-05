@@ -7,14 +7,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="st.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&display=swap" rel="stylesheet" />
-
-    <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
+
     <style>
 
         .custom-title {
@@ -47,15 +43,74 @@
         }
 
         .custom-glass-footer {
-            background: #1c1c1c;/* Slightly brighter */
+            background: #1c1c1c;
             backdrop-filter: blur(16px) saturate(160%);
             -webkit-backdrop-filter: blur(16px) saturate(160%);
             border-top: 4px solid rgba(255, 255, 255, 0.2);
             box-shadow: 0 -2px 15px rgba(255, 255, 255, 0.05);
-            color: white; /* Add text color if needed */
+            color: white;
         }
 
-        /* For screens 425px wide and below */
+        @media (min-width: 1400px) and (max-width: 1450px) {
+            #pricing-carousel {
+                flex-wrap: nowrap;
+                justify-content: center;
+            }
+
+            h2.custom-title {
+                font-size: 4.5rem;
+                margin-bottom: 3rem;
+                margin-top: 4.5rem;
+            }
+
+            .pricing-card {
+                width: 40%;
+                margin-top: 1.5rem;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            #pricing-carousel {
+                flex-wrap: nowrap;
+                justify-content: center;
+            }
+
+            h2.custom-title {
+                font-size: 4rem;
+                margin-bottom: 3rem;
+                margin-top: 3.5rem;
+            }
+
+            .pricing-card {
+                width: 35%;
+                margin-top: 1.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #pricing-carousel {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .pricing-card {
+                width: 46%;
+                margin-bottom: 1.5rem;
+            }
+
+            h2.custom-title {
+                font-size: 3.2rem;
+                margin-bottom: 2.2rem;
+                margin-top: -2.1rem;
+            }
+
+            .pricing-card:nth-child(3) {
+                width: 55%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
         @media (max-width: 425px) {
             .pricing-card {
                 width: 90vw;
@@ -84,7 +139,6 @@
             }
         }
 
-        /* For screens 320px wide and below */
         @media (max-width: 320px) {
             .pricing-card {
                 width: 100vw;
@@ -105,7 +159,9 @@
         }
 
     </style>
+
 </head>
+
 <body class="relative">
 
 <nav class="fixed top-0 left-0 right-0 z-50 bg-black bg-opacity-50 backdrop-blur-md text-white shadow-md px-4 py-3">
@@ -120,7 +176,6 @@
     </div>
 </nav>
 
-
 <div class="fixed inset-0 bg-cover bg-center -z-10" style="background-image: url('assets/images/bpd-heroImage.jpeg');" aria-hidden="true"></div>
 <div class="fixed inset-0 bg-black bg-opacity-50 -z-10"></div>
 
@@ -131,7 +186,6 @@
 
     <div id="pricing-carousel" class="flex justify-center items-center gap-6 flex-wrap lg:flex-nowrap">
 
-        <!-- Card 1 -->
         <div class="pricing-card shrink-card transition-all duration-300 ease-in-out cursor-pointer" onclick="setActiveCard(0)">
             <h3 class="mb-4 text-2xl font-semibold">Enterprise</h3>
             <div class="flex justify-center items-baseline my-3">
@@ -148,7 +202,6 @@
                class="block w-[85%] mx-auto text-white bg-gray-700 hover:bg-gray-800 font-medium rounded-lg text-sm px-5 py-3 text-center">
                 Get started
             </a>
-
         </div>
 
         <div class="pricing-card active-card transition-all duration-300 ease-in-out cursor-pointer" onclick="setActiveCard(1)">
@@ -169,7 +222,6 @@
             </a>
         </div>
 
-        <!-- Card 3 -->
         <div class="pricing-card  shrink-card transition-all duration-300 ease-in-out cursor-pointer" onclick="setActiveCard(2)">
             <h3 class="mb-4 text-2xl font-semibold">Enterprise</h3>
             <div class="flex justify-center items-baseline my-3">
@@ -186,13 +238,10 @@
                class="block w-[85%] mx-auto text-white bg-gray-700 hover:bg-gray-800 font-medium rounded-lg text-sm px-5 py-3 text-center">
                 Get started
             </a>
-
         </div>
 
     </div>
 </section>
-
-
 
 <footer class="custom-glass-footer text-white">
     <div class="max-w-7xl mx-auto px-12 py-10 grid grid-cols-1 md:grid-cols-4 gap-2 place-items-center text-center">
@@ -254,7 +303,6 @@
         });
     }
 
-    // Initialize: Make sure 2nd card is active on load
     window.onload = () => setActiveCard(1);
 </script>
 
