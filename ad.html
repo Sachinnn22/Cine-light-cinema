@@ -582,30 +582,28 @@
             .orderByChild('registerTimestamp')
             .limitToFirst(rowsPerPage + 1)
             .once("value", snapshot => {
-                handleSnapshot(snapshot, true);
+                const users = [];
+                snapshot.forEach(child => {
+                    users.push({ key: child.key, val: child.val() });
+                });
+
+                const hasMore = users.length > rowsPerPage;
+                if (hasMore) users.pop();
+
+                renderUsers(users);
+
+                pageKeys[0] = {
+                    first: users[0]?.val.registerTimestamp || null,
+                    last: users[users.length - 1]?.val.registerTimestamp || null
+                };
+
+                currentPage = 0;
+                updateButtons(hasMore);
             });
     }
 
-    function handleSnapshot(snapshot, isInitial = false) {
-        const users = [];
-        snapshot.forEach(child => {
-            users.push({ key: child.key, val: child.val() });
-        });
-
-        const hasMore = users.length > rowsPerPage;
-        if (hasMore) users.pop(); // Remove extra
-
-        renderUsers(users);
-
-        if (isInitial) {
-            pageKeys.push(users[0]?.val.registerTimestamp || null); // ✅ This stores the correct timestamp
-            currentPage = 0;
-        }
-        updateButtons(hasMore);
-    }
-
     function goToNextPage() {
-        const lastTimestamp = +cardContainer.lastElementChild?.dataset.timestamp;
+        const lastTimestamp = pageKeys[currentPage]?.last;
         if (!lastTimestamp) return;
 
         db.ref("users")
@@ -623,11 +621,13 @@
 
                 if (users.length === 0) return;
 
-                renderUsers(users);
-
                 currentPage++;
-                pageKeys[currentPage] = users[0]?.val.registerTimestamp || null;
+                pageKeys[currentPage] = {
+                    first: users[0]?.val.registerTimestamp || null,
+                    last: users[users.length - 1]?.val.registerTimestamp || null
+                };
 
+                renderUsers(users);
                 updateButtons(hasMore);
             });
     }
@@ -635,8 +635,9 @@
     function goToPreviousPage() {
         if (currentPage <= 0) return;
 
-        const prevTimestamp = pageKeys[currentPage - 1];
-        if (typeof prevTimestamp !== "number") {
+        const prevPage = currentPage - 1;
+        const prevTimestamp = pageKeys[prevPage]?.first;
+        if (!prevTimestamp) {
             console.error("Invalid previous timestamp:", prevTimestamp);
             return;
         }
@@ -656,9 +657,8 @@
 
                 if (users.length === 0) return;
 
-                renderUsers(users);
-
                 currentPage--;
+                renderUsers(users);
                 updateButtons(true);
             });
     }
