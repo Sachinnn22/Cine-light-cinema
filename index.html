@@ -627,11 +627,9 @@
             document.getElementById('logoutBtn').addEventListener('click', async (e) => {
                 e.preventDefault();
                 try {
-                    // Clear user display from UI immediately
                     updateUserDropdown('', '');
                     updateMobileUserDropdown('', '');
 
-                    // Clear storage/cookies if needed
                     localStorage.clear();
                     sessionStorage.clear();
                     document.cookie.split(";").forEach(cookie => {
@@ -640,10 +638,8 @@
                         document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
                     });
 
-                    // Sign out from Firebase (this removes the token)
                     await signOut(auth);
 
-                    // Show message (no redirect)
                     showSuccessMessage('Logged out successfully.');
                 } catch (error) {
                     console.error('Logout Error:', error);
@@ -675,7 +671,6 @@
             try {
                 const idToken = await user.getIdToken(true);
                 if (!idToken) {
-                    // Log out if token invalid
                     await signOut(auth);
                     return;
                 }
@@ -697,7 +692,6 @@
                 updateUserDropdown(displayName, photoURL);
                 updateMobileUserDropdown(displayName, photoURL);
 
-                // Show logout button, hide login
                 document.getElementById('logoutBtn')?.classList.remove('hidden');
                 document.getElementById('loginBtn')?.classList.add('hidden');
 
@@ -707,16 +701,15 @@
             }
 
         } else {
-            // 🔴 No user logged in — show guest view instead of redirect
             updateUserDropdown('', '');
             updateMobileUserDropdown('', '');
 
 
-            // Show login button, hide logout
             document.getElementById('logoutBtn')?.classList.add('hidden');
             document.getElementById('loginBtn')?.classList.remove('hidden');
         }
     });
+
 
     function updateMobileUserDropdown(username, photoURL = null) {
         const mobileUserDisplay = document.getElementById('mobileUserDisplay');
@@ -726,33 +719,25 @@
 
         if (!mobileUserMenu || !mobileUserDisplay || !mobileUserToggle || !mobileUserArrow) return;
 
-        // Remove any existing profile image
         const existingImg = mobileUserToggle.querySelector('img.mobileUserPhoto');
         if (existingImg) existingImg.remove();
 
         if (photoURL) {
-            // Hide the icon SVG inside the text span
             const iconSVG = mobileUserDisplay.querySelector('svg');
             if (iconSVG) iconSVG.style.display = 'none';
 
-            // Create profile photo img
             const img = document.createElement('img');
             img.src = photoURL;
             img.alt = "User Photo";
             img.className = 'mobileUserPhoto rounded-full w-8 h-8 object-cover';
 
-            // Insert profile picture as the first child inside the button
             mobileUserDisplay.insertBefore(img, mobileUserDisplay.firstChild);
 
-            // Make sure text and arrow are after the image
-            // The text and arrow already exist in the button, so no changes needed here
         } else {
-            // Show the icon SVG if no photo
             const iconSVG = mobileUserDisplay.querySelector('svg');
             if (iconSVG) iconSVG.style.display = 'inline-block';
         }
 
-        // Update menu items as before
         if (username && username !== 'U') {
             mobileUserMenu.innerHTML = `
 <a href="profile.html" class="block px-4 py-2 hover:bg-white/10 text-white rounded-md font-light ml-4">
@@ -762,7 +747,6 @@
         <i class="fas fa-sign-out-alt mr-2"></i>Log Out
     </a>
 `;
-
             document.getElementById('mobileLogoutBtn').addEventListener('click', async (e) => {
                 e.preventDefault();
                 try {
@@ -804,7 +788,6 @@
                     showErrorMessage('Error logging out. Try again.');
                 }
             });
-
 
         } else {
             mobileUserMenu.innerHTML = `

@@ -707,15 +707,14 @@
 
             const cred = await auth.signInWithEmailAndPassword(email, password);
 
-            // Get the user from the credential object
             const user = cred.user;
 
-            // Get the ID token
             const idToken = await user.getIdToken();
 
             console.log('Firebase ID Token:', idToken);
 
-            // Now you can use the ID token for authentication or API calls
+            document.cookie = `firebaseToken=${idToken}; path=/; Secure; SameSite=Strict; max-age=3600`;
+
 
             setTimeout(() => {
                 window.location.href = 'index.html';
@@ -740,7 +739,6 @@
             console.error("Firebase login error:", code, err.message);
         }
     });
-
 
     function toggleFlip() {
         document.getElementById('flip-container').classList.toggle('flip');
