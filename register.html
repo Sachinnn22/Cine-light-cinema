@@ -930,10 +930,14 @@
 
     document.getElementById('googleSignInBtn').addEventListener('click', () => {
         auth.signInWithPopup(googleProvider)
-            .then((result) => {
+            .then(async (result) => {
                 const user = result.user;
 
                 if (user) {
+                    // Get the ID token for the logged-in user
+                    const idToken = await user.getIdToken();
+                    console.log('Firebase ID Token:', idToken);
+
                     const userRef = db.ref('users/' + user.uid);
 
                     userRef.once('value').then(snapshot => {
@@ -977,6 +981,7 @@
                 showErrorMessage(`Google login failed: ${error.message}`);
             });
     });
+
 
 
 </script>

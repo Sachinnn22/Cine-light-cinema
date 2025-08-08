@@ -618,7 +618,6 @@
             defaultIcon.style.display = 'inline';
         }
 
-        // ✅ Update user menu
         if (username && username !== 'U') {
             userMenu.innerHTML = `
     <li><a href="profile.html"><i class="fas fa-user"></i> My Profile</a></li>
@@ -630,7 +629,7 @@
             document.getElementById('logoutBtn').addEventListener('click', async (e) => {
                 e.preventDefault();
                 try {
-                    await signOut(auth);  // ✅ correct usage
+                    await signOut(auth);
                     showSuccessMessage('Logged out successfully.');
                 } catch (error) {
                     console.error('Logout Error:', error);
@@ -666,9 +665,9 @@
                 let displayName = 'U';
 
                 if (userData && userData.username) {
-                    displayName = userData.username;  // <-- full username here
+                    displayName = userData.username;
                 } else if (user.displayName) {
-                    displayName = user.displayName;  // <-- full displayName here
+                    displayName = user.displayName;
                 }
 
                 const photoURL = userData?.photoURL && userData.photoURL !== ''
@@ -688,10 +687,10 @@
                 updateMobileUserDropdown(fallbackName, fallbackPhoto);
             }
         } else {
-            updateUserDropdown('U');
-            updateMobileUserDropdown('U');
+            window.location.href = 'register.html';
         }
     });
+
 
 
     function updateMobileUserDropdown(username, photoURL = null) {
