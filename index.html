@@ -624,12 +624,26 @@
     <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
 `;
 
-
-            // Attach logout listener
             document.getElementById('logoutBtn').addEventListener('click', async (e) => {
                 e.preventDefault();
                 try {
+                    // Clear user display from UI immediately
+                    updateUserDropdown('', '');
+                    updateMobileUserDropdown('', '');
+
+                    // Clear storage/cookies if needed
+                    localStorage.clear();
+                    sessionStorage.clear();
+                    document.cookie.split(";").forEach(cookie => {
+                        const eqPos = cookie.indexOf("=");
+                        const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+                        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+                    });
+
+                    // Sign out from Firebase (this removes the token)
                     await signOut(auth);
+
+                    // Show message (no redirect)
                     showSuccessMessage('Logged out successfully.');
                 } catch (error) {
                     console.error('Logout Error:', error);
@@ -659,39 +673,50 @@
     onAuthStateChanged(auth, async (user) => {
         if (user) {
             try {
-                const snapshot = await get(child(ref(db), 'users/' + user.uid));
+                const idToken = await user.getIdToken(true);
+                if (!idToken) {
+                    // Log out if token invalid
+                    await signOut(auth);
+                    return;
+                }
+
+                const snapshot = await get(child(ref(db), `users/${user.uid}`));
                 const userData = snapshot.val();
 
                 let displayName = 'U';
-
-                if (userData && userData.username) {
+                if (userData?.username) {
                     displayName = userData.username;
                 } else if (user.displayName) {
                     displayName = user.displayName;
                 }
 
-                const photoURL = userData?.photoURL && userData.photoURL !== ''
+                const photoURL = (userData?.photoURL && userData.photoURL !== '')
                     ? userData.photoURL
                     : (user.photoURL || `https://api.dicebear.com/6.x/bottts-neutral/svg?seed=${user.uid}`);
 
                 updateUserDropdown(displayName, photoURL);
                 updateMobileUserDropdown(displayName, photoURL);
 
+                // Show logout button, hide login
+                document.getElementById('logoutBtn')?.classList.remove('hidden');
+                document.getElementById('loginBtn')?.classList.add('hidden');
+
             } catch (err) {
-                console.error('Error fetching user data:', err);
-
-                const fallbackName = user.displayName || 'U';
-                const fallbackPhoto = user.photoURL;
-
-                updateUserDropdown(fallbackName, fallbackPhoto);
-                updateMobileUserDropdown(fallbackName, fallbackPhoto);
+                console.error('Error validating token or fetching user data:', err);
+                await signOut(auth);
             }
+
         } else {
-            window.location.href = 'register.html';
+            // 🔴 No user logged in — show guest view instead of redirect
+            updateUserDropdown('', '');
+            updateMobileUserDropdown('', '');
+
+
+            // Show login button, hide logout
+            document.getElementById('logoutBtn')?.classList.add('hidden');
+            document.getElementById('loginBtn')?.classList.remove('hidden');
         }
     });
-
-
 
     function updateMobileUserDropdown(username, photoURL = null) {
         const mobileUserDisplay = document.getElementById('mobileUserDisplay');
@@ -738,46 +763,48 @@
     </a>
 `;
 
-            // Attach logout click handler
             document.getElementById('mobileLogoutBtn').addEventListener('click', async (e) => {
                 e.preventDefault();
                 try {
                     await signOut(auth);
-                    showSuccessMessage('Logged out successfully.');
 
-                    // Reset dropdown to logged out state
-                    updateMobileUserDropdown('U', null);
-
-                    // ✅ CLOSE user submenu
-                    const mobileUserMenu = document.getElementById('mobileUserMenu');
-                    if (mobileUserMenu) {
-                        mobileUserMenu.classList.add('hidden');
-                        mobileUserMenu.classList.remove('show');
+                    if (!auth.currentUser) {
+                    } else {
+                        const token = await auth.currentUser.getIdToken();
                     }
 
-                    // ✅ CLOSE the entire mobile menu
+                    showSuccessMessage('Logged out successfully.');
+                    updateUserDropdown('', '');
+                    updateMobileUserDropdown('U', null);
+                    document.getElementById('logoutBtn')?.classList.add('hidden');
+                    document.getElementById('mobileLogoutBtn')?.classList.add('hidden');
+                    document.getElementById('loginBtn')?.classList.remove('hidden');
+
+                    document.getElementById('mobileUserMenu')?.classList.add('hidden');
                     const mobileMenu = document.getElementById('mobile-menu');
                     const menuToggle = document.getElementById('menu-toggle');
-
                     if (mobileMenu && menuToggle) {
                         mobileMenu.style.maxHeight = '0';
-
-                        // Optional: reset toggle icon if you use icon switching
-                        menuToggle.innerHTML = `
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            `;
-
-                        // Remove any open/active classes
+                        menuToggle.innerHTML = `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>`;
                         menuToggle.classList.remove('open', 'active', 'menu-open');
                     }
+
+                    localStorage.clear();
+                    sessionStorage.clear();
+                    document.cookie.split(";").forEach(cookie => {
+                        const eqPos = cookie.indexOf("=");
+                        const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+                        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+                    });
 
                 } catch (error) {
                     console.error('Logout Error:', error);
                     showErrorMessage('Error logging out. Try again.');
                 }
             });
+
 
         } else {
             mobileUserMenu.innerHTML = `
