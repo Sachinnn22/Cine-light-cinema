@@ -929,49 +929,34 @@
     const googleProvider = new firebase.auth.GoogleAuthProvider();
 
     document.getElementById('googleSignInBtn').addEventListener('click', () => {
-        auth.signInWithRedirect(googleProvider);
-    });
-
-    auth.getRedirectResult()
-        .then((result) => {
-            if (result.user) {
+        auth.signInWithPopup(googleProvider)
+            .then((result) => {
                 const user = result.user;
 
-                db.ref('users/' + user.uid).once('value').then(snapshot => {
-                    if (!snapshot.exists()) {
-                        const now = new Date();
+                if (user) {
+                    const now = new Date();
+                    const registerDate = now.toLocaleDateString('en-CA', { timeZone: 'Asia/Colombo' });
+                    const registerTime = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'Asia/Colombo' });
+                    const registerTimestamp = now.getTime();
 
-                        const registerDate = now.toLocaleDateString('en-CA', {
-                            timeZone: 'Asia/Colombo'
-                        });
+                    // Write or update user data
+                    db.ref('users/' + user.uid).set({
+                        username: user.displayName || 'google_user',
+                        email: user.email,
+                        photoURL: user.photoURL || '',
+                        registerDate,
+                        registerTime,
+                        registerTimestamp
+                    });
 
-                        const registerTime = now.toLocaleTimeString('en-US', {
-                            hour: 'numeric',
-                            minute: '2-digit',
-                            hour12: true,
-                            timeZone: 'Asia/Colombo'
-                        });
-
-                        const registerTimestamp = now.getTime();
-
-                        db.ref('users/' + user.uid).set({
-                            username: user.displayName || 'google_user',
-                            email: user.email,
-                            photoURL: user.photoURL,
-                            registerDate,
-                            registerTime,
-                            registerTimestamp
-                        });
-                    }
-                });
-
-                window.location.href = 'test.html';
-            }
-        })
-        .catch((error) => {
-            console.error('Google redirect error:', error);
-            showErrorMessage(`Google login failed: ${error.message}`);
-        });
+                    window.location.href = 'index.html';
+                }
+            })
+            .catch((error) => {
+                console.error('Google popup error:', error);
+                showErrorMessage(`Google login failed: ${error.message}`);
+            });
+    });
 
 </script>
 

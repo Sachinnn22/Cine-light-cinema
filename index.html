@@ -671,9 +671,9 @@
                     displayName = user.displayName;  // <-- full displayName here
                 }
 
-                const photoURL = userData?.photoURL
-                    || user.photoURL
-                    || `https://api.dicebear.com/6.x/bottts-neutral/svg?seed=${user.uid}`;
+                const photoURL = userData?.photoURL && userData.photoURL !== ''
+                    ? userData.photoURL
+                    : (user.photoURL || `https://api.dicebear.com/6.x/bottts-neutral/svg?seed=${user.uid}`);
 
                 updateUserDropdown(displayName, photoURL);
                 updateMobileUserDropdown(displayName, photoURL);
