@@ -934,22 +934,42 @@
                 const user = result.user;
 
                 if (user) {
-                    const now = new Date();
-                    const registerDate = now.toLocaleDateString('en-CA', { timeZone: 'Asia/Colombo' });
-                    const registerTime = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'Asia/Colombo' });
-                    const registerTimestamp = now.getTime();
+                    const userRef = db.ref('users/' + user.uid);
 
-                    // Write or update user data
-                    db.ref('users/' + user.uid).set({
-                        username: user.displayName || 'google_user',
-                        email: user.email,
-                        photoURL: user.photoURL || '',
-                        registerDate,
-                        registerTime,
-                        registerTimestamp
+                    userRef.once('value').then(snapshot => {
+                        const now = new Date();
+                        const registerDate = now.toLocaleDateString('en-CA', { timeZone: 'Asia/Colombo' });
+                        const registerTime = now.toLocaleTimeString('en-US', {
+                            hour: 'numeric',
+                            minute: '2-digit',
+                            hour12: true,
+                            timeZone: 'Asia/Colombo'
+                        });
+                        const registerTimestamp = now.getTime();
+
+                        if (!snapshot.exists()) {
+                            userRef.set({
+                                username: user.displayName || 'google_user',
+                                email: user.email,
+                                photoURL: user.photoURL || '',
+                                registerDate,
+                                registerTime,
+                                registerTimestamp,
+                                lastLoginTimestamp: registerTimestamp,
+                                loginCount: 1
+                            }).then(() => {
+                                window.location.href = 'index.html';
+                            });
+                        } else {
+                            const currentLoginCount = snapshot.val().loginCount || 0;
+                            userRef.update({
+                                lastLoginTimestamp: registerTimestamp,
+                                loginCount: currentLoginCount + 1
+                            }).then(() => {
+                                window.location.href = 'index.html';
+                            });
+                        }
                     });
-
-                    window.location.href = 'index.html';
                 }
             })
             .catch((error) => {
@@ -957,6 +977,7 @@
                 showErrorMessage(`Google login failed: ${error.message}`);
             });
     });
+
 
 </script>
 
