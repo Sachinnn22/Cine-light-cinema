@@ -1308,6 +1308,12 @@ article:hover video {
     opacity: 1;
     pointer-events: auto;
 }
+@media (min-width: 708px) and (max-width: 790px){
+    .grid-container {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+}
+
 
 @media (max-width: 425px) {
     .feu-head {
