@@ -806,7 +806,7 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
     font-size: 3.08rem !important;
     font-weight: 800 !important;
     letter-spacing: 2px !important;
-    background: linear-gradient(45deg, #cca549, #738c97, #275163, #96ceb4, #feca57) !important;
+    background: linear-gradient(45deg, #b61e1e, #738c97, #275163, #96ceb4, #feca57) !important;
     -webkit-background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
     background-clip: text !important;
@@ -821,7 +821,7 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
     font-weight: 500;
     color: #ffffff;
     letter-spacing: 0.8px;
-    font-family: 'Lato', sans-serif;
+    font-style: italic;
 }
 
 .faq-card {
@@ -1290,7 +1290,7 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
     font-size: 3rem !important;
     font-weight: 700 !important;
     letter-spacing: 1.7px !important;
-    background: linear-gradient(45deg, #8a7031, #738c97, #275163, #96ceb4, #feca57) !important;
+    background: linear-gradient(45deg, #cca549, #738c97, #275163, #96ceb4, #feca57) !important;
     -webkit-background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
     background-clip: text !important;
