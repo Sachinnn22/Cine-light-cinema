@@ -34,13 +34,69 @@
             animation: pulseGlow 4s infinite ease-in-out !important;
         }
 
-        /* Silver box shadow for FAQ cards */
         .faq-card {
             box-shadow: 0 4px 12px rgba(192, 192, 192, 0.6);
             transition: box-shadow 0.3s ease;
         }
         .faq-card:hover {
             box-shadow: 0 8px 24px rgba(192, 192, 192, 0.9);
+        }
+
+        @media (max-width: 768px) {
+            .grid.grid-cols-1.md\:grid-cols-2 {
+                grid-template-columns: 1fr !important;
+            }
+            .faq-card {
+                padding: 1.25rem !important;
+            }
+            .faq-title {
+                font-size: 2.5rem !important;
+            }
+        }
+
+        @media (max-width: 425px) {
+            .faq-card {
+                padding: 1rem !important;
+            }
+            .faq-title {
+                font-size: 2rem !important;
+            }
+            h3.text-xl {
+                font-size: 1.125rem !important;
+            }
+            p.text-gray-300 {
+                font-size: 0.875rem !important;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .faq-card {
+                padding: 0.75rem !important;
+            }
+            .faq-title {
+                font-size: 1.75rem !important;
+            }
+            h3.text-xl {
+                font-size: 1rem !important;
+            }
+            p.text-gray-300 {
+                font-size: 0.8rem !important;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .faq-card {
+                padding: 0.5rem !important;
+            }
+            .faq-title {
+                font-size: 1.5rem !important;
+            }
+            h3.text-xl {
+                font-size: 0.875rem !important;
+            }
+            p.text-gray-300 {
+                font-size: 0.75rem !important;
+            }
         }
 
         @media (min-width: 1400px) and (max-width: 1500px) {
@@ -152,7 +208,6 @@
     </h2>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-        <!-- FAQ 1 -->
         <div class="border border-white rounded-lg p-6 bg-black faq-card">
             <h3 class="text-xl font-semibold mb-3">How do I create an account?</h3>
             <p class="text-gray-300 mb-4 leading-relaxed">
@@ -164,7 +219,6 @@
             </video>
         </div>
 
-        <!-- FAQ 2 -->
         <div class="border border-white rounded-lg p-6 bg-black faq-card">
             <h3 class="text-xl font-semibold mb-3">How can I subscribe to premium?</h3>
             <p class="text-gray-300 mb-4 leading-relaxed">
@@ -176,7 +230,6 @@
             </video>
         </div>
 
-        <!-- FAQ 3 -->
         <div class="border border-white rounded-lg p-6 bg-black faq-card">
             <h3 class="text-xl font-semibold mb-3">Why can’t I watch certain movies?</h3>
             <p class="text-gray-300 leading-relaxed">
@@ -184,7 +237,6 @@
             </p>
         </div>
 
-        <!-- FAQ 4 -->
         <div class="border border-white rounded-lg p-6 bg-black faq-card">
             <h3 class="text-xl font-semibold mb-3">How many days is the free trial available?</h3>
             <p class="text-gray-300 leading-relaxed">
@@ -192,7 +244,6 @@
             </p>
         </div>
 
-        <!-- FAQ 5 -->
         <div class="border border-white rounded-lg p-6 bg-black faq-card">
             <h3 class="text-xl font-semibold mb-3">How do I watch live streaming events?</h3>
             <p class="text-gray-300 leading-relaxed">
@@ -200,7 +251,6 @@
             </p>
         </div>
 
-        <!-- FAQ 6 -->
         <div class="border border-white rounded-lg p-6 bg-black faq-card">
             <h3 class="text-xl font-semibold mb-3">What devices are supported?</h3>
             <p class="text-gray-300 leading-relaxed">
@@ -208,7 +258,6 @@
             </p>
         </div>
 
-        <!-- FAQ 7 -->
         <div class="border border-white rounded-lg p-6 bg-black faq-card">
             <h3 class="text-xl font-semibold mb-3">How do I download a movie?</h3>
             <p class="text-gray-300 mb-4 leading-relaxed">
@@ -220,7 +269,6 @@
             </video>
         </div>
 
-        <!-- FAQ 8 -->
         <div class="border border-white rounded-lg p-6 bg-black faq-card">
             <h3 class="text-xl font-semibold mb-3">How do I reset my password?</h3>
             <p class="text-gray-300 mb-4 leading-relaxed">
