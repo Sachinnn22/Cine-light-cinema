@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
 
     <style>
+
         @keyframes pulseGlow {
             0%, 100% {
                 text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.15);
@@ -32,6 +33,82 @@
             text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.15) !important;
             animation: pulseGlow 4s infinite ease-in-out !important;
         }
+
+        @media (min-width: 1400px) and (max-width: 1500px) {
+            nav {
+                padding-top: 1.5rem;
+                padding-bottom: 1.5rem;
+            }
+            nav > div > div {
+                font-size: 2.6rem !important;
+            }
+            nav a {
+                padding-left: 2.5rem;
+                padding-right: 2.5rem;
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+                font-size: 1.25rem;
+            }
+        }
+
+
+        @media (max-width: 425px) {
+            nav {
+                padding-left: 1rem;
+                padding-right: 1rem;
+                padding-top: 0.5rem;
+                padding-bottom: 0.5rem;
+            }
+            nav > div > div {
+                font-size: 2rem !important;
+            }
+            nav a {
+                padding-left: 1rem;
+                padding-right: 1rem;
+                padding-top: 0.375rem;
+                padding-bottom: 0.375rem;
+                font-size: 0.875rem;
+            }
+        }
+
+        @media (max-width: 375px) {
+            nav {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+                padding-top: 0.375rem;
+                padding-bottom: 0.375rem;
+            }
+            nav > div > div {
+                font-size: 1.75rem !important;
+            }
+            nav a {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+                padding-top: 0.25rem;
+                padding-bottom: 0.25rem;
+                font-size: 0.75rem;
+            }
+        }
+
+        @media (max-width: 320px) {
+            nav {
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+                padding-top: 0.25rem;
+                padding-bottom: 0.25rem;
+            }
+            nav > div > div {
+                font-size: 1.5rem !important;
+            }
+            nav a {
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+                padding-top: 0.125rem;
+                padding-bottom: 0.125rem;
+                font-size: 0.7rem;
+            }
+        }
+
     </style>
 </head>
 <body class="bg-black min-h-screen flex flex-col items-center">
