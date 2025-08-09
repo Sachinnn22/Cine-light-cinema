@@ -619,20 +619,20 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
     text-decoration: underline;
 }
 
-.foot-head{
-    font-family: "Poppins", sans-serif;
-    font-size: 1.6rem;
-    font-weight: 800;
-    letter-spacing: 5px;
-    background: linear-gradient(45deg, #c67d7d, #497588, #2b8fb6, #96ceb4, #feca57);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
-    text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.15);
-    animation: pulseGlow 4s infinite ease-in-out;
-    user-select: none;
-}
+    .foot-head{
+        font-family: "Poppins", sans-serif;
+        font-size: 1.6rem;
+        font-weight: 800;
+        letter-spacing: 5px;
+        background: linear-gradient(45deg, #c67d7d, #497588, #2b8fb6, #96ceb4, #feca57);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-fill-color: transparent;
+        text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.15);
+        animation: pulseGlow 4s infinite ease-in-out;
+        user-select: none;
+    }
 
 .flex a img {
     transition: transform 0.3s ease;
@@ -954,7 +954,7 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
 }
 
 #why{
-    scroll-margin-top: 40rem !important;
+    scroll-margin-top: 5rem !important;
 }
 
 .mk{
@@ -1059,7 +1059,7 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
     }
 }
 
-@media (max-width: 768px) {
+@media (min-width: 700px) and (max-width: 900px){
     #why {
         padding-top: 1rem !important;
         padding-bottom: 1rem !important;
