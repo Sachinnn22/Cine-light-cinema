@@ -800,9 +800,8 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
     }
 }
 
-
 #faq{
-    scroll-margin-top:65px;
+    scroll-margin-top:55px;
 }
 
 .faq-head {
@@ -1202,9 +1201,89 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
 }
 
 #questionInput::placeholder {
-    padding-top: 10px;
     line-height: normal;
     display: flex;
     align-items: center;
     height: 100%;
+}
+.centered-textarea {
+    width: 100%;
+    min-height: 3rem;
+    max-height: 300px;
+    padding: 0.75rem 1rem;
+    line-height: 1.5;
+    resize: none;
+    overflow: hidden;
+    border: 3px solid white;
+    border-radius: 8px;
+    background: transparent;
+    color: #e5e5e5;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.centered-textarea::placeholder {
+    color: #999;
+    opacity: 1;
+}
+
+@media (max-width: 425px) {
+    #questionForm {
+        flex-direction: column;
+        align-items: flex-start;  /* change from center to flex-start */
+        max-width: 360px;
+        gap: 0.75rem;
+        padding-left: 1.5rem;  /* add some left padding to push content right */
+    }
+
+    #questionInput {
+        width: 100%;
+        min-height: 3rem;
+        font-size: 0.9rem;
+    }
+
+    button[type="submit"] {
+        width: 100%;
+        padding: 0.5rem 0;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 375px) {
+    #questionForm {
+        flex-direction: column;
+        align-items: flex-start;
+        max-width: 320px;
+        gap: 0.75rem;
+        padding-left: 0.9rem;
+    }
+
+    #questionInput {
+        width: 100%;
+        min-height: 3rem;
+        font-size: 0.85rem;
+    }
+
+    button[type="submit"] {
+        width: 100%;
+        padding: 0.5rem 0;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 320px) {
+    #questionForm {
+        max-width: 280px;
+        gap: 0.5rem;
+    }
+
+    #questionInput {
+        font-size: 0.8rem;
+        min-height: 2.8rem;
+    }
+
+    button[type="submit"] {
+        font-size: 0.8rem;
+        padding: 0.4rem 0;
+    }
 }
