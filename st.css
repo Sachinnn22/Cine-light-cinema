@@ -1308,3 +1308,71 @@ article:hover video {
     opacity: 1;
     pointer-events: auto;
 }
+
+@media (max-width: 425px) {
+    .feu-head {
+        font-size: 2.5rem !important;
+        margin-bottom: 1rem !important;
+        line-height: 2rem !important;
+    }
+
+    .movie-card {
+        margin-top: 25px !important;
+        height: 340px !important;
+    }
+
+    .movie-card h3 {
+        font-size: 0.95rem !important;
+        line-height: 1.25rem !important;
+    }
+
+    .movie-card p {
+        line-height: 1.2rem !important;
+    }
+}
+@media (max-width: 375px) {
+    .feu-head {
+        font-size: 2.5rem !important;
+        margin-bottom: 1rem !important;
+        line-height: 2rem !important;
+    }
+
+    .movie-card {
+        margin-top: 25px !important;
+        height: 320px !important;
+    }
+
+    .movie-card h3 {
+        font-size: 0.95rem !important;
+        line-height: 1.25rem !important;
+    }
+
+    .movie-card p {
+        line-height: 1.2rem !important;
+    }
+}
+
+@media (max-width: 320px) {
+    .feu-head {
+        font-size: 2.5rem !important;
+        margin-bottom: 1rem !important;
+        line-height: 2rem !important;
+    }
+
+    .movie-card {
+        margin-top: 25px !important;
+        height: 300px !important;
+    }
+
+
+    .movie-card h3 {
+        font-size: 0.95rem !important;
+        line-height: 1.25rem !important;
+    }
+
+    .movie-card p {
+        line-height: 1.2rem !important;
+    }
+}
+
+
