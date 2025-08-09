@@ -805,7 +805,7 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
 .faq-head {
     font-size: 3.08rem !important;
     font-weight: 800 !important;
-    letter-spacing: 2px !important;
+    letter-spacing: 1.6px !important;
     background: linear-gradient(45deg, #b61e1e, #738c97, #275163, #96ceb4, #feca57) !important;
     -webkit-background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
@@ -957,7 +957,7 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
 .mk{
     font-size: 2.19rem !important;
     font-weight: 700 !important;
-    letter-spacing: 2px !important;
+    letter-spacing: 1.8px !important;
     background: linear-gradient(45deg, #cca549, #738c97, #275163, #96ceb4, #feca57) !important;
     -webkit-background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
@@ -1289,7 +1289,7 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
 .feu-head{
     font-size: 3rem !important;
     font-weight: 700 !important;
-    letter-spacing: 1.7px !important;
+    letter-spacing: 1.5px !important;
     background: linear-gradient(45deg, #cca549, #738c97, #275163, #96ceb4, #feca57) !important;
     -webkit-background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
@@ -1298,4 +1298,13 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
     text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.15) !important;
     animation: pulseGlow 4s infinite ease-in-out !important;
 
+}
+
+article:hover img {
+    opacity: 0;
+}
+
+article:hover video {
+    opacity: 1;
+    pointer-events: auto;
 }
