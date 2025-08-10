@@ -6,7 +6,7 @@
         <title>About Us - CineUpload</title>
         <script src="https://cdn.tailwindcss.com"></script>
         <link href="https://cdn.jsdelivr.net/npm/daisyui@latest/dist/full.css" rel="stylesheet" />
-
+        <link rel="stylesheet" href="st.css">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
 
         <!-- Font Awesome -->
@@ -14,7 +14,7 @@
 
         <style>
             body {
-                background: linear-gradient(to bottom, #000000e6, #111111);
+                background: linear-gradient(to bottom, #000000e6, #2c2b2b);
             }
 
             dialog::backdrop {
@@ -249,6 +249,15 @@
                 animation: pulseGlow 4s infinite ease-in-out !important;
             }
 
+            .custom-glass-footer {
+                background: #000000;
+                backdrop-filter: blur(16px) saturate(160%);
+                -webkit-backdrop-filter: blur(16px) saturate(160%);
+                border-top: 3px solid rgb(145, 140, 140);
+                box-shadow: 0 -2px 15px rgba(255, 255, 255, 0.05);
+                color: white;
+            }
+
         </style>
     </head>
     <body class="text-white font-sans">
@@ -278,7 +287,7 @@
         </a>
     </nav>
 
-    <header class="bg-black/90 text-white shadow-lg h-[50vh] flex items-center justify-center">
+    <header class="bg-black text-white shadow-lg h-[50vh] flex items-center justify-center border-b border-white">
         <div class="max-w-6xl mx-auto px-6 text-center">
             <h1 class="text-4xl md:text-5xl font-extrabold ab-head">ABOUT CINE-LIGHT</h1>
             <p class="mt-4 text-lg text-gray-300 max-w-2xl mx-auto">
@@ -384,8 +393,51 @@
 
     </main>
 
-    <footer class="bg-black/90 text-gray-400 py-6 text-center mt-16">
-        <p>&copy; 2025 CineUpload. All rights reserved.</p>
+    <footer class="custom-glass-footer text-white">
+        <div class="max-w-7xl mx-auto px-12 py-10 grid grid-cols-1 md:grid-cols-4 gap-2 place-items-center text-center">
+            <div class="space-y-3 pb-6">
+                <h2 class="foot-head">CINE-LIGHT</h2>
+                <p class="foot-sub">Delivering blockbuster moments, one reel at a time, inspiring stories that captivate the soul.</p>
+            </div>
+
+            <div class="space-y-2 pt-1.7">
+                <h3 class="movie">Movies</h3>
+                <ul class="movie-sub space-y-1">
+                    <li><a href="#" class="hover:underline">Action</a></li>
+                    <li><a href="#" class="hover:underline">Horror</a></li>
+                    <li><a href="#" class="hover:underline">Sci-Fic</a></li>
+                    <li><a href="#" class="hover:underline">Romance</a></li>
+                </ul>
+            </div>
+
+            <div class="space-y-2 pb-5">
+                <h3 class="company">Company</h3>
+                <ul class="company-sub space-y-1">
+                    <li><a href="#" class="hover:underline">Why Us</a></li>
+                    <li><a href="#" class="hover:underline">FAQ's</a></li>
+                    <li><a href="#" class="hover:underline">Buy Premium</a></li>
+                </ul>
+            </div>
+
+            <div class="space-y-3 pb-14">
+                <h2 class="fallow text-white">Follow Us</h2>
+                <div class="flex justify-center gap-4">
+                    <a href="#">
+                        <img src="https://cdn-icons-png.flaticon.com/128/5968/5968764.png" class="w-9 h-9 rounded-full" alt="Facebook" />
+                    </a>
+                    <a href="#">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" class="w-9 h-9 rounded-full" alt="Instagram" />
+                    </a>
+                    <a href="#">
+                        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968804.png" class="w-9 h-9 rounded-full" alt="Telegram" />
+                    </a>
+                </div>
+
+            </div>
+        </div>
+        <div class="text-center border-t border-gray-300/30 py-4 copy">
+            © 2025 <span class="sin">CINE-LIGHT</span>. All rights reserved.
+        </div>
     </footer>
 
     <dialog id="reviewModal" class="modal">
