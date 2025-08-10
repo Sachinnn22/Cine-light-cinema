@@ -14,6 +14,95 @@
         body {
             background: linear-gradient(to bottom, #000000e6, #111111);
         }
+
+        @media (min-width: 1400px) and (max-width: 1500px) {
+            nav {
+                padding-top: 1.5rem;
+                padding-bottom: 1.5rem;
+            }
+            nav > div > div {
+                font-size: 2.6rem !important;
+            }
+            nav a {
+                padding-left: 2.5rem;
+                padding-right: 2.5rem;
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+                font-size: 1.25rem;
+            }
+        }
+
+        @media (max-width: 425px) {
+            nav {
+                padding-left: 1rem;
+                padding-right: 1rem;
+                padding-top: 0.5rem;
+                padding-bottom: 0.5rem;
+            }
+            nav > div > div {
+                font-size: 2rem !important;
+            }
+            nav a {
+                padding-left: 1rem;
+                padding-right: 1rem;
+                padding-top: 0.375rem;
+                padding-bottom: 0.375rem;
+                font-size: 0.875rem;
+            }
+        }
+
+        @media(max-width: 375px) {
+            nav {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+                padding-top: 0.375rem;
+                padding-bottom: 0.375rem;
+            }
+            nav > div > div {
+                font-size: 1.75rem !important;
+            }
+            nav a {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+                padding-top: 0.25rem;
+                padding-bottom: 0.25rem;
+                font-size: 0.75rem;
+            }
+        }
+
+        @media (max-width: 320px) {
+            nav {
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+                padding-top: 0.25rem;
+                padding-bottom: 0.25rem;
+            }
+            nav > div > div {
+                font-size: 1.5rem !important;
+            }
+            nav a {
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+                padding-top: 0.125rem;
+                padding-bottom: 0.125rem;
+                font-size: 0.7rem;
+            }
+        }
+
+        .ab-head{
+            font-family: 'Poppins', sans-serif;
+            font-size: 3rem !important;
+            font-weight: 700 !important;
+            letter-spacing: 1.5px !important;
+            background: linear-gradient(45deg, #b89819, #738c97, #275163, #96ceb4, #feca57) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            background-clip: text !important;
+            text-fill-color: transparent !important;
+            text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.15) !important;
+            animation: pulseGlow 4s infinite ease-in-out !important;
+        }
+
     </style>
 </head>
 <body class="text-white font-sans">
@@ -44,11 +133,11 @@
 </nav>
 
 <!-- Header -->
-<header class="bg-black/90 text-white py-16 shadow-lg">
+<header class="bg-black/90 text-white shadow-lg h-[50vh] flex items-center justify-center">
     <div class="max-w-6xl mx-auto px-6 text-center">
-        <h1 class="text-4xl md:text-5xl font-extrabold">About CineUpload</h1>
+        <h1 class="text-4xl md:text-5xl font-extrabold ab-head">ABOUT CINE-LIGHT</h1>
         <p class="mt-4 text-lg text-gray-300 max-w-2xl mx-auto">
-            Empowering creators. Showcasing stories. Connecting audiences worldwide.
+            Empowering creators. Showcasing stories. Connecting audiences worldwide through the magic of film, bold collaboration, cultural diversity, and limitless creative expression.
         </p>
     </div>
 </header>
@@ -58,68 +147,98 @@
 
     <!-- Mission -->
     <section class="text-center">
-        <h2 class="text-3xl font-bold mb-4">Our Mission</h2>
+        <h2 class="text-4xl font-extrabold mb-7 text-center text-white">
+            Our Mission
+        </h2>
         <p class="text-lg text-gray-300 leading-relaxed max-w-3xl mx-auto">
-            CineUpload was built to give filmmakers a platform where their stories can shine. Whether you're an indie director, a documentary creator, or a student experimenting with your first short film — this is your space to share, grow, and connect with a global audience.
+            CineUpload was built to give filmmakers a platform where their stories can shine. Whether you're an indie director, a documentary creator, or a student experimenting with your first short film this is your space to share, grow, and connect with a global audience.
         </p>
     </section>
 
-    <!-- What We Offer -->
     <section>
-        <h2 class="text-3xl font-bold mb-10 text-center">What We Offer</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-gray-300 text-lg">
+        <h2 class="text-4xl font-extrabold mb-8 text-center text-white">
+            What We Offer
+        </h2>
+        <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 text-gray-300 text-lg">
             <div class="flex items-start space-x-4">
-                <i class="fas fa-cloud-upload-alt text-xl text-white mt-1"></i>
+                <i class="fas fa-cloud-upload-alt text-xl text-blue-400 mt-1"></i>
                 <p>Seamless film upload & streaming tools</p>
             </div>
             <div class="flex items-start space-x-4">
-                <i class="fas fa-dollar-sign text-xl text-white mt-1"></i>
+                <i class="fas fa-dollar-sign text-xl text-green-400 mt-1"></i>
                 <p>Creator-first monetization options</p>
             </div>
             <div class="flex items-start space-x-4">
-                <i class="fas fa-comments text-xl text-white mt-1"></i>
+                <i class="fas fa-comments text-xl text-yellow-400 mt-1"></i>
                 <p>Community feedback & engagement</p>
             </div>
             <div class="flex items-start space-x-4">
-                <i class="fas fa-film text-xl text-white mt-1"></i>
+                <i class="fas fa-film text-xl text-red-400 mt-1"></i>
                 <p>Curated categories for every genre</p>
             </div>
             <div class="flex items-start space-x-4">
-                <i class="fas fa-lock text-xl text-white mt-1"></i>
+                <i class="fas fa-lock text-xl text-purple-400 mt-1"></i>
                 <p>Secure hosting & copyright protection</p>
             </div>
+            <div class="flex items-start space-x-4">
+                <i class="fas fa-chart-line text-xl text-pink-400 mt-1"></i>
+                <p>Analytics to track your film's performance</p>
+            </div>
         </div>
     </section>
 
-    <!-- Our Values -->
+
     <section>
-        <h2 class="text-3xl font-bold mb-8 text-center">Our Values</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="bg-white/5 p-6 rounded shadow hover:shadow-xl transition duration-300">
-                <h3 class="text-xl font-bold mb-2 text-white"><i class="fas fa-lightbulb mr-2 text-yellow-400"></i>Creativity</h3>
-                <p class="text-gray-300">We celebrate bold storytelling, no matter the budget or background.</p>
+        <h2 class="text-4xl font-extrabold mb-10 text-center text-white border-b border-white pb-4">
+            Our Values
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 border-b border-white pb-8">
+            <div class="group bg-white/5 p-6 rounded-xl border border-white/10 shadow transition-transform duration-300 hover:scale-105 hover:shadow-[0_0_15px_3px_rgba(255,255,255,0.6)] min-h-[230px]">
+                <h3 class="text-2xl font-bold mb-6 text-white">
+                    <i class="fas fa-lightbulb mr-2 text-yellow-400"></i>Creativity
+                </h3>
+                <p class="text-gray-300">
+                    We celebrate bold storytelling, no matter the budget or background.<br>
+                    Innovation fuels our platform, inspiring creators to push artistic boundaries.
+                </p>
             </div>
-            <div class="bg-white/5 p-6 rounded shadow hover:shadow-xl transition duration-300">
-                <h3 class="text-xl font-bold mb-2 text-white"><i class="fas fa-users mr-2 text-green-400"></i>Community</h3>
-                <p class="text-gray-300">We believe in building bridges between creators and their audience.</p>
+
+            <div class="group bg-white/5 p-6 rounded-xl border border-white/10 shadow transition-transform duration-300 hover:scale-105 hover:shadow-[0_0_15px_3px_rgba(255,255,255,0.6)] min-h-[230px]">
+                <h3 class="text-2xl font-bold mb-6 text-white">
+                    <i class="fas fa-users mr-2 text-green-400"></i>Community
+                </h3>
+                <p class="text-gray-300">
+                    We believe in building bridges between creators and their audience.<br>
+                    Genuine connection is at the heart of every story shared on CineUpload.
+                </p>
             </div>
-            <div class="bg-white/5 p-6 rounded shadow hover:shadow-xl transition duration-300">
-                <h3 class="text-xl font-bold mb-2 text-white"><i class="fas fa-universal-access mr-2 text-blue-400"></i>Accessibility</h3>
-                <p class="text-gray-300">Our platform is open to all — from first-timers to professionals.</p>
+
+            <div class="group bg-white/5 p-6 rounded-xl border border-white/10 shadow transition-transform duration-300 hover:scale-105 hover:shadow-[0_0_15px_3px_rgba(255,255,255,0.6)] min-h-[230px]">
+                <h3 class="text-2xl font-bold mb-6 text-white">
+                    <i class="fas fa-universal-access mr-2 text-blue-400"></i>Accessibility
+                </h3>
+                <p class="text-gray-300">
+                    Our platform is open to all from first-timers to professionals.<br>
+                    We ensure that creativity knows no limits, regardless of background or resources.
+                </p>
             </div>
         </div>
     </section>
 
-    <!-- Call to Action -->
+
+
     <section class="text-center">
-        <h2 class="text-3xl font-bold mb-4">Ready to Share Your Story?</h2>
+        <h2 class="text-4xl font-extrabold mb-6 text-center text-white">
+            Share Your Experience
+        </h2>
         <p class="text-lg text-gray-300 mb-6 max-w-2xl mx-auto">
-            Join thousands of filmmakers using CineUpload to reach new audiences every day.
-        </p>
-        <a href="/upload" class="inline-block bg-white text-black font-semibold px-8 py-3 rounded hover:bg-gray-200 transition duration-300">
-            <i class="fas fa-upload mr-2"></i>Upload Your Film
+            Join thousands of passionate filmmakers and enthusiastic viewers sharing honest reviews, insightful feedback, and inspiring stories on CineUpload        </p>
+        <a href="/add-review" class="inline-block bg-gray-400  text-black font-semibold px-8 py-3 rounded hover:bg-gray-600 transition duration-300">
+            <i class="fas fa-comment-dots mr-2"></i>Add Your Review
         </a>
     </section>
+
 
 </main>
 
