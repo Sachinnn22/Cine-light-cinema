@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Login - Sinhalies</title>
 
-    <link rel="stylesheet" href="st.css">
+    <link rel="stylesheet" href="register.css">
     <script src="https://cdn.tailwindcss.com"></script>
 
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
@@ -15,403 +15,30 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css" rel="stylesheet"/>
 
     <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-            font-family: 'Open Sans', sans-serif;
-        }
 
-        .custom-hero {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .custom-hero {
-            position: relative;
-            background-image: url('assets/images/20250808_1354_image.png');
-            background-size: cover;
-            background-position: center;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            z-index: 0;
-        }
-
-        .custom-hero::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .custom-heading {
-            font-size: 2.4rem;
-            font-weight: 800;
-            letter-spacing: 1.2px;
-            font-family: "Roboto Light",serif;
-            text-align: center;
-            color: #f3f2f2;
-            margin-bottom: 1.5rem;
-        }
-
-        .custom-head{
-            font-size: 2.4rem;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            font-family: "Roboto Light",serif;
-            text-align: center;
-            color: #f3f2f2;
-            margin-bottom: 1.2rem;
-        }
-        .custom-hero > * {
-            position: relative;
-            z-index: 10;
-        }
-
-        nav {
-            backdrop-filter: blur(7px);
-            -webkit-backdrop-filter: blur(8px);
-        }
-
-        @keyframes fadeInDownSmooth {
-            0% {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            60% {
-                opacity: 1;
-                transform: translateY(5px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in-down {
-            animation: fadeInDownSmooth 0.6s cubic-bezier(0.23, 1, 0.32, 1) both;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .fade-out-up {
-            animation: fadeOutUp 0.5s ease forwards;
-        }
-
-        @keyframes fadeOutUp {
-            0% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-        }
-
-        .custom-glass-footer {
-            background: #1c1c1c;
-            backdrop-filter: blur(16px) saturate(160%);
-            -webkit-backdrop-filter: blur(16px) saturate(160%);
-            border-top: 4px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 -2px 15px rgba(255, 255, 255, 0.05);
-            color: white;
-        }
-
-        .forgot-password-link {
-            font-size: 1.08rem;
-            font-weight: 600;
-            color: #818cf8;
-            transition: color 0.3s ease;
-            letter-spacing: 0.7px;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        .forgot-password-link:hover {
-            color: #6366f1;
-        }
-
-        .flip-container {
-            perspective: 1000px;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .flipper {
-            position: relative;
-            width: 100%;
-            min-height: 540px;
-            transform-style: preserve-3d;
-            transition: transform 0.8s ease-in-out;
-        }
-
-        .flip-container.flip .flipper {
-            transform: rotateY(180deg);
-        }
-
-        .front,
-        .back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            top: 0;
-            left: 0;
-        }
-
-        .back {
-            transform: rotateY(180deg);
-        }
-
-        @media (min-width: 1400px) and (max-width: 1440px){
-            .custom-hero {
-                padding-left: 3rem !important;
-                padding-right: 3rem !important;
-                padding-top: 7rem !important;
-                padding-bottom: 2rem !important;
-                display: flex !important;
-                flex-direction: column !important;
-                align-items: center !important;
-                justify-content: center !important;
-                min-height: 100vh !important;
-            }
-
-            #flip-container {
-                margin-top: 0 !important;
-                max-width: 55% !important;
-                min-height: 800px !important;
-            }
-
-            .custom-heading,
-            .custom-head {
-                font-size: 2.6rem !important;
-                text-align: center !important;
-            }
-
-            footer.custom-glass-footer {
-                margin-top: auto !important;
-                padding-bottom: 0.5rem !important;
-            }
-        }
-
-        @media (min-width: 1000px) and (max-width: 1024px){
-            .custom-hero {
-                padding-left: 2rem !important;
-                padding-right: 2rem !important;
-                padding-top: 23rem !important;
-                padding-bottom: 19rem !important;
-                display: flex !important;
-                flex-direction: column !important;
-                align-items: center !important;
-                justify-content: center !important;
-                min-height: 100vh !important;
-            }
-
-            #flip-container {
-                margin-top: 0 !important;
-                max-width: 68% !important;
-            }
-
-            .custom-heading,
-            .custom-head {
-                font-size: 2.4rem !important;
-                text-align: center !important;
-            }
-
-            footer.custom-glass-footer {
-                margin-top: auto !important;
-                padding-bottom: 0.5rem !important;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .custom-hero {
-                padding-left: 1.5rem !important;
-                padding-right: 1.5rem !important;
-                padding-top: 23rem !important;
-                padding-bottom: 19rem !important;
-                display: flex !important;
-                flex-direction: column !important;
-                align-items: center !important;
-                justify-content: center !important;
-                min-height: 100vh !important;
-            }
-
-            #flip-container {
-                margin-top: 0 !important;
-                max-width: 75% !important;
-                width: 75% !important;
-            }
-
-            .custom-heading,
-            .custom-head {
-                font-size: 1.6rem !important;
-                text-align: center !important;
-            }
-
-            footer.custom-glass-footer {
-                margin-top: auto !important;
-                padding-top: 1.5rem !important;
-            }
-        }
-
-        @media (max-width: 425px) {
-            .custom-hero {
-                padding-left: 1rem !important;
-                padding-right: 1rem !important;
-                padding-top: 22rem !important;
-                padding-bottom: 18rem !important;
-                display: flex !important;
-                flex-direction: column !important;
-                align-items: center !important;
-                justify-content: center !important;
-                min-height: 100vh !important;
-            }
-
-            #flip-container {
-                margin-top: 0 !important;
-                max-width: 90% !important;
-                width: 100% !important;
-            }
-
-            .custom-heading,
-            .custom-head {
-                font-size: 1.5rem !important;
-                text-align: center !important;
-            }
-
-            footer.custom-glass-footer {
-                margin-top: auto !important;
-                padding-top: 0.5rem !important;
-            }
-        }
-
-        @media (max-width: 375px) {
-            .custom-hero {
-                padding-left: 1rem !important;
-                padding-right: 1rem !important;
-                padding-top: 22rem !important;
-                padding-bottom: 18rem !important;
-                display: flex !important;
-                flex-direction: column !important;
-                align-items: center !important;
-                justify-content: center !important;
-                min-height: 100vh !important;
-            }
-
-            #flip-container {
-                margin-top: 0 !important;
-                max-width: 90% !important;
-                width: 100% !important;
-            }
-
-            .custom-heading,
-            .custom-head {
-                font-size: 1.4rem !important;
-                text-align: center !important;
-            }
-
-            footer.custom-glass-footer {
-                margin-top: auto !important;
-                padding-top: 0.5rem !important;
-            }
-            .re-togglePassword{
-                margin-top: 0.08rem !important;
-            }
-        }
-
-        @media (max-width: 320px) {
-            .custom-hero {
-                margin-top: 66px !important;
-                padding-right: 0.75rem !important;
-                padding-top: 12rem !important;
-                padding-bottom: 14rem !important;
-            }
-
-            #flip-container {
-                margin-top: 2rem !important;
-                max-width: 95% !important;
-            }
-
-            .custom-heading,
-            .custom-head {
-                font-size: 1.3rem !important;
-                text-align: center !important;
-            }
-
-            label[for="name"],
-            label[for="username"],
-            label[for="password"] {
-                font-size: 0.85rem !important;
-            }
-
-            button,
-            input {
-                font-size: 0.85rem !important;
-            }
-
-            .custom-hero .flex.items-center.justify-between {
-                display: flex !important;
-                justify-content: space-between !important;
-                align-items: center !important;
-                gap: 0.5rem !important;
-                margin-bottom: 0.5rem !important;
-            }
-
-            .forgot-password-link {
-                font-size: 0.95rem !important;
-                white-space: nowrap !important;
-            }
-
-            button {
-                width: 100% !important;
-            }
-
-            form.space-y-6 > * {
-                margin-bottom: 1rem !important;
-            }
-
-            footer.custom-glass-footer {
-                margin-top: 0 !important;
-                padding-top: 0.5rem !important;
-            }
-
-            .re-togglePassword{
-                margin-top: 0.2rem !important;
-            }
-        }
     </style>
 </head>
 <body>
 
-<nav class="fixed top-0 left-0 right-0 z-50 bg-black bg-opacity-40 text-white shadow-md px-4 py-2 border-b border-white/20">
+<nav class="fixed top-0 left-0 right-0 z-50 bg-black bg-opacity-40 text-white shadow-md px-4 py-3 border-b border-white/20">
     <div class="flex items-center justify-between w-full">
-        <!-- Left side: Home icon -->
         <div class="flex items-center space-x-6 sm:space-x-8">
             <a href="index.html" class="text-gray-200 text-2xl sm:text-3xl hover:text-gray-400 transition ml-1 sm:ml-4">
                 <i class="fas fa-house" style="filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.6));"></i>
             </a>
         </div>
 
-        <!-- Right side: User icon with dropdown -->
         <div class="relative mr-2 sm:mr-3">
             <button id="userMenuButton" class="text-gray-200 text-xl sm:text-2xl hover:text-gray-400 transition focus:outline-none">
                 <i class="fas fa-user"></i>
             </button>
 
-            <div id="userDropdown" class="hidden absolute right-0 mt-4 w-40 bg-black bg-opacity-80 text-white rounded-lg shadow-lg z-50 backdrop-blur-md border border-white/30 translate-x-2">
+            <div id="userDropdown" class="hidden absolute right-0 mt-5 w-48 bg-black bg-opacity-90 text-white rounded-lg shadow-lg z-50 backdrop-blur-md border border-white/30 translate-x-5">
                 <a href="javascript:void(0);" onclick="toggleFlip()" class="flex items-center gap-3 px-4 py-2 hover:bg-white/10 transition rounded-t-lg">
                     <i class="far fa-user"></i> Sign Up
                 </a>
-                <a href="buy.html" class="flex items-center gap-3 px-4 py-2 hover:bg-white/10 transition rounded-b-lg">
-                    <i class="far fa-credit-card"></i> Buy Now
+                <a href="pricing.html" class="flex items-center gap-3 px-4 py-2 hover:bg-white/10 transition rounded-b-lg">
+                    <i class="far fa-credit-card"></i> Buy Premium
                 </a>
 
             </div>
@@ -419,7 +46,6 @@
         </div>
     </div>
 </nav>
-
 
 <section class="custom-hero h-screen flex justify-center items-center px-6 lg:px-24 pt-0">
     <div
@@ -645,7 +271,7 @@
             </ul>
         </div>
 
-        <div class="space-y-3 pb-16">
+        <div class="space-y-3" style="padding-bottom: 3.25rem;">
             <h2 class="fallow">Follow Us</h2>
             <div class="flex justify-center gap-4">
                 <a href="#">
