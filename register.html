@@ -393,15 +393,33 @@
 
 <nav class="fixed top-0 left-0 right-0 z-50 bg-black bg-opacity-40 text-white shadow-md px-4 py-2 border-b border-white/20">
     <div class="flex items-center justify-between w-full">
+        <!-- Left side: Home icon -->
         <div class="flex items-center space-x-6 sm:space-x-8">
-            <div class="text-2xl sm:text-3xl font-bold tracking-wide select-none">CINELIGHT</div>
+            <a href="index.html" class="text-gray-200 text-2xl sm:text-3xl hover:text-gray-400 transition ml-1 sm:ml-4">
+                <i class="fas fa-house" style="filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.6));"></i>
+            </a>
         </div>
 
-        <a href="index.html" class="inline-flex items-center gap-2 rounded-full border-4 border-white bg-gradient-to-br from-gray-600 to-gray-600 px-4 py-2 text-white font-semibold hover:from-gray-800 hover:to-gray-800 hover:text-white transition text-sm sm:text-base">
-            <i class="fas fa-house"></i> Home
-        </a>
+        <!-- Right side: User icon with dropdown -->
+        <div class="relative mr-2 sm:mr-3">
+            <button id="userMenuButton" class="text-gray-200 text-xl sm:text-2xl hover:text-gray-400 transition focus:outline-none">
+                <i class="fas fa-user"></i>
+            </button>
+
+            <div id="userDropdown" class="hidden absolute right-0 mt-4 w-40 bg-black bg-opacity-80 text-white rounded-lg shadow-lg z-50 backdrop-blur-md border border-white/30 translate-x-2">
+                <a href="javascript:void(0);" onclick="toggleFlip()" class="flex items-center gap-3 px-4 py-2 hover:bg-white/10 transition rounded-t-lg">
+                    <i class="far fa-user"></i> Sign Up
+                </a>
+                <a href="buy.html" class="flex items-center gap-3 px-4 py-2 hover:bg-white/10 transition rounded-b-lg">
+                    <i class="far fa-credit-card"></i> Buy Now
+                </a>
+
+            </div>
+
+        </div>
     </div>
 </nav>
+
 
 <section class="custom-hero h-screen flex justify-center items-center px-6 lg:px-24 pt-0">
     <div
@@ -667,6 +685,28 @@
     function toggleFlip() {
     document.getElementById('flip-container').classList.toggle('flip');
 }</script>
+
+
+<script>
+    const userMenuButton = document.getElementById('userMenuButton');
+    const userDropdown = document.getElementById('userDropdown');
+
+    userMenuButton.addEventListener('click', () => {
+        userDropdown.classList.toggle('hidden');
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!userMenuButton.contains(e.target) && !userDropdown.contains(e.target)) {
+            userDropdown.classList.add('hidden');
+        }
+    });
+
+    document.querySelectorAll('#userDropdown a').forEach(link => {
+        link.addEventListener('click', () => {
+            userDropdown.classList.add('hidden');
+        });
+    });
+</script>
 
 </body>
 </html>
