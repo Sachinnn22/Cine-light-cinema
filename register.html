@@ -21,11 +21,21 @@
 <body>
 
 <nav class="fixed top-0 left-0 right-0 z-50 bg-black bg-opacity-40 text-white shadow-md px-4 py-3 border-b border-white/20">
-    <div class="flex items-center justify-between w-full">
+    <div class="flex items-center justify-between w-full relative">
+
+        <!-- Left: Home Icon -->
         <div class="flex items-center space-x-6 sm:space-x-8">
             <a href="index.html" class="text-gray-200 text-2xl sm:text-3xl hover:text-gray-400 transition ml-1 sm:ml-4">
                 <i class="fas fa-house" style="filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.6));"></i>
             </a>
+        </div>
+
+        <div class="absolute left-1/2 transform -translate-x-1/2 select-none">
+      <span class="text-2xl sm:text-3xl md:text-4xl font-black tracking-widest
+                   bg-gradient-to-r from-[#c67d7d] via-[#2b8fb6] to-[#feca57]
+                   text-transparent bg-clip-text animate-pulse drop-shadow-md">
+        CINE<span class="opacity-80">-</span>LIGHT
+      </span>
         </div>
 
         <div class="relative mr-2 sm:mr-3">
@@ -40,12 +50,12 @@
                 <a href="pricing.html" class="flex items-center gap-3 px-4 py-2 hover:bg-white/10 transition rounded-b-lg">
                     <i class="far fa-credit-card"></i> Buy Premium
                 </a>
-
             </div>
-
         </div>
+
     </div>
 </nav>
+
 
 <section class="custom-hero h-screen flex justify-center items-center px-6 lg:px-24 pt-0">
     <div
