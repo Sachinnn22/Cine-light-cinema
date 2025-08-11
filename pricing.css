@@ -1,6 +1,8 @@
 .custom-title {
     font-family: 'Poppins', sans-serif;
     letter-spacing: 2.5px !important;
+    color: #e8e6e6;
+    text-shadow: 10px 7px 7px rgba(117, 46, 46, 0.8);
 }
 
 nav {
@@ -179,6 +181,131 @@ nav {
 
     .nav-logo-text {
         font-size: 1.1rem !important;
+    }
+}
+
+@media (min-width: 1400px) and (max-width: 1450px) {
+    #pricing-carousel {
+        flex-wrap: nowrap;
+        justify-content: center;
+    }
+
+    h2.custom-title {
+        font-size: 4.5rem;
+        margin-bottom: 3rem;
+        margin-top: 4.5rem;
+    }
+
+    .pricing-card {
+        width: 40%;
+        margin-top: 1.5rem;
+    }
+}
+
+@media (min-width: 996px) and (max-width: 1210px){
+    #pricing-carousel {
+        flex-wrap: nowrap;
+        justify-content: center;
+    }
+
+    h2.custom-title {
+        font-size: 4rem;
+        margin-bottom: 3rem;
+        margin-top: 3.5rem;
+    }
+
+    .pricing-card {
+        width: 35%;
+        margin-top: 1.2rem;
+    }
+}
+
+@media (min-width: 580px) and (max-width: 995px) {
+    #pricing-carousel {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .pricing-card {
+        width: 46%;
+        margin-bottom: 1.5rem;
+    }
+
+    h2.custom-title {
+        font-size: 3.2rem;
+        margin-bottom: 2.2rem;
+        margin-top: -2.1rem;
+    }
+
+    .pricing-card:nth-child(3) {
+        width: 55%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (min-width: 425px) and (max-width: 579px){
+    .pricing-card {
+        width: 90vw;
+        padding: 1.5rem;
+        font-size: 14px;
+    }
+
+    h2.custom-title {
+        font-size: 3rem;
+        margin-bottom: 2.2rem;
+        margin-top: -2rem;
+    }
+
+    .pricing-card:nth-child(3) {
+        width: 90vw;
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+@media (min-width: 375px) and (max-width: 424px){
+    .pricing-card {
+        width: 95vw;
+        padding: 1rem;
+        font-size: 13px;
+    }
+
+    .pricing-card:nth-child(3) {
+        width: 95vw;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    h2.custom-title {
+        font-size: 3rem;
+        margin-bottom: 2.2rem;
+        margin-top: -2rem;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 374px){
+    .pricing-card {
+        width: 100vw;
+        padding: 0.8rem;
+        font-size: 12px;
+    }
+
+    .pricing-card:nth-child(3) {
+        width: 100vw;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    h2.custom-title {
+        font-size: 3rem;
+        margin-bottom: 2.2rem;
+        margin-top: -2rem;
+
+    }
+
+    nav div.text-2xl {
+        font-size: 1.5rem;
     }
 }
 

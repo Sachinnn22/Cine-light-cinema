@@ -12,136 +12,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
 
-    <style>
-
-        @media (min-width: 1400px) and (max-width: 1450px) {
-            #pricing-carousel {
-                flex-wrap: nowrap;
-                justify-content: center;
-            }
-
-            h2.custom-title {
-                font-size: 4.5rem;
-                margin-bottom: 3rem;
-                margin-top: 4.5rem;
-            }
-
-            .pricing-card {
-                width: 40%;
-                margin-top: 1.5rem;
-            }
-        }
-
-        @media (max-width: 1024px) {
-            #pricing-carousel {
-                flex-wrap: nowrap;
-                justify-content: center;
-            }
-
-            h2.custom-title {
-                font-size: 4rem;
-                margin-bottom: 3rem;
-                margin-top: 3.5rem;
-            }
-
-            .pricing-card {
-                width: 35%;
-                margin-top: 1.2rem;
-            }
-        }
-
-        @media (max-width: 768px){
-            #pricing-carousel {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .pricing-card {
-                width: 46%;
-                margin-bottom: 1.5rem;
-            }
-
-            h2.custom-title {
-                font-size: 3.2rem;
-                margin-bottom: 2.2rem;
-                margin-top: -2.1rem;
-            }
-
-            .pricing-card:nth-child(3) {
-                width: 55%;
-                margin-left: auto;
-                margin-right: auto;
-            }
-        }
-
-        @media (max-width: 425px) {
-            .pricing-card {
-                width: 90vw;
-                padding: 1.5rem;
-                font-size: 14px;
-            }
-
-            h2.custom-title {
-                font-size: 3rem;
-                margin-bottom: 2.2rem;
-                margin-top: -2rem;
-            }
-
-            .pricing-card:nth-child(3) {
-                width: 90vw;
-                margin-left: 0;
-                margin-right: 0;
-            }
-
-        }
-
-        @media (max-width: 375px) {
-            .pricing-card {
-                width: 95vw;
-                padding: 1rem;
-                font-size: 13px;
-            }
-
-            .pricing-card:nth-child(3) {
-                width: 95vw;
-                margin-left: 0;
-                margin-right: 0;
-            }
-
-            h2.custom-title {
-                font-size: 3rem;
-                margin-bottom: 2.2rem;
-                margin-top: -2rem;
-            }
-        }
-
-        @media (max-width: 320px){
-            .pricing-card {
-                width: 100vw;
-                padding: 0.8rem;
-                font-size: 12px;
-            }
-
-            .pricing-card:nth-child(3) {
-                width: 100vw;
-                margin-left: 0;
-                margin-right: 0;
-            }
-
-            h2.custom-title {
-                font-size: 3rem;
-                margin-bottom: 2.2rem;
-                margin-top: -2rem;
-
-            }
-
-            nav div.text-2xl {
-                font-size: 1.5rem;
-            }
-        }
-
-    </style>
-
 </head>
 
 <body class="relative">
@@ -208,10 +78,9 @@
                class="block w-[85%] mx-auto text-white bg-gray-700 hover:bg-gray-800 font-medium rounded-lg text-sm px-5 py-3 text-center mt-4">
                 Get started
             </a>
-
         </div>
 
-        <div class="pricing-card  shrink-card transition-all duration-300 ease-in-out cursor-pointer" onclick="setActiveCard(2)">
+        <div class="pricing-card  shrink-card transition-all duration-300 ease-in-out cursor-pointer" onclick="setActiveCard(2)" >
             <h3 class="mb-4 text-2xl font-semibold">Intermediate</h3>
             <div class="flex justify-center items-baseline my-3">
                 <span class="mr-2 text-5xl font-extrabold">10$</span>
