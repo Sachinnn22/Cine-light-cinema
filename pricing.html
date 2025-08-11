@@ -6,6 +6,7 @@
     <title>Pricing Plans</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="st.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
@@ -188,15 +189,21 @@
 
 <body class="relative">
 
-<nav class="fixed top-0 left-0 right-0 z-50 bg-black bg-opacity-40 text-white shadow-md px-4 py-2 border-b border-white/20">
+<nav class="fixed top-0 left-0 right-0 z-50 bg-black bg-opacity-40 text-white shadow-md px-4 py-3 border-b border-white/20">
     <div class="flex items-center justify-between w-full">
-        <div class="flex items-center space-x-6 sm:space-x-8">
-            <div class="text-2xl sm:text-3xl font-bold tracking-wide select-none">CINELIGHT</div>
+
+        <div class="text-left ml-2 sm:ml-4 select-none">
+      <span class="nav-logo-text text-xl sm:text-2xl md:text-4xl font-black tracking-widest
+                   bg-gradient-to-r from-[#c67d7d] via-[#2b8fb6] to-[#feca57]
+                   text-transparent bg-clip-text animate-pulse drop-shadow-md">
+        CINE<span class="opacity-80">-</span>LIGHT
+      </span>
         </div>
 
-        <a href="index.html" class="inline-flex items-center gap-2 rounded-full border-4 border-white bg-gradient-to-br from-gray-600 to-gray-600 px-4 py-2 text-white font-semibold hover:from-gray-800 hover:to-gray-800 hover:text-white transition text-sm sm:text-base">
-            <i class="fas fa-house"></i> Home
+        <a href="index.html" class="text-gray-200 text-xl sm:text-2xl hover:text-gray-400 transition mr-2 sm:mr-4 flex items-center leading-none">
+            <i class="fas fa-house" style="filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.6));"></i>
         </a>
+
     </div>
 </nav>
 
