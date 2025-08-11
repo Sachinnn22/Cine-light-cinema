@@ -1,0 +1,51 @@
+@media (min-width: 581px) and (max-width: 990px) {
+    nav {
+        padding-top: 0.7rem !important;
+        padding-bottom: 0.7rem !important;
+    }
+
+    .fa-house {
+        font-size: 1.5rem !important;
+    }
+
+    .nav-logo-text {
+        font-size: 1.5rem !important;
+    }
+}
+
+@media (min-width: 425px) and (max-width: 579px){
+    nav {
+        padding-top: 0.6rem !important;
+        padding-bottom: 0.6rem !important;
+    }
+
+    .fa-house {
+        font-size: 1.4rem !important;
+    }
+}
+
+@media (min-width: 375px) and (max-width: 424px){
+    nav {
+        padding-top: 0.5rem !important;
+        padding-bottom: 0.5rem !important;
+    }
+
+    .fa-house {
+        font-size: 1.3rem !important;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 374px){
+    nav {
+        padding-top: 0.3rem !important;
+        padding-bottom: 0.3rem !important;
+    }
+
+    .fa-house {
+        font-size: 1.2rem !important;
+    }
+
+    .nav-logo-text {
+        font-size: 1.1rem !important;
+    }
+}
