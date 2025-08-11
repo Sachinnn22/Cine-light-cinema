@@ -242,7 +242,7 @@ nav {
     user-select: none;
 }
 
-@media (max-width: 425px) {
+@media (min-width: 425px) and (max-width: 579px){
     nav {
         padding-top: 0.6rem !important;
         padding-bottom: 0.6rem !important;
@@ -340,7 +340,7 @@ nav {
     }
 }
 
-@media (min-width: 1000px) and (max-width: 1024px){
+@media (min-width: 996px) and (max-width: 1350px){
     .custom-hero {
         padding-left: 2rem !important;
         padding-right: 2rem !important;
@@ -355,7 +355,7 @@ nav {
 
     #flip-container {
         margin-top: 0 !important;
-        max-width: 68% !important;
+        max-width: 60% !important;
     }
 
     .custom-heading,
@@ -370,7 +370,7 @@ nav {
     }
 }
 
-@media (max-width: 768px) {
+@media (min-width: 580px) and (max-width: 995px) {
     .custom-hero {
         padding-left: 1.5rem !important;
         padding-right: 1.5rem !important;
@@ -401,7 +401,7 @@ nav {
     }
 }
 
-@media (max-width: 425px) {
+@media (min-width: 425px) and (max-width: 579px){
     .custom-hero {
         padding-left: 1rem !important;
         padding-right: 1rem !important;
@@ -550,7 +550,7 @@ nav {
     }
 }
 
-@media (min-width: 600px) and (max-width: 995px) {
+@media (min-width: 580px) and (max-width: 995px) {
     .custom-glass-footer > div.max-w-7xl {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -594,7 +594,7 @@ nav {
     }
 }
 
-@media (min-width: 425px) and (max-width: 499px){
+@media (min-width: 425px) and (max-width: 579px){
     .custom-glass-footer > div.max-w-7xl {
         display: grid;
         grid-template-columns: 1fr;
