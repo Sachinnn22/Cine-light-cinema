@@ -23,14 +23,12 @@
 <nav class="fixed top-0 left-0 right-0 z-50 bg-black bg-opacity-40 text-white shadow-md px-4 py-3 border-b border-white/20">
     <div class="flex items-center justify-between w-full">
 
-        <!-- Left: Home Icon -->
         <div class="flex items-center space-x-6 sm:space-x-8">
             <a href="index.html" class="text-gray-200 text-xl sm:text-2xl hover:text-gray-400 transition ml-1 sm:ml-4 flex items-center leading-none">
                 <i class="fas fa-house" style="filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.6));"></i>
             </a>
         </div>
 
-        <!-- Center: Logo -->
         <div class="flex-1 text-center select-none">
       <span class="nav-logo-text text-xl sm:text-2xl md:text-4xl font-black tracking-widest
                    bg-gradient-to-r from-[#c67d7d] via-[#2b8fb6] to-[#feca57]
@@ -39,13 +37,12 @@
       </span>
         </div>
 
-        <!-- Right: User Menu -->
         <div class="relative mr-2 sm:mr-3 flex items-center">
             <button id="userMenuButton" class="text-gray-200 text-xl sm:text-2xl hover:text-gray-400 transition focus:outline-none leading-none">
                 <i class="fas fa-user"></i>
             </button>
 
-            <div id="userDropdown" class="hidden absolute right-0 mt-5 w-48 bg-black bg-opacity-90 text-white rounded-lg shadow-lg z-50 backdrop-blur-md border border-white/30 translate-x-5">
+            <div id="userDropdown" class="hidden absolute right-0 mt-40 w-48 bg-black bg-opacity-90 text-white rounded-lg shadow-lg z-50 backdrop-blur-md border border-white/30 translate-x-5">
                 <a href="javascript:void(0);" onclick="toggleFlip()" class="flex items-center gap-3 px-4 py-2 hover:bg-white/10 transition rounded-t-lg">
                     <i class="far fa-user"></i> Sign Up
                 </a>
@@ -54,7 +51,6 @@
                 </a>
             </div>
         </div>
-
     </div>
 </nav>
 
@@ -322,7 +318,6 @@
     function toggleFlip() {
     document.getElementById('flip-container').classList.toggle('flip');
 }</script>
-
 
 <script>
     const userMenuButton = document.getElementById('userMenuButton');

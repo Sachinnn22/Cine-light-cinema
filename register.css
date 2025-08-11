@@ -250,7 +250,7 @@ nav {
 
     #userDropdown {
         width: 11rem !important;
-        margin-top: 1.2rem !important;
+        margin-top: 8.5rem !important;
         transform: translateX(1.25rem) !important;
     }
 
@@ -271,7 +271,7 @@ nav {
 
     #userDropdown {
         width: 10.5rem !important;
-        margin-top: 1rem !important;
+        margin-top: 8.5rem !important;
         transform: translateX(1.1rem) !important;
     }
 
@@ -291,8 +291,8 @@ nav {
     }
 
     #userDropdown {
-        width: 10rem !important;
-        margin-top: 0.8rem !important;
+        width: 12rem !important;
+        margin-top: 8.2rem !important;
         transform: translateX(1rem) !important;
     }
 
@@ -309,7 +309,7 @@ nav {
     }
 }
 
-@media (min-width: 1400px) and (max-width: 1440px){
+@media (min-width: 1400px) and (max-width: 1450px){
     .custom-hero {
         padding-left: 3rem !important;
         padding-right: 3rem !important;
@@ -324,8 +324,8 @@ nav {
 
     #flip-container {
         margin-top: 0 !important;
-        max-width: 55% !important;
-        min-height: 800px !important;
+        max-width: 50% !important;
+        min-height: 200px !important; /* example */
     }
 
     .custom-heading,
@@ -340,7 +340,7 @@ nav {
     }
 }
 
-@media (min-width: 996px) and (max-width: 1350px){
+@media (min-width: 996px) and (max-width: 110px){
     .custom-hero {
         padding-left: 2rem !important;
         padding-right: 2rem !important;
@@ -355,7 +355,7 @@ nav {
 
     #flip-container {
         margin-top: 0 !important;
-        max-width: 60% !important;
+        max-width: 58% !important;
     }
 
     .custom-heading,
