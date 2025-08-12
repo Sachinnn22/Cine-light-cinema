@@ -2,6 +2,104 @@ body {
     background: linear-gradient(to bottom, #000000e6, #202020) !important;
 }
 
+.custom-glass-footer {
+    background: #000000;
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    border-top: 3px solid rgb(145, 140, 140);
+    box-shadow: 0 -2px 15px rgba(255, 255, 255, 0.05);
+    color: white;
+}
+
+.custom-glass-footer a {
+    transition: all 0.3s ease;
+}
+
+.custom-glass-footer a:hover {
+    color: #318fb6;
+    text-decoration: underline;
+}
+
+.foot-head{
+    font-family: "Poppins", sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: 5px;
+    background: linear-gradient(45deg, #c67d7d, #497588, #2b8fb6, #96ceb4, #feca57);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.15);
+    animation: pulseGlow 4s infinite ease-in-out;
+    user-select: none;
+}
+
+.flex a img {
+    transition: transform 0.3s ease;
+}
+
+.flex a img:hover {
+    transform: scale(1.25);
+}
+
+.foot-sub{
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.7px;
+    width: 220px;
+}
+
+.fallow {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.movie {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.movie-sub {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.9rem;
+}
+
+.company {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.company-sub {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.9rem;
+}
+
+.copy{
+    font-size: 0.95rem;
+    color: #d8d2d2;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+}
+
+.sin{
+    font-weight: 900;
+    background: linear-gradient(45deg, #c67d7d, #497588, #2b8fb6, #96ceb4, #feca57);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.15);
+    animation: pulseGlow 4s infinite ease-in-out;
+    user-select: none;
+}
+
 @media (min-width: 581px) and (max-width: 990px) {
     nav {
         padding-top: 0.7rem !important;
