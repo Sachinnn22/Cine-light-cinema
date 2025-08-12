@@ -7,7 +7,10 @@
         <script src="https://cdn.tailwindcss.com"></script>
         <link href="https://cdn.jsdelivr.net/npm/daisyui@latest/dist/full.css" rel="stylesheet" />
         <link rel="stylesheet" href="about.css">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+              crossorigin="anonymous" referrerpolicy="no-referrer" />
+
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-xX2eH3+Szk0gWlQ3KZBxuKU5xvD6wrRkUAGjZ3u4cC+F5CHm6ViGjXvMKjHOebzUdqT2V9PQa4+5qNnQKf2EwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -202,6 +205,7 @@
             <input type="hidden" id="ratingInput" name="rating" value="0">
 
             <textarea
+                    id="commentInput"
                     class="w-full mb-2 p-3 rounded-lg bg-white/20 backdrop-blur-md border border-gray-300 text-black placeholder:text-white focus:outline-none focus:ring-2 focus:ring-gray-400"
                     placeholder="Write your comment...">
             </textarea>
@@ -215,6 +219,7 @@
                 </button>
 
                 <button
+                        id="submitReviewBtn"
                         class="w-2/5 py-2.5 rounded-lg bg-blue-500 text-white font-semibold hover:bg-blue-700 transition-all flex items-center justify-center gap-2">
                     <i class="fas fa-play"></i>
                     Process
@@ -224,7 +229,27 @@
 
         </div>
     </dialog>
-    <script>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+        import { getDatabase } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCNH38ylbzfIORN0wmDoizj_eWKunQ1uAQ",
+            authDomain: "my-first-app-6a293.firebaseapp.com",
+            databaseURL: "https://my-first-app-6a293-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "my-first-app-6a293",
+            storageBucket: "my-first-app-6a293.appspot.com",
+            messagingSenderId: "599546991663",
+            appId: "1:599546991663:web:b07d25c55f1d00c06722da",
+            measurementId: "G-5EVKKY7KLP"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const auth = getAuth();
+
         const stars = document.querySelectorAll('#starRating i');
         let selectedRating = 0;
 
@@ -245,14 +270,12 @@
                 selectedRating = idx + 1;
                 resetStars();
                 highlightStars(idx);
-                stars[idx].classList.add('selected');
+                star.classList.add('selected');
             });
         });
 
         function resetStars() {
-            stars.forEach(star => {
-                star.classList.remove('hovered', 'selected');
-            });
+            stars.forEach(star => star.classList.remove('hovered', 'selected'));
         }
 
         function highlightStars(index) {
@@ -260,6 +283,55 @@
                 stars[i].classList.add('hovered');
             }
         }
+
+        async function submitReview() {
+            const comment = document.getElementById('commentInput').value.trim();
+
+            if (selectedRating === 0 || comment === "") {
+                alert("Please select a star rating and write a comment.");
+                return;
+            }
+
+            const user = auth.currentUser;
+            if (!user) {
+                alert("You must be logged in to submit a review.");
+                return;
+            }
+
+            const reviewData = {
+                rating: selectedRating,
+                comment: comment,
+                email: user.email,
+                username: user.displayName || "Anonymous"
+            };
+
+            try {
+                const response = await fetch("http://localhost:8080/api/reviews", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(reviewData)
+                });
+
+                if (response.ok) {
+                    alert("Review submitted successfully!");
+                    document.getElementById("reviewModal").close();
+                    selectedRating = 0;
+                    resetStars();
+                    document.getElementById('commentInput').value = "";
+                } else {
+                    alert("Error submitting review.");
+                }
+
+            } catch (err) {
+                console.error("Submit error:", err);
+                alert("Something went wrong.");
+            }
+        }
+
+        document.getElementById('submitReviewBtn').addEventListener('click', submitReview);
+
     </script>
 
     </body>

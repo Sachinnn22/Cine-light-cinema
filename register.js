@@ -232,6 +232,10 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
         const userCredential = await auth.createUserWithEmailAndPassword(email, password);
         const uid = userCredential.user.uid;
 
+        await userCredential.user.updateProfile({
+            displayName: username
+        });
+
         const now = new Date();
 
         const registerDate = now.toLocaleDateString('en-CA', {
