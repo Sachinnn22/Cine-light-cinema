@@ -497,6 +497,11 @@
             </a>
 
             <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-400 mb-4 text-gray-500 hover:bg-gray-300 hover:text-gray-900 font-bold">
+                <i class="fa-solid fa-star opacity-75 w-5"></i>
+                <span>Reviews</span>
+            </a>
+
+            <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-400 mb-4 text-gray-500 hover:bg-gray-300 hover:text-gray-900 font-bold">
                 <i class="fa-solid fa-users opacity-75 w-5"></i>
                 <span>Members</span>
             </a>
@@ -508,7 +513,6 @@
 <div id="overlay"></div>
 
 <main id="content" class="w-full overflow-x-auto">
-    <!-- User Details Page -->
     <section id="user-details" class="page">
         <h3 class="mb-8 user">User Details</h3>
         <div id="card-container" class="grid grid-cols-3 gap-8 max-w-7xl mx-auto cd"></div>
@@ -672,7 +676,7 @@
             card.className =
                 "bg-white rounded-xl p-8 shadow-lg flex flex-col items-center text-center w-[310px] h-[320px] custom-border";
             card.dataset.key = user.key;
-            card.dataset.timestamp = user.val.registerTimestamp;  // <-- Add this
+            card.dataset.timestamp = user.val.registerTimestamp;
 
             card.innerHTML = `
           <img src="${user.val.photoURL}" alt="${user.val.username}" class="w-20 h-20 rounded-full object-cover mb-5 shadow-lg" />
@@ -693,7 +697,6 @@
         nextBtn.disabled = !hasMore;
     }
 
-    // =================== Sidebar Logic ===================
     const menuBtn = document.getElementById("menu-btn");
     const sidebar = document.getElementById("sidebar");
     const overlay = document.getElementById("overlay");
@@ -722,16 +725,12 @@
         icon.classList.add("fa-bars", "text-gray-600");
     });
 
-    // =================== Attach Events ===================
     nextBtn.onclick = goToNextPage;
     prevBtn.onclick = goToPreviousPage;
 
-    // =================== Initial Load ===================
     loadInitialPage();
 
-
 </script>
-
 
 <script>
 
@@ -951,7 +950,6 @@
 
         document.body.appendChild(errorElement);
 
-        // Trigger fade-in animation
         requestAnimationFrame(() => {
             errorElement.style.opacity = '1';
             errorElement.style.transform = 'translateX(-50%) translateY(0)';

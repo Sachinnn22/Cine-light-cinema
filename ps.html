@@ -1,132 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Questions List</title>
+    <meta charset="UTF-8">
+    <title>Review Cards</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f7f9fc;
-            margin: 20px;
-        }
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-        }
-        .card-container {
+        .review-card-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 16px;
-            justify-content: center; /* center cards horizontally on page */
+            gap: 19px;
+            justify-content: center;
+            padding: 20px;
         }
-        .card {
-            background: #fff;
+
+        .review-card {
+            cursor: pointer;
+            background: #ffffff;
             border-radius: 10px;
+            border: 5px solid #6a6868;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            width: 280px;
+            width: 270px;
+            min-height: 270px;
             padding: 20px;
             transition: transform 0.2s ease;
-
             display: flex;
             flex-direction: column;
-            align-items: center;   /* center children horizontally */
-            text-align: center;    /* center text */
-            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            justify-content: flex-start;
         }
-        .card:hover {
+
+        .review-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 15px rgba(0,0,0,0.15);
         }
-        .card h3 {
-            margin-top: 0;
-            color: #2c3e50;
+
+        .review-card-username {
+            margin-top: 1.2rem;
+            font-size: 30px;
+            font-weight: bold;
+            color: #2f4459;
         }
-        .card p {
-            color: #555;
-            margin: 6px 0;
-            flex-grow: 1;
+
+        .review-card-email {
+            font-size: 22px;
+            color: #2f4459;
+            margin: -10px 0 19px 0;
         }
-        .card strong {
-            color: #34495e;
+
+        .review-card-comment {
+            font-size: 30px;
+            color: #444;
+            font-weight: 700;
+            margin: 0 0 14px 0;
         }
-        .card button {
-            margin-top: 12px;
-            padding: 8px 12px;
-            background-color: #3498db;
-            border: none;
-            border-radius: 5px;
-            color: white;
-            cursor: pointer;
-            font-size: 14px;
-            transition: background-color 0.3s ease;
-        }
-        .card button:hover {
-            background-color: #2980b9;
+
+        .review-card-stars {
+            margin: 10px 0;
+            color: gold;
+            font-size: 45px;
         }
     </style>
 </head>
 <body>
-
-<h1>Questions</h1>
-<div id="questionsContainer" class="card-container">
-    <!-- Cards will be loaded here -->
-</div>
+<div class="review-card-container" id="reviewCardContainer"></div>
 
 <script>
-    function loadQuestions() {
-        const xhr = new XMLHttpRequest();
-        xhr.open('GET', 'http://localhost:8080/api/questions', true);
-
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) {
-                const container = document.getElementById('questionsContainer');
-                if (xhr.status === 200) {
-                    const questions = JSON.parse(xhr.responseText);
-                    container.innerHTML = '';
-
-                    questions.forEach(q => {
-                        const card = document.createElement('div');
-                        card.className = 'card';
-
-                        card.innerHTML = `
-              <h3>${escapeHtml(q.username)}</h3>
-              <p><strong>Email:</strong> ${escapeHtml(q.email)}</p>
-              <p><strong>Question:</strong> ${escapeHtml(q.content)}</p>
-              <button onclick="handleButtonClick(${q.id})">Reply</button>
-            `;
-
-                        container.appendChild(card);
-                    });
-                } else {
-                    container.innerHTML = '<p>Failed to load questions. Please try again later.</p>';
-                    console.error('Error fetching questions:', xhr.statusText);
-                }
-            }
-        };
-
-        xhr.send();
+    function escapeHtml(unsafe) {
+        return unsafe
+            ?.replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
     }
 
-    function handleButtonClick(id) {
-        alert('Button clicked for question ID: ' + id);
+    function generateStars(rating) {
+        const maxStars = 5;
+        let stars = '';
+        for (let i = 0; i < rating; i++) {
+            stars += '★'; // filled star
+        }
+        for (let i = rating; i < maxStars; i++) {
+            stars += '☆'; // empty star
+        }
+        return stars;
     }
 
-    function escapeHtml(text) {
-        if (!text) return '';
-        return text.replace(/[&<>"']/g, function(m) {
-            return ({
-                '&': '&amp;',
-                '<': '&lt;',
-                '>': '&gt;',
-                '"': '&quot;',
-                "'": '&#39;'
-            })[m];
-        });
+    async function fetchReviews() {
+        try {
+            const response = await fetch("http://localhost:8080/api/reviews");
+            const data = await response.json();
+
+            const container = document.getElementById("reviewCardContainer");
+            container.innerHTML = "";
+
+            data.forEach(q => {
+                const card = document.createElement("div");
+                card.className = "review-card";
+
+                const stars = generateStars(q.rating ?? 0);
+
+                card.innerHTML = `
+                    <h2 class="review-card-username">${escapeHtml(q.username ?? "Anonymous")}</h2>
+                    <p class="review-card-email">${escapeHtml(q.email ?? "N/A")}</p>
+                    <p class="review-card-comment">${escapeHtml(q.comment ?? "No comment available")}</p>
+                    <div class="review-card-stars">${stars}</div>
+                `;
+
+                container.appendChild(card);
+            });
+        } catch (error) {
+            console.error("Failed to fetch reviews:", error);
+        }
     }
 
-    window.onload = loadQuestions;
+    fetchReviews();
 </script>
-
 </body>
 </html>
