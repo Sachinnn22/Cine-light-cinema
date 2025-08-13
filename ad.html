@@ -203,6 +203,62 @@
             background-color: #353739;
         }
 
+        .review-card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 19px;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .review-card {
+            cursor: pointer;
+            background: #ffffff;
+            border-radius: 10px;
+            border: 5px solid #6a6868;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 300px;
+            min-height: 300px;
+            padding: 20px;
+            transition: transform 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            justify-content: flex-start;
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+
+        .review-card-username {
+            margin-top: 1.2rem;
+            font-size: 30px;
+            font-weight: bold;
+            color: #2f4459;
+        }
+
+        .review-card-email {
+            font-size: 22px;
+            color: #2f4459;
+            margin: -4px 0 19px 0;
+        }
+
+        .review-card-comment {
+            font-size: 30px;
+            color: #444;
+            font-weight: 700;
+            margin: 0 0 14px 0;
+        }
+
+        .review-card-stars {
+            margin: 10px 0;
+            color: gold;
+            font-size: 45px;
+        }
+
         @media (min-width: 1400px) and (max-width: 1440px){
             #content {
                 padding: 6.3rem 0.8rem;
@@ -464,7 +520,6 @@
             <span class="text-lg font-semibold text-gray-700">Logo</span>
         </div>
 
-        <!-- Navigation Section with top border -->
         <nav class="px-4 pt-4 text-gray-600 border-t border-gray-300">
             <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-400 mb-4 text-gray-500 hover:bg-gray-300 hover:text-gray-900 font-bold">
                 <i class="fa-solid fa-fire opacity-75 w-5"></i>
@@ -498,7 +553,7 @@
 
             <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-400 mb-4 text-gray-500 hover:bg-gray-300 hover:text-gray-900 font-bold">
                 <i class="fa-solid fa-star opacity-75 w-5"></i>
-                <span>Reviews</span>
+                <span>View Reviews</span>
             </a>
 
             <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-400 mb-4 text-gray-500 hover:bg-gray-300 hover:text-gray-900 font-bold">
@@ -533,6 +588,16 @@
         </div>
     </section>
 
+    <section id="review-list" class="page" style="display:none;">
+        <h3 class="mb-8 user">View Reviews</h3>
+        <div id="review-card-container" class="card-container"></div>
+        <div class="flex justify-center items-center gap-4 mt-10">
+            <button  class="btn px-4 py-2" id="pre-review">Previous</button>
+            <span id="currentPageDisplayReview" class="text-gray-700 font-semibold">Page 1</span>
+            <button  class="btn px-4 py-2" id="next-review">Next</button>
+        </div>
+    </section>
+
     <div id="replyModal" class="fixed inset-0 hidden z-50 flex items-center justify-center bg-black/50 backdrop-blur-lg">
         <div class="bg-white p-4 sm:p-6 rounded-md shadow-lg w-[90%] max-w-md mx-4">
             <h2 class="text-lg font-semibold mb-3 text-center">Reply to Question</h2>
@@ -547,7 +612,6 @@
         </div>
     </div>
 </main>
-
 
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
@@ -780,11 +844,10 @@
 
                 if (questions.length === 0) {
                     container.innerHTML = '<p>No questions available.</p>';
-                    nextBtn.disabled = true; // 🚫 Disable NEXT when no data
+                    nextBtn.disabled = true;
                     return;
                 }
 
-                // ✅ Enable NEXT if there are questions
                 nextBtn.disabled = false;
 
                 questions.forEach(q => {
@@ -870,6 +933,7 @@
     const routes = {
         'Members': 'user-details',
         'View Question': 'questions-list',
+        'View Reviews': 'review-list'
     };
 
     const navLinks = document.querySelectorAll('aside nav a');
@@ -1014,6 +1078,59 @@
             }, 500);
         }, 4000);
     }
+</script>
+
+<script>
+    function escapeHtml(unsafe) {
+        return unsafe
+            ?.replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
+    function generateStars(rating) {
+        const maxStars = 5;
+        let stars = '';
+        for (let i = 0; i < rating; i++) {
+            stars += '★'; // filled star
+        }
+        for (let i = rating; i < maxStars; i++) {
+            stars += '☆'; // empty star
+        }
+        return stars;
+    }
+
+    async function fetchReviews() {
+        try {
+            const response = await fetch("http://localhost:8080/api/reviews");
+            const data = await response.json();
+
+            const container = document.getElementById("review-card-container");
+            container.innerHTML = "";
+
+            data.forEach(q => {
+                const card = document.createElement("div");
+                card.className = "review-card";
+
+                const stars = generateStars(q.rating ?? 0);
+
+                card.innerHTML = `
+                    <h2 class="review-card-username">${escapeHtml(q.username ?? "Anonymous")}</h2>
+                    <p class="review-card-email">${escapeHtml(q.email ?? "N/A")}</p>
+                    <p class="review-card-comment">${escapeHtml(q.comment ?? "No comment available")}</p>
+                    <div class="review-card-stars">${stars}</div>
+                `;
+
+                container.appendChild(card);
+            });
+        } catch (error) {
+            console.error("Failed to fetch reviews:", error);
+        }
+    }
+
+    fetchReviews();
 </script>
 
 </body>
