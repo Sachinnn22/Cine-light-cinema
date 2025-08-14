@@ -1,3 +1,4 @@
+
 document.getElementById('dropdownToggle').addEventListener('click', () => {
     const dropdown = document.getElementById('mainDropdown');
     dropdown.classList.toggle('open');
@@ -42,19 +43,26 @@ document.addEventListener('DOMContentLoaded', () => {
     let menuOpen = false;
 
     toggleBtn.addEventListener('click', () => {
+        const submenu = document.getElementById('mobileMoviesSubmenu');
+        const userMenu = document.getElementById('mobileUserMenu');
+        const mobileSearchContainer = document.getElementById('mobile-search-container');
+        const mobileSearchInput = document.getElementById('mobile-search-input');
+
         if (menuOpen) {
             menu.style.maxHeight = '0px';
             menuOpen = false;
             toggleBtn.innerHTML = `
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            `;
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        `;
         } else {
-            const submenu = document.getElementById('mobileMoviesSubmenu');
-            const userMenu = document.getElementById('mobileUserMenu');
-            const originallyHidden = [];
+            if (!mobileSearchContainer.classList.contains('hidden')) {
+                mobileSearchContainer.classList.add('hidden');
+                if (mobileSearchInput) mobileSearchInput.value = '';
+            }
 
+            const originallyHidden = [];
             [submenu, userMenu].forEach(el => {
                 if (el && el.classList.contains('hidden')) {
                     el.classList.remove('hidden');
@@ -70,10 +78,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 menuOpen = true;
 
                 toggleBtn.innerHTML = `
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                `;
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            `;
             });
         }
     });
@@ -159,18 +167,25 @@ const mobileSearchToggle = document.getElementById('search-toggle-mobile');
 const mobileSearchContainer = document.getElementById('mobile-search-container');
 
 mobileSearchToggle.addEventListener('click', () => {
-    mobileSearchContainer.classList.toggle('hidden');
     const input = document.getElementById('mobile-search-input');
-    if (!mobileSearchContainer.classList.contains('hidden')) {
-        input.focus();
+
+    const isOpening = mobileSearchContainer.classList.contains('hidden');
+
+    mobileSearchContainer.classList.toggle('hidden');
+
+    if (isOpening) {
+        mobileMenu.style.maxHeight = '0';
+        menuOpen = false;
+
+        menuToggle.innerHTML = `
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        `;
+
+        if (input) input.focus();
     }
 });
-
-if (!mobileSearchContainer.classList.contains('hidden')) {
-    mobileSearchContainer.classList.add('hidden');
-    searchIcon.classList.remove('hidden');
-    closeIcon.classList.add('hidden');
-}
 
 document.addEventListener('DOMContentLoaded', function () {
     const toggle = document.getElementById('mobileMoviesToggle');
