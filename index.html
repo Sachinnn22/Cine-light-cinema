@@ -274,11 +274,12 @@
 </div>
 
 <div class="fixed top-20 left-4 z-50">
-    <button id="notifBtn" aria-label="Notifications" class="relative focus:outline-none">
+    <button id="notifBtn" aria-label="Notifications" class="relative focus:outline-none ml-[4px]">
         <!-- Bell Icon -->
         <svg
+                id="bellIcon"
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-8 w-8 text-gray-200 hover:text-gray-500"
+                class="h-8 w-8 text-white hover:text-gray-300 drop-shadow-md"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -291,38 +292,44 @@
             />
         </svg>
 
+        <!-- Close Icon -->
+        <svg
+                id="closeIcon"
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-8 w-8 text-white hover:text-gray-300 drop-shadow-md hidden"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+        >
+            <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"
+            />
+        </svg>
+
         <!-- Notification badge -->
         <span
                 id="notifBadge"
                 class="absolute top-0 right-0 inline-flex items-center justify-center px-1.5 py-0.5 text-[10px] font-semibold leading-none text-red-100 bg-red-600 rounded-full"
         >
-  3
-</span>
-
+      3
+    </span>
     </button>
-
-    <div
-            id="notifPanel"
-            class="hidden mt-2 w-64 bg-black bg-opacity-70 rounded-md shadow-lg border border-gray-300"
-    >
-        <div class="p-4">
-            <h3 class="text-lg font-semibold mb-2 text-white">Notifications</h3>
-            <ul class="space-y-2 max-h-48 overflow-y-auto text-gray-200">
-                <li class="text-sm hover:bg-gray-800 p-2 rounded cursor-pointer">
-                    Notification 1
-                </li>
-                <li class="text-sm hover:bg-gray-800 p-2 rounded cursor-pointer">
-                    Notification 2
-                </li>
-                <li class="text-sm hover:bg-gray-800 p-2 rounded cursor-pointer">
-                    Notification 3
-                </li>
-            </ul>
-        </div>
-    </div>
-
 </div>
 
+<div
+        id="mobile-notificationPopup"
+        class="fixed top-28 left-4 w-64 border border-gray-600 bg-black bg-opacity-90 text-white rounded-lg shadow-lg p-4 z-40 hidden"
+>
+    <h3 class="font-semibold mb-2 border-b border-gray-600 pb-1">Notifications</h3>
+    <ul class="text-sm max-h-48 overflow-y-auto">
+        <li class="mb-2">New movie "Inception 2" added!</li>
+        <li class="mb-2">Your subscription will expire in 3 days.</li>
+        <li class="mb-2">Server maintenance scheduled for tomorrow.</li>
+    </ul>
+</div>
 
 <section class="relative pt-32 pb-16 px-6 lg:px-24 min-h-[100vh] flex items-center justify-center overflow-hidden" id="home">
     <div class="absolute inset-0 bg-cover bg-center scale-105" style="background-image: url('assets/images/20250808_1324_image.png'); opacity: 0.3;"></div>
@@ -952,24 +959,29 @@
     });
 
 
-    const notifBtn = document.getElementById('notifBtn');
-    const notifPanel = document.getElementById('notifPanel');
+    const notifBtn = document.getElementById("notifBtn");
+    const notifPopup = document.getElementById("mobile-notificationPopup");
+    const bellIcon = document.getElementById("bellIcon");
+    const closeIcon = document.getElementById("closeIcon");
 
-    notifBtn.addEventListener('click', (e) => {
-        e.stopPropagation(); // prevent event bubbling
-        notifPanel.classList.toggle('hidden');
+    notifBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const isHidden = notifPopup.classList.toggle("hidden");
+
+        // Toggle icons
+        bellIcon.classList.toggle("hidden", !isHidden); // hide bell if panel is shown
+        closeIcon.classList.toggle("hidden", isHidden); // show close if panel is shown
     });
 
-    // Close dropdown if clicking outside
-    document.addEventListener('click', () => {
-        notifPanel.classList.add('hidden');
+    document.addEventListener("click", () => {
+        notifPopup.classList.add("hidden");
+        bellIcon.classList.remove("hidden");
+        closeIcon.classList.add("hidden");
     });
 
-    // Optional: prevent closing if clicking inside panel
-    notifPanel.addEventListener('click', (e) => {
+    notifPopup.addEventListener("click", (e) => {
         e.stopPropagation();
     });
-
     function showErrorMessage(message) {
         const existing = document.getElementById('floating-error');
         if (existing) existing.remove();
