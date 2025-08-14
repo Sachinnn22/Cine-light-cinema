@@ -273,6 +273,57 @@
 
 </div>
 
+<div class="fixed top-20 left-4 z-50">
+    <button id="notifBtn" aria-label="Notifications" class="relative focus:outline-none">
+        <!-- Bell Icon -->
+        <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-8 w-8 text-gray-200 hover:text-gray-500"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+        >
+            <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 10-12 0v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+            />
+        </svg>
+
+        <!-- Notification badge -->
+        <span
+                id="notifBadge"
+                class="absolute top-0 right-0 inline-flex items-center justify-center px-1.5 py-0.5 text-[10px] font-semibold leading-none text-red-100 bg-red-600 rounded-full"
+        >
+  3
+</span>
+
+    </button>
+
+    <div
+            id="notifPanel"
+            class="hidden mt-2 w-64 bg-black bg-opacity-70 rounded-md shadow-lg border border-gray-300"
+    >
+        <div class="p-4">
+            <h3 class="text-lg font-semibold mb-2 text-white">Notifications</h3>
+            <ul class="space-y-2 max-h-48 overflow-y-auto text-gray-200">
+                <li class="text-sm hover:bg-gray-800 p-2 rounded cursor-pointer">
+                    Notification 1
+                </li>
+                <li class="text-sm hover:bg-gray-800 p-2 rounded cursor-pointer">
+                    Notification 2
+                </li>
+                <li class="text-sm hover:bg-gray-800 p-2 rounded cursor-pointer">
+                    Notification 3
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+
 <section class="relative pt-32 pb-16 px-6 lg:px-24 min-h-[100vh] flex items-center justify-center overflow-hidden" id="home">
     <div class="absolute inset-0 bg-cover bg-center scale-105" style="background-image: url('assets/images/20250808_1324_image.png'); opacity: 0.3;"></div>
     <div class="absolute inset-0 "></div>
@@ -900,6 +951,24 @@
         if (menu) menu.classList.toggle('hidden');
     });
 
+
+    const notifBtn = document.getElementById('notifBtn');
+    const notifPanel = document.getElementById('notifPanel');
+
+    notifBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); // prevent event bubbling
+        notifPanel.classList.toggle('hidden');
+    });
+
+    // Close dropdown if clicking outside
+    document.addEventListener('click', () => {
+        notifPanel.classList.add('hidden');
+    });
+
+    // Optional: prevent closing if clicking inside panel
+    notifPanel.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
 
     function showErrorMessage(message) {
         const existing = document.getElementById('floating-error');
