@@ -87,17 +87,18 @@ body ,html{
 
 
 a.mobil-brand{
-    font-family: "Poppins", sans-serif !important;
-    font-size: 1.6rem !important;
-    font-weight: 800 !important;
-    letter-spacing: 2px !important;
-    background: linear-gradient(45deg, #c67d7d, #64a6c3, #1e5870, #96ceb4, #feca57);
+    font-family: "Orbitron", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    background: linear-gradient(135deg, #ae5f5f, #2984c1, #14c3b7);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     text-fill-color: transparent;
-    text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.15);
-    animation: pulseGlow 4s infinite ease-in-out;
+    text-shadow: 0 0 10px rgba(233, 30, 99, 0.4),
+    0 0 20px rgba(52, 152, 219, 0.3);
+    animation: softPulse 6s ease-in-out infinite;
     user-select: none;
 }
 
