@@ -1,0 +1,288 @@
+body, html {
+    font-family: 'Open Sans', sans-serif;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+.brand-name {
+    font-family: "Orbitron", sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    background: linear-gradient(135deg, #37a199, #8f2424, #c68711);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    text-shadow: 0 0 10px rgb(38, 52, 57), 0 0 20px rgba(45, 67, 81, 0.3);
+    animation: softPulse 6s ease-in-out infinite;
+    user-select: none;
+}
+
+.navbar-transparent {
+    background: rgba(0, 0, 0, 0.5) !important;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.dropdown-glass {
+    background: rgba(0, 0, 0, 0.8) !important;
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+.mobile-navbar-transparent {
+    background: rgba(0, 0, 0, 0.5) !important;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.mobile-dropdown-glass {
+    background: rgba(0, 0, 0, 0.8) !important;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    color: white;
+}
+
+#mobile-search-container {
+    background: rgba(20, 20, 20, 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    z-index: 999;
+    position: fixed;
+    top: 64px;
+    left: 0;
+    right: 0;
+}
+
+#search-toggle-mobile {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    color: white;
+    cursor: pointer;
+}
+
+#search-toggle-mobile svg {
+    transition: transform 0.3s ease-in-out;
+    width: 24px;
+    height: 24px;
+    transform-origin: center;
+}
+
+#search-toggle-mobile.big-icon svg {
+    transform: scale(1.3);
+}
+
+a.mobil-brand {
+    font-family: "Orbitron", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    background: linear-gradient(135deg, #37a199, #8f2424, #c68711);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    text-shadow: 0 0 10px rgb(38, 52, 57), 0 0 20px rgba(45, 67, 81, 0.3);
+    animation: softPulse 6s ease-in-out infinite;
+    user-select: none;
+}
+
+#mobile-search-input {
+    width: 75%;
+    max-width: 290px;
+    height: 32px;
+    padding: 0 10px;
+    line-height: 1;
+    border-radius: 9999px;
+    border: none;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+    box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.1);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    margin: 0 auto;
+    display: block;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+#mobile-search-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 400;
+}
+
+#mobile-search-input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.10);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25);
+}
+
+#menu-toggle {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+.dropdown-glass-movie {
+    background: rgba(0, 0, 0, 0) !important;
+    backdrop-filter: blur(2px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: #aeaba6;
+}
+
+.dropdown-content {
+    display: none;
+}
+
+.dropdown.open .dropdown-content {
+    display: block;
+}
+
+.dropdown-glass a {
+    color: white;
+}
+
+.dropdown-glass a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+#searchInput {
+    max-width: 0;
+    opacity: 0;
+    transition: max-width 0.3s ease, opacity 0.3s ease;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: white;
+}
+
+#searchInput::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+#searchInput.show {
+    max-width: 200px;
+    opacity: 1;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+#notificationPopup {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    display: none !important;
+    position: fixed;
+    bottom: -11rem;
+    right: 1rem;
+    width: 18rem;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    padding: 1rem;
+    z-index: 60;
+}
+
+#notificationPopup.show {
+    display: block !important;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#notificationPopup.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    display: none !important;
+}
+
+#userToggle {
+    position: relative;
+    width: 50px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #2b2b2c;
+    color: white;
+    font-weight: bold;
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+#userInitial {
+    user-select: none;
+    z-index: 10;
+}
+
+#defaultUserIcon {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    pointer-events: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+}
+
+#mobile-menu {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease;
+}
+
+#premiumToast {
+    position: fixed;
+    bottom: 1rem;
+    left: 50%;
+    transform: translate(-50%, 100%);
+    background-color: #dc2626;
+    color: white;
+    padding: 1rem 1.25rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+    z-index: 50;
+    user-select: none;
+}
+
+#premiumToast.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translate(-50%, 0);
+}
+
+.disabled-link {
+    color: rgba(255, 255, 255, 0.5) !important;
+    cursor: not-allowed !important;
+    user-select: none;
+    opacity: 0.6;
+}
+
+@media (min-width: 1024px) and (max-width: 1450px) {
+    #notifBtn {
+        display: none;
+    }
+}

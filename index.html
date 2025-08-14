@@ -16,6 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;500&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="st.css">
+    <link rel="stylesheet" href="menu-bar.css">
     <link rel="stylesheet" href="fter.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css">
 
@@ -133,13 +134,11 @@
         <button id="search-toggle-mobile"
                 class="text-white p-2 rounded-full bg-transparent border-none outline-none focus:outline-none"
                 aria-label="Toggle Search">
-            <!-- Search Icon -->
             <svg id="search-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                       d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
 
-            <!-- Close Icon, hidden initially -->
             <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                       d="M6 18L18 6M6 6l12 12" />
@@ -216,7 +215,7 @@
 
         <div id="mobileMoviesSubmenu" class="ml-6 mt-1 space-y-1 hidden">
             <a href="#" class="mobile-menu-link flex items-center gap-2 px-4 py-2 rounded-md hover:bg-white/10 text-white text-sm">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z" />
                 </svg>
                 Action
@@ -233,7 +232,7 @@
                 </svg>
                 Sci-Fi
             </a>
-            <a href="#" class="mobile-menu-link mobile-menu-link flex items-center gap-2 px-4 py-2 rounded-md hover:bg-white/10 text-white text-sm">
+            <a href="#" class="mobile-menu-link flex items-center gap-2 px-4 py-2 rounded-md hover:bg-white/10 text-white text-sm">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 4.5 0 116.364 6.364L12 21.682l-7.682-7.682a4.5 4.5 0 010-6.364z" />
                 </svg>
@@ -254,75 +253,53 @@
     <div class="relative pt-0 pb-1" id="mobileUserDropdown">
         <button id="mobileUserToggle"
                 class="w-full flex items-center justify-between px-4 py-2 rounded-md hover:bg-white/10 text-white">
-    <span id="mobileUserDisplay" class="flex items-center gap-3 -ml-1">
-      <svg id="xray" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <circle cx="12" cy="8" r="4" />
-        <path d="M6 20c0-3.31 5.33-5 6-5s6 1.69 6 5" />
-      </svg>
-      User options
-    </span>
+            <span id="mobileUserDisplay" class="flex items-center gap-3 -ml-1">
+                <svg id="xray" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="8" r="4" />
+                    <path d="M6 20c0-3.31 5.33-5 6-5s6 1.69 6 5" />
+                </svg>
+                User options
+            </span>
             <svg id="mobileUserArrow" class="w-4 h-4 transition-transform duration-300 transform ml-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
         </button>
-
         <div id="mobileUserMenu" class="ml-8 mt-1 space-y-1 hidden"></div>
     </div>
 
     <div class="h-4"></div>
-
 </div>
 
 <div class="fixed top-20 left-4 z-30">
-    <button id="notifBtn" aria-label="Notifications" class="relative focus:outline-none ml-[4px]">
-        <!-- Bell Icon -->
-        <svg
-                id="bellIcon"
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-8 w-8 text-white hover:text-gray-300 drop-shadow-md"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-        >
-            <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 10-12 0v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-            />
-        </svg>
+    <button id="notifBtn" aria-label="Notifications" class="relative w-8 h-8" style="margin-left: 4px;">
+        <div class="absolute inset-0 flex items-center justify-center">
+            <svg id="bellIcon"
+                 xmlns="http://www.w3.org/2000/svg"
+                 class="h-8 w-8 text-white transition-opacity duration-200"
+                 fill="none"
+                 viewBox="0 0 24 24"
+                 stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 10-12 0v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+            </svg>
 
-        <!-- Close Icon -->
-        <svg
-                id="closeIcon"
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-8 w-8 text-white hover:text-gray-300 drop-shadow-md hidden"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-        >
-            <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M6 18L18 6M6 6l12 12"
-            />
-        </svg>
+            <svg id="closeIcon"
+                 xmlns="http://www.w3.org/2000/svg"
+                 class="h-8 w-8 text-white absolute transition-opacity duration-200 opacity-0 pointer-events-none"
+                 fill="none"
+                 viewBox="0 0 24 24"
+                 stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </div>
 
-        <!-- Notification badge -->
-        <span
-                id="notifBadge"
-                class="absolute top-0 right-0 inline-flex items-center justify-center px-1.5 py-0.5 text-[10px] font-semibold leading-none text-red-100 bg-red-600 rounded-full"
-        >
-      3
-    </span>
+        <span id="notifBadge"
+              class="absolute top-0 right-0 inline-flex items-center justify-center px-1.5 py-0.5 text-[10px] font-semibold leading-none text-red-100 bg-red-600 rounded-full">3</span>
     </button>
 </div>
 
-<div
-        id="mobile-notificationPopup"
-        class="fixed top-28 left-4 w-64 border border-gray-600 bg-black bg-opacity-90 text-white rounded-lg shadow-lg p-4 z-40 hidden"
->
+<div id="mobile-notificationPopup" class="fixed top-28 left-4 w-64 border border-gray-600 bg-black bg-opacity-90 text-white rounded-lg shadow-lg p-4 z-40 hidden">
     <h3 class="font-semibold mb-2 border-b border-gray-600 pb-1">Notifications</h3>
     <ul class="text-sm max-h-48 overflow-y-auto">
         <li class="mb-2">New movie "Inception 2" added!</li>
@@ -743,12 +720,10 @@
 
         if (!userMenu || !userInitial || !defaultIcon || !userToggle) return;
 
-        // Clear any previously added profile image
         const existingImg = userToggle.querySelector('img.userPhoto');
         if (existingImg) existingImg.remove();
 
         if (photoURL) {
-            // ✅ Show user photo
             userInitial.style.display = 'none';
             defaultIcon.style.display = 'none';
 
@@ -757,23 +732,22 @@
             img.alt = "User Photo";
             img.className = 'userPhoto rounded-full w-10 h-10 object-cover';
             userToggle.appendChild(img);
+
         } else if (username && username !== 'U') {
-            // ✅ Show first letter of username
             userInitial.textContent = username.charAt(0).toUpperCase();
             userInitial.style.display = 'inline';
             defaultIcon.style.display = 'none';
         } else {
-            // ❌ Logged out or anonymous
             userInitial.textContent = '';
             userInitial.style.display = 'none';
             defaultIcon.style.display = 'inline';
         }
 
         if (username && username !== 'U') {
-            userMenu.innerHTML = `
-    <li><a href="profile.html"><i class="fas fa-user"></i> My Profile</a></li>
-    <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
-`;
+                userMenu.innerHTML = `
+        <li><a href="profile.html"><i class="fas fa-user"></i> My Profile</a></li>
+        <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
+    `;
 
             document.getElementById('logoutBtn').addEventListener('click', async (e) => {
                 e.preventDefault();
@@ -799,23 +773,22 @@
             });
 
         } else {
-            userMenu.innerHTML = `
-          <li>
-  <a href="register.html" class="flex items-center gap-2">
-    <i class="fas fa-user"></i> <!-- User Icon -->
-    Sign In
-  </a>
-</li>
-<li>
-  <a href="#" id="buyPremiumLink" class="flex items-center gap-2">
-    <i class="fas fa-crown"></i> <!-- Premium Icon -->
-    Buy Premium
-  </a>
-</li>
-
-        `;
-        }
-    }
+                    userMenu.innerHTML = `
+                  <li>
+          <a href="register.html" class="flex items-center gap-2">
+            <i class="fas fa-user"></i>
+            Sign In
+          </a>
+        </li>
+        <li>
+          <a href="#" id="buyPremiumLink" class="flex items-center gap-2">
+            <i class="fas fa-crown"></i>
+            Buy Premium
+          </a>
+        </li>
+                `;
+                }
+            }
 
     onAuthStateChanged(auth, async (user) => {
         if (user) {
@@ -855,12 +828,10 @@
             updateUserDropdown('', '');
             updateMobileUserDropdown('', '');
 
-
             document.getElementById('logoutBtn')?.classList.add('hidden');
             document.getElementById('loginBtn')?.classList.remove('hidden');
         }
     });
-
 
     function updateMobileUserDropdown(username, photoURL = null) {
         const mobileUserDisplay = document.getElementById('mobileUserDisplay');
@@ -890,14 +861,14 @@
         }
 
         if (username && username !== 'U') {
-            mobileUserMenu.innerHTML = `
-<a href="profile.html" class="block px-4 py-2 hover:bg-white/10 text-white rounded-md font-light ml-4">
-        <i class="fas fa-user mr-2"></i>My Profile
-    </a>
-    <a href="#" id="mobileLogoutBtn" class="block px-4 py-2 hover:bg-white/10 text-white rounded-md font-light ml-4">
-        <i class="fas fa-sign-out-alt mr-2"></i>Log Out
-    </a>
-`;
+                    mobileUserMenu.innerHTML = `
+        <a href="profile.html" class="block px-4 py-2 hover:bg-white/10 text-white rounded-md font-light ml-4">
+                <i class="fas fa-user mr-2"></i>My Profile
+            </a>
+            <a href="#" id="mobileLogoutBtn" class="block px-4 py-2 hover:bg-white/10 text-white rounded-md font-light ml-4">
+                <i class="fas fa-sign-out-alt mr-2"></i>Log Out
+            </a>
+        `;
             document.getElementById('mobileLogoutBtn').addEventListener('click', async (e) => {
                 e.preventDefault();
                 try {
@@ -918,6 +889,7 @@
                     document.getElementById('mobileUserMenu')?.classList.add('hidden');
                     const mobileMenu = document.getElementById('mobile-menu');
                     const menuToggle = document.getElementById('menu-toggle');
+
                     if (mobileMenu && menuToggle) {
                         mobileMenu.style.maxHeight = '0';
                         menuToggle.innerHTML = `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -941,47 +913,17 @@
             });
 
         } else {
-            mobileUserMenu.innerHTML = `
-    <a href="register.html" class="block px-4 py-2 hover:bg-white/10 text-white font-light rounded-md">
-        <i class="fas fa-sign-in-alt mr-2"></i>Sign In
-    </a>
-    <a href="#" class="block px-4 py-2 hover:bg-white/10 text-white font-light rounded-md">
-        <i class="fas fa-crown mr-2"></i>Buy Premium
-    </a>
-`;
-
-
+                    mobileUserMenu.innerHTML = `
+            <a href="register.html" class="block px-4 py-2 hover:bg-white/10 text-white font-light rounded-md">
+                <i class="fas fa-sign-in-alt mr-2"></i>Sign In
+            </a>
+            <a href="#" class="block px-4 py-2 hover:bg-white/10 text-white font-light rounded-md">
+                <i class="fas fa-crown mr-2"></i>Buy Premium
+            </a>
+        `;
         }
     }
-    document.getElementById('mobileUserToggle')?.addEventListener('click', () => {
-        const menu = document.getElementById('mobileUserMenu');
-        if (menu) menu.classList.toggle('hidden');
-    });
 
-
-    const notifBtn = document.getElementById("notifBtn");
-    const notifPopup = document.getElementById("mobile-notificationPopup");
-    const bellIcon = document.getElementById("bellIcon");
-    const closeIcon = document.getElementById("closeIcon");
-
-    notifBtn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        const isHidden = notifPopup.classList.toggle("hidden");
-
-        // Toggle icons
-        bellIcon.classList.toggle("hidden", !isHidden); // hide bell if panel is shown
-        closeIcon.classList.toggle("hidden", isHidden); // show close if panel is shown
-    });
-
-    document.addEventListener("click", () => {
-        notifPopup.classList.add("hidden");
-        bellIcon.classList.remove("hidden");
-        closeIcon.classList.add("hidden");
-    });
-
-    notifPopup.addEventListener("click", (e) => {
-        e.stopPropagation();
-    });
     function showErrorMessage(message) {
         const existing = document.getElementById('floating-error');
         if (existing) existing.remove();
@@ -1004,7 +946,6 @@
         </div>
     `;
 
-        // Use inline styles for accurate positioning
         errorElement.style.position = 'fixed';
         errorElement.style.top = '5.3rem';
         errorElement.style.left = '50%';
@@ -1019,7 +960,6 @@
 
         document.body.appendChild(errorElement);
 
-        // Trigger fade-in animation
         requestAnimationFrame(() => {
             errorElement.style.opacity = '1';
             errorElement.style.transform = 'translateX(-50%) translateY(0)';
@@ -1057,7 +997,6 @@
         </div>
     `;
 
-        // Apply floating styles
         successElement.style.position = 'fixed';
         successElement.style.top = '5rem';
         successElement.style.left = '50%';
@@ -1072,7 +1011,6 @@
 
         document.body.appendChild(successElement);
 
-        // Trigger fade-in animation
         requestAnimationFrame(() => {
             successElement.style.opacity = '1';
             successElement.style.transform = 'translateX(-50%) translateY(0)';
@@ -1129,179 +1067,8 @@
 
 </script>
 
-<script>
-
-
-    document.getElementById('dropdownToggle').addEventListener('click', () => {
-        const dropdown = document.getElementById('mainDropdown');
-        dropdown.classList.toggle('open');
-    });
-
-    document.getElementById('userToggle').addEventListener('click', () => {
-        const dropdown = document.getElementById('userDropdown');
-        dropdown.classList.toggle('open');
-    });
-
-    const searchInput = document.getElementById('searchInput');
-    const searchToggle = document.getElementById('searchToggle');
-    searchToggle.addEventListener('click', () => {
-        if (searchInput.classList.contains('show')) {
-            searchInput.classList.remove('show');
-            searchInput.value = '';
-            searchInput.blur();
-        } else {
-            searchInput.classList.add('show');
-            searchInput.focus();
-        }
-    });
-
-    const newReleaseLock = document.getElementById('newReleaseLock');
-    const premiumToast = document.getElementById('premiumToast');
-
-    newReleaseLock.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (!premiumToast.classList.contains('show')) {
-            premiumToast.classList.add('show');
-            setTimeout(() => {
-                premiumToast.classList.remove('show');
-            }, 3000);
-        }
-    });
-
-    const notificationBtn = document.getElementById('notificationBtn');
-    const notificationPopup = document.getElementById('notificationPopup');
-
-    if (notificationBtn && notificationPopup) {
-        notificationBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            if (notificationPopup.classList.contains('show')) {
-                notificationPopup.classList.remove('show');
-                notificationPopup.classList.add('hidden');
-            } else {
-                notificationPopup.classList.add('show');
-                notificationPopup.classList.remove('hidden');
-            }
-        });
-
-        const searchToggleMobile = document.getElementById('search-toggle-mobile');
-
-        const searchIcon = document.getElementById('search-icon');
-        const closeIcon = document.getElementById('close-icon');
-
-        searchToggleMobile.addEventListener('click', () => {
-            searchIcon.classList.toggle('hidden');
-            closeIcon.classList.toggle('hidden');
-        });
-
-        document.addEventListener('click', (e) => {
-            if (!notificationPopup.contains(e.target) && !notificationBtn.contains(e.target)) {
-                notificationPopup.classList.remove('show');
-                notificationPopup.classList.add('hidden');
-            }
-        });
-    }
-
-    const mobileSearchToggle = document.getElementById('search-toggle-mobile');
-    const mobileSearchContainer = document.getElementById('mobile-search-container');
-
-    mobileSearchToggle.addEventListener('click', () => {
-        mobileSearchContainer.classList.toggle('hidden');
-        const input = document.getElementById('mobile-search-input');
-        if (!mobileSearchContainer.classList.contains('hidden')) {
-            input.focus();
-        }
-    });
-    document.addEventListener('DOMContentLoaded', () => {
-        const toggleBtn = document.getElementById('menu-toggle');
-        const menu = document.getElementById('mobile-menu');
-
-        let menuOpen = false;
-
-        toggleBtn.addEventListener('click', () => {
-            if (menuOpen) {
-                // CLOSE MENU
-                menu.style.maxHeight = '0px';
-                menuOpen = false;
-                toggleBtn.innerHTML = `
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            `;
-            } else {
-                // TEMPORARILY REVEAL hidden elements for accurate height
-                const submenu = document.getElementById('mobileMoviesSubmenu');
-                const userMenu = document.getElementById('mobileUserMenu');
-
-                const originallyHidden = [];
-
-                [submenu, userMenu].forEach(el => {
-                    if (el && el.classList.contains('hidden')) {
-                        el.classList.remove('hidden');
-                        originallyHidden.push(el);
-                    }
-                });
-
-                // Wait for DOM to reflow so we can measure scrollHeight
-                requestAnimationFrame(() => {
-                    const fullHeight = menu.scrollHeight + 50; // Optional padding
-
-                    // Hide them again after measuring
-                    originallyHidden.forEach(el => el.classList.add('hidden'));
-
-                    // OPEN MENU
-                    menu.style.maxHeight = fullHeight + 'px';
-                    menuOpen = true;
-
-                    toggleBtn.innerHTML = `
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                `;
-                });
-            }
-        });
-    });
-
-
-    document.addEventListener('DOMContentLoaded', function () {
-        const toggle = document.getElementById('mobileMoviesToggle');
-        const submenu = document.getElementById('mobileMoviesSubmenu');
-        const arrow = document.getElementById('mobileMoviesArrow');
-
-        toggle.addEventListener('click', function () {
-            submenu.classList.toggle('hidden');
-            arrow.classList.toggle('rotate-180'); // Optional: rotates the arrow
-        });
-    });
-
-    const mobileMenu = document.getElementById('mobile-menu');
-    const menuToggle = document.getElementById('menu-toggle');
-
-    // Close the mobile menu when any mobile menu link is clicked
-    document.querySelectorAll('.mobile-menu-link').forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenu.style.maxHeight = '0';
-
-            menuToggle.classList.remove('open', 'active', 'menu-open');
-
-            const menuIcon = menuToggle.querySelector('svg');
-            if (menuIcon) {
-                menuIcon.innerHTML = `
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16" />
-        `;
-            }
-        });
-    });
-
-
-    function autoResize(textarea) {
-        textarea.style.height = 'auto';
-        textarea.style.height = textarea.scrollHeight + 'px';
-    }
-</script>
-
 <script src="https://unpkg.com/preline@latest/dist/preline.js"></script>
+<script src="./menu-bar.js" type="module"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script>
