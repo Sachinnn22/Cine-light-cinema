@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Pricing Plans</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="pricing.css">
+    <link rel="stylesheet" href="user_styles/pricing.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&display=swap" rel="stylesheet" />
@@ -149,58 +149,7 @@
     </div>
 </footer>
 
-<script>
-    function setActiveCard(index) {
-        const cards = document.querySelectorAll('.pricing-card');
-        cards.forEach((card, i) => {
-            card.classList.remove('active-card', 'shrink-card');
-            if (i === index) {
-                card.classList.add('active-card');
-            } else {
-                card.classList.add('shrink-card');
-            }
-        });
-    }
-
-    window.onload = () => setActiveCard(1);
-
-    function openPaymentPopup(planName, amount) {
-        var payment = {
-            sandbox: true,
-            merchant_id: "YOUR_MERCHANT_ID",
-            return_url: "https://yourdomain.com/payment-success",
-            cancel_url: "https://yourdomain.com/payment-cancel",
-            notify_url: "https://yourdomain.com/payment-notify",
-            order_id: "ORDER_" + new Date().getTime(),
-            items: planName + " Plan",
-            currency: "LKR",
-            amount: amount,
-            first_name: "CustomerFirstName",
-            last_name: "CustomerLastName",
-            email: "customer@example.com",
-            phone: "0771234567",
-            address: "No. 1, Main Street",
-            city: "Colombo",
-            country: "Sri Lanka"
-        };
-
-        payhere.startPayment(payment);
-
-        payhere.onCompleted = function(orderId) {
-            alert("Payment completed. OrderID: " + orderId);
-        };
-
-        payhere.onDismissed = function() {
-            alert("Payment dismissed");
-        };
-
-        payhere.onError = function(error) {
-            alert("Error occurred: " + error);
-        };
-    }
-
-</script>
-
+<script src="user_script/pricing.js" type="module"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
 <script src="https://www.payhere.lk/lib/payhere.js"></script>
 
