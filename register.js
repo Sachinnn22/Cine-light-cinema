@@ -14,6 +14,83 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.database();
 
+document.getElementById('registerForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const username = document.getElementById('username').value.trim();
+    const email = document.getElementById('register-email').value.trim().toLowerCase();
+    const password = document.getElementById('register-password').value;
+
+    if (!username || !email || !password) {
+        showErrorMessage('All fields are required.');
+        return;
+    }
+
+    const usernameRegex = /^[a-zA-Z0-9]{3,}$/;
+    if (!usernameRegex.test(username)) {
+        showErrorMessage('Username need at least 3 letters or numbers only');
+        return;
+    }
+
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{6,}$/;
+    if (!passwordRegex.test(password)) {
+        showErrorMessage('make strong password with minimum 6 characters');
+        return;
+    }
+
+    try {
+        const snapshot = await db.ref('users').orderByChild('username').equalTo(username).once('value');
+        if (snapshot.exists()) {
+            showErrorMessage('Username already taken. Please choose another.');
+            return;
+        }
+
+        const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+        const uid = userCredential.user.uid;
+
+        await userCredential.user.updateProfile({
+            displayName: username
+        });
+
+        const now = new Date();
+
+        const registerDate = now.toLocaleDateString('en-CA', {
+            timeZone: 'Asia/Colombo'
+        });
+
+        const registerTime = now.toLocaleTimeString('en-US', {
+            hour: 'numeric',
+            minute: '2-digit',
+            hour12: true,
+            timeZone: 'Asia/Colombo'
+        });
+
+        const registerTimestamp = now.getTime();
+        await db.ref('users/' + uid).set({
+            username: username,
+            email: email,
+            photoURL: `https://api.dicebear.com/6.x/bottts-neutral/svg?seed=${uid}`,
+            registerDate: registerDate,
+            registerTime: registerTime,
+            registerTimestamp: registerTimestamp
+        });
+
+        showSuccessMessage('Registration successful. Please Login now.');
+        toggleFlip();
+        document.getElementById('registerForm').reset();
+
+    } catch (err) {
+        console.error("Registration error:", err);
+        if (err.code === 'auth/email-already-in-use') {
+            showErrorMessage('Email is already taken choose another');
+        } else if (err.code === 'auth/weak-password') {
+            showErrorMessage('Password is too weak.make strong one');
+        } else {
+            showErrorMessage(`Registration error: ${err.message}`);
+        }
+    }
+});
+
 document.querySelector('.front form').addEventListener('submit', async (e) => {
     e.preventDefault();
     const username = document.getElementById('name').value.trim();
@@ -78,6 +155,63 @@ document.querySelector('.front form').addEventListener('submit', async (e) => {
 
         console.error("Firebase login error:", code, err.message);
     }
+});
+
+const googleProvider = new firebase.auth.GoogleAuthProvider();
+
+document.getElementById('googleSignInBtn').addEventListener('click', () => {
+    auth.signInWithPopup(googleProvider)
+        .then(async (result) => {
+            const user = result.user;
+
+            if (user) {
+                const idToken = await user.getIdToken();
+                document.cookie = `firebaseToken=${idToken}; path=/; Secure; SameSite=Strict; max-age=3600`;
+
+                console.log('Firebase ID Token:', idToken);
+
+                const userRef = db.ref('users/' + user.uid);
+
+                userRef.once('value').then(snapshot => {
+                    const now = new Date();
+                    const registerDate = now.toLocaleDateString('en-CA', { timeZone: 'Asia/Colombo' });
+                    const registerTime = now.toLocaleTimeString('en-US', {
+                        hour: 'numeric',
+                        minute: '2-digit',
+                        hour12: true,
+                        timeZone: 'Asia/Colombo'
+                    });
+                    const registerTimestamp = now.getTime();
+
+                    if (!snapshot.exists()) {
+                        userRef.set({
+                            username: user.displayName || 'google_user',
+                            email: user.email,
+                            photoURL: user.photoURL || '',
+                            registerDate,
+                            registerTime,
+                            registerTimestamp,
+                            lastLoginTimestamp: registerTimestamp,
+                            loginCount: 1
+                        }).then(() => {
+                            window.location.href = 'index.html';
+                        });
+                    } else {
+                        const currentLoginCount = snapshot.val().loginCount || 0;
+                        userRef.update({
+                            lastLoginTimestamp: registerTimestamp,
+                            loginCount: currentLoginCount + 1
+                        }).then(() => {
+                            window.location.href = 'index.html';
+                        });
+                    }
+                });
+            }
+        })
+        .catch((error) => {
+            console.error('Google popup error:', error);
+            showErrorMessage(`Google login failed: ${error.message}`);
+        });
 });
 
 function showErrorMessage(message) {
@@ -198,141 +332,6 @@ toggleBtns.forEach(toggleBtn => {
     });
 });
 
-document.getElementById('registerForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    const username = document.getElementById('username').value.trim();
-    const email = document.getElementById('register-email').value.trim().toLowerCase();
-    const password = document.getElementById('register-password').value;
-
-    if (!username || !email || !password) {
-        showErrorMessage('All fields are required.');
-        return;
-    }
-
-    const usernameRegex = /^[a-zA-Z0-9]{3,}$/;
-    if (!usernameRegex.test(username)) {
-        showErrorMessage('Username need at least 3 letters or numbers only');
-        return;
-    }
-
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{6,}$/;
-    if (!passwordRegex.test(password)) {
-        showErrorMessage('make strong password with minimum 6 characters');
-        return;
-    }
-
-    try {
-        const snapshot = await db.ref('users').orderByChild('username').equalTo(username).once('value');
-        if (snapshot.exists()) {
-            showErrorMessage('Username already taken. Please choose another.');
-            return;
-        }
-
-        const userCredential = await auth.createUserWithEmailAndPassword(email, password);
-        const uid = userCredential.user.uid;
-
-        await userCredential.user.updateProfile({
-            displayName: username
-        });
-
-        const now = new Date();
-
-        const registerDate = now.toLocaleDateString('en-CA', {
-            timeZone: 'Asia/Colombo'
-        });
-
-        const registerTime = now.toLocaleTimeString('en-US', {
-            hour: 'numeric',
-            minute: '2-digit',
-            hour12: true,
-            timeZone: 'Asia/Colombo'
-        });
-
-        const registerTimestamp = now.getTime();
-        await db.ref('users/' + uid).set({
-            username: username,
-            email: email,
-            photoURL: `https://api.dicebear.com/6.x/bottts-neutral/svg?seed=${uid}`,
-            registerDate: registerDate,
-            registerTime: registerTime,
-            registerTimestamp: registerTimestamp
-        });
-
-        showSuccessMessage('Registration successful. Please Login now.');
-        toggleFlip();
-        document.getElementById('registerForm').reset();
-
-    } catch (err) {
-        console.error("Registration error:", err);
-        if (err.code === 'auth/email-already-in-use') {
-            showErrorMessage('Email is already taken choose another');
-        } else if (err.code === 'auth/weak-password') {
-            showErrorMessage('Password is too weak.make strong one');
-        } else {
-            showErrorMessage(`Registration error: ${err.message}`);
-        }
-    }
-});
-
-const googleProvider = new firebase.auth.GoogleAuthProvider();
-
-document.getElementById('googleSignInBtn').addEventListener('click', () => {
-    auth.signInWithPopup(googleProvider)
-        .then(async (result) => {
-            const user = result.user;
-
-            if (user) {
-                const idToken = await user.getIdToken();
-                document.cookie = `firebaseToken=${idToken}; path=/; Secure; SameSite=Strict; max-age=3600`;
-
-                console.log('Firebase ID Token:', idToken);
-
-                const userRef = db.ref('users/' + user.uid);
-
-                userRef.once('value').then(snapshot => {
-                    const now = new Date();
-                    const registerDate = now.toLocaleDateString('en-CA', { timeZone: 'Asia/Colombo' });
-                    const registerTime = now.toLocaleTimeString('en-US', {
-                        hour: 'numeric',
-                        minute: '2-digit',
-                        hour12: true,
-                        timeZone: 'Asia/Colombo'
-                    });
-                    const registerTimestamp = now.getTime();
-
-                    if (!snapshot.exists()) {
-                        userRef.set({
-                            username: user.displayName || 'google_user',
-                            email: user.email,
-                            photoURL: user.photoURL || '',
-                            registerDate,
-                            registerTime,
-                            registerTimestamp,
-                            lastLoginTimestamp: registerTimestamp,
-                            loginCount: 1
-                        }).then(() => {
-                            window.location.href = 'index.html';
-                        });
-                    } else {
-                        const currentLoginCount = snapshot.val().loginCount || 0;
-                        userRef.update({
-                            lastLoginTimestamp: registerTimestamp,
-                            loginCount: currentLoginCount + 1
-                        }).then(() => {
-                            window.location.href = 'index.html';
-                        });
-                    }
-                });
-            }
-        })
-        .catch((error) => {
-            console.error('Google popup error:', error);
-            showErrorMessage(`Google login failed: ${error.message}`);
-        });
-});
-
-//forgot password modal start
 function forgotPassword() {
     openForgotModal();
 }
