@@ -6,7 +6,7 @@ body, html {
 
 .brand-name {
     font-family: "Orbitron", sans-serif;
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 700;
     letter-spacing: 3px;
     background: linear-gradient(135deg, #37a199, #8f2424, #c68711);
