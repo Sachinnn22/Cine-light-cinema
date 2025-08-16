@@ -54,8 +54,8 @@ nav {
 
 .foot-head{
     font-family: "Poppins", sans-serif;
-    font-size: 1.6rem;
-    font-weight: 800;
+    font-size: 1.7rem;
+    font-weight: 900;
     letter-spacing: 5px;
     background: linear-gradient(45deg, #c67d7d, #497588, #2b8fb6, #96ceb4, #feca57);
     -webkit-background-clip: text;
@@ -77,9 +77,9 @@ nav {
 
 .foot-sub{
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.91rem;
     letter-spacing: 0.7px;
-    width: 220px;
+    width: 225px;
 }
 
 .fallow {
@@ -156,6 +156,10 @@ nav {
     .fa-house {
         font-size: 1.4rem !important;
     }
+
+    .nav-logo-text {
+        font-size: 1.4rem !important;
+    }
 }
 
 @media (min-width: 375px) and (max-width: 424px){
@@ -167,12 +171,16 @@ nav {
     .fa-house {
         font-size: 1.3rem !important;
     }
+
+    .nav-logo-text {
+        font-size: 1.3rem !important;
+    }
 }
 
 @media (min-width: 320px) and (max-width: 374px){
     nav {
-        padding-top: 0.5rem !important;
-        padding-bottom: 0.5rem !important;
+        padding-top: 0.9rem !important;
+        padding-bottom: 0.9rem !important;
     }
 
     .fa-house {
@@ -180,7 +188,7 @@ nav {
     }
 
     .nav-logo-text {
-        font-size: 1.1rem !important;
+        font-size: 1.2rem !important;
     }
 }
 
