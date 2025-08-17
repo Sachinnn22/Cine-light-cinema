@@ -7,6 +7,7 @@
         <script src="https://cdn.tailwindcss.com"></script>
         <link href="https://cdn.jsdelivr.net/npm/daisyui@latest/dist/full.css" rel="stylesheet" />
         <link rel="stylesheet" href="user_styles/about-us.css">
+        <link rel="stylesheet" href="user_styles/comment-model.css">
         <link rel="stylesheet"
               href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
               crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -42,12 +43,17 @@
         </div>
     </nav>
 
-    <section class="bg-black text-white shadow-lg min-h-[50vh] flex items-center justify-center border-b border-white px-4 sm:px-6">
+    <section class="bg-black shadow-lg min-h-[50vh] flex items-center justify-center border-b border-white px-4 sm:px-6 font-sans">
         <div class="max-w-6xl mx-auto text-center pt-16 sm:pt-20">
-            <h1 class="text-2xl sm:text-3xl md:text-5xl font-extrabold ab-head">
-                ABOUT CINE LIGHT
+            <!-- Title -->
+            <h1 class="text-2xl sm:text-3xl md:text-5xl font-extrabold tracking-wide font-serif text-gray-100"
+                style="text-shadow: 0 2px 6px rgba(161,20,20,0.3);">
+                ABOUT <span style="text-shadow: 0 2px 6px rgba(255,5,5,0.3);">CINE LIGHT</span>
             </h1>
-            <p class="mt-3 text-sm sm:text-base sm:text-lg text-gray-300 max-w-xl mx-auto px-2 sm:px-0">
+
+            <!-- Description -->
+            <p class="mt-5 text-sm sm:text-base sm:text-lg max-w-2xl mx-auto px-2 sm:px-0 font-light leading-relaxed font-mono text-gray-400"
+               style="text-shadow: 0 1px 3px rgba(255, 255, 255, 0.1);">
                 Empowering creators. Showcasing stories. Connecting audiences worldwide through the magic of film, bold collaboration, cultural diversity, and limitless creative expression.
             </p>
         </div>
@@ -141,7 +147,7 @@
             <p class="text-lg text-gray-300 mb-6 max-w-2xl mx-auto">
                 Join thousands of passionate filmmakers and enthusiastic viewers sharing honest reviews, insightful feedback, and inspiring stories on CineUpload  </p>
             <a href="#"
-               class="inline-block bg-gray-300 text-black font-semibold px-8 py-3 rounded hover:bg-gray-500 transition duration-300"
+               class="inline-block bg-gray-400 text-black font-semibold px-8 py-3 rounded hover:bg-gray-500 transition duration-300"
                onclick="event.preventDefault(); document.getElementById('reviewModal').showModal();">
                 <i class="fas fa-comment-dots mr-2"></i>Add Your Review
             </a>
@@ -219,16 +225,16 @@
 
             <div class="modal-action w-full flex justify-center gap-4 mt-4">
                 <button
-                        class="w-2/5 py-2.5 rounded-lg bg-red-500 text-white font-semibold hover:bg-red-700 transition-all flex items-center justify-center gap-2"
+                        class="w-2/5 py-2.5 rounded-lg bg-red-600 text-white font-semibold hover:bg-red-800 transition-all flex items-center justify-center gap-2"
                         onclick="document.getElementById('reviewModal').close()">
-                    <i class="fas fa-clock"></i>
+                    <i class="fas fa-clock" id="clo"></i>
                     Not Now
                 </button>
 
                 <button
                         id="submitReviewBtn"
-                        class="w-2/5 py-2.5 rounded-lg bg-blue-500 text-white font-semibold hover:bg-blue-700 transition-all flex items-center justify-center gap-2">
-                    <i class="fas fa-play"></i>
+                        class="w-2/5 py-2.5 rounded-lg bg-green-600 text-white font-semibold hover:bg-green-800 transition-all flex items-center justify-center gap-2">
+                    <i class="fas fa-play" id="sub"></i>
                     Process
                 </button>
 
@@ -237,6 +243,7 @@
         </div>
     </dialog>
 
+    <script src="user_script/comment-model.js" type="module"></script>
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
         import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
@@ -256,189 +263,6 @@
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
         const auth = getAuth();
-
-        const stars = document.querySelectorAll('#starRating i');
-        let selectedRating = 0;
-
-        stars.forEach((star, idx) => {
-            star.addEventListener('mouseover', () => {
-                resetStars();
-                highlightStars(idx);
-            });
-
-            star.addEventListener('mouseout', () => {
-                resetStars();
-                if (selectedRating > 0) {
-                    highlightStars(selectedRating - 1);
-                }
-            });
-
-            star.addEventListener('click', () => {
-                selectedRating = idx + 1;
-                resetStars();
-                highlightStars(idx);
-                star.classList.add('selected');
-            });
-        });
-
-        function resetStars() {
-            stars.forEach(star => star.classList.remove('hovered', 'selected'));
-        }
-
-        function highlightStars(index) {
-            for (let i = 0; i <= index; i++) {
-                stars[i].classList.add('hovered');
-            }
-        }
-
-        async function submitReview() {
-            const comment = document.getElementById('commentInput').value.trim();
-
-            if (selectedRating === 0 || comment === "") {
-                showErrorMessage("Please select a star rating and write a comment.");
-                return;
-            }
-
-            const user = auth.currentUser;
-            if (!user) {
-                showErrorMessage("You must be logged in to submit a review.");
-                return;
-            }
-
-            const reviewData = {
-                rating: selectedRating,
-                comment: comment,
-                email: user.email,
-                username: user.displayName || "Anonymous"
-            };
-
-            try {
-                const response = await fetch("http://localhost:8080/api/reviews", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(reviewData)
-                });
-
-                if (response.ok) {
-                    showSuccessMessage("Review submitted successfully!");
-                    document.getElementById("reviewModal").close();
-                    selectedRating = 0;
-                    resetStars();
-                    document.getElementById('commentInput').value = "";
-                } else {
-                    showErrorMessage("Error submitting review.");
-                }
-
-            } catch (err) {
-                console.error("Submit error:", err);
-                showErrorMessage("Something went wrong.");
-            }
-        }
-
-        document.getElementById('submitReviewBtn').addEventListener('click', submitReview);
-
-        function showErrorMessage(message) {
-            const existing = document.getElementById('floating-error');
-            if (existing) existing.remove();
-
-            const errorElement = document.createElement('div');
-            errorElement.id = 'floating-error';
-            errorElement.innerHTML = `
-        <div style="
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            color: white;
-            background-color: #dc2626;
-            border-radius: 0.75rem;
-            padding: 0.5rem 1rem;
-        ">
-        <i class="fas fa-info-circle" style="font-size: 1rem; margin-right: 0.5rem;"></i>
-            <span style="font-weight: 500;">${message}</span>
-        </div>
-    `;
-
-            errorElement.style.position = 'fixed';
-            errorElement.style.top = '5.8rem';
-            errorElement.style.left = '50%';
-            errorElement.style.transform = 'translateX(-50%) translateY(-20px)';
-            errorElement.style.zIndex = '9999';
-            errorElement.style.width = '460px';
-            errorElement.style.maxWidth = '90%';
-            errorElement.style.textAlign = 'center';
-            errorElement.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)';
-            errorElement.style.opacity = '0';
-            errorElement.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-
-            document.body.appendChild(errorElement);
-
-            requestAnimationFrame(() => {
-                errorElement.style.opacity = '1';
-                errorElement.style.transform = 'translateX(-50%) translateY(0)';
-            });
-
-            setTimeout(() => {
-                errorElement.style.opacity = '0';
-                errorElement.style.transform = 'translateX(-50%) translateY(-20px)';
-                setTimeout(() => {
-                    errorElement.remove();
-                }, 500);
-            }, 4000);
-        }
-
-        function showSuccessMessage(message) {
-            const existing = document.getElementById('floating-success');
-            if (existing) existing.remove();
-
-            const successElement = document.createElement('div');
-            successElement.id = 'floating-success';
-
-            successElement.innerHTML = `
-        <div style="
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            color: white;
-            background-color: #16a34a;
-            border-radius: 0.75rem;
-            padding: 0.5rem 1rem;
-        ">
-            <i class="fas fa-check-circle" style="font-size: 1rem; margin-right: 0.6rem;"></i>
-            <span style="font-weight: 500;">${message}</span>
-        </div>
-    `;
-
-            successElement.style.position = 'fixed';
-            successElement.style.top = '5.8rem';
-            successElement.style.left = '50%';
-            successElement.style.transform = 'translateX(-50%) translateY(-20px)';
-            successElement.style.zIndex = '9999';
-            successElement.style.width = '460px';
-            successElement.style.maxWidth = '90%';
-            successElement.style.textAlign = 'center';
-            successElement.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)';
-            successElement.style.opacity = '0';
-            successElement.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-
-            document.body.appendChild(successElement);
-
-            requestAnimationFrame(() => {
-                successElement.style.opacity = '1';
-                successElement.style.transform = 'translateX(-50%) translateY(0)';
-            });
-
-            setTimeout(() => {
-                successElement.style.opacity = '0';
-                successElement.style.transform = 'translateX(-50%) translateY(-20px)';
-                setTimeout(() => {
-                    successElement.remove();
-                }, 500);
-            }, 4000);
-        }
 
     </script>
 
