@@ -131,6 +131,7 @@ body {
     user-select: none;
 }
 
+
 @media (min-width: 581px) and (max-width: 990px) {
     nav {
         padding-top: 0.7rem !important;
@@ -155,6 +156,10 @@ body {
     .fa-house {
         font-size: 1.4rem !important;
     }
+
+    .nav-logo-text {
+        font-size: 1.4rem !important;
+    }
 }
 
 @media (min-width: 375px) and (max-width: 424px){
@@ -166,12 +171,16 @@ body {
     .fa-house {
         font-size: 1.3rem !important;
     }
+
+    .nav-logo-text {
+        font-size: 1.3rem !important;
+    }
 }
 
 @media (min-width: 320px) and (max-width: 374px){
     nav {
-        padding-top: 0.5rem !important;
-        padding-bottom: 0.5rem !important;
+        padding-top: 0.9rem !important;
+        padding-bottom: 0.9rem !important;
     }
 
     .fa-house {
@@ -179,7 +188,7 @@ body {
     }
 
     .nav-logo-text {
-        font-size: 1.1rem !important;
+        font-size: 1.2rem !important;
     }
 }
 
