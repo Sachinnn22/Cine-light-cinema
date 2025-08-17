@@ -4,10 +4,10 @@ body {
 
 @keyframes pulseGlow {
     0%, 100% {
-        text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.15);
+        text-shadow: 1px 1px 4px rgba(223, 154, 154, 0.15);
     }
     50% {
-        text-shadow: 0 0 12px rgba(255, 255, 255, 0.35);
+        text-shadow: 0 0 12px rgba(225, 215, 215, 0.35);
     }
 }
 
@@ -16,13 +16,26 @@ body {
     font-size: 3rem !important;
     font-weight: 700 !important;
     letter-spacing: 1.5px !important;
-    background: linear-gradient(45deg, #9e5454, #931313, #bc9344, #96ceb4, #feca57) !important;
+    background: linear-gradient(90deg, #5191a8, #469346, #ba3a3a); /* Red, Green, Blue */
+    background-size: 300% 300%;
     -webkit-background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
     background-clip: text !important;
     text-fill-color: transparent !important;
-    text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.15) !important;
-    animation: pulseGlow 4s infinite ease-in-out !important;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2) !important;
+    animation: gradientShift 6s ease-in-out infinite, pulseGlow 4s ease-in-out infinite !important;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .faq-card {
