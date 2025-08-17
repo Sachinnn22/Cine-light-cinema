@@ -16,8 +16,17 @@
     text-decoration: underline;
 }
 
-.foot-head{
-    font-family: "Poppins", sans-serif;
+@keyframes pulseGlow {
+    0%, 100% {
+        text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.15);
+    }
+    50% {
+        text-shadow: 0 0 12px rgba(255, 255, 255, 0.35);
+    }
+}
+
+.foot-head {
+    font-family: 'Montserrat', sans-serif;
     font-size: 1.6rem;
     font-weight: 800;
     letter-spacing: 5px;

@@ -157,6 +157,15 @@ nav {
     transition: all 0.3s ease;
 }
 
+@keyframes pulseGlow {
+    0%, 100% {
+        text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.15);
+    }
+    50% {
+        text-shadow: 0 0 12px rgba(255, 255, 255, 0.35);
+    }
+}
+
 .custom-glass-footer a:hover {
     color: #318fb6;
     text-decoration: underline;

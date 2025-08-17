@@ -64,8 +64,8 @@ body {
     text-decoration: underline;
 }
 
-.foot-head{
-    font-family: "Poppins", sans-serif;
+.foot-head {
+    font-family: 'Montserrat', sans-serif;
     font-size: 1.6rem;
     font-weight: 800;
     letter-spacing: 5px;
@@ -78,6 +78,7 @@ body {
     animation: pulseGlow 4s infinite ease-in-out;
     user-select: none;
 }
+
 
 .flex a img {
     transition: transform 0.3s ease;

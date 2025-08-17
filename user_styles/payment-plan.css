@@ -52,10 +52,19 @@ nav {
     text-decoration: underline;
 }
 
-.foot-head{
-    font-family: "Poppins", sans-serif;
-    font-size: 1.7rem;
-    font-weight: 900;
+@keyframes pulseGlow {
+    0%, 100% {
+        text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.15);
+    }
+    50% {
+        text-shadow: 0 0 12px rgba(255, 255, 255, 0.35);
+    }
+}
+
+.foot-head {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
     letter-spacing: 5px;
     background: linear-gradient(45deg, #c67d7d, #497588, #2b8fb6, #96ceb4, #feca57);
     -webkit-background-clip: text;
