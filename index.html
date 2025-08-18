@@ -929,56 +929,6 @@
         }
     }
 
-    function showErrorMessage(message) {
-        const existing = document.getElementById('floating-error');
-        if (existing) existing.remove();
-
-        const errorElement = document.createElement('div');
-        errorElement.id = 'floating-error';
-        errorElement.innerHTML = `
-        <div style="
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            color: white;
-            background-color: #dc2626;
-            border-radius: 0.75rem;
-            padding: 0.5rem 1rem;
-        ">
-        <i class="fas fa-info-circle" style="font-size: 1rem; margin-right: 0.5rem;"></i>
-            <span style="font-weight: 500;">${message}</span>
-        </div>
-    `;
-
-        errorElement.style.position = 'fixed';
-        errorElement.style.top = '5.3rem';
-        errorElement.style.left = '50%';
-        errorElement.style.transform = 'translateX(-50%) translateY(-20px)';
-        errorElement.style.zIndex = '9999';
-        errorElement.style.width = '460px';
-        errorElement.style.maxWidth = '90%';
-        errorElement.style.textAlign = 'center';
-        errorElement.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)';
-        errorElement.style.opacity = '0';
-        errorElement.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-
-        document.body.appendChild(errorElement);
-
-        requestAnimationFrame(() => {
-            errorElement.style.opacity = '1';
-            errorElement.style.transform = 'translateX(-50%) translateY(0)';
-        });
-
-        setTimeout(() => {
-            errorElement.style.opacity = '0';
-            errorElement.style.transform = 'translateX(-50%) translateY(-20px)';
-            setTimeout(() => {
-                errorElement.remove();
-            }, 500);
-        }, 4000);
-    }
-
     function showSuccessMessage(message) {
         const existing = document.getElementById('floating-success');
         if (existing) existing.remove();
@@ -1030,51 +980,13 @@
         }, 4000);
     }
 
-    document.getElementById("questionForm").addEventListener("submit", function (e) {
-        e.preventDefault();
-
-        const input = document.getElementById("questionInput");
-        const question = input.value.trim();
-
-        if (!question) {
-            showErrorMessage("Please enter a question.");
-            return;
-        }
-
-        const auth = getAuth();
-        const user = auth.currentUser;
-
-        if (!user) {
-            showErrorMessage("You must be logged in to submit a question.");
-            return;
-        }
-
-        const email = user.email;
-        const username = user.username || "Anonymous";
-
-        const xhr = new XMLHttpRequest();
-        xhr.open("POST", "http://localhost:8080/api/questions", true);
-        xhr.setRequestHeader("Content-Type", "application/json");
-
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 201) {
-                    showSuccessMessage("Question submitted successfully!");
-                    input.value = ""; // Clear input
-                } else {
-                    showErrorMessage("Error: " + xhr.responseText);
-                }
-            }
-        };
-
-        xhr.send(JSON.stringify({ content: question, email: email, username: username }));
-    });
-
 </script>
 
-<script src="https://unpkg.com/preline@latest/dist/preline.js"></script>
 <script src="user_script/menu-bar.js" type="module"></script>
+<script src="user_script/faqs.js" type="module"></script>
 
+<script src="https://unpkg.com/preline@latest/dist/preline.js"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script>
     AOS.init({
@@ -1083,8 +995,6 @@
         once: true,
     });
 </script>
-
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
 </body>
 </html>

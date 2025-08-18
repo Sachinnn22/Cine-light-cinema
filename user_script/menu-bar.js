@@ -32,10 +32,6 @@ document.querySelectorAll('.mobile-menu-link').forEach(link => {
     });
 });
 
-function autoResize(textarea) {
-    textarea.style.height = 'auto';
-    textarea.style.height = textarea.scrollHeight + 'px';
-}
 
 document.addEventListener('DOMContentLoaded', () => {
     const toggleBtn = document.getElementById('menu-toggle');

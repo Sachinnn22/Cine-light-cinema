@@ -111,7 +111,7 @@
     opacity: 1;
 }
 
-@media (min-width: 640px) and (max-width: 769px) {
+@media (min-width: 681px) and (max-width: 900px) {
     .faq-head{
         font-size: 3rem !important;
     }
@@ -132,7 +132,7 @@
     }
 }
 
-@media (max-width: 425px) {
+@media (min-width: 425px) and (max-width: 680px){
     .faq-head{
         font-size: 2.7rem !important;
     }
@@ -158,7 +158,7 @@
     }
 }
 
-@media (max-width: 375px) {
+@media (min-width: 375px) and (max-width: 424px){
     .faq-head{
         font-size: 2.3rem !important;
     }
@@ -184,7 +184,7 @@
     }
 }
 
-@media (max-width: 320px) {
+@media (min-width: 320px) and (max-width: 374px){
     .faq-head{
         font-size: 2.1rem !important;
     }
