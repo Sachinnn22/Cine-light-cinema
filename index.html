@@ -313,28 +313,42 @@
     </ul>
 </div>
 
-<section class="relative pt-32 pb-16 px-6 lg:px-24 min-h-[100vh] flex items-center justify-center overflow-hidden" id="home">
-    <div class="absolute inset-0 bg-cover bg-center scale-105" style="background-image: url('assets/images/20250808_1324_image.png'); opacity: 0.3;"></div>
-    <div class="absolute inset-0 "></div>
-    <div class="relative z-10 max-w-xl hero-text text-center" data-aos="fade-up">
-        <h1 class="mb-4 drop-shadow-lg" >Find Your Movie</h1>
-        <p class="mb-6 drop-shadow">
-            Discover the latest blockbusters, timeless classics, and hidden gems all in one place. Enjoy thrilling adventures, emotional dramas, and unforgettable stories, handpicked for every movie lover. Dive into a world where stories come alive and entertainment never ends.
+<section class="relative min-h-screen flex items-center justify-center px-6 lg:px-24 overflow-hidden" id="home">
+    <div class="absolute inset-0 z-0">
+        <video autoplay muted loop playsinline class="w-full h-full object-cover scale-105 opacity-80">
+            <source src="assets/images/sonic-explosion-moewalls-com.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/80 z-10 backdrop-blur-sm"></div>
+
+    <div class="relative z-20 bg-white/10 backdrop-blur-md rounded-xl shadow-2xl p-8 sm:p-10 max-w-2xl w-full text-center border border-white/20">
+        <h1 class="hero-text text-4xl sm:text-5xl font-extrabold text-white mb-4 leading-tight drop-shadow-lg">
+            Watch Your Movie
+        </h1>
+        <p class="text-white text-md sm:text-lg mb-8 leading-relaxed drop-shadow-sm hero-sub-text">
+            Discover the latest blockbusters, timeless classics, and hidden gems all in one place. Let the story begin.
         </p>
-        <div class="flex gap-3 justify-center">
-            <button class="btn btn-custom-primary flex items-center gap-2" onclick="document.getElementById('trending').scrollIntoView({behavior: 'smooth'})">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M6 4l15 8-15 8V4z" />
-                </svg>
-                Watch Movies
-            </button>
-            <button class="btn btn-outline btn-custom-outline flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M2 6l5 5 5-5 5 5 5-5v13H2V6z" />
-                </svg>
-                Buy Premium
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <input type="email" placeholder="Enter your email" class="w-full sm:w-72 px-4 py-3 rounded-lg text-black focus:outline-none shadow-md focus:ring-2 focus:ring-blue-400">
+            <button class="px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg shadow-md transition duration-300">
+                Get Started
             </button>
         </div>
+
+        <div class="flex items-center justify-center gap-4 my-6">
+            <hr class="flex-grow border-t border-white/30">
+            <span class="text-white text-sm uppercase tracking-widest opacity-70">or</span>
+            <hr class="flex-grow border-t border-white/30">
+        </div>
+
+        <p class="mt-5 text-white text-sm opacity-90">
+            <a href="#" class="inline-block px-3 py-3 bg-green-600 text-white rounded-md hover:bg-green-700 transition font-semibold" style="font-size: 1rem;">
+                Try Free Trial
+            </a>
+        </p>
     </div>
 </section>
 

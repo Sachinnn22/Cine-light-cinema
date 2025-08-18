@@ -6,30 +6,31 @@ section.pt-32.pb-16.px-6.lg\:px-24.bg-cover.bg-center.min-h-\[100vh\].flex.items
     text-align: center;
 }
 
-.hero-text h1 {
-    font-family: 'Perpetua Titling MT',serif;
-    font-size: 2.7rem;
-    line-height: 1.1;
-    font-weight: 900;
-    color: #ffffff;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
+.hero-text  {
+    font-family: 'Perpetua Titling MT', serif !important;
+    font-size: 2.7rem !important;
+    line-height: 1.1 !important;
+    font-weight: 900 !important;
+    color: #ffffff !important;
+    letter-spacing: 2.5px !important;
+    text-transform: uppercase !important;
     text-shadow:
-            2px 2px 4px rgba(0, 0, 0, 0.5),
-            0 0 10px rgba(213, 208, 208, 0.5);
+            2px 2px 4px rgba(0, 0, 0, 0.5) !important,
+0 0 10px rgba(213, 208, 208, 0.5) !important;
 }
 
-.hero-text p {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 1.125rem;
-    font-weight: 600;
-    line-height: 1.6;
-    color: #d3d1d1;
-    letter-spacing: 1.3px;
+.hero-sub-text {
+    font-family: 'Open Sans', sans-serif !important;
+    font-size: 1.125rem !important;
+    font-weight: 600 !important;
+    line-height: 1.6 !important;
+    color: #d3d1d1 !important;
+    letter-spacing: 1.3px !important;
     text-shadow:
-            1px 1px 3px rgba(0, 0, 0, 0.4),
-            0 0 5px rgba(255, 255, 255, 0.4);
+            1px 1px 3px rgba(0, 0, 0, 0.4) !important,
+0 0 5px rgba(255, 255, 255, 0.4) !important;
 }
+
 .btn-custom-primary {
     background: rgba(0, 0, 0, 0.4) !important;
     color: #f6e2e2;
