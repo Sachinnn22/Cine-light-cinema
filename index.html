@@ -338,7 +338,7 @@
     </div>
 </section>
 
-<section class="py-12" style="background: rgba(0, 0, 0, 0.5) !important;" id="movie">
+<section class="py-12" id="movie">
     <div class="max-w-7xl mx-auto px-4">
         <div class="max-w-2xl mx-auto text-center mb-2 lg:mb-10 fue">
             <h2 class="feu-head text-white text-3xl font-bold">Premier Movie Hits</h2>
@@ -693,7 +693,7 @@
 </footer>
 
 <div id="premiumToast" aria-live="assertive" aria-atomic="true" role="alert" aria-relevant="additions" aria-live="polite">
-    <i class="fas fa-info-circle" style="margin-right: 0.5rem; color: white;"></i>
+    <i class="fas fa-crown" style="margin-right: 0.5rem; color: white;"></i>
     Buy Premium To Watch
 </div>
 
@@ -749,7 +749,7 @@
         }
 
         if (username && username !== 'U') {
-                userMenu.innerHTML = `
+            userMenu.innerHTML = `
         <li><a href="profile.html"><i class="fas fa-user"></i> My Profile</a></li>
         <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
     `;
@@ -778,7 +778,7 @@
             });
 
         } else {
-                    userMenu.innerHTML = `
+            userMenu.innerHTML = `
                   <li>
           <a href="register-and-login.html" class="flex items-center gap-2">
             <i class="fas fa-user"></i>
@@ -792,8 +792,8 @@
           </a>
         </li>
                 `;
-                }
-            }
+        }
+    }
 
     onAuthStateChanged(auth, async (user) => {
         if (user) {
@@ -866,7 +866,7 @@
         }
 
         if (username && username !== 'U') {
-                    mobileUserMenu.innerHTML = `
+            mobileUserMenu.innerHTML = `
         <a href="profile.html" class="block px-4 py-2 hover:bg-white/10 text-white rounded-md font-light ml-4">
                 <i class="fas fa-user mr-2"></i>My Profile
             </a>
@@ -918,7 +918,7 @@
             });
 
         } else {
-                    mobileUserMenu.innerHTML = `
+            mobileUserMenu.innerHTML = `
             <a href="register-and-login.html" class="block px-4 py-2 hover:bg-white/10 text-white font-light rounded-md">
                 <i class="fas fa-sign-in-alt mr-2"></i>Sign In
             </a>
@@ -943,7 +943,7 @@
             justify-content: center;
             gap: 0.5rem;
             color: white;
-            background-color: #16a34a; /* Tailwind green-600 */
+            background-color: #16a34a;
             border-radius: 0.75rem;
             padding: 0.5rem 1rem;
         ">
