@@ -1,0 +1,160 @@
+.hero-text  {
+    font-family: 'Perpetua Titling MT', serif !important;
+    font-size: 2.7rem !important;
+    line-height: 1.1 !important;
+    font-weight: 900 !important;
+    color: #ffffff !important;
+    letter-spacing: 2.5px !important;
+    text-transform: uppercase !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5),
+    0 0 10px rgba(213, 208, 208, 0.5) !important;
+}
+
+.hero-sub-text {
+    font-family: 'Open Sans', sans-serif !important;
+    font-size: 1.125rem !important;
+    font-weight: 600 !important;
+    line-height: 1.6 !important;
+    color: #d3d1d1 !important;
+    letter-spacing: 1.3px !important;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4),
+    0 0 5px rgba(255, 255, 255, 0.4) !important;
+}
+
+@media (min-width: 621px) and (max-width: 800px){
+    #home {
+        padding-top: 4rem !important;
+        padding-bottom: 2rem !important;
+    }
+
+    #home .hero-text {
+        font-size: 2rem !important;
+        line-height: 2.75rem !important;
+    }
+
+    #home .hero-sub-text {
+        font-size: 1rem !important;
+        line-height: 1.5rem !important;
+    }
+
+    #home input[type="email"],
+    #home button {
+        padding: 0.75rem 1.2rem !important;
+        font-size: 1rem !important;
+        width: 100% !important;
+    }
+
+    #home .trial-button {
+        width: 50% !important;
+        display: inline-block !important;
+        text-align: center !important;
+        padding: 0.85rem 1.2rem !important;
+        font-size: 1rem !important;
+    }
+
+    #home .max-w-2xl {
+        padding: 2rem !important;
+        margin-top: 2.5rem !important;
+    }
+}
+
+@media (min-width: 425px) and (max-width: 620px){
+    #home {
+        padding-top: 4rem !important;
+        padding-bottom: 2rem !important;
+    }
+
+    #home .hero-text {
+        font-size: 1.75rem !important;
+        line-height: 2.5rem !important;
+    }
+
+    #home .hero-sub-text {
+        font-size: 0.9rem !important;
+        line-height: 1.4rem !important;
+    }
+
+    #home input[type="email"],
+    #home button {
+        padding: 0.65rem 0.9rem !important;
+        font-size: 0.85rem !important;
+        width: 100% !important;
+    }
+
+    #home .trial-button {
+        width: 100% !important;
+        display: inline-block !important;
+        text-align: center !important;
+        padding: 0.75rem 1rem !important;
+        font-size: 0.85rem !important;
+    }
+
+    #home .max-w-2xl {
+        padding: 1.5rem !important;
+        margin-top: 2rem !important;
+    }
+}
+
+@media (min-width: 375px) and (max-width: 424px){
+    #home {
+        padding-top: 4rem !important;
+        padding-bottom: 2rem !important;
+    }
+
+    #home .hero-text {
+        font-size: 1.75rem !important;
+    }
+
+    #home .hero-sub-text {
+        font-size: 0.9rem !important;
+    }
+
+    #home button,
+    #home input[type="email"] {
+        font-size: 0.85rem !important;
+        padding: 0.65rem 0.9rem !important;
+        width: 100% !important;
+    }
+
+    #home .trial-button {
+        width: 100% !important;
+        display: inline-block !important;
+        text-align: center !important;
+        padding: 0.75rem 1rem !important;
+        font-size: 0.85rem !important;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 374px){
+    #home {
+        padding-top: 4rem !important;
+        padding-bottom: 2rem !important;
+    }
+
+    #home .hero-text {
+        font-size: 1.5rem !important;
+    }
+
+    #home .hero-sub-text {
+        font-size: 0.85rem !important;
+    }
+
+    #home .max-w-2xl {
+        padding: 1rem !important;
+    }
+
+    #home button,
+    #home input[type="email"] {
+        font-size: 0.85rem !important;
+        padding: 0.65rem 0.9rem !important;
+        width: 100% !important;
+    }
+
+    #home .trial-button {
+        width: 100% !important;
+        display: inline-block !important;
+        text-align: center !important;
+        padding: 0.75rem 1rem !important;
+        font-size: 0.85rem !important;
+    }
+}
