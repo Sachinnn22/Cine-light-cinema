@@ -314,16 +314,13 @@
 </div>
 
 <section class="relative min-h-screen flex items-center justify-center px-6 lg:px-24 overflow-hidden" id="home">
-    <div class="absolute inset-0 z-0">
-        <video autoplay muted loop playsinline class="w-full h-full object-cover scale-105 opacity-80">
-            <source src="assets/images/sonic-explosion-moewalls-com.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
+        <div class="absolute inset-0 z-0">
+            <img src="assets/images/20250808_1354_image.png" alt="Background Image" class="w-full h-full object-cover scale-105 opacity-80">
+        </div>
 
-    <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/80 z-10 backdrop-blur-sm"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/80 z-10 backdrop-blur-none"></div>
 
-    <div class="relative z-20 bg-white/10 backdrop-blur-md rounded-xl shadow-2xl p-8 sm:p-10 max-w-2xl w-full text-center border border-white/20">
+    <div class="relative z-20 bg-white/10 backdrop-blur-md rounded-xl shadow-2xl p-8 sm:p-10 max-w-2xl w-full text-center border border-white/20" style="margin-top: 3.2rem;" data-aos="fade-up">
         <h1 class="hero-text text-4xl sm:text-5xl font-extrabold text-white mb-4 leading-tight drop-shadow-lg">
             Watch Your Movie
         </h1>
@@ -332,7 +329,7 @@
         </p>
 
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <input type="email" placeholder="Enter your email" class="w-full sm:w-72 px-4 py-3 rounded-lg text-black focus:outline-none shadow-md focus:ring-2 focus:ring-blue-400">
+            <input type="email" placeholder="Enter your email" class="w-full sm:w-72 px-4 py-3 rounded-lg text-black focus:outline-none shadow-md focus:ring-2 focus:ring-red-400">
             <button class="px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg shadow-md transition duration-300">
                 Get Started
             </button>
@@ -1002,11 +999,11 @@
 <script src="https://unpkg.com/preline@latest/dist/preline.js"></script>
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script>
     AOS.init({
         duration: 2000,
-        easing: 'ease-in-out',
-        once: true,
+        easing: 'ease',
     });
 </script>
 
