@@ -1,0 +1,206 @@
+.faq-head {
+    font-size: 3.2rem !important;
+    font-weight: 600 !important;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 2px !important;
+    background: linear-gradient(90deg, #669390, #dd0909, #ef2b2b) !important;
+    background-size: 200% auto !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    text-fill-color: transparent !important;
+    animation: glowShift 5s ease-in-out infinite !important;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.3) !important;
+}
+
+@keyframes glowShift {
+    0% { background-position: 0% center; }
+    50% { background-position: 100% center; }
+    100% { background-position: 0% center; }
+}
+
+.faq-sub {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #ffffff;
+    letter-spacing: 0.8px;
+    font-style: italic;
+}
+
+.faq-card {
+    background: rgba(44, 43, 43, 0.12) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 4px solid rgba(237, 233, 233, 0.5) !important;
+    transition: all 0.3s ease !important;
+    font-family: 'Poppins', 'Segoe UI', sans-serif !important;
+    color: rgba(230, 230, 230, 0.9) !important;
+    letter-spacing: 0.03em !important;
+    box-shadow: 0 8px 15px rgb(67, 66, 66) !important;
+}
+
+.faq-card:hover {
+    background: rgba(0, 0, 0, 0.15) !important;
+    border-color: rgba(192, 192, 192, 0.5) !important;
+    color: rgba(245, 245, 245, 1) !important;
+    box-shadow: 0 8px 15px rgb(138, 133, 133) !important;
+}
+
+.faq-card .hs-accordion-toggle {
+    font-size: 1.15rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.04em !important;
+    color: rgba(230, 230, 230, 0.95) !important;
+    font-family: 'Poppins', sans-serif !important;
+}
+
+.faq-card .hs-accordion-toggle:hover {
+    color: rgba(255, 255, 255, 0.95) !important;
+}
+
+.faq-card .hs-accordion-content p {
+    font-size: 1.1rem !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.02em !important;
+    color: rgba(220, 220, 220, 0.85) !important;
+    margin-top: 0.5rem !important;
+    font-family: 'Inter', sans-serif !important;
+}
+
+.hs-accordion-content {
+    transition: height 0.3s ease-in-out, padding 0.3s ease !important;
+}
+
+.hs-accordion-toggle[aria-expanded="true"] .arrow-icon {
+    transform: rotate(180deg);
+}
+
+.hs-accordion {
+    align-self: start;
+    transition: margin 0.5s ease;
+}
+
+.custom-font-size {
+    font-size: 16px;
+}
+
+#questionInput::placeholder {
+    line-height: normal;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+.centered-textarea {
+    width: 100%;
+    min-height: 3rem;
+    max-height: 300px;
+    padding: 0.75rem 1rem;
+    line-height: 1.5;
+    resize: none;
+    overflow: hidden;
+    border: 3px solid white;
+    border-radius: 8px;
+    background: transparent;
+    color: #e5e5e5;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.centered-textarea::placeholder {
+    color: #999;
+    opacity: 1;
+}
+
+@media (min-width: 640px) and (max-width: 769px) {
+    .faq-head{
+        font-size: 3rem !important;
+    }
+
+    #why-us .grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #why-us .grid > div:nth-child(3) {
+        grid-column: 1 / -1;
+        justify-self: center;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 425px) {
+    .faq-head{
+        font-size: 2.7rem !important;
+    }
+
+    #questionForm {
+        flex-direction: column;
+        align-items: flex-start;
+        max-width: 360px;
+        gap: 0.75rem;
+        padding-left: 1.5rem;
+    }
+
+    #questionInput {
+        width: 100%;
+        min-height: 3rem;
+        font-size: 0.9rem;
+    }
+
+    button[type="submit"] {
+        width: 100%;
+        padding: 0.5rem 0;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 375px) {
+    .faq-head{
+        font-size: 2.3rem !important;
+    }
+
+    #questionForm {
+        flex-direction: column;
+        align-items: flex-start;
+        max-width: 320px;
+        gap: 0.75rem;
+        padding-left: 0.9rem;
+    }
+
+    #questionInput {
+        width: 100%;
+        min-height: 3rem;
+        font-size: 0.85rem;
+    }
+
+    button[type="submit"] {
+        width: 100%;
+        padding: 0.5rem 0;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 320px) {
+    .faq-head{
+        font-size: 2.1rem !important;
+    }
+
+    #questionForm {
+        max-width: 280px;
+        gap: 0.5rem;
+    }
+
+    #questionInput {
+        font-size: 0.8rem;
+        min-height: 2.8rem;
+    }
+
+    button[type="submit"] {
+        font-size: 0.8rem;
+        padding: 0.4rem 0;
+    }
+}

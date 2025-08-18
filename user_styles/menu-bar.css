@@ -2,6 +2,7 @@ body, html {
     font-family: 'Open Sans', sans-serif;
     scroll-behavior: smooth;
     overflow-x: hidden;
+    background: linear-gradient(to bottom, #000000e6, #151515) !important;
 }
 
 .brand-name {
