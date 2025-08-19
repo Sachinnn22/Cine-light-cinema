@@ -36,6 +36,15 @@
     animation-delay: 3s;
 }
 
+@media (min-width: 802px) and (max-width: 1250px) {
+    #mv-4 {
+        display: none !important;
+    }
+    #movie .grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+}
+
 @media (min-width: 561px) and (max-width: 800px){
     #movie .grid {
         grid-template-columns: repeat(2, 1fr) !important;
