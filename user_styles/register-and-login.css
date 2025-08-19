@@ -52,6 +52,14 @@ html, body {
     z-index: 10;
 }
 
+.password-input {
+    background-image: url('https://cdn-icons-png.flaticon.com/512/159/159604.png');
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 20px 20px;
+    padding-right: 2.5rem;
+}
+
 nav {
     backdrop-filter: blur(7px);
     -webkit-backdrop-filter: blur(8px);
