@@ -140,19 +140,37 @@
             text-shadow: 0 0 10px rgb(38, 52, 57), 0 0 20px rgba(45, 67, 81, 0.3);
         }
 
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
         .all-movie-header {
-            font-size: 2.8rem !important;
+            font-size: 2.9rem !important;
             font-weight: 600 !important;
             font-family: 'Montserrat', sans-serif;
             letter-spacing: 2px !important;
-            background: linear-gradient(270deg, #669390, #dd0909, #11ac9f, #0b99d6) !important;
-            background-size: 300% 100% !important;
+            background: linear-gradient(90deg, #973434, #b35656, #12b4ed) !important;
+            background-size: 200% auto !important;
             -webkit-background-clip: text !important;
             -webkit-text-fill-color: transparent !important;
             background-clip: text !important;
             text-fill-color: transparent !important;
-            text-align: center !important;
-            padding-bottom: 1rem !important;
+            animation: glowShift 5s ease-in-out infinite !important;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.3) !important;
+        }
+
+        @keyframes glowShift {
+            0% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+            100% { background-position: 0% center; }
         }
 
     </style>
@@ -214,9 +232,25 @@
 </nav>
 
 <section class="px-4 sm:px-8 lg:px-16">
-    <h2 class="all-movie-header text-white text-3xl font-bold mb-8 border-b border-gray-600 tracking-wide font-[Orbitron]" style="padding-top: 6.5rem;">
-        Explore <span class="text-red-400">All</span> Movies
+    <h2 class="all-movie-header text-white text-3xl font-bold mb-4 tracking-wide font-[Orbitron] text-center" style="padding-top: 6.5rem;">
+        Explore Movies
     </h2>
+    <hr class="border-gray-600 mb-8 w-1/2 mx-auto">
+
+
+    <div class="flex justify-center mb-8">
+        <div class="flex items-center w-full max-w-md space-x-3">
+            <input
+                    type="text"
+                    placeholder="Search movies..."
+                    class="flex-grow rounded-full py-3 px-4 text-white bg-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-400"
+            />
+            <span class="text-gray-400 text-xl transition duration-200 hover:text-red-400 hover:scale-110 cursor-pointer">
+    <i class="fas fa-search"></i>
+</span>
+
+        </div>
+    </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <!-- Card 1 -->
