@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>CINE-LIGHT</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
@@ -157,7 +156,7 @@
             font-weight: 600 !important;
             font-family: 'Montserrat', sans-serif;
             letter-spacing: 2px !important;
-            background: linear-gradient(90deg, #973434, #b35656, #12b4ed) !important;
+            background: linear-gradient(90deg, #3cacca, #c14747, #fc466b, #3f5efb) !important;
             background-size: 200% auto !important;
             -webkit-background-clip: text !important;
             -webkit-text-fill-color: transparent !important;
@@ -172,6 +171,30 @@
             50% { background-position: 100% center; }
             100% { background-position: 0% center; }
         }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+                box-shadow: 0 10px 13px rgba(198,194,194,0.4);
+            }
+            50% {
+                transform: translateY(-10px);
+                box-shadow: 0 14px 16px rgba(198,194,194,0.6);
+            }
+        }
+
+        .movie-card-animated {
+            animation: float 6s ease-in-out infinite;
+            will-change: transform;
+        }
+
+        .movie-card-animated:nth-child(odd) {
+            animation-delay: 0s;
+        }
+        .movie-card-animated:nth-child(even) {
+            animation-delay: 3s;
+        }
+
 
     </style>
 </head>
@@ -202,16 +225,23 @@
         </div>
 
         <div class="hidden sm:flex justify-center nav-links gap-8 text-lg font-semibold items-center">
-            <a href="horror.html" class="flex items-center gap-2 border-b-2 border-transparent hover:border-red-400 hover:text-red-300 transition duration-200">
+            <a href="horror.html"
+               class="flex items-center gap-2 border-b-2 border-transparent transition duration-300 hover:text-red-400 hover:border-red-600 hover:scale-105 hover:bg-black/10 px-2 py-1 rounded-md">
                 <i class="fas fa-mask"></i> Horror
             </a>
-            <a href="comedy.html" class="flex items-center gap-2 border-b-2 border-transparent hover:border-red-400 hover:text-red-300 transition duration-200">
+
+            <a href="comedy.html"
+               class="flex items-center gap-2 border-b-2 border-transparent transition duration-300 hover:text-yellow-300 hover:border-yellow-400 hover:scale-105 hover:bg-black/10 px-2 py-1 rounded-md">
                 <i class="fas fa-theater-masks"></i> Comedy
             </a>
-            <a href="action.html" class="flex items-center gap-2 border-b-2 border-transparent hover:border-red-400 hover:text-red-300 transition duration-200">
+
+            <a href="action.html"
+               class="flex items-center gap-2 border-b-2 border-transparent transition duration-300 hover:text-blue-400 hover:border-blue-500 hover:scale-105 hover:bg-black/10 px-2 py-1 rounded-md">
                 <i class="fas fa-person-running"></i> Action
             </a>
-            <a href="fiction.html" class="flex items-center gap-2 border-b-2 border-transparent hover:border-red-400 hover:text-red-300 transition duration-200">
+
+            <a href="fiction.html"
+               class="flex items-center gap-2 border-b-2 border-transparent transition duration-300 hover:text-purple-400 hover:border-purple-500 hover:scale-105 hover:bg-black/10 px-2 py-1 rounded-md">
                 <i class="fas fa-meteor"></i> Fiction
             </a>
         </div>
@@ -232,10 +262,10 @@
 </nav>
 
 <section class="px-4 sm:px-8 lg:px-16">
-    <h2 class="all-movie-header text-white text-3xl font-bold mb-4 tracking-wide font-[Orbitron] text-center" style="padding-top: 6.5rem;">
-        Explore Movies
+    <h2 class="all-movie-header text-white text-3xl font-bold mb-4 tracking-wide text-center" style="padding-top: 6.5rem;">
+        Find More Movies
     </h2>
-    <hr class="border-gray-600 mb-8 w-1/2 mx-auto">
+    <hr class="border-gray-400 mb-8 w-1/2 mx-auto">
 
 
     <div class="flex justify-center mb-8">
@@ -243,9 +273,10 @@
             <input
                     type="text"
                     placeholder="Search movies..."
-                    class="flex-grow rounded-full py-3 px-4 text-white bg-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-400"
+                    class="flex-grow rounded-full py-3 px-4 text-black bg-[#3c3d3c] placeholder-gray-100 focus:outline-none focus:ring-2 focus:ring-white"
             />
-            <span class="text-gray-400 text-xl transition duration-200 hover:text-red-400 hover:scale-110 cursor-pointer">
+
+            <span class="text-gray-100 text-xl transition duration-200 hover:text-gray-500 hover:scale-110 cursor-pointer">
     <i class="fas fa-search"></i>
 </span>
 
@@ -253,8 +284,7 @@
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <!-- Card 1 -->
-        <article class="relative bg-[#1c1c1c] rounded-2xl overflow-hidden text-white border-2 border-gray-300 shadow-xl p-4 transition-transform duration-300 hover:scale-105 hover:border-red-400">
+        <article class="movie-card-animated relative bg-[#1c1c1c] rounded-2xl overflow-hidden text-white border-2 border-gray-300 shadow-xl p-4">
             <div class="relative">
                 <img src="assets/images/Avengers-Endgame-Marvel-SuperHeros.jpg" alt="Avengers Endgame" class="rounded-xl w-full h-64 object-cover" />
                 <div class="absolute bottom-2 left-2 bg-[#111] border-2 border-green-500 text-green-400 text-sm font-bold rounded-full w-10 h-10 flex items-center justify-center shadow-md">8.3</div>
@@ -266,44 +296,43 @@
             </div>
         </article>
 
-        <!-- Card 2 -->
-        <article class="relative bg-[#1c1c1c] rounded-2xl overflow-hidden text-white border-2 border-gray-300 shadow-xl p-4 transition-transform duration-300 hover:scale-105 hover:border-red-400">
+
+        <article class="movie-card-animated relative bg-[#1c1c1c] rounded-2xl overflow-hidden text-white border-2 border-gray-300 shadow-xl p-4">
             <div class="relative">
-                <img src="assets/images/interstellar.jpg" alt="Interstellar" class="rounded-xl w-full h-64 object-cover" />
-                <div class="absolute bottom-2 left-2 bg-[#111] border-2 border-green-500 text-green-400 text-sm font-bold rounded-full w-10 h-10 flex items-center justify-center shadow-md">8.6</div>
+                <img src="assets/images/Avengers-Endgame-Marvel-SuperHeros.jpg" alt="Avengers Endgame" class="rounded-xl w-full h-64 object-cover" />
+                <div class="absolute bottom-2 left-2 bg-[#111] border-2 border-green-500 text-green-400 text-sm font-bold rounded-full w-10 h-10 flex items-center justify-center shadow-md">8.3</div>
             </div>
             <div class="mt-6">
-                <h3 class="text-lg font-semibold leading-tight">Interstellar</h3>
-                <p class="text-green-400 text-sm mt-1 font-medium">Adventure · Drama</p>
-                <p class="text-gray-400 text-sm mt-1">Nov 7, 2014</p>
+                <h3 class="text-lg font-semibold leading-tight">Avatar: The Way of Water</h3>
+                <p class="text-green-400 text-sm mt-1 font-medium">Action · Sci-Fi</p>
+                <p class="text-gray-400 text-sm mt-1">Dec 16, 2022</p>
             </div>
         </article>
 
-        <!-- Card 3 -->
-        <article class="relative bg-[#1c1c1c] rounded-2xl overflow-hidden text-white border-2 border-gray-300 shadow-xl p-4 transition-transform duration-300 hover:scale-105 hover:border-red-400">
+        <article class="movie-card-animated relative bg-[#1c1c1c] rounded-2xl overflow-hidden text-white border-2 border-gray-300 shadow-xl p-4">
             <div class="relative">
-                <img src="assets/images/dark-knight.jpg" alt="The Dark Knight" class="rounded-xl w-full h-64 object-cover" />
-                <div class="absolute bottom-2 left-2 bg-[#111] border-2 border-green-500 text-green-400 text-sm font-bold rounded-full w-10 h-10 flex items-center justify-center shadow-md">9.0</div>
+                <img src="assets/images/Avengers-Endgame-Marvel-SuperHeros.jpg" alt="Avengers Endgame" class="rounded-xl w-full h-64 object-cover" />
+                <div class="absolute bottom-2 left-2 bg-[#111] border-2 border-green-500 text-green-400 text-sm font-bold rounded-full w-10 h-10 flex items-center justify-center shadow-md">8.3</div>
             </div>
             <div class="mt-6">
-                <h3 class="text-lg font-semibold leading-tight">The Dark Knight</h3>
-                <p class="text-green-400 text-sm mt-1 font-medium">Action · Crime</p>
-                <p class="text-gray-400 text-sm mt-1">Jul 18, 2008</p>
+                <h3 class="text-lg font-semibold leading-tight">Avatar: The Way of Water</h3>
+                <p class="text-green-400 text-sm mt-1 font-medium">Action · Sci-Fi</p>
+                <p class="text-gray-400 text-sm mt-1">Dec 16, 2022</p>
             </div>
         </article>
 
-        <!-- Card 4 -->
-        <article class="relative bg-[#1c1c1c] rounded-2xl overflow-hidden text-white border-2 border-gray-300 shadow-xl p-4 transition-transform duration-300 hover:scale-105 hover:border-red-400">
+        <article class="movie-card-animated relative bg-[#1c1c1c] rounded-2xl overflow-hidden text-white border-2 border-gray-300 shadow-xl p-4">
             <div class="relative">
-                <img src="assets/images/inception.jpg" alt="Inception" class="rounded-xl w-full h-64 object-cover" />
-                <div class="absolute bottom-2 left-2 bg-[#111] border-2 border-green-500 text-green-400 text-sm font-bold rounded-full w-10 h-10 flex items-center justify-center shadow-md">8.8</div>
+                <img src="assets/images/Avengers-Endgame-Marvel-SuperHeros.jpg" alt="Avengers Endgame" class="rounded-xl w-full h-64 object-cover" />
+                <div class="absolute bottom-2 left-2 bg-[#111] border-2 border-green-500 text-green-400 text-sm font-bold rounded-full w-10 h-10 flex items-center justify-center shadow-md">8.3</div>
             </div>
             <div class="mt-6">
-                <h3 class="text-lg font-semibold leading-tight">Inception</h3>
-                <p class="text-green-400 text-sm mt-1 font-medium">Sci-Fi · Thriller</p>
-                <p class="text-gray-400 text-sm mt-1">Jul 16, 2010</p>
+                <h3 class="text-lg font-semibold leading-tight">Avatar: The Way of Water</h3>
+                <p class="text-green-400 text-sm mt-1 font-medium">Action · Sci-Fi</p>
+                <p class="text-gray-400 text-sm mt-1">Dec 16, 2022</p>
             </div>
         </article>
+
     </div>
 </section>
 
