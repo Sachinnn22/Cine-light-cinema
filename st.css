@@ -144,14 +144,6 @@
     text-shadow: 0 0 10px rgba(0, 255, 255, 0.3) !important;
 }
 
-article:hover img {
-    opacity: 0;
-}
-
-article:hover video {
-    opacity: 1;
-    pointer-events: auto;
-}
 @media (min-width: 708px) and (max-width: 790px){
     .grid-container {
         grid-template-columns: repeat(3, 1fr) !important;
@@ -223,4 +215,42 @@ article:hover video {
     .movie-card p {
         line-height: 1.2rem !important;
     }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+        box-shadow: 0 10px 18px rgba(198,194,194,0.4);
+    }
+    50% {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 25px rgba(198,194,194,0.6);
+    }
+}
+
+/* Apply animation to movie cards */
+.movie-card-animated {
+    animation: float 6s ease-in-out infinite;
+    will-change: transform;
+}
+
+/* Different delay for each card for staggered effect */
+.movie-card-animated:nth-child(odd) {
+    animation-delay: 0s;
+}
+.movie-card-animated:nth-child(even) {
+    animation-delay: 3s;
+}
+
+@keyframes slideTrack {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.animate-slide-track {
+    animation: slideTrack 60s linear infinite;
 }
