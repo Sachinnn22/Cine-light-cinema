@@ -195,6 +195,79 @@
             animation-delay: 3s;
         }
 
+        @media (max-width: 425px) {
+            .movie-card-animated {
+                padding: 1rem !important;
+                border-width: 1.5px !important;
+                font-size: 0.9rem !important;
+                width: 80% !important; /* Reduce width */
+                margin-left: auto !important; /* Center horizontally */
+                margin-right: auto !important;
+                height: 330px !important;
+
+            }
+            .movie-card-animated img {
+                height: 200px !important;
+            }
+            .movie-card-animated h3 {
+                font-size: 1.25rem !important;
+            }
+            .movie-card-animated p {
+                font-size: 0.89rem !important;
+            }
+            .all-movie-header{
+                font-size: 2.3rem !important;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .movie-card-animated {
+                padding: 0.75rem !important;
+                font-size: 0.85rem !important;
+                width: 83% !important; /* Reduce width */
+                margin-left: auto !important; /* Center horizontally */
+                margin-right: auto !important;
+                height: 300px !important;
+
+            }
+            .movie-card-animated img {
+                height: 180px !important;
+            }
+            .movie-card-animated h3 {
+                font-size: 1.2rem !important;
+            }
+            .movie-card-animated p {
+                font-size: 0.84rem !important;
+            }
+            .all-movie-header{
+                font-size: 2rem !important;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .movie-card-animated {
+                padding: 0.5rem !important;
+                font-size: 0.8rem !important;
+                width: 90% !important; /* Reduce width */
+                margin-left: auto !important; /* Center horizontally */
+                margin-right: auto !important;
+                height: 300px !important;
+
+            }
+            .movie-card-animated img {
+                height: 180px !important;
+            }
+            .movie-card-animated h3 {
+                font-size: 1.18rem !important;
+            }
+            .movie-card-animated p {
+                font-size: 0.8rem !important;
+            }
+            .all-movie-header{
+                font-size: 1.6rem !important;
+            }
+        }
+
 
     </style>
 </head>
@@ -267,7 +340,6 @@
     </h2>
     <hr class="border-gray-400 mb-8 w-1/2 mx-auto">
 
-
     <div class="flex justify-center mb-8">
         <div class="flex items-center w-full max-w-md space-x-3">
             <input
@@ -275,11 +347,9 @@
                     placeholder="Search movies..."
                     class="flex-grow rounded-full py-3 px-4 text-black bg-[#3c3d3c] placeholder-gray-100 focus:outline-none focus:ring-2 focus:ring-white"
             />
-
             <span class="text-gray-100 text-xl transition duration-200 hover:text-gray-500 hover:scale-110 cursor-pointer">
-    <i class="fas fa-search"></i>
-</span>
-
+      <i class="fas fa-search"></i>
+    </span>
         </div>
     </div>
 
@@ -295,7 +365,6 @@
                 <p class="text-gray-400 text-sm mt-1">Dec 16, 2022</p>
             </div>
         </article>
-
 
         <article class="movie-card-animated relative bg-[#1c1c1c] rounded-2xl overflow-hidden text-white border-2 border-gray-300 shadow-xl p-4">
             <div class="relative">
@@ -335,8 +404,6 @@
 
     </div>
 </section>
-
-
 
 <script>
     const dropdownToggle = document.getElementById("dropdownToggle");
