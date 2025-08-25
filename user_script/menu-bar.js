@@ -128,14 +128,13 @@ if (notificationBtn && notificationPopup) {
         e.stopPropagation();
     });
 
-    // Toggle search input box
     searchToggle.addEventListener('click', () => {
         if (searchInput.classList.contains('show')) {
             searchInput.classList.remove('show');
             searchInput.classList.add('hidden');
             searchInput.value = '';
             searchInput.blur();
-            searchResultsPanel.classList.remove('show');  // hide panel here
+            searchResultsPanel.classList.remove('show');
             searchResultsPanel.innerHTML = '';
         } else {
             searchInput.classList.add('show');
@@ -144,11 +143,10 @@ if (notificationBtn && notificationPopup) {
         }
     });
 
-// Fetch movies on input
     searchInput.addEventListener('input', async () => {
         const query = searchInput.value.trim();
         if (query.length === 0) {
-            searchResultsPanel.classList.remove('show');  // hide panel here
+            searchResultsPanel.classList.remove('show');
             searchResultsPanel.innerHTML = '';
             return;
         }
@@ -161,49 +159,42 @@ if (notificationBtn && notificationPopup) {
             console.error('Search failed:', err);
         }
     });
+
     function renderSearchResults(movies) {
         searchResultsPanel.innerHTML = '';
 
         if (movies.length === 0) {
-            searchResultsPanel.innerHTML = '<p class="text-white text-sm">No movies found.</p>';
+            searchResultsPanel.innerHTML = '<p class="text-white text-sm">No movies found ?</p>';
         } else {
-            movies.forEach(movie => {
+            const limitedMovies = movies.slice(0, 2);
+
+            limitedMovies.forEach(movie => {
                 const card = `
-        <article class="flex w-full bg-[#1c1c1c] rounded-2xl overflow-hidden text-white border-2 border-gray-300 shadow-xl p-2 mb-3">
-            <img src="${movie.imageUrl}" alt="${movie.title}" class="w-20 h-20 object-cover rounded-lg flex-shrink-0" />
-            <div class="ml-6 flex flex-col justify-center">
-                <h3 class="text-md font-semibold">${movie.title}</h3>
-                <p class="text-green-400 mt-0.5 font-medium text-xs">${movie.genre}</p>
-                <p class="text-gray-400 mt-0.5 text-xs">${movie.releaseDate}</p>
-            </div>
-        </article>`;
+    <article class="flex w-full bg-[#1c1c1c] rounded-2xl overflow-hidden text-white border-2 border-gray-300 shadow-xl p-2 mb-3">
+        <img src="${movie.imageUrl}" alt="${movie.title}" class="w-24 h-24 object-cover rounded-lg flex-shrink-0" />
+        <div class="ml-6 flex flex-col justify-center">
+            <h3 class="font-semibold text-[16px]">${movie.title}</h3>
+            <p class="text-green-400 mt-0.5 font-medium text-xs">${movie.genre}</p>
+            <p class="text-gray-400 mt-0.5 text-xs">${movie.releaseDate}</p>
+        </div>
+    </article>`;
                 searchResultsPanel.innerHTML += card;
             });
 
-            // Add Advanced Search button below the cards
             const advancedSearchBtn = `
     <div class="flex justify-center mt-2">
         <button id="advancedSearchBtn" 
-            class="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition-colors duration-300 ">
-                          <i class="fas fa-search"></i>
-                    Enhanced Search
-                </button>
-            </div>`;
+            class="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition-colors duration-300 flex items-center gap-2">
+            <i class="fas fa-search"></i>
+            Enhanced Search
+        </button>
+    </div>`;
             searchResultsPanel.innerHTML += advancedSearchBtn;
         }
 
         searchResultsPanel.classList.add('show');
 
-        // Optional: Add click handler for the button
-        const advBtn = document.getElementById('advancedSearchBtn');
-        if (advBtn) {
-            advBtn.addEventListener('click', () => {
-                console.log('Advanced Search clicked');
-                // Add your advanced search logic here
-            });
-        }
     }
-
 
     const searchToggleMobile = document.getElementById('search-toggle-mobile');
     const searchIcon = document.getElementById('search-icon');
