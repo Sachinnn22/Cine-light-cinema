@@ -13,7 +13,6 @@
 
     <style>
         html, body {
-            height: 100%;
             margin: 0;
             padding: 0;
             background: linear-gradient(to bottom, #000000e6, #2c2b2b) !important;
@@ -53,6 +52,12 @@
 
             .nav-logo-text {
                 font-size: 1.34em !important;
+            }
+        }
+
+        @media (width: 1024px) {
+            .movie {
+                grid-template-columns: repeat(3, 1fr) !important;
             }
         }
 
@@ -248,11 +253,10 @@
             .movie-card-animated {
                 padding: 0.5rem !important;
                 font-size: 0.8rem !important;
-                width: 90% !important; /* Reduce width */
-                margin-left: auto !important; /* Center horizontally */
+                width: 90% !important;
+                margin-left: auto !important;
                 margin-right: auto !important;
                 height: 300px !important;
-
             }
             .movie-card-animated img {
                 height: 180px !important;
@@ -353,7 +357,7 @@
         </div>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 movie">
         <article class="movie-card-animated relative bg-[#1c1c1c] rounded-2xl overflow-hidden text-white border-2 border-gray-300 shadow-xl p-4">
             <div class="relative">
                 <img src="assets/images/Avengers-Endgame-Marvel-SuperHeros.jpg" alt="Avengers Endgame" class="rounded-xl w-full h-64 object-cover" />
@@ -365,6 +369,57 @@
                 <p class="text-gray-400 text-sm mt-1">Dec 16, 2022</p>
             </div>
         </article>
+
+        <article class="movie-card-animated relative bg-[#1c1c1c] rounded-2xl overflow-hidden text-white border-2 border-gray-300 shadow-xl p-4">
+            <div class="relative">
+                <img src="assets/images/Avengers-Endgame-Marvel-SuperHeros.jpg" alt="Avengers Endgame" class="rounded-xl w-full h-64 object-cover" />
+                <div class="absolute bottom-2 left-2 bg-[#111] border-2 border-green-500 text-green-400 text-sm font-bold rounded-full w-10 h-10 flex items-center justify-center shadow-md">8.3</div>
+            </div>
+            <div class="mt-6">
+                <h3 class="text-lg font-semibold leading-tight">Avatar: The Way of Water</h3>
+                <p class="text-green-400 text-sm mt-1 font-medium">Action · Sci-Fi</p>
+                <p class="text-gray-400 text-sm mt-1">Dec 16, 2022</p>
+            </div>
+        </article>
+
+
+        <article class="movie-card-animated relative bg-[#1c1c1c] rounded-2xl overflow-hidden text-white border-2 border-gray-300 shadow-xl p-4">
+            <div class="relative">
+                <img src="assets/images/Avengers-Endgame-Marvel-SuperHeros.jpg" alt="Avengers Endgame" class="rounded-xl w-full h-64 object-cover" />
+                <div class="absolute bottom-2 left-2 bg-[#111] border-2 border-green-500 text-green-400 text-sm font-bold rounded-full w-10 h-10 flex items-center justify-center shadow-md">8.3</div>
+            </div>
+            <div class="mt-6">
+                <h3 class="text-lg font-semibold leading-tight">Avatar: The Way of Water</h3>
+                <p class="text-green-400 text-sm mt-1 font-medium">Action · Sci-Fi</p>
+                <p class="text-gray-400 text-sm mt-1">Dec 16, 2022</p>
+            </div>
+        </article>
+
+
+        <article class="movie-card-animated relative bg-[#1c1c1c] rounded-2xl overflow-hidden text-white border-2 border-gray-300 shadow-xl p-4">
+            <div class="relative">
+                <img src="assets/images/Avengers-Endgame-Marvel-SuperHeros.jpg" alt="Avengers Endgame" class="rounded-xl w-full h-64 object-cover" />
+                <div class="absolute bottom-2 left-2 bg-[#111] border-2 border-green-500 text-green-400 text-sm font-bold rounded-full w-10 h-10 flex items-center justify-center shadow-md">8.3</div>
+            </div>
+            <div class="mt-6">
+                <h3 class="text-lg font-semibold leading-tight">Avatar: The Way of Water</h3>
+                <p class="text-green-400 text-sm mt-1 font-medium">Action · Sci-Fi</p>
+                <p class="text-gray-400 text-sm mt-1">Dec 16, 2022</p>
+            </div>
+        </article>
+
+        <article class="movie-card-animated relative bg-[#1c1c1c] rounded-2xl overflow-hidden text-white border-2 border-gray-300 shadow-xl p-4">
+            <div class="relative">
+                <img src="assets/images/Avengers-Endgame-Marvel-SuperHeros.jpg" alt="Avengers Endgame" class="rounded-xl w-full h-64 object-cover" />
+                <div class="absolute bottom-2 left-2 bg-[#111] border-2 border-green-500 text-green-400 text-sm font-bold rounded-full w-10 h-10 flex items-center justify-center shadow-md">8.3</div>
+            </div>
+            <div class="mt-6">
+                <h3 class="text-lg font-semibold leading-tight">Avatar: The Way of Water</h3>
+                <p class="text-green-400 text-sm mt-1 font-medium">Action · Sci-Fi</p>
+                <p class="text-gray-400 text-sm mt-1">Dec 16, 2022</p>
+            </div>
+        </article>
+
 
         <article class="movie-card-animated relative bg-[#1c1c1c] rounded-2xl overflow-hidden text-white border-2 border-gray-300 shadow-xl p-4">
             <div class="relative">

@@ -128,19 +128,62 @@ if (notificationBtn && notificationPopup) {
         e.stopPropagation();
     });
 
-    const searchInput = document.getElementById('searchInput');
-    const searchToggle = document.getElementById('searchToggle');
-
+    // Toggle search input box
     searchToggle.addEventListener('click', () => {
         if (searchInput.classList.contains('show')) {
             searchInput.classList.remove('show');
+            searchInput.classList.add('hidden');
             searchInput.value = '';
             searchInput.blur();
+            searchResultsPanel.classList.remove('show');  // hide panel here
+            searchResultsPanel.innerHTML = '';
         } else {
             searchInput.classList.add('show');
+            searchInput.classList.remove('hidden');
             searchInput.focus();
         }
     });
+
+// Fetch movies on input
+    searchInput.addEventListener('input', async () => {
+        const query = searchInput.value.trim();
+        if (query.length === 0) {
+            searchResultsPanel.classList.remove('show');  // hide panel here
+            searchResultsPanel.innerHTML = '';
+            return;
+        }
+
+        try {
+            const res = await fetch(`http://localhost:8080/api/movies/search?query=${encodeURIComponent(query)}`);
+            const movies = await res.json();
+            renderSearchResults(movies);
+        } catch (err) {
+            console.error('Search failed:', err);
+        }
+    });
+
+    function renderSearchResults(movies) {
+        searchResultsPanel.innerHTML = '';
+
+        if (movies.length === 0) {
+            searchResultsPanel.innerHTML = '<p class="text-white text-sm">No movies found.</p>';
+        } else {
+            movies.forEach(movie => {
+                const card = `
+            <article class="flex w-full bg-[#1c1c1c] rounded-2xl overflow-hidden text-white border-2 border-gray-300 shadow-xl p-3 mb-4">
+<img src="${movie.image_url}" alt="${movie.title}" class="w-24 h-24 object-cover rounded-lg flex-shrink-0" />
+                <div class="ml-8 flex flex-col justify-center">
+                    <h3 class="text-lg font-semibold">${movie.title}</h3>
+                    <p class="text-green-400 mt-1 font-medium text-sm">${movie.genre}</p>
+                    <p class="text-gray-400 mt-1 text-sm">${movie.release_date}</p>
+                </div>
+            </article>`;
+                searchResultsPanel.innerHTML += card;
+            });
+        }
+
+        searchResultsPanel.classList.add('show');  // show panel here
+    }
 
     const searchToggleMobile = document.getElementById('search-toggle-mobile');
     const searchIcon = document.getElementById('search-icon');

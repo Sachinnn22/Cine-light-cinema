@@ -287,3 +287,12 @@ a.mobil-brand {
         display: none;
     }
 }
+#searchResultsPanel {
+    display: none;          /* hide by default */
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+#searchResultsPanel.show {
+    display: flex;          /* show when `.show` class is added */
+}
