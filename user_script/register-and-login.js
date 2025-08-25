@@ -110,11 +110,13 @@ document.querySelector('.front form').addEventListener('submit', async (e) => {
         }
 
         let email = null;
+        let userData = null;
 
         snapshot.forEach(userSnap => {
             const data = userSnap.val();
             if (data && data.email && typeof data.email === 'string') {
                 email = data.email.trim().toLowerCase();
+                userData = data;
             }
         });
 
@@ -124,18 +126,19 @@ document.querySelector('.front form').addEventListener('submit', async (e) => {
         }
 
         const cred = await auth.signInWithEmailAndPassword(email, password);
-
         const user = cred.user;
-
         const idToken = await user.getIdToken();
 
         console.log('Firebase ID Token:', idToken);
 
         document.cookie = `firebaseToken=${idToken}; path=/; Secure; SameSite=Strict; max-age=3600`;
 
-        setTimeout(() => {
+        if (userData && userData.role === 'admin') {
+            window.location.href = 'admin-view.html';
+        } else {
             window.location.href = 'index.html';
-        }, 1000);
+        }
+
     } catch (err) {
         const code = err.code;
 

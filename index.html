@@ -820,6 +820,18 @@
                 document.getElementById('logoutBtn')?.classList.remove('hidden');
                 document.getElementById('loginBtn')?.classList.add('hidden');
 
+                const currentPath = window.location.pathname;
+
+                if (userData?.role === 'admin') {
+                    if (!currentPath.endsWith('admin-view.html')) {
+                        window.location.href = 'admin-view.html';
+                    }
+                } else {
+                    if (!currentPath.endsWith('index.html')) {
+                        window.location.href = 'index.html';
+                    }
+                }
+
             } catch (err) {
                 console.error('Error validating token or fetching user data:', err);
                 await signOut(auth);
