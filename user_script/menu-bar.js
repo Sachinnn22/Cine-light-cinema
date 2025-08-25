@@ -154,14 +154,13 @@ if (notificationBtn && notificationPopup) {
         }
 
         try {
-            const res = await fetch(`http://localhost:8080/api/movies/search?query=${encodeURIComponent(query)}`);
+            const res = await fetch(`http://localhost:8080/api/movies/search?query=${encodeURIComponent(query)}&limit=false`);
             const movies = await res.json();
             renderSearchResults(movies);
         } catch (err) {
             console.error('Search failed:', err);
         }
     });
-
     function renderSearchResults(movies) {
         searchResultsPanel.innerHTML = '';
 
@@ -170,20 +169,41 @@ if (notificationBtn && notificationPopup) {
         } else {
             movies.forEach(movie => {
                 const card = `
-            <article class="flex w-full bg-[#1c1c1c] rounded-2xl overflow-hidden text-white border-2 border-gray-300 shadow-xl p-3 mb-4">
-<img src="${movie.image_url}" alt="${movie.title}" class="w-24 h-24 object-cover rounded-lg flex-shrink-0" />
-                <div class="ml-8 flex flex-col justify-center">
-                    <h3 class="text-lg font-semibold">${movie.title}</h3>
-                    <p class="text-green-400 mt-1 font-medium text-sm">${movie.genre}</p>
-                    <p class="text-gray-400 mt-1 text-sm">${movie.release_date}</p>
-                </div>
-            </article>`;
+        <article class="flex w-full bg-[#1c1c1c] rounded-2xl overflow-hidden text-white border-2 border-gray-300 shadow-xl p-2 mb-3">
+            <img src="${movie.imageUrl}" alt="${movie.title}" class="w-20 h-20 object-cover rounded-lg flex-shrink-0" />
+            <div class="ml-6 flex flex-col justify-center">
+                <h3 class="text-md font-semibold">${movie.title}</h3>
+                <p class="text-green-400 mt-0.5 font-medium text-xs">${movie.genre}</p>
+                <p class="text-gray-400 mt-0.5 text-xs">${movie.releaseDate}</p>
+            </div>
+        </article>`;
                 searchResultsPanel.innerHTML += card;
             });
+
+            // Add Advanced Search button below the cards
+            const advancedSearchBtn = `
+    <div class="flex justify-center mt-2">
+        <button id="advancedSearchBtn" 
+            class="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition-colors duration-300 ">
+                          <i class="fas fa-search"></i>
+                    Enhanced Search
+                </button>
+            </div>`;
+            searchResultsPanel.innerHTML += advancedSearchBtn;
         }
 
-        searchResultsPanel.classList.add('show');  // show panel here
+        searchResultsPanel.classList.add('show');
+
+        // Optional: Add click handler for the button
+        const advBtn = document.getElementById('advancedSearchBtn');
+        if (advBtn) {
+            advBtn.addEventListener('click', () => {
+                console.log('Advanced Search clicked');
+                // Add your advanced search logic here
+            });
+        }
     }
+
 
     const searchToggleMobile = document.getElementById('search-toggle-mobile');
     const searchIcon = document.getElementById('search-icon');
