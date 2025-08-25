@@ -1,4 +1,3 @@
-
 document.getElementById('dropdownToggle').addEventListener('click', () => {
     const dropdown = document.getElementById('mainDropdown');
     dropdown.classList.toggle('open');
@@ -31,7 +30,6 @@ document.querySelectorAll('.mobile-menu-link').forEach(link => {
         }
     });
 });
-
 
 document.addEventListener('DOMContentLoaded', () => {
     const toggleBtn = document.getElementById('menu-toggle');
@@ -168,8 +166,8 @@ if (notificationBtn && notificationPopup) {
         } else {
             const limitedMovies = movies.slice(0, 2);
 
-                limitedMovies.forEach(movie => {
-                    const card = `
+            limitedMovies.forEach(movie => {
+                const card = `
     <article class="flex w-full bg-[#1c1c1c] rounded-2xl overflow-hidden text-white border-2 border-gray-300 shadow-xl p-2 mb-3">
         <img src="${movie.imageUrl}" alt="${movie.title}" class="w-24 h-24 object-cover rounded-lg flex-shrink-0" />
         <div class="ml-6 flex flex-col justify-center">
@@ -181,7 +179,7 @@ if (notificationBtn && notificationPopup) {
                 searchResultsPanel.innerHTML += card;
             });
 
-                const advancedSearchBtn = `
+            const advancedSearchBtn = `
     <div class="flex justify-center mt-2">
       <button id="advancedSearchBtn" 
         onclick="window.location.href='../all-movie.html'"
@@ -216,7 +214,7 @@ if (notificationBtn && notificationPopup) {
 const mobileSearchToggle = document.getElementById('search-toggle-mobile');
 const mobileSearchContainer = document.getElementById('mobile-search-container');
 const mobileSearchInput = document.getElementById('mobile-search-input');
-const mobileSearchResultsPanel = document.getElementById('mobile-search-results-panel'); // Make sure this exists in your HTML
+const mobileSearchResultsPanel = document.getElementById('mobile-search-results-panel');
 
 let mobileSearchOpen = false;
 
@@ -224,7 +222,6 @@ mobileSearchToggle.addEventListener('click', () => {
     if (!mobileSearchContainer) return;
 
     if (!mobileSearchContainer.classList.contains('hidden')) {
-        // Hide search container
         mobileSearchContainer.classList.add('hidden');
         mobileSearchInput.value = '';
         mobileSearchInput.blur();
@@ -234,7 +231,6 @@ mobileSearchToggle.addEventListener('click', () => {
 
         mobileSearchOpen = false;
     } else {
-        // Show search container
         mobileSearchContainer.classList.remove('hidden');
         mobileSearchInput.focus();
 
@@ -271,36 +267,33 @@ function renderMobileSearchResults(movies) {
         const limitedMovies = movies.slice(0, 2);
 
         limitedMovies.forEach(movie => {
-            const card = `
-<article class="w-64 mx-auto mt-3 bg-[#1c1c1c] rounded-lg overflow-hidden text-white border border-gray-600 shadow p-3 flex mb-2">
-  <img src="${movie.imageUrl}" alt="${movie.title}" class="w-20 h-20 object-cover rounded-lg flex-shrink-0" />
-  <div class="ml-4 flex flex-col justify-center">
-    <h3 class="font-semibold text-md">${movie.title}</h3>
-    <p class="text-green-400 text-xs mt-0.5 font-medium">${movie.genre}</p>
-    <p class="text-gray-400 text-xs mt-0.5">${movie.releaseDate}</p>
-  </div>
-</article>
-
-`;
+                const card = `
+    <article class="w-64 mx-auto mt-3 bg-[#1c1c1c] rounded-lg overflow-hidden text-white border border-gray-600 shadow p-3 flex mb-2">
+      <img src="${movie.imageUrl}" alt="${movie.title}" class="w-20 h-20 object-cover rounded-lg flex-shrink-0" />
+      <div class="ml-4 flex flex-col justify-center">
+        <h3 class="font-semibold text-md">${movie.title}</h3>
+        <p class="text-green-400 text-xs mt-0.5 font-medium">${movie.genre}</p>
+        <p class="text-gray-400 text-xs mt-0.5">${movie.releaseDate}</p>
+      </div>
+    </article>`;
 
             mobileSearchResultsPanel.innerHTML += card;
         });
 
-        const advancedSearchBtn = `
-<div class="flex justify-center mt-3">
-  <button id="mobileAdvancedSearchBtn" 
-    onclick="window.location.href='../all-movie.html'"
-    class="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition-colors duration-300 flex items-center gap-2">
-    <i class="fas fa-search"></i>
-    Enhanced Search
-  </button>
-</div>`;
+            const advancedSearchBtn = `
+    <div class="flex justify-center mt-3">
+      <button id="mobileAdvancedSearchBtn" 
+        onclick="window.location.href='../all-movie.html'"
+        class="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition-colors duration-300 flex items-center gap-2">
+        <i class="fas fa-search"></i>
+        Enhanced Search
+      </button>
+    </div>`;
         mobileSearchResultsPanel.innerHTML += advancedSearchBtn;
     }
 
     mobileSearchResultsPanel.classList.remove('hidden');
 }
-
 
 document.addEventListener('DOMContentLoaded', function () {
     const toggle = document.getElementById('mobileMoviesToggle');
