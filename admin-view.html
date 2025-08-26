@@ -9,504 +9,8 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
-    <style>
-        html,body {
-            font-family: "Inter", sans-serif;
-            background-color: #01364a !important;
-        }
+    <link rel="stylesheet" href="admin-style/side-bar.css">
 
-        #sidebar {
-            transition: transform 0.4s ease-in-out;
-        }
-
-        #menu-btn {
-            font-size: 1.5rem;
-            background: none;
-            border: none;
-            position: fixed;
-            top: 1rem;
-            left: 1.5rem;
-            z-index: 1001;
-            cursor: pointer;
-        }
-
-        #content {
-            transition: margin-left 0.4s ease-in-out;
-            padding: 3.7rem 1rem;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            background-color: #eceff4; /* light color blocking the dark background */
-            /*margin-top: 1.4rem;*/
-        }
-
-        .user {
-            font-family: 'Merriweather', 'Georgia', serif;
-            font-size: 3.3rem;
-            font-weight: 900;
-            color: #545757;
-            margin-bottom: 1.8rem;
-            letter-spacing: 2.3px;
-            text-align: center;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-
-        .table-wrapper {
-            width: 100%;
-            max-width: 900px;
-            border: 3px solid #4e4c4c;
-            border-radius: 12px;
-            overflow: hidden;
-            background-color: white;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: white;
-        }
-
-        /* Smooth scale transition on card hover */
-        #card-container > div {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        #card-container > div:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
-            cursor: pointer;
-        }
-
-        .username {
-            font-weight: 700;  /* bold */
-            font-size: 1.895rem; /* 36px */
-            color: #1e2e42;     /* dark slate */
-            margin-bottom: 0.3rem;
-        }
-
-        .email {
-            font-weight: 600;   /* medium */
-            font-size: 1.08rem; /* 18px */
-            color: #353c45;     /* gray-600 */
-            margin-bottom: 0.8rem;
-        }
-
-        .custom-border {
-            border-width: 4px;
-            border-color: #3d3e3e;
-        }
-
-        .btn {
-            background: #969698;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem 1rem;
-            border-radius: 0.375rem;
-            transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-            color: #14171b;
-            font-weight: 600;
-            user-select: none;
-        }
-        .btn:hover:not(:disabled) {
-            background-color: #676464;
-            color: #f5f5f6;
-            box-shadow: none;
-        }
-        .btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            box-shadow: none;
-        }
-        #overlay {
-            position: fixed;
-            inset: 0;
-            background-color: rgba(0, 0, 0, 0.3);
-            z-index: 40;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            display: none;
-        }
-        #overlay.active {
-            display: block;
-            opacity: 1;
-        }
-
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-        }
-        .card-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 19px;
-            justify-content: center;
-        }
-        .card {
-            cursor: pointer;
-            background: #ffffff;
-            border-radius: 10px;
-            border: 5px solid #6a6868;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            width: 320px;
-            min-height: 300px;
-            padding: 20px;
-            transition: transform 0.2s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            justify-content: flex-start;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
-        }
-
-        .username_quiz {
-            margin-top: 1.2rem;
-            font-size: 24px;
-            font-weight: bold;
-            color: #2f4459;
-        }
-
-        .email_quiz {
-            font-size: 19px;
-            color: #2f4459;
-            margin: 5px 0 16px 0;
-            flex-grow: 0;
-        }
-
-        .question {
-            font-size: 20px;
-            color: #444;
-            font-weight: 700;
-            margin: 0 0 14px 0;
-        }
-
-        .card button {
-            width: 200px;
-            margin-top: 20px;
-            padding: 8px 12px;
-            background-color: #4a4848;
-            border: none;
-            border-radius: 5px;
-            color: white;
-            cursor: pointer;
-            font-size: 17px;
-            transition: background-color 0.3s ease;
-        }
-
-        .card button:hover {
-            background-color: #353739;
-        }
-
-        .review-card-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 19px;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .review-card {
-            cursor: pointer;
-            background: #ffffff;
-            border-radius: 10px;
-            border: 5px solid #6a6868;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            width: 300px;
-            min-height: 300px;
-            padding: 20px;
-            transition: transform 0.2s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            justify-content: flex-start;
-        }
-
-        .review-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
-        }
-
-        .review-card-username {
-            margin-top: 1.2rem;
-            font-size: 30px;
-            font-weight: bold;
-            color: #2f4459;
-        }
-
-        .review-card-email {
-            font-size: 22px;
-            color: #2f4459;
-            margin: -4px 0 19px 0;
-        }
-
-        .review-card-comment {
-            font-size: 30px;
-            color: #444;
-            font-weight: 700;
-            margin: 0 0 14px 0;
-        }
-
-        .review-card-stars {
-            margin: 10px 0;
-            color: gold;
-            font-size: 45px;
-        }
-
-        @media (min-width: 1400px) and (max-width: 1440px){
-            #content {
-                padding: 6.3rem 0.8rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            #card-container {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                column-gap: 1rem;
-                row-gap: 1.3rem;
-            }
-
-            .user {
-                font-size: 3rem;
-                margin-bottom: 1.5rem;
-                letter-spacing: 1.8px;
-            }
-
-            .username {
-                font-size: 1.5rem;
-            }
-
-            .email {
-                font-size: 1rem;
-            }
-
-            #card-container > div {
-                flex: 1 1 47%;
-                max-width: 300px;
-                min-width: 240px;
-                margin: 0;
-            }
-        }
-
-        @media (max-width: 425px) {
-            #content {
-                padding: 4.2rem 0.8rem;
-            }
-
-            .user {
-                font-size: 2.7rem;
-                letter-spacing: 1.5px;
-                margin-bottom: 1.2rem;
-            }
-
-            .username {
-                font-size: 1.6rem; /* smaller */
-                margin-bottom: 0.2rem;
-            }
-
-            .email {
-                font-size: 1.03rem;
-                margin-bottom: 0.5rem;
-            }
-
-            #card-container {
-                grid-template-columns: repeat(1, 1fr);
-                gap: 1rem;
-                max-width: 100%;
-            }
-        }
-
-        @media (max-width: 375px) {
-            #content {
-                padding: 4rem 0.6rem;
-            }
-
-            .user {
-                font-size: 2.3rem;
-                letter-spacing: 1px;
-                margin-bottom: 1rem;
-            }
-
-            .username {
-                font-size: 1.7rem;
-            }
-
-            .email {
-                font-size: 1.1rem;
-            }
-
-            #card-container {
-                gap: 0.8rem;
-            }
-        }
-
-        @media (max-width: 320px) {
-            #content {
-                padding: 4.5rem 0.5rem;
-            }
-
-            .user {
-                font-size: 2.2rem;
-                letter-spacing: 0.8px;
-                margin-bottom: 0.8rem;
-            }
-
-            .username {
-                font-size: 1.7rem;
-            }
-
-            .email {
-                font-size: 1.1rem;
-            }
-
-            #card-container {
-                gap: 0.6rem;
-                grid-template-columns: 1fr;
-                justify-items: center;
-            }
-        }
-
-        @media (min-width: 1400px) and (max-width: 1440px){
-            .card {
-                width: 360px;
-                min-height: 360px;
-                padding: 28px;
-            }
-
-            .username_quiz {
-                font-size: 26px;
-            }
-
-            .email_quiz {
-                font-size: 22px;
-            }
-
-            .question {
-                font-size: 21px;
-            }
-
-            .card button {
-                width: 220px;
-                font-size: 19px;
-            }
-        }
-
-        @media (min-width: 1000px) and (max-width: 1024px) {
-            .card-container {
-                justify-content: center;
-                gap: 24px;
-            }
-
-            .card {
-                width: 30%;
-                min-height: 340px;
-                padding: 24px;
-            }
-
-            .username_quiz {
-                font-size: 24px;
-            }
-
-            .email_quiz {
-                font-size: 20px;
-            }
-
-            .question {
-                font-size: 20px;
-            }
-
-            .card button {
-                width: 200px;
-                font-size: 18px;
-            }
-        }
-
-
-        @media (max-width: 425px) {
-            .card {
-                width: 90%; /* Responsive width */
-                min-height: 300px;
-            }
-
-            .card button {
-                width: 90%; /* Make button full width on small screens */
-            }
-
-            .username_quiz {
-                font-size: 20px;
-            }
-
-            .email_quiz {
-                font-size: 17px;
-            }
-
-            .question {
-                font-size: 16px;
-            }
-        }
-
-        @media (max-width: 375px) {
-            .card {
-                width: 95%;
-                min-height: 280px;
-            }
-
-            .username_quiz {
-                font-size: 18px;
-            }
-
-            .email_quiz {
-                font-size: 16px;
-            }
-
-            .question {
-                font-size: 15px;
-            }
-
-            .card button {
-                font-size: 16px;
-            }
-        }
-
-        @media (max-width: 320px) {
-            .card {
-                width: 98%;
-                min-height: 260px;
-                padding: 15px;
-            }
-
-            .username_quiz {
-                font-size: 17px;
-            }
-
-            .email_quiz {
-                font-size: 15px;
-            }
-
-            .question {
-                font-size: 14px;
-            }
-
-            .card button {
-                font-size: 15px;
-                padding: 8px 10px;
-            }
-        }
-
-        button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-    </style>
 </head>
 <body>
 <button id="menu-btn" aria-label="Toggle Menu" type="button">
@@ -515,7 +19,6 @@
 
 <aside id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-white border-r-4 border-gray-600 flex flex-col justify-between transform -translate-x-full z-50">
     <div>
-        <!-- Logo Section with thicker bottom border -->
         <div class="flex items-center justify-center h-16 border-b-4 border-gray-500">
             <span class="text-lg font-semibold text-gray-700">Logo</span>
         </div>
@@ -564,6 +67,29 @@
 
     </div>
 </aside>
+
+<div class="fixed top-4 right-4 z-60 text-gray-600">
+    <!-- Settings button -->
+    <div class="relative inline-block text-left">
+        <button id="settings-btn" aria-haspopup="true" aria-expanded="false" class="text-3xl hover:text-gray-900 focus:outline-none flex items-center justify-center">
+            <i class="fa-solid fa-gear"></i>
+        </button>
+
+        <!-- Dropdown menu (hidden by default) -->
+        <div id="settings-dropdown" class="origin-top-right absolute right-0 mt-2 w-44 rounded-md border-2 border-gray-600 bg-white ring-1 ring-black ring-opacity-5 hidden">
+            <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="settings-btn">
+                <a href="index.html" class="flex items-center gap-3 px-4 py-2 text-gray-700 hover:bg-gray-300" role="menuitem">
+                    <i class="fa-solid fa-right-from-bracket w-5"></i>  <!-- Logout icon -->
+                    Logout
+                </a>
+                <a href="#" class="flex items-center gap-3 px-4 py-2 text-gray-700 hover:bg-gray-300" role="menuitem">
+                    <i class="fa-solid fa-id-card w-5"></i>  <!-- Credentials icon -->
+                    Credentials
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div id="overlay"></div>
 
@@ -615,6 +141,10 @@
 
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<script src="admin-script/members.js" type="module"></script>
+<script src="admin-script/reviews.js" type="module"></script>
+<script src="admin-script/side-bar.js" type="module"></script>
+<script src="admin-script/question.js" type="module"></script>
 
 <script>
 
@@ -637,6 +167,7 @@
 
     const db = firebase.database();
 
+
     const cardContainer = document.getElementById("card-container");
     const prevBtn = document.getElementById("prev-btn");
     const nextBtn = document.getElementById("next-btn");
@@ -649,21 +180,24 @@
     function loadInitialPage() {
         db.ref("users")
             .orderByChild('registerTimestamp')
-            .limitToFirst(rowsPerPage + 1)
+            .limitToFirst(100)
             .once("value", snapshot => {
-                const users = [];
+                let users = [];
                 snapshot.forEach(child => {
-                    users.push({ key: child.key, val: child.val() });
+                    const user = { key: child.key, val: child.val() };
+                    if (user.val.role !== 'admin') {
+                        users.push(user);
+                    }
                 });
 
+                const paginatedUsers = users.slice(0, rowsPerPage);
                 const hasMore = users.length > rowsPerPage;
-                if (hasMore) users.pop();
 
-                renderUsers(users);
+                renderUsers(paginatedUsers);
 
                 pageKeys[0] = {
-                    first: users[0]?.val.registerTimestamp || null,
-                    last: users[users.length - 1]?.val.registerTimestamp || null
+                    first: paginatedUsers[0]?.val.registerTimestamp || null,
+                    last: paginatedUsers[paginatedUsers.length - 1]?.val.registerTimestamp || null
                 };
 
                 currentPage = 0;
@@ -678,25 +212,28 @@
         db.ref("users")
             .orderByChild('registerTimestamp')
             .startAfter(lastTimestamp)
-            .limitToFirst(rowsPerPage + 1)
+            .limitToFirst(100)
             .once("value", snapshot => {
-                const users = [];
+                let users = [];
                 snapshot.forEach(child => {
-                    users.push({ key: child.key, val: child.val() });
+                    const user = { key: child.key, val: child.val() };
+                    if (user.val.role !== 'admin') {
+                        users.push(user);
+                    }
                 });
 
+                const paginatedUsers = users.slice(0, rowsPerPage);
                 const hasMore = users.length > rowsPerPage;
-                if (hasMore) users.pop();
 
-                if (users.length === 0) return;
+                if (paginatedUsers.length === 0) return;
 
                 currentPage++;
                 pageKeys[currentPage] = {
-                    first: users[0]?.val.registerTimestamp || null,
-                    last: users[users.length - 1]?.val.registerTimestamp || null
+                    first: paginatedUsers[0]?.val.registerTimestamp || null,
+                    last: paginatedUsers[paginatedUsers.length - 1]?.val.registerTimestamp || null
                 };
 
-                renderUsers(users);
+                renderUsers(paginatedUsers);
                 updateButtons(hasMore);
             });
     }
@@ -706,28 +243,28 @@
 
         const prevPage = currentPage - 1;
         const prevTimestamp = pageKeys[prevPage]?.first;
-        if (!prevTimestamp) {
-            console.error("Invalid previous timestamp:", prevTimestamp);
-            return;
-        }
+        if (!prevTimestamp) return;
 
         db.ref("users")
             .orderByChild('registerTimestamp')
             .startAt(prevTimestamp)
-            .limitToFirst(rowsPerPage + 1)
+            .limitToFirst(100)
             .once("value", snapshot => {
-                const users = [];
+                let users = [];
                 snapshot.forEach(child => {
-                    users.push({ key: child.key, val: child.val() });
+                    const user = { key: child.key, val: child.val() };
+                    if (user.val.role !== 'admin') {
+                        users.push(user);
+                    }
                 });
 
+                const paginatedUsers = users.slice(0, rowsPerPage);
                 const hasMore = users.length > rowsPerPage;
-                if (hasMore) users.pop();
 
-                if (users.length === 0) return;
+                if (paginatedUsers.length === 0) return;
 
                 currentPage--;
-                renderUsers(users);
+                renderUsers(paginatedUsers);
                 updateButtons(true);
             });
     }
@@ -755,48 +292,111 @@
         pageInfo.textContent = `Page ${currentPage + 1}`;
     }
 
-
     function updateButtons(hasMore) {
         prevBtn.disabled = currentPage === 0;
         nextBtn.disabled = !hasMore;
     }
 
-    const menuBtn = document.getElementById("menu-btn");
-    const sidebar = document.getElementById("sidebar");
-    const overlay = document.getElementById("overlay");
-    const icon = menuBtn.querySelector("i");
+    function showErrorMessage(message) {
+        const existing = document.getElementById('floating-error');
+        if (existing) existing.remove();
 
-    menuBtn.addEventListener("click", () => {
-        const isVisible = !sidebar.classList.contains("-translate-x-full");
+        const errorElement = document.createElement('div');
+        errorElement.id = 'floating-error';
+        errorElement.innerHTML = `
+        <div style="
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            color: white;
+            background-color: #dc2626;
+            border-radius: 0.75rem;
+            padding: 0.5rem 1rem;
+        ">
+        <i class="fas fa-info-circle" style="font-size: 1rem; margin-right: 0.5rem;"></i>
+            <span style="font-weight: 500;">${message}</span>
+        </div>
+    `;
 
-        if (isVisible) {
-            sidebar.classList.add("-translate-x-full");
-            overlay.classList.remove("active");
-            icon.classList.remove("fa-times", "text-red-600");
-            icon.classList.add("fa-bars", "text-gray-600");
-        } else {
-            sidebar.classList.remove("-translate-x-full");
-            overlay.classList.add("active");
-            icon.classList.remove("fa-bars", "text-gray-600");
-            icon.classList.add("fa-times", "text-red-600");
-        }
-    });
+        errorElement.style.position = 'fixed';
+        errorElement.style.top = '3rem';
+        errorElement.style.left = '50%';
+        errorElement.style.transform = 'translateX(-50%) translateY(-20px)';
+        errorElement.style.zIndex = '9999';
+        errorElement.style.width = '460px';
+        errorElement.style.maxWidth = '90%';
+        errorElement.style.textAlign = 'center';
+        errorElement.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)';
+        errorElement.style.opacity = '0';
+        errorElement.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
 
-    overlay.addEventListener("click", () => {
-        sidebar.classList.add("-translate-x-full");
-        overlay.classList.remove("active");
-        icon.classList.remove("fa-times", "text-red-600");
-        icon.classList.add("fa-bars", "text-gray-600");
-    });
+        document.body.appendChild(errorElement);
 
-    nextBtn.onclick = goToNextPage;
-    prevBtn.onclick = goToPreviousPage;
+        requestAnimationFrame(() => {
+            errorElement.style.opacity = '1';
+            errorElement.style.transform = 'translateX(-50%) translateY(0)';
+        });
 
-    loadInitialPage();
+        setTimeout(() => {
+            errorElement.style.opacity = '0';
+            errorElement.style.transform = 'translateX(-50%) translateY(-20px)';
+            setTimeout(() => {
+                errorElement.remove();
+            }, 500);
+        }, 4000);
+    }
 
-</script>
+    function showSuccessMessage(message) {
+        const existing = document.getElementById('floating-success');
+        if (existing) existing.remove();
 
-<script>
+        const successElement = document.createElement('div');
+        successElement.id = 'floating-success';
+
+        successElement.innerHTML = `
+        <div style="
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            color: white;
+            background-color: #16a34a; /* Tailwind green-600 */
+            border-radius: 0.75rem;
+            padding: 0.5rem 1rem;
+        ">
+            <i class="fas fa-check-circle" style="font-size: 1rem; margin-right: 0.6rem;"></i>
+            <span style="font-weight: 500;">${message}</span>
+        </div>
+    `;
+
+        successElement.style.position = 'fixed';
+        successElement.style.top = '3rem';
+        successElement.style.left = '50%';
+        successElement.style.transform = 'translateX(-50%) translateY(-20px)';
+        successElement.style.zIndex = '9999';
+        successElement.style.width = '460px';
+        successElement.style.maxWidth = '90%';
+        successElement.style.textAlign = 'center';
+        successElement.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)';
+        successElement.style.opacity = '0';
+        successElement.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+
+        document.body.appendChild(successElement);
+
+        requestAnimationFrame(() => {
+            successElement.style.opacity = '1';
+            successElement.style.transform = 'translateX(-50%) translateY(0)';
+        });
+
+        setTimeout(() => {
+            successElement.style.opacity = '0';
+            successElement.style.transform = 'translateX(-50%) translateY(-20px)';
+            setTimeout(() => {
+                successElement.remove();
+            }, 500);
+        }, 4000);
+    }
 
     let currentQuiz = 0;
 
@@ -978,160 +578,58 @@
         }
     });
 
-    function showErrorMessage(message) {
-        const existing = document.getElementById('floating-error');
-        if (existing) existing.remove();
+    const menuBtn = document.getElementById("menu-btn");
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+    const icon = menuBtn.querySelector("i");
 
-        const errorElement = document.createElement('div');
-        errorElement.id = 'floating-error';
-        errorElement.innerHTML = `
-        <div style="
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            color: white;
-            background-color: #dc2626;
-            border-radius: 0.75rem;
-            padding: 0.5rem 1rem;
-        ">
-        <i class="fas fa-info-circle" style="font-size: 1rem; margin-right: 0.5rem;"></i>
-            <span style="font-weight: 500;">${message}</span>
-        </div>
-    `;
+    menuBtn.addEventListener("click", () => {
+        const isVisible = !sidebar.classList.contains("-translate-x-full");
 
-        errorElement.style.position = 'fixed';
-        errorElement.style.top = '3rem';
-        errorElement.style.left = '50%';
-        errorElement.style.transform = 'translateX(-50%) translateY(-20px)';
-        errorElement.style.zIndex = '9999';
-        errorElement.style.width = '460px';
-        errorElement.style.maxWidth = '90%';
-        errorElement.style.textAlign = 'center';
-        errorElement.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)';
-        errorElement.style.opacity = '0';
-        errorElement.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        if (isVisible) {
+            sidebar.classList.add("-translate-x-full");
+            overlay.classList.remove("active");
+            icon.classList.remove("fa-times", "text-red-600");
+            icon.classList.add("fa-bars", "text-gray-600");
+        } else {
+            sidebar.classList.remove("-translate-x-full");
+            overlay.classList.add("active");
+            icon.classList.remove("fa-bars", "text-gray-600");
+            icon.classList.add("fa-times", "text-red-600");
+        }
+    });
 
-        document.body.appendChild(errorElement);
+    overlay.addEventListener("click", () => {
+        sidebar.classList.add("-translate-x-full");
+        overlay.classList.remove("active");
+        icon.classList.remove("fa-times", "text-red-600");
+        icon.classList.add("fa-bars", "text-gray-600");
+    });
 
-        requestAnimationFrame(() => {
-            errorElement.style.opacity = '1';
-            errorElement.style.transform = 'translateX(-50%) translateY(0)';
-        });
+    nextBtn.onclick = goToNextPage;
+    prevBtn.onclick = goToPreviousPage;
 
-        setTimeout(() => {
-            errorElement.style.opacity = '0';
-            errorElement.style.transform = 'translateX(-50%) translateY(-20px)';
-            setTimeout(() => {
-                errorElement.remove();
-            }, 500);
-        }, 4000);
-    }
+    loadInitialPage();
 
-    function showSuccessMessage(message) {
-        const existing = document.getElementById('floating-success');
-        if (existing) existing.remove();
-
-        const successElement = document.createElement('div');
-        successElement.id = 'floating-success';
-
-        successElement.innerHTML = `
-        <div style="
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            color: white;
-            background-color: #16a34a; /* Tailwind green-600 */
-            border-radius: 0.75rem;
-            padding: 0.5rem 1rem;
-        ">
-            <i class="fas fa-check-circle" style="font-size: 1rem; margin-right: 0.6rem;"></i>
-            <span style="font-weight: 500;">${message}</span>
-        </div>
-    `;
-
-        successElement.style.position = 'fixed';
-        successElement.style.top = '3rem';
-        successElement.style.left = '50%';
-        successElement.style.transform = 'translateX(-50%) translateY(-20px)';
-        successElement.style.zIndex = '9999';
-        successElement.style.width = '460px';
-        successElement.style.maxWidth = '90%';
-        successElement.style.textAlign = 'center';
-        successElement.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)';
-        successElement.style.opacity = '0';
-        successElement.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-
-        document.body.appendChild(successElement);
-
-        requestAnimationFrame(() => {
-            successElement.style.opacity = '1';
-            successElement.style.transform = 'translateX(-50%) translateY(0)';
-        });
-
-        setTimeout(() => {
-            successElement.style.opacity = '0';
-            successElement.style.transform = 'translateX(-50%) translateY(-20px)';
-            setTimeout(() => {
-                successElement.remove();
-            }, 500);
-        }, 4000);
-    }
 </script>
 
 <script>
-    function escapeHtml(unsafe) {
-        return unsafe
-            ?.replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#039;");
-    }
+    const btn = document.getElementById('settings-btn');
+    const dropdown = document.getElementById('settings-dropdown');
 
-    function generateStars(rating) {
-        const maxStars = 5;
-        let stars = '';
-        for (let i = 0; i < rating; i++) {
-            stars += '★'; // filled star
+    btn.addEventListener('click', () => {
+        const expanded = btn.getAttribute('aria-expanded') === 'true' || false;
+        btn.setAttribute('aria-expanded', !expanded);
+        dropdown.classList.toggle('hidden');
+    });
+
+    // Optional: close dropdown if clicked outside
+    document.addEventListener('click', (e) => {
+        if (!btn.contains(e.target) && !dropdown.contains(e.target)) {
+            dropdown.classList.add('hidden');
+            btn.setAttribute('aria-expanded', false);
         }
-        for (let i = rating; i < maxStars; i++) {
-            stars += '☆'; // empty star
-        }
-        return stars;
-    }
-
-    async function fetchReviews() {
-        try {
-            const response = await fetch("http://localhost:8080/api/reviews");
-            const data = await response.json();
-
-            const container = document.getElementById("review-card-container");
-            container.innerHTML = "";
-
-            data.forEach(q => {
-                const card = document.createElement("div");
-                card.className = "review-card";
-
-                const stars = generateStars(q.rating ?? 0);
-
-                card.innerHTML = `
-                    <h2 class="review-card-username">${escapeHtml(q.username ?? "Anonymous")}</h2>
-                    <p class="review-card-email">${escapeHtml(q.email ?? "N/A")}</p>
-                    <p class="review-card-comment">${escapeHtml(q.comment ?? "No comment available")}</p>
-                    <div class="review-card-stars">${stars}</div>
-                `;
-
-                container.appendChild(card);
-            });
-        } catch (error) {
-            console.error("Failed to fetch reviews:", error);
-        }
-    }
-
-    fetchReviews();
+    });
 </script>
-
 </body>
 </html>

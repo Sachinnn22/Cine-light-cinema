@@ -1,0 +1,112 @@
+#card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.custom-border {
+    border: 4px solid #3d3e3e;
+}
+
+.username {
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: #1e2e42;
+    margin-bottom: 0.3rem;
+}
+
+.email {
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: #353c45;
+    margin-bottom: 0.8rem;
+}
+
+.text-base {
+    font-size: 1rem;
+}
+
+.card-container .card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-container .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+}
+
+/* Page Info */
+#page-info {
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 1rem;
+    color: #2f3e4d;
+}
+
+/* Pagination Buttons */
+.pagination-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.pagination-buttons button {
+    background-color: #5e5e5e;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.pagination-buttons button:hover:not(:disabled) {
+    background-color: #3d3d3d;
+}
+
+.pagination-buttons button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #card-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .username {
+        font-size: 1.5rem;
+    }
+
+    .email {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 425px) {
+    #card-container > div {
+        width: 90%;
+        height: auto;
+        padding: 1.2rem;
+    }
+
+    .username {
+        font-size: 1.4rem;
+    }
+
+    .email {
+        font-size: 0.95rem;
+    }
+
+    .text-base {
+        font-size: 0.95rem;
+    }
+}
