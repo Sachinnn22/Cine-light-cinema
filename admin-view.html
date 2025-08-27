@@ -43,7 +43,7 @@
                 <span>Love Story</span>
             </a>
 
-            <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-400 mb-4 text-gray-500 hover:bg-gray-300 hover:text-gray-900 font-bold">
+            <a href="#" id="adventure-link" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-400 mb-4 text-gray-500 hover:bg-gray-300 hover:text-gray-900 font-bold">
                 <i class="fa-solid fa-globe opacity-75 w-5"></i>
                 <span>Adventure</span>
             </a>
@@ -123,6 +123,87 @@
             <button  class="btn px-4 py-2" id="pre-review">Previous</button>
             <span id="currentPageDisplayReview" class="text-gray-700 font-semibold">Page 1</span>
             <button  class="btn px-4 py-2" id="next-review">Next</button>
+        </div>
+    </section>
+
+    <div id="add-movie-wrapper" style="display:none; position: fixed; top: 1rem; right: 4rem; z-index: 1000;">
+        <button
+                class="btn px-4 py-2 bg-blue-600 text-white flex items-center gap-2 hover:bg-blue-800 transition-colors duration-200"
+                id="add-movie-btn"
+        >
+            <!-- Your SVG icon here -->
+            Add Movie
+        </button>
+    </div>
+
+
+
+    <section id="action-list" class="page" style="display:none;">
+        <h3 class="mb-8 user">Add Actions</h3>
+
+<!--        <div class="flex justify-center mt-6">-->
+<!--            <button-->
+<!--                    class="btn px-4 py-2 bg-blue-600 text-white flex items-center gap-2 hover:bg-blue-800 transition-colors duration-200"-->
+<!--                    id="add-movie-btn"-->
+<!--            >-->
+<!--                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">-->
+<!--                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />-->
+<!--                </svg>-->
+<!--                Add Movie-->
+<!--            </button>-->
+<!--        </div>-->
+
+        <div id="action-card-container" class="card-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6 px-4">
+        </div>
+
+        <div class="flex justify-center items-center gap-4 mt-10">
+            <button class="btn px-4 py-2" id="pre-action">Previous</button>
+            <span id="currentPageDisplayAction" class="text-gray-700 font-semibold">Page 1</span>
+            <button class="btn px-4 py-2" id="next-action">Next</button>
+        </div>
+
+        <div id="movie-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+            <div class="bg-white p-6 rounded-lg w-full max-w-md relative">
+                <h2 class="text-xl font-bold mb-4">Add Movie</h2>
+
+                <form id="movie-form" class="space-y-4">
+                    <div>
+                        <label class="block font-medium">Movie Image</label>
+                        <input type="file" id="movie-image" accept="image/*" class="w-full border px-2 py-1" required>
+                    </div>
+
+                    <div>
+                        <label class="block font-medium">Movie Name</label>
+                        <input type="text" id="movie-name" class="w-full border px-2 py-1" required>
+                    </div>
+
+                    <div>
+                        <label class="block font-medium">Rating</label>
+                        <input type="number" id="movie-rating" min="0" max="10" step="0.1" class="w-full border px-2 py-1" required>
+                    </div>
+
+                    <div>
+                        <label class="block font-medium">Release Date</label>
+                        <input type="date" id="release-date" class="w-full border px-2 py-1" required>
+                    </div>
+
+                    <div>
+                        <label class="block font-medium">Category</label>
+                        <input
+                                type="text"
+                                id="movie-category"
+                                class="w-full border px-2 py-1 bg-gray-100 cursor-not-allowed"
+                                readonly
+                                value="Action"
+                        >
+                    </div>
+
+                    <div class="flex justify-end gap-4 mt-4">
+                        <button type="button" class="btn px-4 py-2 bg-gray-300" id="close-modal">Cancel</button>
+                        <button type="submit" class="btn px-4 py-2 bg-green-500 hover:bg-green-700 text-white">Save</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </section>
 
@@ -535,7 +616,8 @@
     const routes = {
         'Members': 'user-details',
         'View Question': 'questions-list',
-        'View Reviews': 'review-list'
+        'View Reviews': 'review-list',
+        'Adventure': 'action-list'
     };
 
     const navLinks = document.querySelectorAll('aside nav a');
@@ -712,5 +794,74 @@
         }
     });
 </script>
+
+<script>
+    const modal = document.getElementById('movie-modal');
+    const openBtn = document.getElementById('add-movie-btn');
+    const closeBtn = document.getElementById('close-modal');
+    const form = document.getElementById('movie-form');
+
+    openBtn.addEventListener('click', () => {
+        modal.classList.remove('hidden');
+    });
+
+    closeBtn.addEventListener('click', () => {
+        modal.classList.add('hidden');
+    });
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById('movie-name').value;
+        const rating = document.getElementById('movie-rating').value;
+        const date = document.getElementById('release-date').value;
+        const category = document.getElementById('movie-category').value;
+        const imageFile = document.getElementById('movie-image').files[0];
+
+        if (imageFile) {
+            const reader = new FileReader();
+            reader.onload = function (event) {
+                const imageData = event.target.result;
+
+                const container = document.getElementById('action-card-container');
+                const card = document.createElement('div');
+                card.classList.add('p-4', 'border', 'rounded', 'shadow', 'bg-white');
+
+                card.innerHTML = `
+                    <img src="${imageData}" alt="${name}" class="w-full h-40 object-cover rounded mb-2">
+                    <h4 class="font-bold text-lg">${name}</h4>
+                    <p>Rating: ${rating}</p>
+                    <p>Release: ${date}</p>
+                    <p>Category: ${category}</p>
+                `;
+
+                container.appendChild(card);
+            };
+            reader.readAsDataURL(imageFile);
+        }
+
+        modal.classList.add('hidden');
+        form.reset();
+    });
+
+    document.getElementById('adventure-link').addEventListener('click', function(event) {
+        event.preventDefault();
+
+        document.getElementById('action-list').style.display = 'block';
+
+        document.getElementById('add-movie-wrapper').style.display = 'block';
+    });
+
+    const otherLinks = document.querySelectorAll('#sidebar nav a:not(#adventure-link)');
+    otherLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('action-list').style.display = 'none';
+            document.getElementById('add-movie-wrapper').style.display = 'none';
+        });
+    });
+
+</script>
+
 </body>
 </html>
