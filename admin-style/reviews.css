@@ -42,25 +42,25 @@
 .review-card-email {
     font-size: 20px;
     color: #2f4459;
-    margin: -4px 0 19px 0;
+    margin: -4px 0 10px 0;
 }
 
 .review-card-comment {
-    font-size: 28px;
+    font-size: 25px;
     color: #444;
-    font-weight: 700;
+    font-weight: 600;
     margin: 0 0 14px 0;
 }
 
 .review-card-stars {
-    margin: 7px 0;
+    margin: 2px 0;
     color: gold;
-    font-size: 50px;
+    font-size: 45px;
 }
 
 @media (min-width: 1440px) {
     #review-list {
-        margin-top: 45px;
+        margin-top: 60px;
     }
 
     .review-card-container {
@@ -69,13 +69,13 @@
     }
 
     .review-card {
-        width: 32%;
+        width: 350px;
     }
 }
 
-@media (min-width: 1024px) and (max-width: 1439px) {
+@media (min-width: 1024px)  {
     #review-list {
-        margin-top: 30px;
+        margin-top: 40px;
     }
 
     .review-card-container {
@@ -84,7 +84,7 @@
     }
 
     .review-card {
-        width: 30%;
+        width: 310px;
     }
 }
 
