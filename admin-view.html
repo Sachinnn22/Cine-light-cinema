@@ -136,8 +136,6 @@
         </button>
     </div>
 
-
-
     <section id="action-list" class="page" style="display:none;">
         <h3 class="mb-8 user">Add Actions</h3>
 
@@ -800,68 +798,132 @@
     const openBtn = document.getElementById('add-movie-btn');
     const closeBtn = document.getElementById('close-modal');
     const form = document.getElementById('movie-form');
+    const container = document.getElementById('action-card-container');
 
+    // Function to create and append a movie card
+    function createMovieCard(movie) {
+        const card = document.createElement('div');
+        card.classList.add('p-4', 'border', 'rounded', 'shadow', 'bg-white', 'mb-4');
+
+        // Use movie.imagePath as image URL (assuming it's a URL or relative path to image)
+        card.innerHTML = `
+  <img src="http://localhost:8080/uploads/${movie.imagePath}" alt="${movie.name}" class="w-full h-40 object-cover rounded mb-2">
+  <h4 class="font-bold text-lg">${movie.name}</h4>
+  <p>Rating: ${movie.rating}</p>
+  <p>Release: ${movie.releaseDate}</p>
+  <p>Category: ${movie.category}</p>
+`;
+
+
+        container.appendChild(card);
+    }
+
+    // Fetch and display all movies on page load or when needed
+    function fetchAllMovies() {
+        container.innerHTML = ''; // Clear existing cards
+
+        fetch('http://localhost:8080/api/movies')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch movies');
+                }
+                return response.json();  // Assuming backend returns JSON array of movies
+            })
+            .then(movies => {
+                movies.forEach(movie => {
+                    createMovieCard(movie);
+                });
+            })
+            .catch(error => {
+                alert('Error loading movies: ' + error.message);
+            });
+    }
+
+    // Open modal on add movie button click
     openBtn.addEventListener('click', () => {
         modal.classList.remove('hidden');
     });
 
+    // Close modal on close button click
     closeBtn.addEventListener('click', () => {
         modal.classList.add('hidden');
     });
 
+    // Handle form submit
     form.addEventListener('submit', (e) => {
         e.preventDefault();
 
         const name = document.getElementById('movie-name').value;
-        const rating = document.getElementById('movie-rating').value;
-        const date = document.getElementById('release-date').value;
+        const rating = parseFloat(document.getElementById('movie-rating').value);
+        const releaseDate = document.getElementById('release-date').value;
         const category = document.getElementById('movie-category').value;
         const imageFile = document.getElementById('movie-image').files[0];
 
-        if (imageFile) {
-            const reader = new FileReader();
-            reader.onload = function (event) {
-                const imageData = event.target.result;
-
-                const container = document.getElementById('action-card-container');
-                const card = document.createElement('div');
-                card.classList.add('p-4', 'border', 'rounded', 'shadow', 'bg-white');
-
-                card.innerHTML = `
-                    <img src="${imageData}" alt="${name}" class="w-full h-40 object-cover rounded mb-2">
-                    <h4 class="font-bold text-lg">${name}</h4>
-                    <p>Rating: ${rating}</p>
-                    <p>Release: ${date}</p>
-                    <p>Category: ${category}</p>
-                `;
-
-                container.appendChild(card);
-            };
-            reader.readAsDataURL(imageFile);
+        if (!imageFile) {
+            alert('Please select an image.');
+            return;
         }
 
-        modal.classList.add('hidden');
-        form.reset();
+        // Prepare form data for multipart upload
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('rating', rating);
+        formData.append('releaseDate', releaseDate);
+        formData.append('category', category);
+        formData.append('image', imageFile);
+
+        fetch('http://localhost:8080/api/movies', {
+            method: 'POST',
+            body: formData  // Do NOT set Content-Type header manually
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to save movie');
+                }
+                return response.text();
+            })
+            .then(message => {
+                alert(message); // e.g. "Movie saved successfully"
+
+                // Reload all movies to include the new one
+                fetchAllMovies();
+
+                modal.classList.add('hidden');
+                form.reset();
+            })
+            .catch(error => {
+                alert('Error: ' + error.message);
+            });
     });
 
+    // Show add movie UI when clicking Adventure link
     document.getElementById('adventure-link').addEventListener('click', function(event) {
         event.preventDefault();
 
         document.getElementById('action-list').style.display = 'block';
-
         document.getElementById('add-movie-wrapper').style.display = 'block';
+
+        // Fetch and show movies for adventure category
+        fetchAllMovies();
     });
 
+    // Hide add movie UI when clicking other sidebar links
     const otherLinks = document.querySelectorAll('#sidebar nav a:not(#adventure-link)');
     otherLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             document.getElementById('action-list').style.display = 'none';
             document.getElementById('add-movie-wrapper').style.display = 'none';
+            container.innerHTML = '';  // Optionally clear movies display when hidden
         });
     });
 
+    fetchAllMovies();
+
 </script>
+
+
+
 
 </body>
 </html>
