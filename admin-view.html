@@ -10,9 +10,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="admin-style/side-bar.css">
+    <link rel="stylesheet" href="admin-style/members.css">
+    <link rel="stylesheet" href="admin-style/reviews.css">
+    <link rel="stylesheet" href="admin-style/questions.css">
 
 </head>
 <body>
+
 <button id="menu-btn" aria-label="Toggle Menu" type="button">
     <i class="fa-solid fa-bars text-gray-600 text-3xl transition-all duration-300"></i>
 </button>
@@ -69,13 +73,11 @@
 </aside>
 
 <div class="fixed top-4 right-4 z-60 text-gray-600">
-    <!-- Settings button -->
     <div class="relative inline-block text-left">
-        <button id="settings-btn" aria-haspopup="true" aria-expanded="false" class="text-3xl hover:text-gray-900 focus:outline-none flex items-center justify-center">
+        <button id="settings-btn" aria-haspopup="true" aria-expanded="false" class="text-3xl hover:text-gray-900 focus:outline-none flex items-center justify-center mt-1">
             <i class="fa-solid fa-gear"></i>
         </button>
 
-        <!-- Dropdown menu (hidden by default) -->
         <div id="settings-dropdown" class="origin-top-right absolute right-0 mt-2 w-44 rounded-md border-2 border-gray-600 bg-white ring-1 ring-black ring-opacity-5 hidden">
             <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="settings-btn">
                 <a href="index.html" class="flex items-center gap-3 px-4 py-2 text-gray-700 hover:bg-gray-300" role="menuitem">

@@ -1,3 +1,8 @@
+
+
+
+
+
 .review-card-container {
     display: flex;
     flex-wrap: wrap;
@@ -52,72 +57,4 @@
     margin: 10px 0;
     color: gold;
     font-size: 45px;
-}
-
-@media (max-width: 768px) {
-    .review-card {
-        width: 90%;
-    }
-
-    .review-card-username {
-        font-size: 24px;
-    }
-
-    .review-card-email {
-        font-size: 18px;
-    }
-
-    .review-card-comment {
-        font-size: 22px;
-    }
-
-    .review-card-stars {
-        font-size: 36px;
-    }
-}
-
-@media (max-width: 425px) {
-    .review-card {
-        width: 95%;
-        padding: 16px;
-    }
-
-    .review-card-username {
-        font-size: 20px;
-    }
-
-    .review-card-email {
-        font-size: 16px;
-    }
-
-    .review-card-comment {
-        font-size: 18px;
-    }
-
-    .review-card-stars {
-        font-size: 30px;
-    }
-}
-
-@media (max-width: 320px) {
-    .review-card {
-        width: 100%;
-        padding: 14px;
-    }
-
-    .review-card-username {
-        font-size: 18px;
-    }
-
-    .review-card-email {
-        font-size: 14px;
-    }
-
-    .review-card-comment {
-        font-size: 16px;
-    }
-
-    .review-card-stars {
-        font-size: 26px;
-    }
 }

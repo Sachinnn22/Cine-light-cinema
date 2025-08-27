@@ -1,3 +1,8 @@
+h1 {
+    text-align: center;
+    color: #2c3e50;
+}
+
 .card-container {
     display: flex;
     flex-wrap: wrap;
@@ -65,24 +70,77 @@
     background-color: #353739;
 }
 
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+@media (min-width: 1400px) and (max-width: 1440px){
+    .card {
+        width: 360px;
+        min-height: 380px;
+        padding: 28px;
+    }
+    .username_quiz {
+        font-size: 26px;
+    }
+    .email_quiz {
+        font-size: 22px;
+    }
+    .question {
+        font-size: 21px;
+    }
+    .card button {
+        width: 220px;
+        font-size: 19px;
+    }
+    #questions-list{
+        margin-top: 40px;
+    }
+}
+
+@media (min-width: 1000px) and (max-width: 1040px) {
+    .card-container {
+        justify-content: center;
+        gap: 24px;
+    }
+    #questions-list{
+        margin-top: 25px;
+    }
+    .card {
+        width: 31%;
+        min-height: 340px;
+        padding: 24px;
+    }
+    .username_quiz {
+        font-size: 24px;
+    }
+    .email_quiz {
+        font-size: 20px;
+    }
+    .question {
+        font-size: 20px;
+    }
+    .card button {
+        width: 200px;
+        font-size: 18px;
+    }
+}
+
 @media (max-width: 425px) {
     .card {
         width: 90%;
         min-height: 300px;
     }
-
     .card button {
         width: 90%;
     }
-
     .username_quiz {
         font-size: 20px;
     }
-
     .email_quiz {
         font-size: 17px;
     }
-
     .question {
         font-size: 16px;
     }
@@ -93,19 +151,15 @@
         width: 95%;
         min-height: 280px;
     }
-
     .username_quiz {
         font-size: 18px;
     }
-
     .email_quiz {
         font-size: 16px;
     }
-
     .question {
         font-size: 15px;
     }
-
     .card button {
         font-size: 16px;
     }
@@ -117,76 +171,17 @@
         min-height: 260px;
         padding: 15px;
     }
-
     .username_quiz {
         font-size: 17px;
     }
-
     .email_quiz {
         font-size: 15px;
     }
-
     .question {
         font-size: 14px;
     }
-
     .card button {
         font-size: 15px;
         padding: 8px 10px;
-    }
-}
-
-@media (min-width: 1400px) and (max-width: 1440px){
-    .card {
-        width: 360px;
-        min-height: 360px;
-        padding: 28px;
-    }
-
-    .username_quiz {
-        font-size: 26px;
-    }
-
-    .email_quiz {
-        font-size: 22px;
-    }
-
-    .question {
-        font-size: 21px;
-    }
-
-    .card button {
-        width: 220px;
-        font-size: 19px;
-    }
-}
-
-@media (min-width: 1000px) and (max-width: 1024px) {
-    .card-container {
-        justify-content: center;
-        gap: 24px;
-    }
-
-    .card {
-        width: 30%;
-        min-height: 340px;
-        padding: 24px;
-    }
-
-    .username_quiz {
-        font-size: 24px;
-    }
-
-    .email_quiz {
-        font-size: 20px;
-    }
-
-    .question {
-        font-size: 20px;
-    }
-
-    .card button {
-        width: 200px;
-        font-size: 18px;
     }
 }
