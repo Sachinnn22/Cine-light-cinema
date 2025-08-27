@@ -86,51 +86,40 @@
     </div>
 </aside>
 
-<div class="fixed top-4 right-4 z-60 text-gray-600">
-    <div class="relative inline-block text-left">
-        <button id="settings-btn" aria-haspopup="true" aria-expanded="false" class="text-3xl hover:text-gray-900 focus:outline-none flex items-center justify-center mt-1">
-            <i class="fa-solid fa-gear"></i>
-        </button>
+<div class="fixed top-3 right-4 z-60 text-gray-600 flex gap-4">
+    <button id="credentials-btn" class="flex items-center justify-center w-11 h-11 text-[22px] bg-[#eceff4] border border-gray-400 rounded-full transition hover:border-gray-600 hover:text-gray-700" title="Credentials">
+        <i class="fa-solid fa-user-shield"></i>
+    </button>
 
-        <div id="settings-dropdown" class="origin-top-right absolute right-0 mt-2 w-44 rounded-md border-2 border-gray-600 bg-white ring-1 ring-black ring-opacity-5 hidden">
-            <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="settings-btn">
-                <a href="#" id="logout-btn" class="flex items-center gap-3 px-4 py-2 text-gray-700 hover:bg-gray-300" role="menuitem">
-                    <i class="fa-solid fa-right-from-bracket w-5"></i>
-                    Logout
-                </a>
-
-                <a href="#" id="credentials-btn" class="flex items-center gap-3 px-4 py-2 text-gray-700 hover:bg-gray-300" role="menuitem">
-                    <i class="fa-solid fa-id-card w-5"></i>
-                    Credentials
-                </a>
-
-            </div>
-        </div>
-    </div>
+    <button id="logout-btn" class="flex items-center justify-center w-11 h-11 text-[22px] bg-[#eceff4] border border-gray-400 rounded-full transition hover:border-gray-600 hover:text-gray-700" title="Logout">
+        <i class="fa-solid fa-door-open"></i>
+    </button>
 </div>
 
-<div id="credentials-modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-50">
-    <div class="bg-white rounded-lg p-6 w-96">
-        <h2 class="text-xl font-bold mb-4">Change Password</h2>
+
+<div id="credentials-modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-lg hidden z-50 transition-all duration-300 px-4">
+    <div class="bg-white rounded-lg p-6 w-full max-w-md mx-auto">
+        <h2 class="text-xl font-bold mb-4 text-center">Change Password</h2>
         <form id="credentials-form">
             <label for="current-password" class="block mb-1">Current Password</label>
-            <input type="password" id="current-password" name="currentPassword" required class="w-full mb-3 border px-2 py-1 rounded">
+            <input type="password" id="current-password" name="currentPassword" required class="w-full mb-3 border border-gray-400 px-3 py-2 rounded">
 
             <label for="new-password" class="block mb-1">New Password</label>
-            <input type="password" id="new-password" name="newPassword" required class="w-full mb-3 border px-2 py-1 rounded">
+            <input type="password" id="new-password" name="newPassword" required class="w-full mb-3 border border-gray-400 px-3 py-2 rounded">
 
             <label for="confirm-password" class="block mb-1">Confirm New Password</label>
-            <input type="password" id="confirm-password" name="confirmPassword" required class="w-full mb-4 border px-2 py-1 rounded">
+            <input type="password" id="confirm-password" name="confirmPassword" required class="w-full mb-4 border border-gray-400 px-3 py-2 rounded">
 
-            <div class="flex justify-end gap-3">
-                <button type="button" id="close-modal-btn" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Cancel</button>
-                <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Change</button>
+            <div class="flex justify-end gap-3 flex-wrap">
+                <button type="button" id="close-modal-btn" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-500">Cancel</button>
+                <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-800">Change</button>
             </div>
         </form>
-        <p id="credentials-error" class="text-red-500 mt-2 hidden"></p>
-        <p id="credentials-success" class="text-green-500 mt-2 hidden"></p>
+        <p id="credentials-error" class="text-red-500 mt-3 hidden text-sm"></p>
+        <p id="credentials-success" class="text-green-500 mt-3 hidden text-sm"></p>
     </div>
 </div>
+
 
 <div id="overlay"></div>
 
@@ -367,135 +356,6 @@
         });
     });
 
-    const cardContainer = document.getElementById("card-container");
-    const prevBtn = document.getElementById("prev-btn");
-    const nextBtn = document.getElementById("next-btn");
-    const pageInfo = document.getElementById("page-info");
-
-    const rowsPerPage = 3;
-    let currentPage = 0;
-    const pageKeys = [];
-
-    function loadInitialPage() {
-        db.ref("users")
-            .orderByChild('registerTimestamp')
-            .limitToFirst(100)
-            .once("value", snapshot => {
-                let users = [];
-                snapshot.forEach(child => {
-                    const user = { key: child.key, val: child.val() };
-                    if (user.val.role !== 'admin') {
-                        users.push(user);
-                    }
-                });
-
-                const paginatedUsers = users.slice(0, rowsPerPage);
-                const hasMore = users.length > rowsPerPage;
-
-                renderUsers(paginatedUsers);
-
-                pageKeys[0] = {
-                    first: paginatedUsers[0]?.val.registerTimestamp || null,
-                    last: paginatedUsers[paginatedUsers.length - 1]?.val.registerTimestamp || null
-                };
-
-                currentPage = 0;
-                updateButtons(hasMore);
-            });
-    }
-
-    function goToNextPage() {
-        const lastTimestamp = pageKeys[currentPage]?.last;
-        if (!lastTimestamp) return;
-
-        db.ref("users")
-            .orderByChild('registerTimestamp')
-            .startAfter(lastTimestamp)
-            .limitToFirst(100)
-            .once("value", snapshot => {
-                let users = [];
-                snapshot.forEach(child => {
-                    const user = { key: child.key, val: child.val() };
-                    if (user.val.role !== 'admin') {
-                        users.push(user);
-                    }
-                });
-
-                const paginatedUsers = users.slice(0, rowsPerPage);
-                const hasMore = users.length > rowsPerPage;
-
-                if (paginatedUsers.length === 0) return;
-
-                currentPage++;
-                pageKeys[currentPage] = {
-                    first: paginatedUsers[0]?.val.registerTimestamp || null,
-                    last: paginatedUsers[paginatedUsers.length - 1]?.val.registerTimestamp || null
-                };
-
-                renderUsers(paginatedUsers);
-                updateButtons(hasMore);
-            });
-    }
-
-    function goToPreviousPage() {
-        if (currentPage <= 0) return;
-
-        const prevPage = currentPage - 1;
-        const prevTimestamp = pageKeys[prevPage]?.first;
-        if (!prevTimestamp) return;
-
-        db.ref("users")
-            .orderByChild('registerTimestamp')
-            .startAt(prevTimestamp)
-            .limitToFirst(100)
-            .once("value", snapshot => {
-                let users = [];
-                snapshot.forEach(child => {
-                    const user = { key: child.key, val: child.val() };
-                    if (user.val.role !== 'admin') {
-                        users.push(user);
-                    }
-                });
-
-                const paginatedUsers = users.slice(0, rowsPerPage);
-                const hasMore = users.length > rowsPerPage;
-
-                if (paginatedUsers.length === 0) return;
-
-                currentPage--;
-                renderUsers(paginatedUsers);
-                updateButtons(true);
-            });
-    }
-
-    function renderUsers(users) {
-        cardContainer.innerHTML = "";
-
-        users.forEach(user => {
-            const card = document.createElement("div");
-            card.className =
-                "bg-white rounded-xl p-8 shadow-lg flex flex-col items-center text-center w-[310px] h-[320px] custom-border";
-            card.dataset.key = user.key;
-            card.dataset.timestamp = user.val.registerTimestamp;
-
-            card.innerHTML = `
-          <img src="${user.val.photoURL}" alt="${user.val.username}" class="w-20 h-20 rounded-full object-cover mb-5 shadow-lg" />
-          <h2 class="username">${user.val.username}</h2>
-          <p class="email">${user.val.email}</p>
-          <p class="text-base text-gray-700">Join Time: ${user.val.registerTime ?? "N/A"}</p>
-          <p class="text-base text-gray-700">Join Date: ${user.val.registerDate ?? "N/A"}</p>
-        `;
-            cardContainer.appendChild(card);
-        });
-
-        pageInfo.textContent = `Page ${currentPage + 1}`;
-    }
-
-    function updateButtons(hasMore) {
-        prevBtn.disabled = currentPage === 0;
-        nextBtn.disabled = !hasMore;
-    }
-
     function showErrorMessage(message) {
         const existing = document.getElementById('floating-error');
         if (existing) existing.remove();
@@ -597,138 +457,112 @@
         }, 4000);
     }
 
-    let currentQuiz = 0;
+</script>
 
-    document.addEventListener('DOMContentLoaded', function () {
-        loadQuestions(currentQuiz);
-        updatePageDisplay()
+<script>
+    const modal = document.getElementById('movie-modal');
+    const openBtn = document.getElementById('add-movie-btn');
+    const closeBtn = document.getElementById('close-modal');
+    const form = document.getElementById('movie-form');
+    const container = document.getElementById('action-card-container');
 
-        document.getElementById('next').addEventListener('click', function () {
-            currentQuiz++;
-            loadQuestions(currentQuiz);
-            updatePageDisplay()
-        });
-
-        document.getElementById('pre').addEventListener('click', function () {
-            if (currentQuiz > 0) {
-                currentQuiz--;
-                loadQuestions(currentQuiz);
-                updatePageDisplay()
-            }
-        });
-    });
-
-    function updatePageDisplay() {
-        const pageDisplay = document.getElementById('currentPageDisplay');
-        const preBtn = document.getElementById('pre');
-
-        pageDisplay.textContent = `Page ${currentQuiz + 1}`;
-
-        preBtn.disabled = currentQuiz === 0;
+    function createMovieCard(movie) {
+        const card = document.createElement('div');
+        card.classList.add('p-4', 'border', 'rounded', 'shadow', 'bg-white', 'mb-4');
+        card.innerHTML = `
+        <img src="http://localhost:8080/uploads/${movie.imagePath}" alt="${movie.name}" class="w-full h-40 object-cover rounded mb-2">
+        <h4 class="font-bold text-lg">${movie.name}</h4>
+        <p>Rating: ${movie.rating}</p>
+        <p>Release: ${movie.releaseDate}</p>
+        <p>Category: ${movie.category}</p>
+    `;
+        container.appendChild(card);
     }
 
-    function loadQuestions(page) {
-        fetch('http://localhost:8080/api/questions/pagination/' + page)
+    function fetchAllMovies() {
+        container.innerHTML = '';
+        fetch('http://localhost:8080/api/movies')
             .then(response => {
-                if (!response.ok) {
-                    throw new Error('HTTP error! Status: ' + response.status);
-                }
+                if (!response.ok) throw new Error('Failed to fetch movies');
                 return response.json();
             })
-            .then(questions => {
-                const container = document.getElementById('questionsContainer');
-                const nextBtn = document.getElementById('next');
-
-                container.innerHTML = '';
-
-                if (questions.length === 0) {
-                    container.innerHTML = '<p>No questions available.</p>';
-                    nextBtn.disabled = true;
-                    return;
-                }
-
-                nextBtn.disabled = false;
-
-                questions.forEach(q => {
-                    const card = document.createElement('div');
-                    card.className = 'card';
-
-                    card.innerHTML = `
-                    <h2 class="username_quiz">${escapeHtml(q.username ?? "Anonymous")}</h2>
-                    <p class="email_quiz">${escapeHtml(q.email ?? "N/A")}</p>
-                    <p class="question">${escapeHtml(q.content ?? "No content available")}</p>
-                    <button class="replyBtn mt-4 px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition">
-                        Reply
-                    </button>
-                `;
-
-                    const replyBtn = card.querySelector('.replyBtn');
-                    replyBtn.addEventListener('click', () => {
-                        openReplyModal(q.email, q.username);
-                    });
-
-                    container.appendChild(card);
-                });
+            .then(movies => {
+                movies.forEach(movie => createMovieCard(movie));
             })
             .catch(error => {
-                console.log("Error:", error);
-                const container = document.getElementById('questionsContainer');
-                container.innerHTML = '<p>Error loading questions.</p>';
+                alert('Error loading movies: ' + error.message);
             });
     }
 
-    let selectedEmail = '';
-    let selectedUsername = '';
-
-    function openReplyModal(email, username) {
-        selectedEmail = email;
-        selectedUsername = username;
-        document.getElementById('replyText').value = '';
-        document.getElementById('replyModal').classList.remove('hidden');
-    }
-
-    document.getElementById('cancelBtn').addEventListener('click', () => {
-        document.getElementById('replyModal').classList.add('hidden');
+    openBtn.addEventListener('click', () => {
+        modal.classList.remove('hidden');
     });
 
-    document.getElementById('sendReplyBtn').addEventListener('click', () => {
-        const message = document.getElementById('replyText').value.trim();
-        if (!message) return alert('Reply message is empty');
+    closeBtn.addEventListener('click', () => {
+        modal.classList.add('hidden');
+    });
 
-        fetch('http://localhost:8080/api/send-reply', {
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('movie-name').value;
+        const rating = parseFloat(document.getElementById('movie-rating').value);
+        const releaseDate = document.getElementById('release-date').value;
+        const category = document.getElementById('movie-category').value;
+        const imageFile = document.getElementById('movie-image').files[0];
+
+        if (!imageFile) {
+            alert('Please select an image.');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('rating', rating);
+        formData.append('releaseDate', releaseDate);
+        formData.append('category', category);
+        formData.append('image', imageFile);
+
+        fetch('http://localhost:8080/api/movies', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                to: selectedEmail,
-                username: selectedUsername,
-                message: message
+            body: formData
+        })
+            .then(response => {
+                if (!response.ok) throw new Error('Failed to save movie');
+                return response.text();
             })
-        }).then(res => {
-            if (res.ok) {
-                showSuccessMessage('Reply sent successfully!');
-                document.getElementById('replyModal').classList.add('hidden');
-            } else {
-                showErrorMessage('Failed to send reply');
-            }
+            .then(message => {
+                alert(message);
+                fetchAllMovies();
+                modal.classList.add('hidden');
+                form.reset();
+            })
+            .catch(error => {
+                alert('Error: ' + error.message);
+            });
+    });
+
+    document.getElementById('adventure-link').addEventListener('click', function(event) {
+        event.preventDefault();
+        document.getElementById('action-list').style.display = 'block';
+        document.getElementById('add-movie-wrapper').style.display = 'block';
+        fetchAllMovies();
+    });
+
+    const otherLinks = document.querySelectorAll('#sidebar nav a:not(#adventure-link)');
+    otherLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('action-list').style.display = 'none';
+            document.getElementById('add-movie-wrapper').style.display = 'none';
+            container.innerHTML = '';
         });
     });
 
+    fetchAllMovies();
 
-    function escapeHtml(text) {
-        if (!text) return '';
-        return text.replace(/[&<>"']/g, function(m) {
-            return ({
-                '&': '&amp;',
-                '<': '&lt;',
-                '>': '&gt;',
-                '"': '&quot;',
-                "'": '&#39;'
-            })[m];
-        });
-    }
+</script>
 
-    window.onload = () => loadQuestions(currentQuiz);
-
+<script>
     const routes = {
         'Members': 'user-details',
         'View Question': 'questions-list',
@@ -806,245 +640,7 @@
         icon.classList.add("fa-bars", "text-gray-600");
     });
 
-    nextBtn.onclick = goToNextPage;
-    prevBtn.onclick = goToPreviousPage;
-
-    loadInitialPage();
-
-    let currentPageReview = 0;
-    const pageSize = 3;
-
-    function escapeHtml(unsafe) {
-        return unsafe
-            ?.replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#039;");
-    }
-
-    function generateStars(rating) {
-        const maxStars = 5;
-        let stars = '';
-        for (let i = 0; i < rating; i++) {
-            stars += '★';
-        }
-        for (let i = rating; i < maxStars; i++) {
-            stars += '☆';
-        }
-        return stars;
-    }
-
-    async function fetchPaginatedReviews(page) {
-        try {
-            const response = await fetch(`http://localhost:8080/api/reviews/paginated?page=${page}&size=${pageSize}`);
-            const data = await response.json();
-
-            const container = document.getElementById("review-card-container");
-            container.innerHTML = "";
-
-            if (data.length === 0) {
-                const noReviewMessage = document.createElement("p");
-                noReviewMessage.textContent = "No reviews available.";
-                noReviewMessage.style.fontSize = "20px";
-                noReviewMessage.style.color = "#666";
-                container.appendChild(noReviewMessage);
-            } else {
-                data.forEach(q => {
-                    const card = document.createElement("div");
-                    card.className = "review-card";
-
-                    const stars = generateStars(q.rating ?? 0);
-
-                    card.innerHTML = `
-                    <h2 class="review-card-username">${escapeHtml(q.username ?? "Anonymous")}</h2>
-                    <p class="review-card-email">${escapeHtml(q.email ?? "N/A")}</p>
-                    <div class="review-card-stars">${stars}</div>
-                    <p class="review-card-comment">${escapeHtml(q.comment ?? "No comment available")}</p>
-                `;
-
-                    container.appendChild(card);
-                });
-            }
-
-            document.getElementById("currentPageDisplayReview").textContent = `Page ${page + 1}`;
-
-            document.getElementById("pre-review").disabled = page === 0;
-            document.getElementById("next-review").disabled = data.length < pageSize;
-
-        } catch (error) {
-            console.error("Failed to fetch reviews:", error);
-        }
-    }
-
-    document.getElementById("pre-review").addEventListener("click", () => {
-        if (currentPageReview > 0) {
-            currentPageReview--;
-            fetchPaginatedReviews(currentPageReview);
-        }
-    });
-
-    document.getElementById("next-review").addEventListener("click", () => {
-        currentPageReview++;
-        fetchPaginatedReviews(currentPageReview);
-    });
-
-    fetchPaginatedReviews(currentPageReview);
-
 </script>
-
-<script>
-    const btn = document.getElementById('settings-btn');
-    const dropdown = document.getElementById('settings-dropdown');
-
-    btn.addEventListener('click', () => {
-        const expanded = btn.getAttribute('aria-expanded') === 'true' || false;
-        btn.setAttribute('aria-expanded', !expanded);
-        dropdown.classList.toggle('hidden');
-    });
-
-    document.addEventListener('click', (e) => {
-        if (!btn.contains(e.target) && !dropdown.contains(e.target)) {
-            dropdown.classList.add('hidden');
-            btn.setAttribute('aria-expanded', false);
-        }
-    });
-
-
-</script>
-
-<script>
-    const modal = document.getElementById('movie-modal');
-    const openBtn = document.getElementById('add-movie-btn');
-    const closeBtn = document.getElementById('close-modal');
-    const form = document.getElementById('movie-form');
-    const container = document.getElementById('action-card-container');
-
-    // Function to create and append a movie card
-    function createMovieCard(movie) {
-        const card = document.createElement('div');
-        card.classList.add('p-4', 'border', 'rounded', 'shadow', 'bg-white', 'mb-4');
-
-        // Use movie.imagePath as image URL (assuming it's a URL or relative path to image)
-        card.innerHTML = `
-  <img src="http://localhost:8080/uploads/${movie.imagePath}" alt="${movie.name}" class="w-full h-40 object-cover rounded mb-2">
-  <h4 class="font-bold text-lg">${movie.name}</h4>
-  <p>Rating: ${movie.rating}</p>
-  <p>Release: ${movie.releaseDate}</p>
-  <p>Category: ${movie.category}</p>
-`;
-
-
-        container.appendChild(card);
-    }
-
-    // Fetch and display all movies on page load or when needed
-    function fetchAllMovies() {
-        container.innerHTML = ''; // Clear existing cards
-
-        fetch('http://localhost:8080/api/movies')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Failed to fetch movies');
-                }
-                return response.json();  // Assuming backend returns JSON array of movies
-            })
-            .then(movies => {
-                movies.forEach(movie => {
-                    createMovieCard(movie);
-                });
-            })
-            .catch(error => {
-                alert('Error loading movies: ' + error.message);
-            });
-    }
-
-    // Open modal on add movie button click
-    openBtn.addEventListener('click', () => {
-        modal.classList.remove('hidden');
-    });
-
-    // Close modal on close button click
-    closeBtn.addEventListener('click', () => {
-        modal.classList.add('hidden');
-    });
-
-    // Handle form submit
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        const name = document.getElementById('movie-name').value;
-        const rating = parseFloat(document.getElementById('movie-rating').value);
-        const releaseDate = document.getElementById('release-date').value;
-        const category = document.getElementById('movie-category').value;
-        const imageFile = document.getElementById('movie-image').files[0];
-
-        if (!imageFile) {
-            alert('Please select an image.');
-            return;
-        }
-
-        // Prepare form data for multipart upload
-        const formData = new FormData();
-        formData.append('name', name);
-        formData.append('rating', rating);
-        formData.append('releaseDate', releaseDate);
-        formData.append('category', category);
-        formData.append('image', imageFile);
-
-        fetch('http://localhost:8080/api/movies', {
-            method: 'POST',
-            body: formData  // Do NOT set Content-Type header manually
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Failed to save movie');
-                }
-                return response.text();
-            })
-            .then(message => {
-                alert(message); // e.g. "Movie saved successfully"
-
-                // Reload all movies to include the new one
-                fetchAllMovies();
-
-                modal.classList.add('hidden');
-                form.reset();
-            })
-            .catch(error => {
-                alert('Error: ' + error.message);
-            });
-    });
-
-    // Show add movie UI when clicking Adventure link
-    document.getElementById('adventure-link').addEventListener('click', function(event) {
-        event.preventDefault();
-
-        document.getElementById('action-list').style.display = 'block';
-        document.getElementById('add-movie-wrapper').style.display = 'block';
-
-        // Fetch and show movies for adventure category
-        fetchAllMovies();
-    });
-
-    // Hide add movie UI when clicking other sidebar links
-    const otherLinks = document.querySelectorAll('#sidebar nav a:not(#adventure-link)');
-    otherLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            document.getElementById('action-list').style.display = 'none';
-            document.getElementById('add-movie-wrapper').style.display = 'none';
-            container.innerHTML = '';  // Optionally clear movies display when hidden
-        });
-    });
-
-    fetchAllMovies();
-
-
-</script>
-
-
-
 
 </body>
 </html>
