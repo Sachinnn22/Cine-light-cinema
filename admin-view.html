@@ -5,17 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Sidebar Smooth Slide & Beautiful Table</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&display=swap" rel="stylesheet" />
 
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+
     <link rel="stylesheet" href="admin-style/side-bar.css">
     <link rel="stylesheet" href="admin-style/members.css">
     <link rel="stylesheet" href="admin-style/reviews.css">
     <link rel="stylesheet" href="admin-style/questions.css">
 
 </head>
+
 <body>
 
 <button id="menu-btn" aria-label="Toggle Menu" type="button">
@@ -92,16 +94,41 @@
 
         <div id="settings-dropdown" class="origin-top-right absolute right-0 mt-2 w-44 rounded-md border-2 border-gray-600 bg-white ring-1 ring-black ring-opacity-5 hidden">
             <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="settings-btn">
-                <a href="index.html" class="flex items-center gap-3 px-4 py-2 text-gray-700 hover:bg-gray-300" role="menuitem">
-                    <i class="fa-solid fa-right-from-bracket w-5"></i>  <!-- Logout icon -->
+                <a href="#" id="logout-btn" class="flex items-center gap-3 px-4 py-2 text-gray-700 hover:bg-gray-300" role="menuitem">
+                    <i class="fa-solid fa-right-from-bracket w-5"></i>
                     Logout
                 </a>
-                <a href="#" class="flex items-center gap-3 px-4 py-2 text-gray-700 hover:bg-gray-300" role="menuitem">
-                    <i class="fa-solid fa-id-card w-5"></i>  <!-- Credentials icon -->
+
+                <a href="#" id="credentials-btn" class="flex items-center gap-3 px-4 py-2 text-gray-700 hover:bg-gray-300" role="menuitem">
+                    <i class="fa-solid fa-id-card w-5"></i>
                     Credentials
                 </a>
+
             </div>
         </div>
+    </div>
+</div>
+
+<div id="credentials-modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-50">
+    <div class="bg-white rounded-lg p-6 w-96">
+        <h2 class="text-xl font-bold mb-4">Change Password</h2>
+        <form id="credentials-form">
+            <label for="current-password" class="block mb-1">Current Password</label>
+            <input type="password" id="current-password" name="currentPassword" required class="w-full mb-3 border px-2 py-1 rounded">
+
+            <label for="new-password" class="block mb-1">New Password</label>
+            <input type="password" id="new-password" name="newPassword" required class="w-full mb-3 border px-2 py-1 rounded">
+
+            <label for="confirm-password" class="block mb-1">Confirm New Password</label>
+            <input type="password" id="confirm-password" name="confirmPassword" required class="w-full mb-4 border px-2 py-1 rounded">
+
+            <div class="flex justify-end gap-3">
+                <button type="button" id="close-modal-btn" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Cancel</button>
+                <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Change</button>
+            </div>
+        </form>
+        <p id="credentials-error" class="text-red-500 mt-2 hidden"></p>
+        <p id="credentials-success" class="text-green-500 mt-2 hidden"></p>
     </div>
 </div>
 
@@ -150,18 +177,6 @@
 
     <section id="action-list" class="page" style="display:none;">
         <h3 class="mb-8 user">Add Actions</h3>
-
-<!--        <div class="flex justify-center mt-6">-->
-<!--            <button-->
-<!--                    class="btn px-4 py-2 bg-blue-600 text-white flex items-center gap-2 hover:bg-blue-800 transition-colors duration-200"-->
-<!--                    id="add-movie-btn"-->
-<!--            >-->
-<!--                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">-->
-<!--                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />-->
-<!--                </svg>-->
-<!--                Add Movie-->
-<!--            </button>-->
-<!--        </div>-->
 
         <div id="action-card-container" class="card-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6 px-4">
         </div>
@@ -238,9 +253,10 @@
 <script src="admin-script/reviews.js" type="module"></script>
 <script src="admin-script/side-bar.js" type="module"></script>
 <script src="admin-script/question.js" type="module"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+
 
 <script>
-
     const firebaseConfig = {
         apiKey: "AIzaSyCNH38ylbzfIORN0wmDoizj_eWKunQ1uAQ",
         authDomain: "my-first-app-6a293.firebaseapp.com",
@@ -260,6 +276,96 @@
 
     const db = firebase.database();
 
+    document.getElementById('logout-btn').addEventListener('click', function(event) {
+        event.preventDefault();
+
+        firebase.auth().signOut()
+            .then(() => {
+                document.cookie = "authToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
+                window.location.href = 'index.html';
+            })
+            .catch((error) => {
+                console.error('Error during sign out:', error);
+                alert('Failed to logout. Please try again.');
+            });
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const credentialsBtn = document.getElementById('credentials-btn');
+        const modal = document.getElementById('credentials-modal');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const form = document.getElementById('credentials-form');
+        const errorMsg = document.getElementById('credentials-error');    // optional now
+        const successMsg = document.getElementById('credentials-success'); // optional now
+
+        credentialsBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            errorMsg.classList.add('hidden');
+            successMsg.classList.add('hidden');
+            form.reset();
+            modal.classList.remove('hidden');
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            modal.classList.add('hidden');
+        });
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            errorMsg.classList.add('hidden');
+            successMsg.classList.add('hidden');
+
+            const currentPassword = form.currentPassword.value.trim();
+            const newPassword = form.newPassword.value.trim();
+            const confirmPassword = form.confirmPassword.value.trim();
+
+            if (newPassword !== confirmPassword) {
+                showErrorMessage("New password and confirm password do not match.");
+                return;
+            }
+
+            const user = firebase.auth().currentUser;
+
+            if (!user) {
+                showErrorMessage("User not logged in.");
+                return;
+            }
+
+            const email = user.email;
+
+            const payload = {
+                email,
+                newPassword
+            };
+
+            try {
+                const response = await fetch('http://localhost:8080/reset-password', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(payload),
+                });
+
+                const data = await response.text();
+
+                if (response.ok) {
+                    showSuccessMessage(data || "Password changed successfully.");
+                    form.reset();
+                    setTimeout(() => {
+                        modal.classList.add('hidden');
+                    }, 2000);
+                } else {
+                    showErrorMessage(data || "Failed to change password.");
+                }
+            } catch (err) {
+                console.error('Error:', err);
+                showErrorMessage("Error connecting to server.");
+            }
+        });
+    });
 
     const cardContainer = document.getElementById("card-container");
     const prevBtn = document.getElementById("prev-btn");
@@ -803,6 +909,8 @@
             btn.setAttribute('aria-expanded', false);
         }
     });
+
+
 </script>
 
 <script>
@@ -931,6 +1039,7 @@
     });
 
     fetchAllMovies();
+
 
 </script>
 
