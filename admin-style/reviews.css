@@ -1,14 +1,13 @@
-
-
-
-
-
 .review-card-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 19px;
+    gap: 22px;
     justify-content: center;
     padding: 20px;
+}
+
+#review-list {
+    margin-top: 10px !important;
 }
 
 .review-card {
@@ -17,8 +16,8 @@
     border-radius: 10px;
     border: 5px solid #6a6868;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    width: 300px;
-    min-height: 300px;
+    width: 320px;
+    min-height: 280px;
     padding: 20px;
     transition: transform 0.2s ease;
     display: flex;
@@ -35,26 +34,92 @@
 
 .review-card-username {
     margin-top: 1.2rem;
-    font-size: 30px;
+    font-size: 26px;
     font-weight: bold;
     color: #2f4459;
 }
 
 .review-card-email {
-    font-size: 22px;
+    font-size: 20px;
     color: #2f4459;
     margin: -4px 0 19px 0;
 }
 
 .review-card-comment {
-    font-size: 30px;
+    font-size: 28px;
     color: #444;
     font-weight: 700;
     margin: 0 0 14px 0;
 }
 
 .review-card-stars {
-    margin: 10px 0;
+    margin: 7px 0;
     color: gold;
-    font-size: 45px;
+    font-size: 50px;
+}
+
+@media (min-width: 1440px) {
+    #review-list {
+        margin-top: 45px;
+    }
+
+    .review-card-container {
+        flex-wrap: nowrap;
+        justify-content: center;
+    }
+
+    .review-card {
+        width: 32%;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1439px) {
+    #review-list {
+        margin-top: 30px;
+    }
+
+    .review-card-container {
+        flex-wrap: nowrap;
+        justify-content: center;
+    }
+
+    .review-card {
+        width: 30%;
+    }
+}
+
+@media (max-width: 425px) {
+    .review-card {
+        width: 88%;
+        min-height: 280px;
+        padding: 16px;
+    }
+
+    .review-card-comment {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 375px) {
+    .review-card {
+        width: 95%;
+        min-height: 250px;
+        padding: 14px;
+    }
+
+    .review-card-comment {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 320px) {
+    .review-card {
+        width: 92%;
+        min-height: 260px;
+        padding: 12px;
+    }
+
+    .review-card-comment {
+        font-size: 24px;
+    }
 }
