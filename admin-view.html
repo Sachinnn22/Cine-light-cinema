@@ -21,7 +21,7 @@
 <body>
 
 <button id="menu-btn" aria-label="Toggle Menu" type="button">
-    <i class="fa-solid fa-bars text-gray-600 text-3xl transition-all duration-300"></i>
+    <i class=" z-60 fa-solid fa-bars text-gray-600 text-3xl transition-all duration-300"></i>
 </button>
 
 <aside id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-white border-r-4 border-gray-600 flex flex-col justify-between transform -translate-x-full z-50">
@@ -86,12 +86,22 @@
     </div>
 </aside>
 
-<div class="fixed top-3 right-4 z-60 text-gray-600 flex gap-4">
-    <button id="credentials-btn" class="flex items-center justify-center w-11 h-11 text-[22px] bg-[#eceff4] border border-gray-400 rounded-full transition hover:border-gray-600 hover:text-gray-700" title="Credentials">
+<div id="overlay"></div>
+
+<div class="fixed top-3 right-4 z-60 text-gray-600 flex gap-3 sm:gap-4">
+    <button
+            id="credentials-btn"
+            class="flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 text-[20px] sm:text-[22px] bg-[#eceff4] border border-gray-400 rounded-full transition hover:border-gray-600 hover:text-gray-700"
+            title="Credentials"
+    >
         <i class="fa-solid fa-user-shield"></i>
     </button>
 
-    <button id="logout-btn" class="flex items-center justify-center w-11 h-11 text-[22px] bg-[#eceff4] border border-gray-400 rounded-full transition hover:border-gray-600 hover:text-gray-700" title="Logout">
+    <button
+            id="logout-btn"
+            class="flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 text-[20px] sm:text-[22px] bg-[#eceff4] border border-gray-400 rounded-full transition hover:border-gray-600 hover:text-gray-700"
+            title="Logout"
+    >
         <i class="fa-solid fa-door-open"></i>
     </button>
 </div>
@@ -118,8 +128,6 @@
         <p id="credentials-success" class="text-green-500 mt-3 hidden text-sm"></p>
     </div>
 </div>
-
-<div id="overlay"></div>
 
 <main id="content" class="w-full overflow-x-auto">
     <section id="user-details" class="page">
@@ -160,8 +168,9 @@
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
             </svg>
-            Add Movie
+            <span class="add-movie-text">Add Movie</span>
         </button>
+
     </div>
 
     <section id="action-list" class="page" style="display:none;">
@@ -179,7 +188,7 @@
 
     <div id="movie-modal" class="fixed inset-0 bg-black/50 backdrop-blur-md flex items-center justify-center hidden z-50 p-4">
         <div class="bg-white p-6 rounded-lg w-full max-w-full sm:max-w-sm md:max-w-md lg:max-w-lg relative max-h-screen overflow-auto">
-            <h2 class="text-xl font-bold mb-4">Add Movie</h2>
+            <h2 class="text-2xl font-extrabold mb-6 text-center">Add Actions</h2>
 
             <form id="movie-form" class="space-y-4">
                 <div>
@@ -476,7 +485,10 @@
 
     function createMovieCard(movie) {
         const card = document.createElement('div');
-        card.classList.add('p-4', 'border', 'rounded', 'shadow', 'bg-white', 'mb-4');
+        card.classList.add('p-4', 'rounded-lg', 'shadow', 'bg-white', 'mb-4');
+        card.style.border = '3px solid gray';
+        card.style.width = '260px';
+
         card.innerHTML = `
         <img src="http://localhost:8080/uploads/${movie.imagePath}" alt="${movie.name}" class="w-full h-40 object-cover rounded mb-2">
         <h4 class="font-bold text-lg">${movie.name}</h4>
@@ -519,7 +531,7 @@
         const imageFile = document.getElementById('movie-image').files[0];
 
         if (!imageFile) {
-            alert('Please select an image.');
+            showErrorMessage('Please select an image.');
             return;
         }
 
@@ -534,12 +546,13 @@
             method: 'POST',
             body: formData
         })
-            .then(response => {
-                if (!response.ok) throw new Error('Failed to save movie');
-                return response.text();
-            })
-            .then(message => {
-                alert(message);
+            .then(async response => {
+                const text = await response.text();
+                if (!response.ok) {
+                    showErrorMessage(text);
+                    showErrorMessage(text);
+                }
+                showSuccessMessage(text);
                 fetchAllMovies();
                 modal.classList.add('hidden');
                 form.reset();
@@ -578,14 +591,11 @@
         const activePage = localStorage.getItem('activePage');
 
         if (activePage === 'adventure') {
-            // ✅ Show Adventure UI again
             document.getElementById('action-list').style.display = 'block';
             document.getElementById('add-movie-wrapper').style.display = 'block';
             fetchAllMovies();
         }
     });
-
-    fetchAllMovies();
 
 </script>
 
