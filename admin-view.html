@@ -96,19 +96,18 @@
     </button>
 </div>
 
-
 <div id="credentials-modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-lg hidden z-50 transition-all duration-300 px-4">
     <div class="bg-white rounded-lg p-6 w-full max-w-md mx-auto">
         <h2 class="text-xl font-bold mb-4 text-center">Change Password</h2>
         <form id="credentials-form">
             <label for="current-password" class="block mb-1">Current Password</label>
-            <input type="password" id="current-password" name="currentPassword" required class="w-full mb-3 border border-gray-400 px-3 py-2 rounded">
+            <input type="password" id="current-password" name="currentPassword" required class="w-full mb-3 border border-gray-400 px-3 py-2 rounded-md">
 
             <label for="new-password" class="block mb-1">New Password</label>
-            <input type="password" id="new-password" name="newPassword" required class="w-full mb-3 border border-gray-400 px-3 py-2 rounded">
+            <input type="password" id="new-password" name="newPassword" required class="w-full mb-3 border border-gray-400 px-3 py-2 rounded-md">
 
             <label for="confirm-password" class="block mb-1">Confirm New Password</label>
-            <input type="password" id="confirm-password" name="confirmPassword" required class="w-full mb-4 border border-gray-400 px-3 py-2 rounded">
+            <input type="password" id="confirm-password" name="confirmPassword" required class="w-full mb-4 border border-gray-400 px-3 py-2 rounded-md">
 
             <div class="flex justify-end gap-3 flex-wrap">
                 <button type="button" id="close-modal-btn" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-500">Cancel</button>
@@ -119,7 +118,6 @@
         <p id="credentials-success" class="text-green-500 mt-3 hidden text-sm"></p>
     </div>
 </div>
-
 
 <div id="overlay"></div>
 
@@ -154,18 +152,20 @@
         </div>
     </section>
 
-    <div id="add-movie-wrapper" style="display:none; position: fixed; top: 1rem; right: 4rem; z-index: 1000;">
+    <div id="add-movie-wrapper" style="display:none; position: fixed; top: 0.8rem; right: 8rem;">
         <button
-                class="btn px-4 py-2 bg-blue-600 text-white flex items-center gap-2 hover:bg-blue-800 transition-colors duration-200"
+                class="px-4 py-2 bg-blue-600 text-white flex items-center gap-2 hover:bg-blue-700 transition-colors duration-200 rounded-full"
                 id="add-movie-btn"
         >
-            <!-- Your SVG icon here -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+            </svg>
             Add Movie
         </button>
     </div>
 
     <section id="action-list" class="page" style="display:none;">
-        <h3 class="mb-8 user">Add Actions</h3>
+        <h3 class="mb-8 user" style="font-family: 'Poppins', sans-serif;">Add Actions</h3>
 
         <div id="action-card-container" class="card-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6 px-4">
         </div>
@@ -175,51 +175,59 @@
             <span id="currentPageDisplayAction" class="text-gray-700 font-semibold">Page 1</span>
             <button class="btn px-4 py-2" id="next-action">Next</button>
         </div>
-
-        <div id="movie-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
-            <div class="bg-white p-6 rounded-lg w-full max-w-md relative">
-                <h2 class="text-xl font-bold mb-4">Add Movie</h2>
-
-                <form id="movie-form" class="space-y-4">
-                    <div>
-                        <label class="block font-medium">Movie Image</label>
-                        <input type="file" id="movie-image" accept="image/*" class="w-full border px-2 py-1" required>
-                    </div>
-
-                    <div>
-                        <label class="block font-medium">Movie Name</label>
-                        <input type="text" id="movie-name" class="w-full border px-2 py-1" required>
-                    </div>
-
-                    <div>
-                        <label class="block font-medium">Rating</label>
-                        <input type="number" id="movie-rating" min="0" max="10" step="0.1" class="w-full border px-2 py-1" required>
-                    </div>
-
-                    <div>
-                        <label class="block font-medium">Release Date</label>
-                        <input type="date" id="release-date" class="w-full border px-2 py-1" required>
-                    </div>
-
-                    <div>
-                        <label class="block font-medium">Category</label>
-                        <input
-                                type="text"
-                                id="movie-category"
-                                class="w-full border px-2 py-1 bg-gray-100 cursor-not-allowed"
-                                readonly
-                                value="Action"
-                        >
-                    </div>
-
-                    <div class="flex justify-end gap-4 mt-4">
-                        <button type="button" class="btn px-4 py-2 bg-gray-300" id="close-modal">Cancel</button>
-                        <button type="submit" class="btn px-4 py-2 bg-green-500 hover:bg-green-700 text-white">Save</button>
-                    </div>
-                </form>
-            </div>
-        </div>
     </section>
+
+    <div id="movie-modal" class="fixed inset-0 bg-black/50 backdrop-blur-md flex items-center justify-center hidden z-50 p-4">
+        <div class="bg-white p-6 rounded-lg w-full max-w-full sm:max-w-sm md:max-w-md lg:max-w-lg relative max-h-screen overflow-auto">
+            <h2 class="text-xl font-bold mb-4">Add Movie</h2>
+
+            <form id="movie-form" class="space-y-4">
+                <div>
+                    <label class="block font-medium">Movie Image</label>
+                    <input type="file" id="movie-image" accept="image/*" class="w-full border border-gray-300 rounded px-2 py-1" required>
+                </div>
+
+                <div>
+                    <label class="block font-medium">Movie Name</label>
+                    <input type="text" id="movie-name" class="w-full border border-gray-300 rounded px-2 py-1" required>
+                </div>
+
+                <div>
+                    <label class="block font-medium">Rating</label>
+                    <input type="number" id="movie-rating" min="0" max="10" step="0.1" class="w-full border border-gray-300 rounded px-2 py-1" required>
+                </div>
+
+                <div>
+                    <label class="block font-medium">Release Date</label>
+                    <input type="date" id="release-date" class="w-full border border-gray-300 rounded px-2 py-1" required>
+                </div>
+
+                <div>
+                    <label class="block font-medium">Category</label>
+                    <input
+                            type="text"
+                            id="movie-category"
+                            class="w-full border border-gray-300 rounded px-2 py-1 bg-gray-100 cursor-not-allowed"
+                            readonly
+                            value="Action"
+                    >
+                </div>
+
+                <div class="flex justify-end gap-4 mt-4 flex-wrap">
+                    <button type="button" class="px-4 py-2 bg-gray-300 hover:bg-gray-400 text-black rounded" id="close-modal">
+                        Cancel
+                    </button>
+                    <button
+                            type="submit"
+                            class="px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded focus:outline-none"
+                    >
+                        Save
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
 
     <div id="replyModal" class="fixed inset-0 hidden z-50 flex items-center justify-center bg-black/50 backdrop-blur-lg">
         <div class="bg-white p-4 sm:p-6 rounded-md shadow-lg w-[90%] max-w-md mx-4">
@@ -543,8 +551,12 @@
 
     document.getElementById('adventure-link').addEventListener('click', function(event) {
         event.preventDefault();
+
+        localStorage.setItem('activePage', 'adventure');
+
         document.getElementById('action-list').style.display = 'block';
         document.getElementById('add-movie-wrapper').style.display = 'block';
+
         fetchAllMovies();
     });
 
@@ -552,10 +564,25 @@
     otherLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
+
+            localStorage.removeItem('activePage');
+
             document.getElementById('action-list').style.display = 'none';
             document.getElementById('add-movie-wrapper').style.display = 'none';
+
             container.innerHTML = '';
         });
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const activePage = localStorage.getItem('activePage');
+
+        if (activePage === 'adventure') {
+            // ✅ Show Adventure UI again
+            document.getElementById('action-list').style.display = 'block';
+            document.getElementById('add-movie-wrapper').style.display = 'block';
+            fetchAllMovies();
+        }
     });
 
     fetchAllMovies();
