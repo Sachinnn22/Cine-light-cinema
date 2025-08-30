@@ -20,65 +20,143 @@
 
 <body>
 
-<button id="menu-btn" aria-label="Toggle Menu" type="button">
-    <i class=" z-60 fa-solid fa-bars text-gray-600 text-3xl transition-all duration-300"></i>
-</button>
+<header class="fixed top-0 left-0 right-0 flex items-center justify-between bg-white border-b border-gray-300 h-16 px-4 shadow-md z-50">
 
-<aside id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-white border-r-4 border-gray-600 flex flex-col justify-between transform -translate-x-full z-50">
+    <div class="flex items-center">
+        <button id="menu-btn" aria-label="Toggle Menu" type="button" class="text-gray-600 hover:text-gray-800 transition-colors duration-300">
+            <i class="fa-solid fa-bars text-3xl"></i>
+        </button>
+
+    </div>
+
+    <div class="flex items-center gap-6">
+
+        <div class="flex items-center gap-4 max-w-3xl">
+
+            <div id="search-add-thriller" class="search-add-group hidden flex items-center gap-2 w-full max-w-md">
+                <input type="search" placeholder="Search Thriller..." class="h-10 sm:h-11 px-4 rounded-full border border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-600 transition w-full text-gray-700 placeholder-gray-500" />
+                <button class="px-4 py-2 bg-blue-600 text-white flex items-center gap-2 hover:bg-blue-700 transition-colors duration-200 rounded-full whitespace-nowrap">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+                    </svg>
+                    <span class="hidden sm:inline">Add Thriller</span>
+                </button>
+            </div>
+
+            <div id="search-add-scifi" class="search-add-group hidden flex items-center gap-2 w-full max-w-md">
+                <input type="search" placeholder="Search Sci-Fi..." class="h-10 sm:h-11 px-4 rounded-full border border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-600 transition w-full text-gray-700 placeholder-gray-500" />
+                <button class="px-4 py-2 bg-blue-600 text-white flex items-center gap-2 hover:bg-blue-700 transition-colors duration-200 rounded-full whitespace-nowrap">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+                    </svg>
+                    <span class="hidden sm:inline">Add Sci-Fi</span>
+                </button>
+            </div>
+
+            <div id="search-add-adventure" class="search-add-group hidden flex items-center gap-2 w-full max-w-md">
+                <input type="search" placeholder="Search Adventure..." class="h-10 sm:h-11 px-4 rounded-full border border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-600 transition w-full text-gray-700 placeholder-gray-500" />
+                <button class="px-4 py-2 bg-blue-600 text-white flex items-center gap-2 hover:bg-blue-700 transition-colors duration-200 rounded-full whitespace-nowrap">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+                    </svg>
+                    <span class="hidden sm:inline">Add Adventure</span>
+                </button>
+            </div>
+
+            <div id="search-add-horror" class="search-add-group hidden flex items-center gap-2 w-full max-w-md">
+                <input type="search" placeholder="Search Horror..." class="h-10 sm:h-11 px-4 rounded-full border border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-600 transition w-full text-gray-700 placeholder-gray-500" />
+                <button class="px-4 py-2 bg-blue-600 text-white flex items-center gap-2 hover:bg-blue-700 transition-colors duration-200 rounded-full whitespace-nowrap">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+                    </svg>
+                    <span class="hidden sm:inline">Add Horror</span>
+                </button>
+            </div>
+
+        </div>
+
+        <div class="flex items-center gap-4">
+            <!-- Credentials Icon -->
+            <button
+                    id="credentials-btn"
+                    class="flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 text-[22px] text-emerald-500 transition transform hover:scale-125"
+                    title="Credentials"
+            >
+                <i class="fa-solid fa-user-shield"></i>
+            </button>
+
+
+            <!-- Logout Icon -->
+            <button
+                    id="logout-btn"
+                    class="flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 text-[22px] text-red-500 transition transform hover:scale-125"
+                    title="Logout"
+            >
+                <i class="fa-solid fa-door-open"></i>
+            </button>
+        </div>
+
+
+    </div>
+
+</header>
+
+<aside id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-black border-r-4 border-gray-800 flex flex-col justify-between transform -translate-x-full z-50">
     <div>
-        <div class="flex items-center justify-center h-16 border-b-4 border-gray-500 bg-gray-200 shadow-md">
+        <div class="flex items-center justify-center h-16 border-b-4 border-gray-700 shadow-md" style="background-color: #202020;">
             <span
                     class="ml-5 mt-2 text-2xl font-extrabold tracking-wide"
                     style="
                     font-family: 'Poppins', sans-serif;
-                    background: linear-gradient(90deg, #12b1f4, #b65353, #515147);
+                    background: linear-gradient(90deg, #12b1f4, #dc2222, #f6e406);
                     -webkit-background-clip: text;
                     -webkit-text-fill-color: transparent;
                     background-clip: text;
                     color: transparent;
+                    letter-spacing: 2px;
                 "
             >
                 CINE LIGHT
             </span>
         </div>
 
-        <nav class="px-4 pt-4 text-gray-600 border-t border-gray-300">
-            <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-400 mb-4 text-gray-500 hover:bg-gray-300 hover:text-gray-900 font-bold">
+        <nav class="px-4 pt-4 text-gray-200 border-t border-gray-700">
+            <a href="#" class="flex items-center gap-3 px-3 py-2 border-b border-gray-700 mb-4 text-gray-300 hover:bg-zinc-900 hover:text-white font-bold">
                 <i class="fa-solid fa-fire opacity-75 w-5"></i>
                 <span>Thriller Movie</span>
             </a>
 
-            <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-400 mb-4 text-gray-500 hover:bg-gray-300 hover:text-gray-900 font-bold">
+            <a href="#" class="flex items-center gap-3 px-3 py-2 border-b border-gray-700 mb-4 text-gray-300 hover:bg-zinc-900 hover:text-white font-bold">
                 <i class="fa-solid fa-microchip opacity-75 w-5"></i>
                 <span>Sci-Fi Movie</span>
             </a>
 
-            <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-400 mb-4 text-gray-500 hover:bg-gray-300 hover:text-gray-900 font-bold">
+            <a href="#" class="flex items-center gap-3 px-3 py-2 border-b border-gray-700 mb-4 text-gray-300 hover:bg-zinc-900 hover:text-white font-bold">
                 <i class="fa-solid fa-heart opacity-75 w-5"></i>
                 <span>Love Story</span>
             </a>
 
-            <a href="#" id="adventure-link" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-400 mb-4 text-gray-500 hover:bg-gray-300 hover:text-gray-900 font-bold">
+            <a href="#" id="adventure-link" class="flex items-center gap-3 px-3 py-2 border-b border-gray-700 mb-4 text-gray-300 hover:bg-zinc-900 hover:text-white font-bold">
                 <i class="fa-solid fa-globe opacity-75 w-5"></i>
                 <span>Adventure</span>
             </a>
 
-            <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-400 mb-4 text-gray-500 hover:bg-gray-300 hover:text-gray-900 font-bold">
+            <a href="#" class="flex items-center gap-3 px-3 py-2 border-b border-gray-700 mb-4 text-gray-300 hover:bg-zinc-900 hover:text-white font-bold">
                 <i class="fa-solid fa-circle-plus opacity-75 w-5"></i>
                 <span>Add Info</span>
             </a>
 
-            <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-400 mb-4 text-gray-500 hover:bg-gray-300 hover:text-gray-900 font-bold">
+            <a href="#" class="flex items-center gap-3 px-3 py-2 border-b border-gray-700 mb-4 text-gray-300 hover:bg-zinc-900 hover:text-white font-bold">
                 <i class="fa-solid fa-clipboard-list opacity-75 w-5"></i>
                 <span>View Question</span>
             </a>
 
-            <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-400 mb-4 text-gray-500 hover:bg-gray-300 hover:text-gray-900 font-bold">
+            <a href="#" class="flex items-center gap-3 px-3 py-2 border-b border-gray-700 mb-4 text-gray-300 hover:bg-zinc-900 hover:text-white font-bold">
                 <i class="fa-solid fa-star opacity-75 w-5"></i>
                 <span>View Reviews</span>
             </a>
 
-            <a href="#" class="flex items-center gap-3 px-3 py-2 border-b-2 border-gray-400 mb-4 text-gray-500 hover:bg-gray-300 hover:text-gray-900 font-bold">
+            <a href="#" class="flex items-center gap-3 px-3 py-2 border-b border-gray-700 mb-4 text-gray-300 hover:bg-zinc-900 hover:text-white font-bold">
                 <i class="fa-solid fa-users opacity-75 w-5"></i>
                 <span>Members</span>
             </a>
@@ -88,23 +166,23 @@
 
 <div id="overlay"></div>
 
-<div class="fixed top-3 right-4 z-60 text-gray-600 flex gap-3 sm:gap-4">
-    <button
-            id="credentials-btn"
-            class="flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 text-[20px] sm:text-[22px] bg-[#eceff4] border border-gray-400 rounded-full transition hover:border-gray-600 hover:text-gray-700"
-            title="Credentials"
-    >
-        <i class="fa-solid fa-user-shield"></i>
-    </button>
+<!--<div class="fixed top-3 right-4 z-60 text-gray-600 flex gap-3 sm:gap-4">-->
+<!--    <button-->
+<!--            id="credentials-btn"-->
+<!--            class="flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 text-[20px] sm:text-[22px] bg-[#eceff4] border border-gray-400 rounded-full transition hover:border-gray-600 hover:text-gray-700"-->
+<!--            title="Credentials"-->
+<!--    >-->
+<!--        <i class="fa-solid fa-user-shield"></i>-->
+<!--    </button>-->
 
-    <button
-            id="logout-btn"
-            class="flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 text-[20px] sm:text-[22px] bg-[#eceff4] border border-gray-400 rounded-full transition hover:border-gray-600 hover:text-gray-700"
-            title="Logout"
-    >
-        <i class="fa-solid fa-door-open"></i>
-    </button>
-</div>
+<!--    <button-->
+<!--            id="logout-btn"-->
+<!--            class="flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 text-[20px] sm:text-[22px] bg-[#eceff4] border border-gray-400 rounded-full transition hover:border-gray-600 hover:text-gray-700"-->
+<!--            title="Logout"-->
+<!--    >-->
+<!--        <i class="fa-solid fa-door-open"></i>-->
+<!--    </button>-->
+<!--</div>-->
 
 <div id="credentials-modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-lg hidden z-50 transition-all duration-300 px-4">
     <div class="bg-white rounded-lg p-6 w-full max-w-md mx-auto">
@@ -160,18 +238,18 @@
         </div>
     </section>
 
-    <div id="add-movie-wrapper" style="display:none; position: fixed; top: 0.8rem; right: 8rem;">
-        <button
-                class="px-4 py-2 bg-blue-600 text-white flex items-center gap-2 hover:bg-blue-700 transition-colors duration-200 rounded-full"
-                id="add-movie-btn"
-        >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
-            </svg>
-            <span class="add-movie-text">Add Movie</span>
-        </button>
+<!--    <div id="add-movie-wrapper" style="display:none; position: fixed; top: 0.8rem; right: 8rem;">-->
+<!--        <button-->
+<!--                class="px-4 py-2 bg-blue-600 text-white flex items-center gap-2 hover:bg-blue-700 transition-colors duration-200 rounded-full"-->
+<!--                id="add-movie-btn"-->
+<!--        >-->
+<!--            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">-->
+<!--                <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />-->
+<!--            </svg>-->
+<!--            <span class="add-movie-text">Add Movie</span>-->
+<!--        </button>-->
 
-    </div>
+<!--    </div>-->
 
     <section id="action-list" class="page" style="display:none;">
         <h3 class="mb-8 user" style="font-family: 'Poppins', sans-serif;">Add Actions</h3>
@@ -237,7 +315,6 @@
         </div>
     </div>
 
-
     <div id="replyModal" class="fixed inset-0 hidden z-50 flex items-center justify-center bg-black/50 backdrop-blur-lg">
         <div class="bg-white p-4 sm:p-6 rounded-md shadow-lg w-[90%] max-w-md mx-4">
             <h2 class="text-lg font-semibold mb-3 text-center">Reply to Question</h2>
@@ -281,6 +358,135 @@
     }
 
     const db = firebase.database();
+
+    const cardContainer = document.getElementById("card-container");
+    const prevBtn = document.getElementById("prev-btn");
+    const nextBtn = document.getElementById("next-btn");
+    const pageInfo = document.getElementById("page-info");
+
+    const rowsPerPage = 3;
+    let currentPage = 0;
+    const pageKeys = [];
+
+    function loadInitialPage() {
+        db.ref("users")
+            .orderByChild('registerTimestamp')
+            .limitToFirst(100)
+            .once("value", snapshot => {
+                let users = [];
+                snapshot.forEach(child => {
+                    const user = { key: child.key, val: child.val() };
+                    if (user.val.role !== 'admin') {
+                        users.push(user);
+                    }
+                });
+
+                const paginatedUsers = users.slice(0, rowsPerPage);
+                const hasMore = users.length > rowsPerPage;
+
+                renderUsers(paginatedUsers);
+
+                pageKeys[0] = {
+                    first: paginatedUsers[0]?.val.registerTimestamp || null,
+                    last: paginatedUsers[paginatedUsers.length - 1]?.val.registerTimestamp || null
+                };
+
+                currentPage = 0;
+                updateButtons(hasMore);
+            });
+    }
+
+    function goToNextPage() {
+        const lastTimestamp = pageKeys[currentPage]?.last;
+        if (!lastTimestamp) return;
+
+        db.ref("users")
+            .orderByChild('registerTimestamp')
+            .startAfter(lastTimestamp)
+            .limitToFirst(100)
+            .once("value", snapshot => {
+                let users = [];
+                snapshot.forEach(child => {
+                    const user = { key: child.key, val: child.val() };
+                    if (user.val.role !== 'admin') {
+                        users.push(user);
+                    }
+                });
+
+                const paginatedUsers = users.slice(0, rowsPerPage);
+                const hasMore = users.length > rowsPerPage;
+
+                if (paginatedUsers.length === 0) return;
+
+                currentPage++;
+                pageKeys[currentPage] = {
+                    first: paginatedUsers[0]?.val.registerTimestamp || null,
+                    last: paginatedUsers[paginatedUsers.length - 1]?.val.registerTimestamp || null
+                };
+
+                renderUsers(paginatedUsers);
+                updateButtons(hasMore);
+            });
+    }
+
+    function goToPreviousPage() {
+        if (currentPage <= 0) return;
+
+        const prevPage = currentPage - 1;
+        const prevTimestamp = pageKeys[prevPage]?.first;
+        if (!prevTimestamp) return;
+
+        db.ref("users")
+            .orderByChild('registerTimestamp')
+            .startAt(prevTimestamp)
+            .limitToFirst(100)
+            .once("value", snapshot => {
+                let users = [];
+                snapshot.forEach(child => {
+                    const user = { key: child.key, val: child.val() };
+                    if (user.val.role !== 'admin') {
+                        users.push(user);
+                    }
+                });
+
+                const paginatedUsers = users.slice(0, rowsPerPage);
+                const hasMore = users.length > rowsPerPage;
+
+                if (paginatedUsers.length === 0) return;
+
+                currentPage--;
+                renderUsers(paginatedUsers);
+                updateButtons(true);
+            });
+    }
+
+    function renderUsers(users) {
+        cardContainer.innerHTML = "";
+
+        users.forEach(user => {
+            const card = document.createElement("div");
+            card.className =
+                "bg-white rounded-xl p-8 shadow-lg flex flex-col items-center text-center w-[310px] h-[320px] custom-border";
+            card.dataset.key = user.key;
+            card.dataset.timestamp = user.val.registerTimestamp;
+
+            card.innerHTML = `
+          <img src="${user.val.photoURL}" alt="${user.val.username}" class="w-20 h-20 rounded-full object-cover mb-5 shadow-lg" />
+          <h2 class="username">${user.val.username}</h2>
+          <p class="email">${user.val.email}</p>
+          <p class="text-base text-gray-700">Join Time: ${user.val.registerTime ?? "N/A"}</p>
+          <p class="text-base text-gray-700">Join Date: ${user.val.registerDate ?? "N/A"}</p>
+        `;
+            cardContainer.appendChild(card);
+        });
+
+        pageInfo.textContent = `Page ${currentPage + 1}`;
+    }
+
+    function updateButtons(hasMore) {
+        prevBtn.disabled = currentPage === 0;
+        nextBtn.disabled = !hasMore;
+    }
 
     document.getElementById('logout-btn').addEventListener('click', function(event) {
         event.preventDefault();
@@ -497,10 +703,10 @@
         <p>Category: ${movie.category}</p>
 
         <div class="flex justify-end mt-4 space-x-4">
-            <button class="edit-btn text-gray-500 hover:text-blue-600" title="Edit">
+            <button class="edit-btn text-blue-500 hover:text-blue-600" title="Edit">
                 <i class="fas fa-edit text-xl"></i>
             </button>
-            <button class="delete-btn text-gray-500 hover:text-red-600" title="Delete">
+            <button class="delete-btn text-red-500 hover:text-red-600" title="Delete">
                 <i class="fas fa-trash-alt text-xl"></i>
             </button>
         </div>
@@ -510,7 +716,6 @@
 
         container.appendChild(card);
     }
-
 
     function fetchAllMovies() {
         container.innerHTML = '';
@@ -688,6 +893,57 @@
         overlay.classList.remove("active");
         icon.classList.remove("fa-times", "text-red-600");
         icon.classList.add("fa-bars", "text-gray-600");
+    });
+
+
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const groups = document.querySelectorAll(".search-add-group");
+
+        // Function to hide all groups
+        function hideAllGroups() {
+            groups.forEach(group => group.classList.add("hidden"));
+        }
+
+        // Map sidebar link IDs to search-add group IDs
+        const menuMap = {
+            "thriller-link": "search-add-thriller",
+            "scifi-link": "search-add-scifi",
+            "adventure-link": "search-add-adventure",
+            "horror-link": "search-add-horror",
+        };
+
+        // Load last shown group from localStorage (if any)
+        const lastGroupId = localStorage.getItem("activeSearchGroup");
+        if (lastGroupId) {
+            hideAllGroups();
+            const group = document.getElementById(lastGroupId);
+            if (group) {
+                group.classList.remove("hidden");
+            }
+        }
+
+        // Add click listeners on menu links
+        Object.entries(menuMap).forEach(([menuId, groupId]) => {
+            const menuElement = document.getElementById(menuId);
+            if (menuElement) {
+                menuElement.addEventListener("click", (e) => {
+                    e.preventDefault();
+
+                    hideAllGroups();
+
+                    const groupToShow = document.getElementById(groupId);
+                    if (groupToShow) {
+                        groupToShow.classList.remove("hidden");
+
+                        // Save to localStorage
+                        localStorage.setItem("activeSearchGroup", groupId);
+                    }
+                });
+            }
+        });
     });
 
 </script>
