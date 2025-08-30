@@ -50,11 +50,6 @@
     user-select: none;
 }
 
-.btn:hover:not(:disabled) {
-    background-color: #676464;
-    color: #f5f5f6;
-    box-shadow: none;
-}
 
 .btn:disabled {
     opacity: 0.5;

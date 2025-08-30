@@ -47,8 +47,3 @@ html,body {
 }
 
 
-@media (min-width: 320px) and (max-width: 500px) {
-    .add-movie-text {
-        display: none;
-    }
-}
