@@ -264,7 +264,7 @@
 <!--    </div>-->
 
     <section id="action-list" class="page mt-4" style="display:none;">
-        <h3 class="mb-8 user" style="font-family: 'Poppins', sans-serif; color: #546e8c !important;">Add Actions</h3>
+        <h3 class="mb-6 user" style="font-family: 'Poppins', sans-serif; color: #546e8c !important;">Add Actions</h3>
 
         <div id="action-card-container" class="card-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6 px-4">
         </div>
@@ -701,6 +701,7 @@
     const closeBtn = document.getElementById('close-modal');
     const form = document.getElementById('movie-form');
     const container = document.getElementById('action-card-container');
+    let currentMovieId = null;  // To keep track of the movie being edited
 
     function createMovieCard(movie) {
         const card = document.createElement('div');
@@ -715,8 +716,8 @@
         <p>Release: ${movie.releaseDate}</p>
         <p>Category: ${movie.category}</p>
 
-        <div class="flex justify-end mt-4 space-x-4">
-            <button class="edit-btn text-blue-500 hover:text-blue-600" title="Edit">
+        <div class="flex justify-end mt-2 space-x-4">
+            <button class="edit-btn text-blue-500 hover:text-blue-600" title="Edit" data-id="${movie.id}">
                 <i class="fas fa-edit text-xl"></i>
             </button>
             <button class="delete-btn text-red-500 hover:text-red-600" title="Delete">
@@ -725,9 +726,29 @@
         </div>
     `;
 
-
+        // Add event listener to the Edit button
+        const editBtn = card.querySelector('.edit-btn');
+        editBtn.addEventListener('click', function() {
+            openEditModal(movie);  // Open the modal and fill in the data
+        });
 
         container.appendChild(card);
+    }
+
+    function openEditModal(movie) {
+        currentMovieId = movie.id;
+
+        // Change the modal header text based on whether we're editing or adding
+        const modalHeader = document.querySelector('#movie-modal h2');
+        modalHeader.textContent = 'Edit Action';  // Change header to "Edit Action" for editing
+
+        // Fill the modal form with the current movie's data
+        document.getElementById('movie-name').value = movie.name;
+        document.getElementById('movie-rating').value = movie.rating;
+        document.getElementById('release-date').value = movie.releaseDate;
+        document.getElementById('movie-category').value = movie.category;
+
+        modal.classList.remove('hidden');  // Show the modal
     }
 
     function fetchAllMovies() {
@@ -747,6 +768,11 @@
 
     openBtn.addEventListener('click', () => {
         modal.classList.remove('hidden');
+        currentMovieId = null;  // Reset movie ID to indicate adding a new movie
+
+        // Reset the header to "Add Action" when adding a new movie
+        const modalHeader = document.querySelector('#movie-modal h2');
+        modalHeader.textContent = 'Add Action';  // Set header to "Add Action" for adding
     });
 
     closeBtn.addEventListener('click', () => {
@@ -761,7 +787,7 @@
         const category = document.getElementById('movie-category').value;
         const imageFile = document.getElementById('movie-image').files[0];
 
-        if (!imageFile) {
+        if (!imageFile && currentMovieId === null) {
             showErrorMessage('Please select an image.');
             return;
         }
@@ -771,22 +797,30 @@
         formData.append('rating', rating);
         formData.append('releaseDate', releaseDate);
         formData.append('category', category);
-        formData.append('image', imageFile);
+        if (imageFile) {
+            formData.append('image', imageFile);
+        }
 
-        fetch('http://localhost:8080/api/movies', {
-            method: 'POST',
+        const method = currentMovieId ? 'PUT' : 'POST';  // If editing, use PUT, otherwise POST
+        const url = currentMovieId
+            ? `http://localhost:8080/api/movies/${currentMovieId}`
+            : 'http://localhost:8080/api/movies';
+
+        fetch(url, {
+            method: method,
             body: formData
         })
             .then(async response => {
                 const text = await response.text();
                 if (!response.ok) {
                     showErrorMessage(text);
-                    showErrorMessage(text);
+                    return;
                 }
                 showSuccessMessage(text);
                 fetchAllMovies();
                 modal.classList.add('hidden');
                 form.reset();
+                currentMovieId = null;  // Reset the movie ID after successful submission
             })
             .catch(error => {
                 alert('Error: ' + error.message);
@@ -829,6 +863,7 @@
     });
 
 </script>
+
 
 <script>
     const routes = {
