@@ -66,7 +66,7 @@
                         placeholder="Search Adventure..."
                         class="h-10 sm:h-11 px-4 rounded-full border border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-600 transition w-full text-gray-700 placeholder-gray-500"
                 />
-                <button class="px-4 py-2 bg-blue-600 text-white flex items-center gap-2 hover:bg-blue-700 transition-colors duration-200 rounded-full whitespace-nowrap">
+                <button id="add-action-btn" class="px-4 py-2 bg-blue-600 text-white flex items-center gap-2 hover:bg-blue-700 transition-colors duration-200 rounded-full whitespace-nowrap">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
                     </svg>
@@ -277,9 +277,9 @@
 
     </section>
 
-    <div id="movie-modal" class="fixed inset-0 bg-black/50 backdrop-blur-md flex items-center justify-center hidden z-50 p-4">
-        <div class="bg-white p-6 rounded-lg w-full max-w-full sm:max-w-sm md:max-w-md lg:max-w-lg relative max-h-screen overflow-auto">
-            <h2 class="text-2xl font-extrabold mb-6 text-center">Add Actions</h2>
+    <div id="movie-modal" class="fixed inset-0 bg-black/50 backdrop-blur-md flex items-center justify-center hidden z-50 p-4 ">
+        <div class="bg-white p-6 rounded-lg w-full max-w-full sm:max-w-sm md:max-w-md lg:max-w-lg relative max-h-screen overflow-auto border border-blue-600">
+            <h2 class="text-3xl font-extrabold mb-6 text-center text-blue-700">Add Actions</h2>
 
             <form id="movie-form" class="space-y-4">
                 <div>
@@ -314,12 +314,12 @@
                 </div>
 
                 <div class="flex justify-end gap-4 mt-4 flex-wrap">
-                    <button type="button" class="px-4 py-2 bg-gray-300 hover:bg-gray-400 text-black rounded" id="close-modal">
+                    <button type="button" class="px-4 py-2 bg-red-500 text-white hover:bg-red-600 text-black rounded" id="close-modal">
                         Cancel
                     </button>
                     <button
                             type="submit"
-                            class="px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded focus:outline-none"
+                            class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded focus:outline-none"
                     >
                         Save
                     </button>
@@ -697,7 +697,7 @@
 
 <script>
     const modal = document.getElementById('movie-modal');
-    const openBtn = document.getElementById('add-movie-btn');
+    const openBtn = document.getElementById('add-action-btn');
     const closeBtn = document.getElementById('close-modal');
     const form = document.getElementById('movie-form');
     const container = document.getElementById('action-card-container');
