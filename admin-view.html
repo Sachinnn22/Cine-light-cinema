@@ -20,13 +20,12 @@
 
 <body>
 
-<header class="fixed top-0 left-0 right-0 flex items-center justify-between bg-white border-b border-gray-300 h-16 px-4 shadow-md z-50">
+<header class="fixed top-0 left-0 z-30 right-0 flex items-center justify-between bg-white border-b border-gray-500 h-16 px-4 shadow-md z-50">
 
     <div class="flex items-center">
         <button id="menu-btn" aria-label="Toggle Menu" type="button" class="text-gray-600 hover:text-gray-800 transition-colors duration-300">
             <i class="fa-solid fa-bars text-3xl"></i>
         </button>
-
     </div>
 
     <div class="flex items-center gap-6">
@@ -34,7 +33,11 @@
         <div class="flex items-center gap-4 max-w-3xl">
 
             <div id="search-add-thriller" class="search-add-group hidden flex items-center gap-2 w-full max-w-md">
-                <input type="search" placeholder="Search Thriller..." class="h-10 sm:h-11 px-4 rounded-full border border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-600 transition w-full text-gray-700 placeholder-gray-500" />
+                <input
+                        type="search"
+                        placeholder="Search Thriller..."
+                        class="h-10 sm:h-11 px-4 rounded-full border border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-600 transition w-full text-gray-700 placeholder-gray-500"
+                />
                 <button class="px-4 py-2 bg-blue-600 text-white flex items-center gap-2 hover:bg-blue-700 transition-colors duration-200 rounded-full whitespace-nowrap">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
@@ -44,7 +47,11 @@
             </div>
 
             <div id="search-add-scifi" class="search-add-group hidden flex items-center gap-2 w-full max-w-md">
-                <input type="search" placeholder="Search Sci-Fi..." class="h-10 sm:h-11 px-4 rounded-full border border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-600 transition w-full text-gray-700 placeholder-gray-500" />
+                <input
+                        type="search"
+                        placeholder="Search Sci-Fi..."
+                        class="h-10 sm:h-11 px-4 rounded-full border border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-600 transition w-full text-gray-700 placeholder-gray-500"
+                />
                 <button class="px-4 py-2 bg-blue-600 text-white flex items-center gap-2 hover:bg-blue-700 transition-colors duration-200 rounded-full whitespace-nowrap">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
@@ -54,7 +61,11 @@
             </div>
 
             <div id="search-add-adventure" class="search-add-group hidden flex items-center gap-2 w-full max-w-md">
-                <input type="search" placeholder="Search Adventure..." class="h-10 sm:h-11 px-4 rounded-full border border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-600 transition w-full text-gray-700 placeholder-gray-500" />
+                <input
+                        type="search"
+                        placeholder="Search Adventure..."
+                        class="h-10 sm:h-11 px-4 rounded-full border border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-600 transition w-full text-gray-700 placeholder-gray-500"
+                />
                 <button class="px-4 py-2 bg-blue-600 text-white flex items-center gap-2 hover:bg-blue-700 transition-colors duration-200 rounded-full whitespace-nowrap">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
@@ -64,7 +75,11 @@
             </div>
 
             <div id="search-add-horror" class="search-add-group hidden flex items-center gap-2 w-full max-w-md">
-                <input type="search" placeholder="Search Horror..." class="h-10 sm:h-11 px-4 rounded-full border border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-600 transition w-full text-gray-700 placeholder-gray-500" />
+                <input
+                        type="search"
+                        placeholder="Search Horror..."
+                        class="h-10 sm:h-11 px-4 rounded-full border border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-600 transition w-full text-gray-700 placeholder-gray-500"
+                />
                 <button class="px-4 py-2 bg-blue-600 text-white flex items-center gap-2 hover:bg-blue-700 transition-colors duration-200 rounded-full whitespace-nowrap">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
@@ -76,7 +91,6 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <!-- Credentials Icon -->
             <button
                     id="credentials-btn"
                     class="flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 text-[22px] text-emerald-500 transition transform hover:scale-125"
@@ -85,8 +99,6 @@
                 <i class="fa-solid fa-user-shield"></i>
             </button>
 
-
-            <!-- Logout Icon -->
             <button
                     id="logout-btn"
                     class="flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 text-[22px] text-red-500 transition transform hover:scale-125"
@@ -96,14 +108,14 @@
             </button>
         </div>
 
-
     </div>
 
 </header>
 
-<aside id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-black border-r-4 border-gray-800 flex flex-col justify-between transform -translate-x-full z-50">
+
+<aside id="sidebar" class="fixed inset-y-0  left-0 w-64 bg-black border-r-4 border-gray-800 flex flex-col justify-between transform -translate-x-full z-50">
     <div>
-        <div class="flex items-center justify-center h-16 border-b-4 border-gray-700 shadow-md" style="background-color: #202020;">
+        <div class="flex items-center z-50 justify-center h-16 border-b-4 border-gray-700 shadow-md" style="background-color: #202020;">
             <span
                     class="ml-5 mt-2 text-2xl font-extrabold tracking-wide"
                     style="
@@ -876,25 +888,27 @@
         const isVisible = !sidebar.classList.contains("-translate-x-full");
 
         if (isVisible) {
+            // Hide sidebar and overlay
             sidebar.classList.add("-translate-x-full");
-            overlay.classList.remove("active");
+            overlay.classList.remove("active"); // <-- remove active class
             icon.classList.remove("fa-times", "text-red-600");
             icon.classList.add("fa-bars", "text-gray-600");
         } else {
+            // Show sidebar and overlay
             sidebar.classList.remove("-translate-x-full");
-            overlay.classList.add("active");
+            overlay.classList.add("active"); // <-- add active class
             icon.classList.remove("fa-bars", "text-gray-600");
             icon.classList.add("fa-times", "text-red-600");
         }
     });
 
     overlay.addEventListener("click", () => {
+        // Clicking outside sidebar closes it
         sidebar.classList.add("-translate-x-full");
-        overlay.classList.remove("active");
+        overlay.classList.remove("active"); // <-- remove active class
         icon.classList.remove("fa-times", "text-red-600");
         icon.classList.add("fa-bars", "text-gray-600");
     });
-
 
 </script>
 
