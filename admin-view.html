@@ -318,8 +318,16 @@
                         Cancel
                     </button>
                     <button
+                            type="button"
+                            class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded focus:outline-none hidden"
+                            id="edit-btn"
+                    >
+                        Edit
+                    </button>
+                    <button
                             type="submit"
                             class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded focus:outline-none"
+                            id="save-btn"
                     >
                         Save
                     </button>
@@ -701,7 +709,16 @@
     const closeBtn = document.getElementById('close-modal');
     const form = document.getElementById('movie-form');
     const container = document.getElementById('action-card-container');
-    let currentMovieId = null;  // To keep track of the movie being edited
+
+    const nextBtnAc = document.getElementById('next-action');
+    const prevBtnAc = document.getElementById('pre-action');
+    const currentPageDisplay = document.getElementById('currentPageDisplayAction');
+
+    let currentPageAc = 0;
+    const pageSizeAc = 3;
+    let lastPageReachedAc = false;
+
+    let currentMovieId = null; // For editing
 
     function createMovieCard(movie) {
         const card = document.createElement('div');
@@ -710,69 +727,154 @@
         card.style.width = '280px';
 
         card.innerHTML = `
-        <img src="http://localhost:8080/uploads/${movie.imagePath}" alt="${movie.name}" class="w-full h-40 object-cover rounded mb-2">
-        <h4 class="font-bold text-lg">${movie.name}</h4>
-        <p>Rating: ${movie.rating}</p>
-        <p>Release: ${movie.releaseDate}</p>
-        <p>Category: ${movie.category}</p>
+            <img src="http://localhost:8080/uploads/${movie.imagePath}" alt="${movie.name}" class="w-full h-40 object-cover rounded mb-2">
+            <h4 class="font-bold text-lg">${movie.name}</h4>
+            <p>Rating: ${movie.rating}</p>
+            <p>Release: ${movie.releaseDate}</p>
+            <p>Category: ${movie.category}</p>
+            <div class="flex justify-end mt-2 space-x-4">
+                <button class="edit-btn text-blue-500 hover:text-blue-600" title="Edit" data-id="${movie.id}">
+                    <i class="fas fa-edit text-xl"></i>
+                </button>
+                <button class="delete-btn text-red-500 hover:text-red-600" title="Delete" data-id="${movie.id}">
+                    <i class="fas fa-trash-alt text-xl"></i>
+                </button>
+            </div>
+        `;
 
-        <div class="flex justify-end mt-2 space-x-4">
-            <button class="edit-btn text-blue-500 hover:text-blue-600" title="Edit" data-id="${movie.id}">
-                <i class="fas fa-edit text-xl"></i>
-            </button>
-            <button class="delete-btn text-red-500 hover:text-red-600" title="Delete">
-                <i class="fas fa-trash-alt text-xl"></i>
-            </button>
-        </div>
-    `;
-
-        // Add event listener to the Edit button
         const editBtn = card.querySelector('.edit-btn');
-        editBtn.addEventListener('click', function() {
-            openEditModal(movie);  // Open the modal and fill in the data
+        editBtn.addEventListener('click', () => openEditModal(movie));
+
+        const deleteBtn = card.querySelector('.delete-btn');
+        deleteBtn.addEventListener('click', () => {
+            const id = deleteBtn.getAttribute('data-id');
+            if (confirm('Are you sure you want to delete this movie?')) {
+                deleteMovie(id);
+            }
         });
 
         container.appendChild(card);
     }
 
+    function loadPaginatedMovies(page) {
+        fetch(`http://localhost:8080/api/movies/paginated?page=${page}&size=${pageSizeAc}`)
+            .then(res => {
+                if (!res.ok) throw new Error("Failed to fetch paginated movies");
+                return res.json();
+            })
+            .then(movies => {
+                container.innerHTML = '';
+                if (movies.length === 0) {
+                    if (page > 0) {
+                        currentPageAc--;
+                        return loadPaginatedMovies(currentPageAc);
+                    } else {
+                        container.innerHTML = '<p>No movies found.</p>';
+                    }
+                    lastPageReachedAc = true;
+                } else {
+                    movies.forEach(createMovieCard);
+                    lastPageReachedAc = movies.length < pageSizeAc;
+                }
+
+                currentPageDisplay.textContent = `Page ${currentPageAc + 1}`;
+                prevBtnAc.disabled = currentPageAc === 0;
+                nextBtnAc.disabled = lastPageReachedAc;
+            })
+            .catch(error => showErrorMessage(error.message));
+    }
+
+    nextBtnAc.addEventListener('click', () => {
+        if (!lastPageReachedAc) {
+            currentPageAc++;
+            loadPaginatedMovies(currentPageAc);
+        }
+    });
+
+    prevBtnAc.addEventListener('click', () => {
+        if (currentPageAc > 0) {
+            currentPageAc--;
+            loadPaginatedMovies(currentPageAc);
+        }
+    });
+
     function openEditModal(movie) {
         currentMovieId = movie.id;
 
-        // Change the modal header text based on whether we're editing or adding
         const modalHeader = document.querySelector('#movie-modal h2');
-        modalHeader.textContent = 'Edit Action';  // Change header to "Edit Action" for editing
+        modalHeader.textContent = 'Edit Action';
 
-        // Fill the modal form with the current movie's data
         document.getElementById('movie-name').value = movie.name;
         document.getElementById('movie-rating').value = movie.rating;
         document.getElementById('release-date').value = movie.releaseDate;
         document.getElementById('movie-category').value = movie.category;
 
-        modal.classList.remove('hidden');  // Show the modal
+        document.getElementById('save-btn').classList.add('hidden');
+        document.getElementById('edit-btn').classList.remove('hidden');
+
+        modal.classList.remove('hidden');
     }
 
-    function fetchAllMovies() {
-        container.innerHTML = '';
-        fetch('http://localhost:8080/api/movies')
-            .then(response => {
-                if (!response.ok) throw new Error('Failed to fetch movies');
-                return response.json();
+    document.getElementById('edit-btn').addEventListener('click', () => {
+        const name = document.getElementById('movie-name').value;
+        const rating = parseFloat(document.getElementById('movie-rating').value);
+        const releaseDate = document.getElementById('release-date').value;
+        const category = document.getElementById('movie-category').value;
+        const imageFile = document.getElementById('movie-image').files[0];
+
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('rating', rating);
+        formData.append('releaseDate', releaseDate);
+        formData.append('category', category);
+        if (imageFile) {
+            formData.append('image', imageFile);
+        }
+
+        fetch(`http://localhost:8080/api/movies/${currentMovieId}`, {
+            method: 'PUT',
+            body: formData
+        })
+            .then(async response => {
+                const text = await response.text();
+                if (!response.ok) {
+                    showErrorMessage(text);
+                    return;
+                }
+                showSuccessMessage(text);
+                modal.classList.add('hidden');
+                form.reset();
+                currentMovieId = null;
+                loadPaginatedMovies(currentPageAc);
             })
-            .then(movies => {
-                movies.forEach(movie => createMovieCard(movie));
+            .catch(error => showErrorMessage('Error: ' + error.message));
+    });
+
+    function deleteMovie(movieId) {
+        fetch(`http://localhost:8080/api/movies/${movieId}`, {
+            method: 'DELETE'
+        })
+            .then(async response => {
+                const text = await response.text();
+                if (!response.ok) {
+                    showErrorMessage(text);
+                    return;
+                }
+                showSuccessMessage(text);
+                loadPaginatedMovies(currentPageAc);
             })
-            .catch(error => {
-                alert('Error loading movies: ' + error.message);
-            });
+            .catch(error => showErrorMessage('Error deleting movie: ' + error.message));
     }
 
     openBtn.addEventListener('click', () => {
         modal.classList.remove('hidden');
-        currentMovieId = null;  // Reset movie ID to indicate adding a new movie
+        currentMovieId = null;
 
-        // Reset the header to "Add Action" when adding a new movie
         const modalHeader = document.querySelector('#movie-modal h2');
-        modalHeader.textContent = 'Add Action';  // Set header to "Add Action" for adding
+        modalHeader.textContent = 'Add Action';
+
+        document.getElementById('save-btn').classList.remove('hidden');
+        document.getElementById('edit-btn').classList.add('hidden');
     });
 
     closeBtn.addEventListener('click', () => {
@@ -781,6 +883,7 @@
 
     form.addEventListener('submit', (e) => {
         e.preventDefault();
+
         const name = document.getElementById('movie-name').value;
         const rating = parseFloat(document.getElementById('movie-rating').value);
         const releaseDate = document.getElementById('release-date').value;
@@ -801,13 +904,8 @@
             formData.append('image', imageFile);
         }
 
-        const method = currentMovieId ? 'PUT' : 'POST';  // If editing, use PUT, otherwise POST
-        const url = currentMovieId
-            ? `http://localhost:8080/api/movies/${currentMovieId}`
-            : 'http://localhost:8080/api/movies';
-
-        fetch(url, {
-            method: method,
+        fetch('http://localhost:8080/api/movies', {
+            method: 'POST',
             body: formData
         })
             .then(async response => {
@@ -817,53 +915,25 @@
                     return;
                 }
                 showSuccessMessage(text);
-                fetchAllMovies();
                 modal.classList.add('hidden');
                 form.reset();
-                currentMovieId = null;  // Reset the movie ID after successful submission
+                currentMovieId = null;
+                loadPaginatedMovies(currentPageAc);
             })
-            .catch(error => {
-                alert('Error: ' + error.message);
-            });
+            .catch(error => showErrorMessage('Error: ' + error.message));
     });
 
-    document.getElementById('adventure-link').addEventListener('click', function(event) {
-        event.preventDefault();
+    function showErrorMessage(message) {
+        alert('Error: ' + message);
+    }
 
-        localStorage.setItem('activePage', 'adventure');
+    function showSuccessMessage(message) {
+        alert('Success: ' + message);
+    }
 
-        document.getElementById('action-list').style.display = 'block';
-        document.getElementById('add-movie-wrapper').style.display = 'block';
-
-        fetchAllMovies();
-    });
-
-    const otherLinks = document.querySelectorAll('#sidebar nav a:not(#adventure-link)');
-    otherLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-
-            localStorage.removeItem('activePage');
-
-            document.getElementById('action-list').style.display = 'none';
-            document.getElementById('add-movie-wrapper').style.display = 'none';
-
-            container.innerHTML = '';
-        });
-    });
-
-    document.addEventListener('DOMContentLoaded', function () {
-        const activePage = localStorage.getItem('activePage');
-
-        if (activePage === 'adventure') {
-            document.getElementById('action-list').style.display = 'block';
-            document.getElementById('add-movie-wrapper').style.display = 'block';
-            fetchAllMovies();
-        }
-    });
-
+    // Initial load
+    loadPaginatedMovies(currentPageAc);
 </script>
-
 
 <script>
     const routes = {
