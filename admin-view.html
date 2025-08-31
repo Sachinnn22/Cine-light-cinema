@@ -62,10 +62,12 @@
 
             <div id="search-add-adventure" class="search-add-group hidden flex items-center gap-2 w-full max-w-md">
                 <input
+                        id="search-input"
                         type="search"
                         placeholder="Search Adventure..."
                         class="h-10 sm:h-11 px-4 rounded-full border border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-600 transition w-full text-gray-700 placeholder-gray-500"
                 />
+
                 <button id="add-action-btn" class="px-4 py-2 bg-blue-600 text-white flex items-center gap-2 hover:bg-blue-700 transition-colors duration-200 rounded-full whitespace-nowrap">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
@@ -718,7 +720,7 @@
     const pageSizeAc = 3;
     let lastPageReachedAc = false;
 
-    let currentMovieId = null; // For editing
+    let currentMovieId = null;
 
     function createMovieCard(movie) {
         const card = document.createElement('div');
@@ -742,14 +744,10 @@
             </div>
         `;
 
-        const editBtn = card.querySelector('.edit-btn');
-        editBtn.addEventListener('click', () => openEditModal(movie));
-
-        const deleteBtn = card.querySelector('.delete-btn');
-        deleteBtn.addEventListener('click', () => {
-            const id = deleteBtn.getAttribute('data-id');
+        card.querySelector('.edit-btn').addEventListener('click', () => openEditModal(movie));
+        card.querySelector('.delete-btn').addEventListener('click', () => {
             if (confirm('Are you sure you want to delete this movie?')) {
-                deleteMovie(id);
+                deleteMovie(movie.id);
             }
         });
 
@@ -757,7 +755,7 @@
     }
 
     function loadPaginatedMovies(page) {
-        fetch(`http://localhost:8080/api/movies/paginated?page=${page}&size=${pageSizeAc}`)
+        fetch(`http://localhost:8080/api/action-movies/paginated?page=${page}&size=${pageSizeAc}`)
             .then(res => {
                 if (!res.ok) throw new Error("Failed to fetch paginated movies");
                 return res.json();
@@ -769,7 +767,11 @@
                         currentPageAc--;
                         return loadPaginatedMovies(currentPageAc);
                     } else {
-                        container.innerHTML = '<p>No movies found.</p>';
+                        container.innerHTML = `
+                            <div class="flex items-center justify-center h-64 w-full">
+                                <p class="text-gray-600 text-lg italic">No movies found.</p>
+                            </div>
+                        `;
                     }
                     lastPageReachedAc = true;
                 } else {
@@ -801,9 +803,7 @@
     function openEditModal(movie) {
         currentMovieId = movie.id;
 
-        const modalHeader = document.querySelector('#movie-modal h2');
-        modalHeader.textContent = 'Edit Action';
-
+        document.querySelector('#movie-modal h2').textContent = 'Edit Action';
         document.getElementById('movie-name').value = movie.name;
         document.getElementById('movie-rating').value = movie.rating;
         document.getElementById('release-date').value = movie.releaseDate;
@@ -827,20 +827,16 @@
         formData.append('rating', rating);
         formData.append('releaseDate', releaseDate);
         formData.append('category', category);
-        if (imageFile) {
-            formData.append('image', imageFile);
-        }
+        if (imageFile) formData.append('image', imageFile);
 
-        fetch(`http://localhost:8080/api/movies/${currentMovieId}`, {
+        fetch(`http://localhost:8080/api/action-movies/${currentMovieId}`, {
             method: 'PUT',
             body: formData
         })
             .then(async response => {
                 const text = await response.text();
-                if (!response.ok) {
-                    showErrorMessage(text);
-                    return;
-                }
+                if (!response.ok) return showErrorMessage(text);
+
                 showSuccessMessage(text);
                 modal.classList.add('hidden');
                 form.reset();
@@ -851,28 +847,74 @@
     });
 
     function deleteMovie(movieId) {
-        fetch(`http://localhost:8080/api/movies/${movieId}`, {
-            method: 'DELETE'
-        })
+        fetch(`http://localhost:8080/api/action-movies/${movieId}`, { method: 'DELETE' })
             .then(async response => {
                 const text = await response.text();
-                if (!response.ok) {
-                    showErrorMessage(text);
-                    return;
-                }
+                if (!response.ok) return showErrorMessage(text);
+
                 showSuccessMessage(text);
                 loadPaginatedMovies(currentPageAc);
             })
             .catch(error => showErrorMessage('Error deleting movie: ' + error.message));
     }
 
+    const searchInput = document.getElementById('search-input');
+
+    function performSearch(keyword) {
+        if (!keyword) {
+            currentPageAc = 0;
+            return loadPaginatedMovies(currentPageAc);
+        }
+
+        fetch(`http://localhost:8080/api/action-movies/search?keyword=${encodeURIComponent(keyword)}`)
+            .then(res => {
+                if (!res.ok) throw new Error('Failed to fetch search results');
+                return res.json();
+            })
+            .then(movies => {
+                container.innerHTML = '';
+
+                if (movies.length === 0) {
+                    container.innerHTML = `
+    <div class="text-center mt-4">
+          <p class="text-gray-600 text-lg italic">
+            No movies found for "<strong>${keyword}</strong>".
+          </p>
+        </div>
+
+                    `;
+                    return;
+                }
+
+                movies.forEach(createMovieCard);
+            })
+            .catch(err => {
+                container.innerHTML = `
+                     <div class="text-center mt-4">
+                        <p class="text-red-500 italic">Error loading search results: ${err.message}</p>
+                    </div>
+                `;
+            });
+    }
+
+    function debounce(func, delay) {
+        let timer;
+        return function (...args) {
+            clearTimeout(timer);
+            timer = setTimeout(() => func.apply(this, args), delay);
+        };
+    }
+
+    searchInput.addEventListener('input', debounce((e) => {
+        const keyword = e.target.value.trim();
+        performSearch(keyword);
+    }, 300));
+
     openBtn.addEventListener('click', () => {
         modal.classList.remove('hidden');
         currentMovieId = null;
 
-        const modalHeader = document.querySelector('#movie-modal h2');
-        modalHeader.textContent = 'Add Action';
-
+        document.querySelector('#movie-modal h2').textContent = 'Add Action';
         document.getElementById('save-btn').classList.remove('hidden');
         document.getElementById('edit-btn').classList.add('hidden');
     });
@@ -891,8 +933,7 @@
         const imageFile = document.getElementById('movie-image').files[0];
 
         if (!imageFile && currentMovieId === null) {
-            showErrorMessage('Please select an image.');
-            return;
+            return showErrorMessage('Please select an image.');
         }
 
         const formData = new FormData();
@@ -900,20 +941,16 @@
         formData.append('rating', rating);
         formData.append('releaseDate', releaseDate);
         formData.append('category', category);
-        if (imageFile) {
-            formData.append('image', imageFile);
-        }
+        if (imageFile) formData.append('image', imageFile);
 
-        fetch('http://localhost:8080/api/movies', {
+        fetch('http://localhost:8080/api/action-movies', {
             method: 'POST',
             body: formData
         })
             .then(async response => {
                 const text = await response.text();
-                if (!response.ok) {
-                    showErrorMessage(text);
-                    return;
-                }
+                if (!response.ok) return showErrorMessage(text);
+
                 showSuccessMessage(text);
                 modal.classList.add('hidden');
                 form.reset();
@@ -931,7 +968,6 @@
         alert('Success: ' + message);
     }
 
-    // Initial load
     loadPaginatedMovies(currentPageAc);
 </script>
 
