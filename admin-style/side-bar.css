@@ -46,4 +46,105 @@ html,body {
     opacity: 1;
 }
 
+#action-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
 
+@media (min-width: 1400px) and (max-width: 1450px) {
+    #action-list {
+        margin-top: 45px;
+    }
+    #action-card-container {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start;
+    }
+    #action-card-container > div {
+        flex: 0 0 320px;
+        max-width: 320px;
+    }
+}
+
+@media (min-width: 1023px) and (max-width: 1300px) {
+    #action-list {
+        margin-top: 45px;
+    }
+    #action-card-container > div {
+        flex: 1 1 auto;
+        max-width: none;
+    }
+    #action-card-container {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+    }
+}
+
+@media (min-width: 880px) and (max-width: 1000px) {
+    #action-list {
+        margin-top: 40px;
+    }
+    #action-card-container > div {
+        flex: 1 1 calc(33.33% - 1rem);
+        max-width: calc(33.33% - 1rem);
+    }
+}
+
+@media (min-width: 650px) and (max-width: 879px) {
+    #action-card-container > div {
+        flex: 1 1 calc(50% - 1rem);
+        max-width: 300px;
+    }
+    #action-card-container > div:nth-child(odd):last-child {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (min-width: 426px) and (max-width: 649px) {
+    #action-card-container > div {
+        flex: 1 1 280px;
+        max-width: 280px;
+    }
+    #search-add-adventure {
+        display: none;
+    }
+}
+
+@media (min-width: 376px) and (max-width: 425px) {
+    #action-card-container > div {
+        flex: 1 1 280px;
+        max-width: 280px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #search-add-adventure {
+        display: none;
+    }
+}
+
+@media (min-width: 321px) and (max-width: 375px) {
+    #action-card-container > div {
+        flex: 1 1 280px;
+        max-width: 280px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #search-add-adventure {
+        display: none;
+    }
+}
+
+@media (max-width: 320px) {
+    #action-card-container > div {
+        flex: 1 1 320px;
+        max-width: 320px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #search-add-adventure {
+        display: none;
+    }
+}
