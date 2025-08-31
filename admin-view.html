@@ -768,7 +768,7 @@
                         return loadPaginatedMovies(currentPageAc);
                     } else {
                         container.innerHTML = `
-                            <div class="flex items-center justify-center h-64 w-full">
+                            <div class="flex items-center justify-center">
                                 <p class="text-gray-600 text-lg italic">No movies found.</p>
                             </div>
                         `;
@@ -923,6 +923,8 @@
         modal.classList.add('hidden');
     });
 
+    const MAX_IMAGE_SIZE = 100 * 1024 * 1024;
+
     form.addEventListener('submit', (e) => {
         e.preventDefault();
 
@@ -934,6 +936,10 @@
 
         if (!imageFile && currentMovieId === null) {
             return showErrorMessage('Please select an image.');
+        }
+
+        if (imageFile && imageFile.size > MAX_IMAGE_SIZE) {
+            return showErrorMessage('Choose small size image');
         }
 
         const formData = new FormData();
@@ -959,6 +965,7 @@
             })
             .catch(error => showErrorMessage('Error: ' + error.message));
     });
+
 
     function showErrorMessage(message) {
         alert('Error: ' + message);
