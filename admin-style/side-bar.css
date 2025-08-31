@@ -50,7 +50,7 @@ html,body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 1rem;
+    gap: 1.5rem;
 }
 
 @media (min-width: 1400px) and (max-width: 1450px) {

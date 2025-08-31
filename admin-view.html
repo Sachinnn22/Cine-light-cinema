@@ -135,19 +135,15 @@
         </div>
 
         <nav class="px-4 pt-4 text-gray-200 border-t border-gray-700">
-            <a href="#" class="flex items-center gap-3 px-3 py-2 border-b border-gray-700 mb-4 text-gray-300 hover:bg-zinc-900 hover:text-white font-bold">
+
+            <a href="#" id="thriller-link" class="flex items-center gap-3 px-3 py-2 border-b border-gray-700 mb-4 text-gray-300 hover:bg-zinc-900 hover:text-white font-bold">
                 <i class="fa-solid fa-fire opacity-75 w-5"></i>
                 <span>Thriller Movie</span>
             </a>
 
-            <a href="#" class="flex items-center gap-3 px-3 py-2 border-b border-gray-700 mb-4 text-gray-300 hover:bg-zinc-900 hover:text-white font-bold">
+            <a href="#" id="scifi-link" class="flex items-center gap-3 px-3 py-2 border-b border-gray-700 mb-4 text-gray-300 hover:bg-zinc-900 hover:text-white font-bold">
                 <i class="fa-solid fa-microchip opacity-75 w-5"></i>
                 <span>Sci-Fi Movie</span>
-            </a>
-
-            <a href="#" class="flex items-center gap-3 px-3 py-2 border-b border-gray-700 mb-4 text-gray-300 hover:bg-zinc-900 hover:text-white font-bold">
-                <i class="fa-solid fa-heart opacity-75 w-5"></i>
-                <span>Love Story</span>
             </a>
 
             <a href="#" id="adventure-link" class="flex items-center gap-3 px-3 py-2 border-b border-gray-700 mb-4 text-gray-300 hover:bg-zinc-900 hover:text-white font-bold">
@@ -155,26 +151,33 @@
                 <span>Adventure</span>
             </a>
 
-            <a href="#" class="flex items-center gap-3 px-3 py-2 border-b border-gray-700 mb-4 text-gray-300 hover:bg-zinc-900 hover:text-white font-bold">
+            <a href="#" id="horror-link" class="flex items-center gap-3 px-3 py-2 border-b border-gray-700 mb-4 text-gray-300 hover:bg-zinc-900 hover:text-white font-bold">
+                <i class="fa-solid fa-ghost opacity-75 w-5"></i>
+                <span>Horror</span>
+            </a>
+
+            <a href="#" id="addinfo-link" class="flex items-center gap-3 px-3 py-2 border-b border-gray-700 mb-4 text-gray-300 hover:bg-zinc-900 hover:text-white font-bold">
                 <i class="fa-solid fa-circle-plus opacity-75 w-5"></i>
                 <span>Add Info</span>
             </a>
 
-            <a href="#" class="flex items-center gap-3 px-3 py-2 border-b border-gray-700 mb-4 text-gray-300 hover:bg-zinc-900 hover:text-white font-bold">
+            <a href="#" id="viewquestion-link" class="flex items-center gap-3 px-3 py-2 border-b border-gray-700 mb-4 text-gray-300 hover:bg-zinc-900 hover:text-white font-bold">
                 <i class="fa-solid fa-clipboard-list opacity-75 w-5"></i>
                 <span>View Question</span>
             </a>
 
-            <a href="#" class="flex items-center gap-3 px-3 py-2 border-b border-gray-700 mb-4 text-gray-300 hover:bg-zinc-900 hover:text-white font-bold">
+            <a href="#" id="reviews-link" class="flex items-center gap-3 px-3 py-2 border-b border-gray-700 mb-4 text-gray-300 hover:bg-zinc-900 hover:text-white font-bold">
                 <i class="fa-solid fa-star opacity-75 w-5"></i>
                 <span>View Reviews</span>
             </a>
 
-            <a href="#" class="flex items-center gap-3 px-3 py-2 border-b border-gray-700 mb-4 text-gray-300 hover:bg-zinc-900 hover:text-white font-bold">
+            <a href="#" id="members-link" class="flex items-center gap-3 px-3 py-2 border-b border-gray-700 mb-4 text-gray-300 hover:bg-zinc-900 hover:text-white font-bold">
                 <i class="fa-solid fa-users opacity-75 w-5"></i>
                 <span>Members</span>
             </a>
+
         </nav>
+
     </div>
 </aside>
 
@@ -1065,12 +1068,10 @@
     document.addEventListener("DOMContentLoaded", () => {
         const groups = document.querySelectorAll(".search-add-group");
 
-        // Function to hide all groups
         function hideAllGroups() {
             groups.forEach(group => group.classList.add("hidden"));
         }
 
-        // Map sidebar link IDs to search-add group IDs
         const menuMap = {
             "thriller-link": "search-add-thriller",
             "scifi-link": "search-add-scifi",
@@ -1078,37 +1079,47 @@
             "horror-link": "search-add-horror",
         };
 
-        // Load last shown group from localStorage (if any)
+        // Restore previously active group (only if valid)
         const lastGroupId = localStorage.getItem("activeSearchGroup");
-        if (lastGroupId) {
+        const validGroupIds = Object.values(menuMap);
+
+        if (lastGroupId && validGroupIds.includes(lastGroupId)) {
             hideAllGroups();
             const group = document.getElementById(lastGroupId);
             if (group) {
                 group.classList.remove("hidden");
             }
+        } else {
+            hideAllGroups();
         }
 
-        // Add click listeners on menu links
+        // Handle genre menu link clicks
         Object.entries(menuMap).forEach(([menuId, groupId]) => {
             const menuElement = document.getElementById(menuId);
             if (menuElement) {
                 menuElement.addEventListener("click", (e) => {
                     e.preventDefault();
-
                     hideAllGroups();
-
                     const groupToShow = document.getElementById(groupId);
                     if (groupToShow) {
                         groupToShow.classList.remove("hidden");
-
-                        // Save to localStorage
                         localStorage.setItem("activeSearchGroup", groupId);
                     }
                 });
             }
         });
-    });
 
+        // Clear active group on non-genre links
+        ["members-link", "addinfo-link", "reviews-link", "viewquestion-link"].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) {
+                el.addEventListener("click", () => {
+                    localStorage.removeItem("activeSearchGroup");
+                    hideAllGroups();
+                });
+            }
+        });
+    });
 </script>
 
 </body>
