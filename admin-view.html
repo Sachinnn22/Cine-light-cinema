@@ -400,6 +400,103 @@
 
     const db = firebase.database();
 
+
+    async function updateUserCountAndChart() {
+        try {
+            // Fetch user count from Firebase Realtime Database
+            const snapshot = await db.ref("users").once('value');
+            const userCount = snapshot.numChildren();
+            document.getElementById('total-users').innerText = userCount;
+
+            // Prepare data points for the chart (7 points, linearly increasing to userCount)
+            const dataPoints = Array.from({ length: 7 }, (_, i) => Math.round((userCount / 6) * i));
+
+            // Create User Activity line chart with dynamic data and scaled y-axis
+            const userActivityCtx = document.getElementById('userActivityChart').getContext('2d');
+            new Chart(userActivityCtx, {
+                type: 'line',
+                data: {
+                    labels: ['', '', '', '', '', '', ''], // Empty labels
+                    datasets: [{
+                        label: 'Active Users',
+                        data: dataPoints,
+                        borderColor: '#3b82f6',
+                        backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                        fill: true,
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: {
+                            display: false
+                        },
+                        y: {
+                            beginAtZero: true,
+                            suggestedMax: userCount,
+                            ticks: {
+                                stepSize: Math.max(1, Math.ceil(userCount / 5)),
+                                precision: 0
+                            }
+                        }
+                    }
+                }
+            });
+
+        } catch (error) {
+            console.error('Error fetching user count:', error);
+        }
+    }
+
+    // Call on page load
+    updateUserCountAndChart();
+
+    // Fetch review and question counts and update DOM
+    fetch('http://localhost:8080/api/dashboard/counts')
+        .then(response => {
+            if (!response.ok) throw new Error('Network response was not ok');
+            return response.json();
+        })
+        .then(data => {
+            document.getElementById('total-reviews').innerText = data.totalReviews;
+            document.getElementById('total-questions').innerText = data.totalQuestions;
+        })
+        .catch(error => {
+            console.error('Error fetching dashboard counts:', error);
+        });
+
+    // Genre bar chart (static data)
+    const genreCtx = document.getElementById('genreChart').getContext('2d');
+    new Chart(genreCtx, {
+        type: 'bar',
+        data: {
+            labels: ['Thriller', 'Sci-Fi', 'Adventure', 'Horror'],
+            datasets: [{
+                label: 'Movies',
+                data: [10, 20, 15, 13],
+                backgroundColor: ['#3b82f6', '#10b981', '#f59e0b', '#ef4444'],
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { display: false },
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        precision: 0
+                    }
+                }
+            }
+        }
+    });
+
     const cardContainer = document.getElementById("card-container");
     const prevBtn = document.getElementById("prev-btn");
     const nextBtn = document.getElementById("next-btn");
@@ -1137,72 +1234,10 @@
 </script>
 
 <script>
-    document.getElementById('total-users').innerText = 125;
-    document.getElementById('total-movies').innerText = 58;
-    document.getElementById('total-reviews').innerText = 230;
-    document.getElementById('total-questions').innerText = 89;
-
-    const genreCtx = document.getElementById('genreChart').getContext('2d');
-    new Chart(genreCtx, {
-        type: 'bar',
-        data: {
-            labels: ['Thriller', 'Sci-Fi', 'Adventure', 'Horror'],
-            datasets: [{
-                label: 'Movies',
-                data: [10, 20, 15, 13],
-                backgroundColor: ['#3b82f6', '#10b981', '#f59e0b', '#ef4444'],
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: { display: false },
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        precision: 0
-                    }
-                }
-            }
-        }
-    });
-
-    const userActivityCtx = document.getElementById('userActivityChart').getContext('2d');
-    new Chart(userActivityCtx, {
-        type: 'line',
-        data: {
-            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-            datasets: [{
-                label: 'Active Users',
-                data: [5, 8, 12, 9, 14, 11, 6],
-                borderColor: '#3b82f6',
-                backgroundColor: 'rgba(59, 130, 246, 0.2)',
-                fill: true,
-                tension: 0.3
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    display: false
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        precision: 0
-                    }
-                }
-            }
-        }
-    });
-
 
 </script>
+
+
 
 
 </body>
