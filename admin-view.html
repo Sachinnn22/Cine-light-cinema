@@ -115,7 +115,7 @@
 </header>
 
 
-<aside id="sidebar" class="z-40 fixed inset-y-0  left-0 w-64 bg-black border-r-4 border-gray-800 flex flex-col justify-between transform -translate-x-full">
+<aside id="sidebar" class="z-40 fixed inset-y-0 left-0 w-64 bg-black border-r-4 border-red-600 flex flex-col justify-between transform -translate-x-full">
     <div>
         <div class="flex items-center z-50 justify-center h-16 border-b-4 border-gray-700 shadow-md" style="background-color: #202020;">
             <span
@@ -176,6 +176,11 @@
                 <span>Members</span>
             </a>
 
+            <a href="#" id="dashbord-nav" class="flex items-center gap-3 px-3 py-2 border-b border-gray-700 mb-4 text-gray-300 hover:bg-zinc-900 hover:text-white font-bold">
+                <i class="fa-solid fa-users opacity-75 w-5"></i>
+                <span>dashbord</span>
+            </a>
+
         </nav>
 
     </div>
@@ -225,15 +230,52 @@
 </div>
 
 <main id="content" class="w-full overflow-x-auto">
-    <section id="user-details" class="page">
-        <h3 class="mb-8 user">User Details</h3>
-        <div id="card-container" class="grid grid-cols-3 gap-8 max-w-7xl mx-auto cd"></div>
-        <div class="flex justify-center items-center gap-4 mt-10">
-            <button id="prev-btn" class="btn px-4 py-2" disabled>Previous</button>
-            <span id="page-info" class="text-gray-700 font-semibold"></span>
-            <button id="next-btn" class="btn px-4 py-2">Next</button>
+
+    <section id="dashboard" class="page px-6 pt-6">
+        <h3 class="text-3xl font-bold text-gray-800 mb-6">Welcome To Dashboard</h3>
+
+       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-7">
+            <div class="bg-white shadow rounded-lg p-6 border-l-4 border-blue-500" >
+                <h4 class="text-gray-700 text-sm font-semibold">Users</h4>
+                <p class="text-2xl font-bold text-blue-600 mt-2" id="total-users">0</p>
+            </div>
+            <div class="bg-white shadow rounded-lg p-6 border-l-4 border-green-500">
+                <h4 class="text-gray-700 text-sm font-semibold">Movies</h4>
+                <p class="text-2xl font-bold text-green-600 mt-2" id="total-movies">0</p>
+            </div>
+            <div class="bg-white shadow rounded-lg p-6 border-l-4 border-yellow-500">
+                <h4 class="text-gray-700 text-sm font-semibold">Reviews</h4>
+                <p class="text-2xl font-bold text-yellow-600 mt-2" id="total-reviews">0</p>
+            </div>
+            <div class="bg-white shadow rounded-lg p-6 border-l-4 border-red-500">
+                <h4 class="text-gray-700 text-sm font-semibold">Questions</h4>
+                <p class="text-2xl font-bold text-red-600 mt-2" id="total-questions">0</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="bg-white p-5 rounded-lg shadow border-l-4 border-green-500">
+                <h4 class="text-lg font-semibold text-gray-800 mb-4">Movies Per Genre</h4>
+                <canvas id="genreChart" class="w-full h-64"></canvas>
+            </div>
+            <div class="bg-white p-5 rounded-lg shadow  border-l-4 border-red-500">
+                <h4 class="text-lg font-semibold text-gray-800 mb-4">User Activity</h4>
+                <canvas id="userActivityChart" class="w-full h-64"></canvas>
+            </div>
+
         </div>
     </section>
+
+
+<!--    <section id="user-details" class="page">-->
+<!--        <h3 class="mb-8 user">User Details</h3>-->
+<!--        <div id="card-container" class="grid grid-cols-3 gap-8 max-w-7xl mx-auto cd"></div>-->
+<!--        <div class="flex justify-center items-center gap-4 mt-10">-->
+<!--            <button id="prev-btn" class="btn px-4 py-2" disabled>Previous</button>-->
+<!--            <span id="page-info" class="text-gray-700 font-semibold"></span>-->
+<!--            <button id="next-btn" class="btn px-4 py-2">Next</button>-->
+<!--        </div>-->
+<!--    </section>-->
 
     <section id="questions-list" class="page" style="display:none;">
         <h3 class="mb-8 user">View Question</h3>
@@ -269,7 +311,7 @@
 <!--    </div>-->
 
     <section id="action-list" class="page mt-4" style="display:none;">
-        <h3 class="mb-6 user" style="font-family: 'Poppins', sans-serif; color: #546e8c !important;">Add Actions</h3>
+        <h3 class="mb-6 user" style="font-family: 'Poppins', sans-serif; color: #546e8c !important;">View Adventures</h3>
 
         <div id="action-card-container" class="card-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6 px-4">
         </div>
@@ -363,6 +405,7 @@
 <script src="admin-script/side-bar.js" type="module"></script>
 <script src="admin-script/question.js" type="module"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
 <script>
@@ -986,7 +1029,7 @@
         'Members': 'user-details',
         'View Question': 'questions-list',
         'View Reviews': 'review-list',
-        'Adventure': 'action-list'
+        'Adventure': 'action-list',
     };
 
     const navLinks = document.querySelectorAll('aside nav a');
@@ -1121,6 +1164,76 @@
         });
     });
 </script>
+
+<script>
+    // Dummy counts — replace with real data via fetch or variables
+    document.getElementById('total-users').innerText = 125;
+    document.getElementById('total-movies').innerText = 58;
+    document.getElementById('total-reviews').innerText = 230;
+    document.getElementById('total-questions').innerText = 89;
+
+    // Movies Per Genre Chart
+    const genreCtx = document.getElementById('genreChart').getContext('2d');
+    new Chart(genreCtx, {
+        type: 'bar',
+        data: {
+            labels: ['Thriller', 'Sci-Fi', 'Adventure', 'Horror'],
+            datasets: [{
+                label: 'Movies',
+                data: [10, 20, 15, 13], // replace with dynamic data
+                backgroundColor: ['#3b82f6', '#10b981', '#f59e0b', '#ef4444'],
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { display: false },
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        precision:0
+                    }
+                }
+            }
+        }
+    });
+
+    // User Activity Chart
+    const userActivityCtx = document.getElementById('userActivityChart').getContext('2d');
+    new Chart(userActivityCtx, {
+        type: 'line',
+        data: {
+            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            datasets: [{
+                label: 'Active Users',
+                data: [5, 8, 12, 9, 14, 11, 6], // replace with dynamic data
+                borderColor: '#3b82f6',
+                backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                fill: true,
+                tension: 0.3
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        precision:0
+                    }
+                }
+            }
+        }
+    });
+</script>
+
 
 </body>
 </html>
