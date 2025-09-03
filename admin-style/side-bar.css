@@ -147,96 +147,111 @@ html,body {
         display: none;
     }
 }
-/* For devices 1024px wide and below (small laptops, large tablets) */
-@media (max-width: 1024px) {
+
+@media (min-width: 1440px) {
     #dashboard {
-        padding-left: 2.5rem !important;  /* px-10 approx (40px) */
-        padding-right: 2.5rem !important;
-        padding-top: 3.5rem !important;   /* pt-10 approx */
+        padding-left: 4rem !important;
+        padding-right: 4rem !important;
+        padding-top: 4rem !important;
     }
     #dashboard h3 {
-        font-size: 2.25rem !important; /* slightly bigger heading */
+        font-size: 2.75rem !important;
     }
     #dashboard .grid.grid-cols-1.sm\:grid-cols-2.lg\:grid-cols-4 {
-        grid-template-columns: repeat(4, minmax(0, 1fr)) !important; /* 3 columns */
+        grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+        gap: 2rem !important;
+        margin-bottom: 4rem !important;
+    }
+    #dashboard .text-2xl {
+        font-size: 2.25rem !important;
+    }
+    #dashboard .grid.grid-cols-1.lg\:grid-cols-2 {
+        grid-template-columns: 1fr 1fr !important;
+    }
+}
+
+@media (max-width: 1024px) {
+    #dashboard {
+        padding-left: 2.5rem !important;
+        padding-right: 2.5rem !important;
+        padding-top: 3.5rem !important;
+    }
+    #dashboard h3 {
+        font-size: 2.25rem !important;
+    }
+    #dashboard .grid.grid-cols-1.sm\:grid-cols-2.lg\:grid-cols-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
         gap: 1.75rem !important;
     }
     #dashboard .text-2xl {
-        font-size: 1.9rem !important; /* stats text size */
+        font-size: 1.9rem !important;
     }
     #dashboard .grid.grid-cols-1.lg\:grid-cols-2 {
-        grid-template-columns: 1fr 1fr !important; /* keep charts 2 columns */
+        grid-template-columns: 1fr 1fr !important;
     }
     #dashboard .grid.grid-cols-1.sm\:grid-cols-2.lg\:grid-cols-4 {
-        margin-bottom: 3rem !important; /* about mb-5 = 20px */
+        margin-bottom: 3rem !important;
     }
 }
 
-/* For devices 768px wide and below (tablet) */
 @media (max-width: 768px) {
     #dashboard {
-        padding-left: 2rem !important;  /* px-8 approx */
+        padding-left: 2rem !important;
         padding-right: 2rem !important;
-        padding-top: 2rem !important;  /* pt-8 approx */
+        padding-top: 2rem !important;
     }
     #dashboard h3 {
-        font-size: 2.2rem !important; /* medium size */
+        font-size: 2.2rem !important;
         text-align: center !important;
     }
     #dashboard .grid.grid-cols-1.sm\:grid-cols-2.lg\:grid-cols-4 {
-        grid-template-columns: repeat(2, minmax(0, 1fr)) !important; /* 2 columns */
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
         gap: 1.5rem !important;
     }
     #dashboard .text-2xl {
-        font-size: 1.75rem !important; /* medium-large stats text */
+        font-size: 1.75rem !important;
     }
     #dashboard .grid.grid-cols-1.lg\:grid-cols-2 {
-        grid-template-columns: 1fr 1fr !important; /* keep 2 columns for charts */
+        grid-template-columns: 1fr 1fr !important;
     }
 }
 
-
-/* For devices 425px wide and below */
 @media (max-width: 425px) {
     #dashboard {
-        padding-left: 1rem !important;  /* px-4 approx */
+        padding-left: 1rem !important;
         padding-right: 1rem !important;
-        padding-top: 1.5rem !important; /* pt-6 approx */
+        padding-top: 1.5rem !important;
     }
     #dashboard h3 {
         text-align: center !important;
-        font-size: 1.6rem !important; /* smaller heading */
+        font-size: 1.6rem !important;
     }
     #dashboard .grid.grid-cols-1.sm\:grid-cols-2.lg\:grid-cols-4 {
-        grid-template-columns: repeat(1, minmax(0, 1fr)) !important; /* 1 column */
+        grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
         gap: 1rem !important;
     }
     #dashboard .text-2xl {
-        font-size: 1.25rem !important; /* smaller stats text */
+        font-size: 1.25rem !important;
     }
 }
 
-/* For devices 375px wide and below */
 @media (max-width: 375px) {
     #dashboard h3 {
         font-size: 1.4rem !important;
         text-align: center !important;
-
     }
     #dashboard .grid.grid-cols-1.sm\:grid-cols-2.lg\:grid-cols-4 > div {
-        padding: 0.75rem !important; /* reduce padding */
+        padding: 0.75rem !important;
     }
     #dashboard .text-2xl {
         font-size: 1.1rem !important;
     }
 }
 
-/* For devices 320px wide and below */
 @media (max-width: 320px) {
     #dashboard h3 {
         font-size: 1.3rem !important;
         text-align: center !important;
-
     }
     #dashboard .grid.grid-cols-1.sm\:grid-cols-2.lg\:grid-cols-4 > div {
         padding: 0.5rem !important;
@@ -245,7 +260,6 @@ html,body {
         font-size: 1rem !important;
     }
     #dashboard .grid.grid-cols-1.lg\:grid-cols-2 {
-        grid-template-columns: 1fr !important; /* stack vertically */
+        grid-template-columns: 1fr !important;
     }
 }
-
