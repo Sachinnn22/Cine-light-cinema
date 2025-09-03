@@ -20,76 +20,63 @@
 
 <body>
 
-<header class="fixed top-0 left-0 right-0 flex items-center justify-between bg-white border-b border-gray-500 h-16 px-4 shadow-md ">
+<header class="fixed top-0 left-0 right-0 flex items-center justify-end bg-white border-b border-gray-500 h-16 px-4 shadow-md gap-6">
+    <div class="flex items-center gap-4">
+        <div id="search-add-thriller" class="search-add-group hidden flex items-center gap-2 w-full max-w-md">
+            <input
+                    type="search"
+                    placeholder="Search Thriller..."
+                    class="h-10 sm:h-11 px-4 rounded-full border border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-600 transition w-full text-gray-700 placeholder-gray-500"
+            />
+            <button class="px-4 py-2 bg-blue-600 text-white flex items-center gap-2 hover:bg-blue-700 transition-colors duration-200 rounded-full whitespace-nowrap">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+                </svg>
+                <span class="hidden sm:inline">Add Thriller</span>
+            </button>
+        </div>
 
-    <div class="flex items-center">
-        <button id="menu-btn" aria-label="Toggle Menu" type="button" class="text-gray-600 hover:text-gray-800 transition-colors duration-300">
-            <i class="fa-solid fa-bars text-3xl"></i>
-        </button>
-    </div>
+        <div id="search-add-scifi" class="search-add-group hidden flex items-center gap-2 w-full max-w-md">
+            <input
+                    type="search"
+                    placeholder="Search Sci-Fi..."
+                    class="h-10 sm:h-11 px-4 rounded-full border border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-600 transition w-full text-gray-700 placeholder-gray-500"
+            />
+            <button class="px-4 py-2 bg-blue-600 text-white flex items-center gap-2 hover:bg-blue-700 transition-colors duration-200 rounded-full whitespace-nowrap">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+                </svg>
+                <span class="hidden sm:inline">Add Sci-Fi</span>
+            </button>
+        </div>
 
-    <div class="flex items-center gap-6">
+        <div id="search-add-adventure" class="search-add-group hidden flex items-center gap-2 w-full max-w-md">
+            <input
+                    id="search-input"
+                    type="search"
+                    placeholder="Search Adventure..."
+                    class="h-10 sm:h-11 px-4 rounded-full border border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-600 transition w-full text-gray-700 placeholder-gray-500"
+            />
+            <button id="add-action-btn" class="px-4 py-2 bg-blue-600 text-white flex items-center gap-2 hover:bg-blue-700 transition-colors duration-200 rounded-full whitespace-nowrap">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+                </svg>
+                <span class="hidden sm:inline">Add Adventure</span>
+            </button>
+        </div>
 
-        <div class="flex items-center gap-4 max-w-3xl">
-
-            <div id="search-add-thriller" class="search-add-group hidden flex items-center gap-2 w-full max-w-md">
-                <input
-                        type="search"
-                        placeholder="Search Thriller..."
-                        class="h-10 sm:h-11 px-4 rounded-full border border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-600 transition w-full text-gray-700 placeholder-gray-500"
-                />
-                <button class="px-4 py-2 bg-blue-600 text-white flex items-center gap-2 hover:bg-blue-700 transition-colors duration-200 rounded-full whitespace-nowrap">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
-                    </svg>
-                    <span class="hidden sm:inline">Add Thriller</span>
-                </button>
-            </div>
-
-            <div id="search-add-scifi" class="search-add-group hidden flex items-center gap-2 w-full max-w-md">
-                <input
-                        type="search"
-                        placeholder="Search Sci-Fi..."
-                        class="h-10 sm:h-11 px-4 rounded-full border border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-600 transition w-full text-gray-700 placeholder-gray-500"
-                />
-                <button class="px-4 py-2 bg-blue-600 text-white flex items-center gap-2 hover:bg-blue-700 transition-colors duration-200 rounded-full whitespace-nowrap">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
-                    </svg>
-                    <span class="hidden sm:inline">Add Sci-Fi</span>
-                </button>
-            </div>
-
-            <div id="search-add-adventure" class="search-add-group hidden flex items-center gap-2 w-full max-w-md">
-                <input
-                        id="search-input"
-                        type="search"
-                        placeholder="Search Adventure..."
-                        class="h-10 sm:h-11 px-4 rounded-full border border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-600 transition w-full text-gray-700 placeholder-gray-500"
-                />
-
-                <button id="add-action-btn" class="px-4 py-2 bg-blue-600 text-white flex items-center gap-2 hover:bg-blue-700 transition-colors duration-200 rounded-full whitespace-nowrap">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
-                    </svg>
-                    <span class="hidden sm:inline">Add Adventure</span>
-                </button>
-            </div>
-
-            <div id="search-add-horror" class="search-add-group hidden flex items-center gap-2 w-full max-w-md">
-                <input
-                        type="search"
-                        placeholder="Search Horror..."
-                        class="h-10 sm:h-11 px-4 rounded-full border border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-600 transition w-full text-gray-700 placeholder-gray-500"
-                />
-                <button class="px-4 py-2 bg-blue-600 text-white flex items-center gap-2 hover:bg-blue-700 transition-colors duration-200 rounded-full whitespace-nowrap">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
-                    </svg>
-                    <span class="hidden sm:inline">Add Horror</span>
-                </button>
-            </div>
-
+        <div id="search-add-horror" class="search-add-group hidden flex items-center gap-2 w-full max-w-md">
+            <input
+                    type="search"
+                    placeholder="Search Horror..."
+                    class="h-10 sm:h-11 px-4 rounded-full border border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-600 transition w-full text-gray-700 placeholder-gray-500"
+            />
+            <button class="px-4 py-2 bg-blue-600 text-white flex items-center gap-2 hover:bg-blue-700 transition-colors duration-200 rounded-full whitespace-nowrap">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+                </svg>
+                <span class="hidden sm:inline">Add Horror</span>
+            </button>
         </div>
 
         <div class="flex items-center gap-4">
@@ -109,15 +96,19 @@
                 <i class="fa-solid fa-door-open"></i>
             </button>
         </div>
-
     </div>
-
 </header>
 
 
+<div class="flex items-center">
+    <button id="menu-btn" aria-label="Toggle Menu" type="button" class="text-gray-600 hover:text-gray-800 transition-colors duration-300 z-50">
+        <i class="fa-solid fa-bars text-3xl"></i>
+    </button>
+</div>
+
 <aside id="sidebar" class="z-40 fixed inset-y-0 left-0 w-64 bg-black border-r-4 border-red-600 flex flex-col justify-between transform -translate-x-full">
     <div>
-        <div class="flex items-center z-50 justify-center h-16 border-b-4 border-gray-700 shadow-md" style="background-color: #202020;">
+        <div class="flex items-center justify-center h-16 border-b-4 border-gray-700 shadow-md" style="background-color: #202020;">
             <span
                     class="ml-5 mt-2 text-2xl font-extrabold tracking-wide"
                     style="
@@ -342,7 +333,7 @@
                 </div>
 
                 <div class="flex justify-end gap-4 mt-4 flex-wrap">
-                    <button type="button" class="px-4 py-2 bg-red-500 text-white hover:bg-red-600 text-black rounded" id="close-modal">
+                    <button type="button" class="px-4 py-2 bg-red-500 text-white hover:bg-red-600 rounded" id="close-modal">
                         Cancel
                     </button>
                     <button
