@@ -400,23 +400,18 @@
 
     const db = firebase.database();
 
-
     async function updateUserCountAndChart() {
         try {
-            // Fetch user count from Firebase Realtime Database
             const snapshot = await db.ref("users").once('value');
             const userCount = snapshot.numChildren();
             document.getElementById('total-users').innerText = userCount;
 
-            // Prepare data points for the chart (7 points, linearly increasing to userCount)
             const dataPoints = Array.from({ length: 7 }, (_, i) => Math.round((userCount / 6) * i));
-
-            // Create User Activity line chart with dynamic data and scaled y-axis
-            const userActivityCtx = document.getElementById('userActivityChart').getContext('2d');
-            new Chart(userActivityCtx, {
+            const ctx = document.getElementById('userActivityChart').getContext('2d');
+            new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: ['', '', '', '', '', '', ''], // Empty labels
+                    labels: Array(7).fill(''),
                     datasets: [{
                         label: 'Active Users',
                         data: dataPoints,
@@ -428,13 +423,9 @@
                 },
                 options: {
                     responsive: true,
-                    plugins: {
-                        legend: { display: false }
-                    },
+                    plugins: { legend: { display: false } },
                     scales: {
-                        x: {
-                            display: false
-                        },
+                        x: { display: false },
                         y: {
                             beginAtZero: true,
                             suggestedMax: userCount,
@@ -446,56 +437,72 @@
                     }
                 }
             });
-
         } catch (error) {
             console.error('Error fetching user count:', error);
         }
     }
 
-    // Call on page load
-    updateUserCountAndChart();
+    let genreChart = null;
 
-    // Fetch review and question counts and update DOM
-    fetch('http://localhost:8080/api/dashboard/counts')
-        .then(response => {
-            if (!response.ok) throw new Error('Network response was not ok');
-            return response.json();
-        })
-        .then(data => {
+    async function updateDashboardCounts() {
+        try {
+            const response = await fetch('http://localhost:8080/api/dashboard/counts');
+            if (!response.ok) throw new Error('Network error');
+            const data = await response.json();
+
+            document.getElementById('total-movies').innerText = data.totalMovies;
             document.getElementById('total-reviews').innerText = data.totalReviews;
             document.getElementById('total-questions').innerText = data.totalQuestions;
-        })
-        .catch(error => {
-            console.error('Error fetching dashboard counts:', error);
-        });
 
-    // Genre bar chart (static data)
-    const genreCtx = document.getElementById('genreChart').getContext('2d');
-    new Chart(genreCtx, {
-        type: 'bar',
-        data: {
-            labels: ['Thriller', 'Sci-Fi', 'Adventure', 'Horror'],
-            datasets: [{
-                label: 'Movies',
-                data: [10, 20, 15, 13],
-                backgroundColor: ['#3b82f6', '#10b981', '#f59e0b', '#ef4444'],
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: { display: false },
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        precision: 0
+            const ctx = document.getElementById('genreChart').getContext('2d');
+            if (genreChart) genreChart.destroy();
+
+            const maxValue = Math.max(
+                data.actionMovies,
+                data.horrorMovies,
+                data.romanticMovies,
+                data.sciFicMovies
+            );
+
+            genreChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Action', 'Horror', 'Romantic', 'Sci‑Fi'],
+                    datasets: [{
+                        label: 'Movies',
+                        data: [
+                            data.actionMovies,
+                            data.horrorMovies,
+                            data.romanticMovies,
+                            data.sciFicMovies
+                        ],
+                        backgroundColor: ['#3b82f6', '#ef4444', '#f59e0b', '#10b981'],
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            suggestedMax: Math.ceil(maxValue / 10) * 10 + 10,
+                            ticks: {
+                                stepSize: 5,
+                                precision: 0
+                            }
+                        }
                     }
                 }
-            }
+            });
+        } catch (error) {
+            console.error('Error fetching dashboard counts:', error);
         }
-    });
+    }
+
+    // On Page Load
+    updateUserCountAndChart();
+    updateDashboardCounts();
+
 
     const cardContainer = document.getElementById("card-container");
     const prevBtn = document.getElementById("prev-btn");
