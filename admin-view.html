@@ -878,28 +878,51 @@
             })
             .then(movies => {
                 container.innerHTML = '';
+
                 if (movies.length === 0) {
                     if (page > 0) {
                         currentPageAc--;
                         return loadPaginatedMovies(currentPageAc);
                     } else {
                         container.innerHTML = `
-                            <div class="flex items-center justify-center">
-                                <p class="text-gray-600 text-lg italic">No movies found.</p>
-                            </div>
-                        `;
+                    <div class="flex items-center justify-center">
+                        <p class="text-gray-600 text-lg italic">No movies found.</p>
+                    </div>
+                `;
+                        lastPageReachedAc = true;
+                        nextBtnAc.disabled = true;
+                        prevBtnAc.disabled = true;
+                        currentPageDisplay.textContent = `Page 1`;
+                        return;
                     }
-                    lastPageReachedAc = true;
-                } else {
-                    movies.forEach(createMovieCard);
-                    lastPageReachedAc = movies.length < pageSizeAc;
                 }
+
+                movies.forEach(createMovieCard);
 
                 currentPageDisplay.textContent = `Page ${currentPageAc + 1}`;
                 prevBtnAc.disabled = currentPageAc === 0;
-                nextBtnAc.disabled = lastPageReachedAc;
+
+                fetch(`http://localhost:8080/api/action-movies/paginated?page=${page + 1}&size=${pageSizeAc}`)
+                    .then(res => {
+                        if (!res.ok) throw new Error('Failed to check next page');
+                        return res.json();
+                    })
+                    .then(nextPageMovies => {
+                        lastPageReachedAc = nextPageMovies.length === 0;
+                        nextBtnAc.disabled = lastPageReachedAc;
+                    })
+                    .catch(() => {
+                        // In case of error, disable next button safely
+                        lastPageReachedAc = true;
+                        nextBtnAc.disabled = true;
+                    });
             })
-            .catch(error => showErrorMessage(error.message));
+            .catch(error => {
+                container.innerHTML = `
+                <div class="text-center mt-4">
+                    <p class="text-red-500 italic">Error loading movies: ${error.message}</p>
+                </div>`;
+            });
     }
 
     nextBtnAc.addEventListener('click', () => {
