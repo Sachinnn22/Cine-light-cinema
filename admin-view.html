@@ -22,31 +22,31 @@
 
 <header class="fixed top-0 left-0 right-0 flex items-center justify-end bg-white border-b border-gray-500 h-16 px-4 shadow-md gap-6">
     <div class="flex items-center gap-4">
-        <div id="search-add-thriller" class="search-add-group hidden flex items-center gap-2 w-full max-w-md">
+        <div id="search-add-comedy" class="search-add-group hidden flex items-center gap-2 w-full max-w-md">
             <input
                     type="search"
-                    placeholder="Search Thriller..."
+                    placeholder="Search Comedy..."
                     class="h-10 sm:h-11 px-4 rounded-full border border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-600 transition w-full text-gray-700 placeholder-gray-500"
             />
-            <button class="px-4 py-2 bg-blue-600 text-white flex items-center gap-2 hover:bg-blue-700 transition-colors duration-200 rounded-full whitespace-nowrap">
+            <button  class="px-4 py-2 bg-blue-600 text-white flex items-center gap-2 hover:bg-blue-700 transition-colors duration-200 rounded-full whitespace-nowrap" id="add-comedy-btn">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
                 </svg>
-                <span class="hidden sm:inline">Add Thriller</span>
+                <span class="hidden sm:inline">Add Comedy</span>
             </button>
         </div>
 
         <div id="search-add-scifi" class="search-add-group hidden flex items-center gap-2 w-full max-w-md">
             <input
                     type="search"
-                    placeholder="Search Sci-Fi..."
+                    placeholder="Search Sci-Fic..."
                     class="h-10 sm:h-11 px-4 rounded-full border border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-600 transition w-full text-gray-700 placeholder-gray-500"
             />
-            <button class="px-4 py-2 bg-blue-600 text-white flex items-center gap-2 hover:bg-blue-700 transition-colors duration-200 rounded-full whitespace-nowrap">
+            <button id="add-scific-btn" class="px-4 py-2 bg-blue-600 text-white flex items-center gap-2 hover:bg-blue-700 transition-colors duration-200 rounded-full whitespace-nowrap">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
                 </svg>
-                <span class="hidden sm:inline">Add Sci-Fi</span>
+                <span class="hidden sm:inline">Add Sci-Fic</span>
             </button>
         </div>
 
@@ -132,9 +132,9 @@
                 <span>Dashboard</span>
             </a>
 
-            <a href="#" id="thriller-link" class="flex items-center gap-3 px-3 py-2 border-b border-gray-700 mb-4 text-gray-300 hover:bg-zinc-900 hover:text-white font-bold">
-                <i class="fa-solid fa-fire opacity-75 w-5"></i>
-                <span>Thriller Movie</span>
+            <a href="#" id="comedy-link" class="flex items-center gap-3 px-3 py-2 border-b border-gray-700 mb-4 text-gray-300 hover:bg-zinc-900 hover:text-white font-bold">
+                <i class="fa-solid fa-face-laugh-squint opacity-75 w-5"></i>
+                <span>Comedy Movie</span>
             </a>
 
             <a href="#" id="scifi-link" class="flex items-center gap-3 px-3 py-2 border-b border-gray-700 mb-4 text-gray-300 hover:bg-zinc-900 hover:text-white font-bold">
@@ -355,6 +355,78 @@
         </div>
     </div>
 
+    <section id="comedy-list" class="page mt-4" style="display:none;">
+        <h3 class="mb-6 user" style="font-family: 'Poppins', sans-serif; color: #546e8c !important;">View Comedy</h3>
+
+        <div id="comedy-card-container" class="card-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6 px-4">
+        </div>
+
+        <div class="flex justify-center items-center gap-4 mt-10">
+            <button class="btn px-4 py-2 bg-red-500 text-white hover:bg-red-600" id="pre-comedy">Previous</button>
+            <span id="currentPageDisplayComedy" class="text-gray-900 font-semibold">Page 1</span>
+            <button class="btn px-4 py-2 bg-green-500 text-white hover:bg-green-600" id="next-comedy">Next</button>
+        </div>
+    </section>
+
+    <div id="comedy-modal" class="fixed inset-0 bg-black/50 backdrop-blur-md flex items-center justify-center hidden z-50 p-4 ">
+        <div class="bg-white p-6 rounded-lg w-full max-w-full sm:max-w-sm md:max-w-md lg:max-w-lg relative max-h-screen overflow-auto border border-blue-600">
+            <h2 class="text-3xl font-extrabold mb-6 text-center text-blue-700">Add Comedy</h2>
+
+            <form id="comedy-form" class="space-y-4">
+                <div>
+                    <label class="block font-medium">Movie Image</label>
+                    <input type="file" id="comedy-image" accept="image/*" class="w-full border border-gray-300 rounded px-2 py-1" required>
+                </div>
+
+                <div>
+                    <label class="block font-medium">Movie Name</label>
+                    <input type="text" id="comedy-name" class="w-full border border-gray-300 rounded px-2 py-1" required>
+                </div>
+
+                <div>
+                    <label class="block font-medium">Rating</label>
+                    <input type="number" id="comedy-rating" min="0" max="10" step="0.1" class="w-full border border-gray-300 rounded px-2 py-1" required>
+                </div>
+
+                <div>
+                    <label class="block font-medium">Release Date</label>
+                    <input type="date" id="comedy-release-date" class="w-full border border-gray-300 rounded px-2 py-1" required>
+                </div>
+
+                <div>
+                    <label class="block font-medium">Category</label>
+                    <input
+                            type="text"
+                            id="comedy-category"
+                            class="w-full border border-gray-300 rounded px-2 py-1 bg-gray-100 cursor-not-allowed"
+                            readonly
+                            value="Comedy"
+                    >
+                </div>
+
+                <div class="flex justify-end gap-4 mt-4 flex-wrap">
+                    <button type="button" class="px-4 py-2 bg-red-500 text-white hover:bg-red-600 rounded" id="close-comedy-modal">
+                        Cancel
+                    </button>
+                    <button
+                            type="button"
+                            class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded focus:outline-none hidden"
+                            id="edit-comedy-btn"
+                    >
+                        Edit
+                    </button>
+                    <button
+                            type="submit"
+                            class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded focus:outline-none"
+                            id="save-comedy-btn"
+                    >
+                        Save
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <section id="horror-list" class="page mt-4" style="display:none;">
         <h3 class="mb-6 user" style="font-family: 'Poppins', sans-serif; color: #546e8c !important;">View Horror</h3>
 
@@ -428,6 +500,77 @@
         </div>
     </div>
 
+    <section id="scific-list" class="page mt-4" style="display:none;">
+        <h3 class="mb-6 user" style="font-family: 'Poppins', sans-serif; color: #546e8c !important;">View Sci-Fic</h3>
+
+        <div id="scific-card-container" class="card-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6 px-4">
+        </div>
+
+        <div class="flex justify-center items-center gap-4 mt-10">
+            <button class="btn px-4 py-2 bg-red-500 text-white hover:bg-red-600" id="pre-scific">Previous</button>
+            <span id="currentPageDisplayScific" class="text-gray-900 font-semibold">Page 1</span>
+            <button class="btn px-4 py-2 bg-green-500 text-white hover:bg-green-600" id="next-scific">Next</button>
+        </div>
+    </section>
+
+    <div id="scific-modal" class="fixed inset-0 bg-black/50 backdrop-blur-md flex items-center justify-center hidden z-50 p-4">
+        <div class="bg-white p-6 rounded-lg w-full max-w-full sm:max-w-sm md:max-w-md lg:max-w-lg relative max-h-screen overflow-auto border border-blue-600">
+            <h2 class="text-3xl font-extrabold mb-6 text-center text-blue-700">Add Sci-Fi Movie</h2>
+
+            <form id="scific-movie-form" class="space-y-4">
+                <div>
+                    <label class="block font-medium">Movie Image</label>
+                    <input type="file" id="scific-movie-image" accept="image/*" class="w-full border border-gray-300 rounded px-2 py-1" required>
+                </div>
+
+                <div>
+                    <label class="block font-medium">Movie Name</label>
+                    <input type="text" id="scific-movie-name" class="w-full border border-gray-300 rounded px-2 py-1" required>
+                </div>
+
+                <div>
+                    <label class="block font-medium">Rating</label>
+                    <input type="number" id="scific-movie-rating" min="0" max="10" step="0.1" class="w-full border border-gray-300 rounded px-2 py-1" required>
+                </div>
+
+                <div>
+                    <label class="block font-medium">Release Date</label>
+                    <input type="date" id="scific-release-date" class="w-full border border-gray-300 rounded px-2 py-1" required>
+                </div>
+
+                <div>
+                    <label class="block font-medium">Category</label>
+                    <input
+                            type="text"
+                            id="scific-movie-category"
+                            class="w-full border border-gray-300 rounded px-2 py-1 bg-gray-100 cursor-not-allowed"
+                            readonly
+                            value="Sci-Fi"
+                    >
+                </div>
+
+                <div class="flex justify-end gap-4 mt-4 flex-wrap">
+                    <button type="button" class="px-4 py-2 bg-red-500 text-white hover:bg-red-600 rounded" id="close-scific-modal">
+                        Cancel
+                    </button>
+                    <button
+                            type="button"
+                            class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded focus:outline-none hidden"
+                            id="edit-scific-btn"
+                    >
+                        Edit
+                    </button>
+                    <button
+                            type="submit"
+                            class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded focus:outline-none"
+                            id="save-scific-btn"
+                    >
+                        Save
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 
 
     <div id="replyModal" class="fixed inset-0 hidden z-50 flex items-center justify-center bg-black/50 backdrop-blur-lg">
@@ -1206,6 +1349,8 @@
         'Adventure': 'action-list',
         'Dashboard': 'dashboard',
         'Horror': 'horror-list',
+        'Sci-Fi Movie': 'scific-list',
+        'Comedy Movie': 'comedy-list',
     };
 
     const navLinks = document.querySelectorAll('aside nav a');
@@ -1292,7 +1437,7 @@
         }
 
         const menuMap = {
-            "thriller-link": "search-add-thriller",
+            "comedy-link": "search-add-comedy",
             "scifi-link": "search-add-scifi",
             "adventure-link": "search-add-adventure",
             "horror-link": "search-add-horror",
@@ -1629,7 +1774,582 @@
     loadPaginatedHorrorMovies(currentPageHorror);
 </script>
 
+<script>
+    const scificModal = document.getElementById('scific-modal');
+    const openScificBtn = document.getElementById('add-scific-btn');
+    const closeScificBtn = document.getElementById('close-scific-modal');
+    const scificForm = document.getElementById('scific-movie-form');
+    const scificContainer = document.getElementById('scific-card-container');
 
+    const nextBtnScific = document.getElementById('next-scific');
+    const prevBtnScific = document.getElementById('pre-scific');
+    const currentPageDisplayScific = document.getElementById('currentPageDisplayScific');
+
+    const searchInputScific = document.querySelector('#search-add-scifi input[type="search"]');
+
+    let currentPageScific = 0;
+    const pageSizeScific = 3;
+    let lastPageReachedScific = false;
+
+    let currentScificMovieId = null;
+
+    function createScificCard(movie) {
+        const card = document.createElement('div');
+        card.classList.add('p-4', 'rounded-lg', 'shadow', 'bg-white', 'mb-4', 'flex', 'flex-col', 'justify-between');
+        card.style.border = '3px solid gray';
+        card.style.width = '280px';
+
+        card.innerHTML = `
+            <img src="http://localhost:8080/uploads/${movie.imagePath}" alt="${movie.name}" class="w-full h-40 object-cover rounded mb-2">
+            <h4 class="font-bold text-lg">${movie.name}</h4>
+            <p>Rating: ${movie.rating}</p>
+            <p>Release: ${movie.releaseDate}</p>
+            <p>Category: ${movie.category}</p>
+            <div class="flex justify-end mt-2 space-x-4">
+                <button class="edit-scific-btn text-blue-500 hover:text-blue-600" title="Edit" data-id="${movie.id}">
+                    <i class="fas fa-edit text-xl"></i>
+                </button>
+                <button class="delete-scific-btn text-red-500 hover:text-red-600" title="Delete" data-id="${movie.id}">
+                    <i class="fas fa-trash-alt text-xl"></i>
+                </button>
+            </div>
+        `;
+
+        card.querySelector('.edit-scific-btn').addEventListener('click', () => openEditScificModal(movie));
+        card.querySelector('.delete-scific-btn').addEventListener('click', () => {
+            if (confirm('Are you sure you want to delete this Sci-Fi movie?')) {
+                deleteScificMovie(movie.id);
+            }
+        });
+
+        scificContainer.appendChild(card);
+    }
+
+    function loadPaginatedScificMovies(page) {
+        fetch(`http://localhost:8080/api/scific-movies/paginated?page=${page}&size=${pageSizeScific}`)
+            .then(res => {
+                if (!res.ok) throw new Error("Failed to fetch Sci-Fi movies");
+                return res.json();
+            })
+            .then(movies => {
+                scificContainer.innerHTML = '';
+
+                if (movies.length === 0) {
+                    if (page > 0) {
+                        currentPageScific--;
+                        return loadPaginatedScificMovies(currentPageScific);
+                    } else {
+                        scificContainer.innerHTML = `
+                            <div class="flex items-center justify-center">
+                                <p class="text-gray-600 text-lg italic">No Sci-Fi movies found.</p>
+                            </div>
+                        `;
+                        lastPageReachedScific = true;
+                        nextBtnScific.disabled = true;
+                        prevBtnScific.disabled = true;
+                        currentPageDisplayScific.textContent = `Page 1`;
+                        return;
+                    }
+                }
+
+                movies.forEach(createScificCard);
+
+                currentPageDisplayScific.textContent = `Page ${currentPageScific + 1}`;
+                prevBtnScific.disabled = currentPageScific === 0;
+
+                fetch(`http://localhost:8080/api/scific-movies/paginated?page=${page + 1}&size=${pageSizeScific}`)
+                    .then(res => {
+                        if (!res.ok) throw new Error('Failed to check next page');
+                        return res.json();
+                    })
+                    .then(nextPageMovies => {
+                        lastPageReachedScific = nextPageMovies.length === 0;
+                        nextBtnScific.disabled = lastPageReachedScific;
+                    })
+                    .catch(() => {
+                        lastPageReachedScific = true;
+                        nextBtnScific.disabled = true;
+                    });
+            })
+            .catch(error => {
+                scificContainer.innerHTML = `
+                    <div class="text-center mt-4">
+                        <p class="text-red-500 italic">Error loading Sci-Fi movies: ${error.message}</p>
+                    </div>`;
+            });
+    }
+
+    nextBtnScific.addEventListener('click', () => {
+        if (!lastPageReachedScific) {
+            currentPageScific++;
+            loadPaginatedScificMovies(currentPageScific);
+        }
+    });
+
+    prevBtnScific.addEventListener('click', () => {
+        if (currentPageScific > 0) {
+            currentPageScific--;
+            loadPaginatedScificMovies(currentPageScific);
+        }
+    });
+
+    function openEditScificModal(movie) {
+        currentScificMovieId = movie.id;
+
+        document.querySelector('#scific-modal h2').textContent = 'Edit Sci-Fi Movie';
+        document.getElementById('scific-movie-name').value = movie.name;
+        document.getElementById('scific-movie-rating').value = movie.rating;
+        document.getElementById('scific-release-date').value = movie.releaseDate;
+        document.getElementById('scific-movie-category').value = movie.category;
+
+        document.getElementById('save-scific-btn').classList.add('hidden');
+        document.getElementById('edit-scific-btn').classList.remove('hidden');
+
+        scificModal.classList.remove('hidden');
+    }
+
+    document.getElementById('edit-scific-btn').addEventListener('click', () => {
+        const name = document.getElementById('scific-movie-name').value;
+        const rating = parseFloat(document.getElementById('scific-movie-rating').value);
+        const releaseDate = document.getElementById('scific-release-date').value;
+        const category = document.getElementById('scific-movie-category').value;
+        const imageFile = document.getElementById('scific-movie-image').files[0];
+
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('rating', rating);
+        formData.append('releaseDate', releaseDate);
+        formData.append('category', category);
+        if (imageFile) formData.append('image', imageFile);
+
+        fetch(`http://localhost:8080/api/scific-movies/${currentScificMovieId}`, {
+            method: 'PUT',
+            body: formData
+        })
+            .then(async response => {
+                const text = await response.text();
+                if (!response.ok) return showScificErrorMessage(text);
+
+                showScificSuccessMessage(text);
+                scificModal.classList.add('hidden');
+                scificForm.reset();
+                currentScificMovieId = null;
+                loadPaginatedScificMovies(currentPageScific);
+            })
+            .catch(error => showScificErrorMessage('Error: ' + error.message));
+    });
+
+    function deleteScificMovie(movieId) {
+        fetch(`http://localhost:8080/api/scific-movies/${movieId}`, { method: 'DELETE' })
+            .then(async response => {
+                const text = await response.text();
+                if (!response.ok) return showScificErrorMessage(text);
+
+                showScificSuccessMessage(text);
+                loadPaginatedScificMovies(currentPageScific);
+            })
+            .catch(error => showScificErrorMessage('Error deleting Sci-Fi movie: ' + error.message));
+    }
+
+    function performScificSearch(keyword) {
+        if (!keyword) {
+            currentPageScific = 0;
+            return loadPaginatedScificMovies(currentPageScific);
+        }
+
+        fetch(`http://localhost:8080/api/scific-movies/search?keyword=${encodeURIComponent(keyword)}`)
+            .then(res => {
+                if (!res.ok) throw new Error('Failed to fetch search results');
+                return res.json();
+            })
+            .then(movies => {
+                scificContainer.innerHTML = '';
+
+                if (movies.length === 0) {
+                    scificContainer.innerHTML = `
+                        <div class="text-center mt-4">
+                            <p class="text-gray-600 text-lg italic">
+                                No Sci-Fi movies found for "<strong>${keyword}</strong>".
+                            </p>
+                        </div>`;
+                    return;
+                }
+
+                movies.forEach(createScificCard);
+            })
+            .catch(err => {
+                scificContainer.innerHTML = `
+                    <div class="text-center mt-4">
+                        <p class="text-red-500 italic">Error loading search results: ${err.message}</p>
+                    </div>`;
+            });
+    }
+
+    function debounce(func, delay) {
+        let timer;
+        return function (...args) {
+            clearTimeout(timer);
+            timer = setTimeout(() => func.apply(this, args), delay);
+        };
+    }
+
+    searchInputScific.addEventListener('input', debounce((e) => {
+        const keyword = e.target.value.trim();
+        performScificSearch(keyword);
+    }, 300));
+
+    openScificBtn.addEventListener('click', () => {
+        scificModal.classList.remove('hidden');
+        currentScificMovieId = null;
+
+        document.querySelector('#scific-modal h2').textContent = 'Add Sci-Fi Movie';
+        document.getElementById('save-scific-btn').classList.remove('hidden');
+        document.getElementById('edit-scific-btn').classList.add('hidden');
+    });
+
+    closeScificBtn.addEventListener('click', () => {
+        scificModal.classList.add('hidden');
+    });
+
+    const MAX_SCIFIC_IMAGE_SIZE = 100 * 1024 * 1024;
+
+    scificForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById('scific-movie-name').value;
+        const rating = parseFloat(document.getElementById('scific-movie-rating').value);
+        const releaseDate = document.getElementById('scific-release-date').value;
+        const category = document.getElementById('scific-movie-category').value;
+        const imageFile = document.getElementById('scific-movie-image').files[0];
+
+        if (!imageFile && currentScificMovieId === null) {
+            return showScificErrorMessage('Please select an image.');
+        }
+
+        if (imageFile && imageFile.size > MAX_SCIFIC_IMAGE_SIZE) {
+            return showScificErrorMessage('Choose a smaller size image.');
+        }
+
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('rating', rating);
+        formData.append('releaseDate', releaseDate);
+        formData.append('category', category);
+        if (imageFile) formData.append('image', imageFile);
+
+        fetch('http://localhost:8080/api/scific-movies', {
+            method: 'POST',
+            body: formData
+        })
+            .then(async response => {
+                const text = await response.text();
+                if (!response.ok) return showScificErrorMessage(text);
+
+                showScificSuccessMessage(text);
+                scificModal.classList.add('hidden');
+                scificForm.reset();
+                currentScificMovieId = null;
+                loadPaginatedScificMovies(currentPageScific);
+            })
+            .catch(error => showScificErrorMessage('Error: ' + error.message));
+    });
+
+    function showScificErrorMessage(message) {
+        alert('Error: ' + message);
+    }
+
+    function showScificSuccessMessage(message) {
+        alert('Success: ' + message);
+    }
+
+    loadPaginatedScificMovies(currentPageScific);
+</script>
+
+
+<script>
+    const comedyModal = document.getElementById('comedy-modal');
+    const openComedyBtn = document.getElementById('add-comedy-btn');
+    const closeComedyBtn = document.getElementById('close-comedy-modal');
+    const comedyForm = document.getElementById('comedy-form');
+    const comedyContainer = document.getElementById('comedy-card-container');
+
+    const nextBtnComedy = document.getElementById('next-comedy');
+    const prevBtnComedy = document.getElementById('pre-comedy');
+    const currentPageDisplayComedy = document.getElementById('currentPageDisplayComedy');
+
+    const searchInputComedy = document.querySelector('#search-add-comedy input[type="search"]');
+
+    let currentPageComedy = 0;
+    const pageSizeComedy = 3;
+    let lastPageReachedComedy = false;
+
+    let currentComedyMovieId = null;
+
+    function createComedyCard(movie) {
+        const card = document.createElement('div');
+        card.classList.add('p-4', 'rounded-lg', 'shadow', 'bg-white', 'mb-4', 'flex', 'flex-col', 'justify-between');
+        card.style.border = '3px solid gray';
+        card.style.width = '280px';
+
+        card.innerHTML = `
+            <img src="http://localhost:8081/uploads/${movie.imagePath}" alt="${movie.name}" class="w-full h-40 object-cover rounded mb-2">
+            <h4 class="font-bold text-lg">${movie.name}</h4>
+            <p>Rating: ${movie.rating}</p>
+            <p>Release: ${movie.releaseDate}</p>
+            <p>Category: ${movie.category}</p>
+            <div class="flex justify-end mt-2 space-x-4">
+                <button class="edit-comedy-btn text-blue-500 hover:text-blue-600" title="Edit" data-id="${movie.id}">
+                    <i class="fas fa-edit text-xl"></i>
+                </button>
+                <button class="delete-comedy-btn text-red-500 hover:text-red-600" title="Delete" data-id="${movie.id}">
+                    <i class="fas fa-trash-alt text-xl"></i>
+                </button>
+            </div>
+        `;
+
+        card.querySelector('.edit-comedy-btn').addEventListener('click', () => openEditComedyModal(movie));
+        card.querySelector('.delete-comedy-btn').addEventListener('click', () => {
+            if (confirm('Are you sure you want to delete this Comedy movie?')) {
+                deleteComedyMovie(movie.id);
+            }
+        });
+
+        comedyContainer.appendChild(card);
+    }
+
+    function loadPaginatedComedyMovies(page) {
+        fetch(`http://localhost:8081/api/comedy-movies/paginated?page=${page}&size=${pageSizeComedy}`)
+            .then(res => {
+                if (!res.ok) throw new Error("Failed to fetch Comedy movies");
+                return res.json();
+            })
+            .then(movies => {
+                comedyContainer.innerHTML = '';
+
+                if (movies.length === 0) {
+                    if (page > 0) {
+                        currentPageComedy--;
+                        return loadPaginatedComedyMovies(currentPageComedy);
+                    } else {
+                        comedyContainer.innerHTML = `
+                            <div class="flex items-center justify-center">
+                                <p class="text-gray-600 text-lg italic">No Comedy movies found.</p>
+                            </div>
+                        `;
+                        lastPageReachedComedy = true;
+                        nextBtnComedy.disabled = true;
+                        prevBtnComedy.disabled = true;
+                        currentPageDisplayComedy.textContent = `Page 1`;
+                        return;
+                    }
+                }
+
+                movies.forEach(createComedyCard);
+
+                currentPageDisplayComedy.textContent = `Page ${currentPageComedy + 1}`;
+                prevBtnComedy.disabled = currentPageComedy === 0;
+
+                fetch(`http://localhost:8081/api/comedy-movies/paginated?page=${page + 1}&size=${pageSizeComedy}`)
+                    .then(res => res.json())
+                    .then(nextPageMovies => {
+                        lastPageReachedComedy = nextPageMovies.length === 0;
+                        nextBtnComedy.disabled = lastPageReachedComedy;
+                    })
+                    .catch(() => {
+                        lastPageReachedComedy = true;
+                        nextBtnComedy.disabled = true;
+                    });
+            })
+            .catch(error => {
+                comedyContainer.innerHTML = `
+                    <div class="text-center mt-4">
+                        <p class="text-red-500 italic">Error loading Comedy movies: ${error.message}</p>
+                    </div>`;
+            });
+    }
+
+    nextBtnComedy.addEventListener('click', () => {
+        if (!lastPageReachedComedy) {
+            currentPageComedy++;
+            loadPaginatedComedyMovies(currentPageComedy);
+        }
+    });
+
+    prevBtnComedy.addEventListener('click', () => {
+        if (currentPageComedy > 0) {
+            currentPageComedy--;
+            loadPaginatedComedyMovies(currentPageComedy);
+        }
+    });
+
+    function openEditComedyModal(movie) {
+        currentComedyMovieId = movie.id;
+
+        document.querySelector('#comedy-modal h2').textContent = 'Edit Comedy Movie';
+        document.getElementById('comedy-name').value = movie.name;
+        document.getElementById('comedy-rating').value = movie.rating;
+        document.getElementById('comedy-release-date').value = movie.releaseDate;
+        document.getElementById('comedy-category').value = movie.category;
+
+        document.getElementById('save-comedy-btn').classList.add('hidden');
+        document.getElementById('edit-comedy-btn').classList.remove('hidden');
+
+        comedyModal.classList.remove('hidden');
+    }
+
+    document.getElementById('edit-comedy-btn').addEventListener('click', () => {
+        const name = document.getElementById('comedy-name').value;
+        const rating = parseFloat(document.getElementById('comedy-rating').value);
+        const releaseDate = document.getElementById('comedy-release-date').value;
+        const category = document.getElementById('comedy-category').value;
+        const imageFile = document.getElementById('comedy-image').files[0];
+
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('rating', rating);
+        formData.append('releaseDate', releaseDate);
+        formData.append('category', category);
+        if (imageFile) formData.append('image', imageFile);
+
+        fetch(`http://localhost:8081/api/comedy-movies/${currentComedyMovieId}`, {
+            method: 'PUT',
+            body: formData
+        })
+            .then(async response => {
+                const text = await response.text();
+                if (!response.ok) return showComedyErrorMessage(text);
+
+                showComedySuccessMessage(text);
+                comedyModal.classList.add('hidden');
+                comedyForm.reset();
+                currentComedyMovieId = null;
+                loadPaginatedComedyMovies(currentPageComedy);
+            })
+            .catch(error => showComedyErrorMessage('Error: ' + error.message));
+    });
+
+    function deleteComedyMovie(movieId) {
+        fetch(`http://localhost:8081/api/comedy-movies/${movieId}`, { method: 'DELETE' })
+            .then(async response => {
+                const text = await response.text();
+                if (!response.ok) return showComedyErrorMessage(text);
+
+                showComedySuccessMessage(text);
+                loadPaginatedComedyMovies(currentPageComedy);
+            })
+            .catch(error => showComedyErrorMessage('Error deleting Comedy movie: ' + error.message));
+    }
+
+    function performComedySearch(keyword) {
+        if (!keyword) {
+            currentPageComedy = 0;
+            return loadPaginatedComedyMovies(currentPageComedy);
+        }
+
+        fetch(`http://localhost:8081/api/comedy-movies/search?keyword=${encodeURIComponent(keyword)}`)
+            .then(res => res.json())
+            .then(movies => {
+                comedyContainer.innerHTML = '';
+
+                if (movies.length === 0) {
+                    comedyContainer.innerHTML = `
+                        <div class="text-center mt-4">
+                            <p class="text-gray-600 text-lg italic">
+                                No Comedy movies found for "<strong>${keyword}</strong>".
+                            </p>
+                        </div>`;
+                    return;
+                }
+
+                movies.forEach(createComedyCard);
+            })
+            .catch(err => {
+                comedyContainer.innerHTML = `
+                    <div class="text-center mt-4">
+                        <p class="text-red-500 italic">Error loading search results: ${err.message}</p>
+                    </div>`;
+            });
+    }
+
+    function debounce(func, delay) {
+        let timer;
+        return function (...args) {
+            clearTimeout(timer);
+            timer = setTimeout(() => func.apply(this, args), delay);
+        };
+    }
+
+    searchInputComedy.addEventListener('input', debounce((e) => {
+        const keyword = e.target.value.trim();
+        performComedySearch(keyword);
+    }, 300));
+
+    openComedyBtn.addEventListener('click', () => {
+        comedyModal.classList.remove('hidden');
+        currentComedyMovieId = null;
+
+        document.querySelector('#comedy-modal h2').textContent = 'Add Comedy Movie';
+        document.getElementById('save-comedy-btn').classList.remove('hidden');
+        document.getElementById('edit-comedy-btn').classList.add('hidden');
+    });
+
+    closeComedyBtn.addEventListener('click', () => {
+        comedyModal.classList.add('hidden');
+    });
+
+    const MAX_COMEDY_IMAGE_SIZE = 100 * 1024 * 1024;
+
+    comedyForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById('comedy-name').value;
+        const rating = parseFloat(document.getElementById('comedy-rating').value);
+        const releaseDate = document.getElementById('comedy-release-date').value;
+        const category = document.getElementById('comedy-category').value;
+        const imageFile = document.getElementById('comedy-image').files[0];
+
+        if (!imageFile && currentComedyMovieId === null) {
+            return showComedyErrorMessage('Please select an image.');
+        }
+
+        if (imageFile && imageFile.size > MAX_COMEDY_IMAGE_SIZE) {
+            return showComedyErrorMessage('Choose a smaller size image.');
+        }
+
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('rating', rating);
+        formData.append('releaseDate', releaseDate);
+        formData.append('category', category);
+        if (imageFile) formData.append('image', imageFile);
+
+        fetch('http://localhost:8081/api/comedy-movies', {
+            method: 'POST',
+            body: formData
+        })
+            .then(async response => {
+                const text = await response.text();
+                if (!response.ok) return showComedyErrorMessage(text);
+
+                showComedySuccessMessage(text);
+                comedyModal.classList.add('hidden');
+                comedyForm.reset();
+                currentComedyMovieId = null;
+                loadPaginatedComedyMovies(currentPageComedy);
+            })
+            .catch(error => showComedyErrorMessage('Error: ' + error.message));
+    });
+
+    function showComedyErrorMessage(message) {
+        alert('Error: ' + message);
+    }
+
+    function showComedySuccessMessage(message) {
+        alert('Success: ' + message);
+    }
+
+    loadPaginatedComedyMovies(currentPageComedy);
+</script>
 
 
 </body>
