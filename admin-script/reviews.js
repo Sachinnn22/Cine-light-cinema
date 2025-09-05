@@ -89,6 +89,8 @@ fetchReviews(currentPage);
 
 ////////////////////////////////
 let currentQuiz = 0;
+let selectedQuestionId = null; // ✅ Add this at the top
+
 
 document.addEventListener('DOMContentLoaded', function () {
     loadQuestions(currentQuiz);
@@ -151,8 +153,9 @@ function loadQuestions(page) {
 
                 const replyBtn = card.querySelector('.replyBtn');
                 replyBtn.addEventListener('click', () => {
-                    openReplyModal(q.email, q.username);
+                    openReplyModal(q.email, q.username, q.id); // ✅ pass ID
                 });
+
 
                 container.appendChild(card);
             });
@@ -183,12 +186,14 @@ function loadQuestions(page) {
 let selectedEmail = '';
 let selectedUsername = '';
 
-function openReplyModal(email, username) {
+function openReplyModal(email, username, questionId) {
     selectedEmail = email;
     selectedUsername = username;
+    selectedQuestionId = questionId; // ✅ store the ID
     document.getElementById('replyText').value = '';
     document.getElementById('replyModal').classList.remove('hidden');
 }
+
 
 document.getElementById('cancelBtn').addEventListener('click', () => {
     document.getElementById('replyModal').classList.add('hidden');
@@ -204,13 +209,17 @@ document.getElementById('sendReplyBtn').addEventListener('click', () => {
         body: JSON.stringify({
             to: selectedEmail,
             username: selectedUsername,
-            message: message
+            message: message,
+            questionId: selectedQuestionId // ✅ send ID
         })
+
     }).then(res => {
         if (res.ok) {
             showSuccessMessage('Reply sent successfully!');
             document.getElementById('replyModal').classList.add('hidden');
-        } else {
+            loadQuestions(currentQuiz); // ✅ Reload current page of questions
+        }
+        else {
             showErrorMessage('Failed to send reply');
         }
     });
