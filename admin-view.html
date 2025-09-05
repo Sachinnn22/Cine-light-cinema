@@ -665,7 +665,7 @@
 
     async function updateDashboardCounts() {
         try {
-            const response = await fetch('http://localhost:8081/api/dashboard/counts');
+            const response = await fetch('http://localhost:8080/api/dashboard/counts');
             if (!response.ok) throw new Error('Network error');
             const data = await response.json();
 
@@ -2110,7 +2110,7 @@
         card.style.width = '280px';
 
         card.innerHTML = `
-            <img src="http://localhost:8081/uploads/${movie.imagePath}" alt="${movie.name}" class="w-full h-40 object-cover rounded mb-2">
+            <img src="http://localhost:8080/uploads/${movie.imagePath}" alt="${movie.name}" class="w-full h-40 object-cover rounded mb-2">
             <h4 class="font-bold text-lg">${movie.name}</h4>
             <p>Rating: ${movie.rating}</p>
             <p>Release: ${movie.releaseDate}</p>
@@ -2136,7 +2136,7 @@
     }
 
     function loadPaginatedComedyMovies(page) {
-        fetch(`http://localhost:8081/api/comedy-movies/paginated?page=${page}&size=${pageSizeComedy}`)
+        fetch(`http://localhost:8080/api/comedy-movies/paginated?page=${page}&size=${pageSizeComedy}`)
             .then(res => {
                 if (!res.ok) throw new Error("Failed to fetch Comedy movies");
                 return res.json();
@@ -2167,7 +2167,7 @@
                 currentPageDisplayComedy.textContent = `Page ${currentPageComedy + 1}`;
                 prevBtnComedy.disabled = currentPageComedy === 0;
 
-                fetch(`http://localhost:8081/api/comedy-movies/paginated?page=${page + 1}&size=${pageSizeComedy}`)
+                fetch(`http://localhost:8080/api/comedy-movies/paginated?page=${page + 1}&size=${pageSizeComedy}`)
                     .then(res => res.json())
                     .then(nextPageMovies => {
                         lastPageReachedComedy = nextPageMovies.length === 0;
@@ -2247,7 +2247,7 @@
     });
 
     function deleteComedyMovie(movieId) {
-        fetch(`http://localhost:8081/api/comedy-movies/${movieId}`, { method: 'DELETE' })
+        fetch(`http://localhost:8080/api/comedy-movies/${movieId}`, { method: 'DELETE' })
             .then(async response => {
                 const text = await response.text();
                 if (!response.ok) return showComedyErrorMessage(text);
@@ -2264,7 +2264,7 @@
             return loadPaginatedComedyMovies(currentPageComedy);
         }
 
-        fetch(`http://localhost:8081/api/comedy-movies/search?keyword=${encodeURIComponent(keyword)}`)
+        fetch(`http://localhost:8080/api/comedy-movies/search?keyword=${encodeURIComponent(keyword)}`)
             .then(res => res.json())
             .then(movies => {
                 comedyContainer.innerHTML = '';
@@ -2341,7 +2341,7 @@
         formData.append('category', category);
         if (imageFile) formData.append('image', imageFile);
 
-        fetch('http://localhost:8081/api/comedy-movies', {
+        fetch('http://localhost:8080/api/comedy-movies', {
             method: 'POST',
             body: formData
         })
