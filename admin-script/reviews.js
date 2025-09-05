@@ -115,36 +115,26 @@ function updatePageDisplay() {
 }
 
 function loadQuestions(page) {
+    const PAGE_SIZE = 3;
+    const container = document.getElementById('questionsContainer');
+    const nextBtn = document.getElementById('next');
+    const preBtn = document.getElementById('pre');
+
+    // Fetch current page questions
     fetch('http://localhost:8080/api/questions/pagination/' + page)
         .then(response => {
-            if (!response.ok) {
-                throw new Error('HTTP error! Status: ' + response.status);
-            }
+            if (!response.ok) throw new Error('HTTP error! Status: ' + response.status);
             return response.json();
         })
         .then(questions => {
-            const container = document.getElementById('questionsContainer');
-            const nextBtn = document.getElementById('next');
-
             container.innerHTML = '';
-
-            const PAGE_SIZE = 3;
-
             if (questions.length === 0) {
+                container.innerHTML = '<p>No questions available.</p>';
                 nextBtn.disabled = true;
-
-                // If not first page, revert to previous page and reload
-                if (page > 0) {
-                    currentQuiz = page - 1;
-                    loadQuestions(currentQuiz);
-                } else {
-                    // On first page but no questions
-                    updatePageDisplay();
-                }
-                return;
+                preBtn.disabled = page === 0;
+                updatePageDisplay();
+                return;  // Stop loading further
             }
-
-            nextBtn.disabled = questions.length < PAGE_SIZE;
 
             questions.forEach(q => {
                 const card = document.createElement('div');
@@ -167,12 +157,26 @@ function loadQuestions(page) {
                 container.appendChild(card);
             });
 
+            // Now check if next page has questions to decide nextBtn enabled state
+            return fetch('http://localhost:8080/api/questions/pagination/' + (page + 1));
+        })
+        .then(response => {
+            if (!response) return;  // Happens if previous fetch ended with reload
+
+            if (!response.ok) throw new Error('HTTP error! Status: ' + response.status);
+            return response.json();
+        })
+        .then(nextPageQuestions => {
+            if (!nextPageQuestions) return;  // No next page check done
+
+            nextBtn.disabled = nextPageQuestions.length === 0;
+            preBtn.disabled = page === 0;
             updatePageDisplay();
         })
         .catch(error => {
-            console.log("Error:", error);
-            const container = document.getElementById('questionsContainer');
+            console.error("Error:", error);
             container.innerHTML = '<p>Error loading questions.</p>';
+            nextBtn.disabled = true;
         });
 }
 
