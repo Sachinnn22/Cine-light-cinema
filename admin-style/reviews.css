@@ -32,26 +32,26 @@
     margin-top: 1.2rem;
     font-size: 26px;
     font-weight: bold;
-    color: #2f4459;
+    color: #3373b1;
 }
 
 .review-card-email {
     font-size: 20px;
-    color: #2f4459;
-    margin: -4px 0 10px 0;
+    color: #557391;
+    margin: -4px 0 12px 0;
 }
 
 .review-card-comment {
-    font-size: 25px;
-    color: #444;
+    font-size: 23px;
+    color: #3c3b3b;
     font-weight: 600;
     margin: 0 0 14px 0;
 }
 
 .review-card-stars {
-    margin: 2px 0;
+    margin: 1px 0;
     color: gold;
-    font-size: 45px;
+    font-size: 48px;
 }
 
 @media (min-width: 1440px) {
