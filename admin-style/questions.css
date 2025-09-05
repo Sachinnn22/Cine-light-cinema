@@ -33,21 +33,21 @@ h1 {
 }
 
 .username_quiz {
-    margin-top: 1.2rem;
+    margin-top: 1.3rem;
     font-size: 24px;
     font-weight: bold;
-    color: #2f4459;
+    color: #3373b1;
 }
 
 .email_quiz {
     font-size: 19px;
-    color: #2f4459;
-    margin: 5px 0 16px 0;
+    color: #1d3045;
+    margin: 3px 0 16px 0;
     flex-grow: 0;
 }
 
 .question {
-    font-size: 20px;
+    font-size: 22px;
     color: #444;
     font-weight: 700;
     margin: 0 0 14px 0;
@@ -57,7 +57,7 @@ h1 {
     width: 200px;
     margin-top: 20px;
     padding: 8px 12px;
-    background-color: #4a4848;
+    background-color: #536778;
     border: none;
     border-radius: 5px;
     color: white;
@@ -67,7 +67,7 @@ h1 {
 }
 
 .card button:hover {
-    background-color: #353739;
+    background-color: #215d9a;
 }
 
 button:disabled {
@@ -129,56 +129,56 @@ button:disabled {
 
 @media (max-width: 425px) {
     .card {
-        width: 90%;
+        width: 85%;
         min-height: 300px;
     }
     .card button {
         width: 90%;
     }
     .username_quiz {
-        font-size: 20px;
+        font-size: 22px;
     }
     .email_quiz {
-        font-size: 17px;
+        font-size: 18px;
     }
     .question {
-        font-size: 16px;
+        font-size: 22px;
     }
 }
 
-@media (max-width: 375px) {
+@media (min-width: 375px) and (max-width: 424px) {
     .card {
-        width: 95%;
-        min-height: 280px;
+        width: 90%;
+        min-height: 290px;
     }
     .username_quiz {
-        font-size: 18px;
+        font-size: 20px;
     }
     .email_quiz {
-        font-size: 16px;
+        font-size: 18px;
     }
     .question {
-        font-size: 15px;
+        font-size: 20px;
     }
     .card button {
         font-size: 16px;
     }
 }
 
-@media (max-width: 320px) {
+@media (min-width: 320px) and (max-width: 374px){
     .card {
-        width: 98%;
-        min-height: 260px;
+        width: 90%;
+        min-height: 270px;
         padding: 15px;
     }
     .username_quiz {
-        font-size: 17px;
+        font-size: 20px;
     }
     .email_quiz {
-        font-size: 15px;
+        font-size: 18px;
     }
     .question {
-        font-size: 14px;
+        font-size: 20px;
     }
     .card button {
         font-size: 15px;

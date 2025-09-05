@@ -249,15 +249,16 @@
         </div>
     </section>
 
-    <section id="questions-list" class="page" style="display:none;">
-        <h3 class="mb-8 user">View Question</h3>
+    <section id="questions-list" class="page" style="display:none; margin-top: 45px !important;">
+        <h3 class="mb-7 user" style="font-family: 'Poppins', sans-serif; color: #546e8c !important;">View Question</h3>
         <div id="questionsContainer" class="card-container"></div>
         <div class="flex justify-center items-center gap-4 mt-10">
-            <button  class="btn px-4 py-2" id="pre">Previous</button>
+            <button class="btn px-4 py-2 bg-red-500 text-white hover:bg-red-600" id="pre">Previous</button>
             <span id="currentPageDisplay" class="text-gray-700 font-semibold">Page 1</span>
-            <button  class="btn px-4 py-2" id="next">Next</button>
+            <button class="btn px-4 py-2 bg-green-500 text-white hover:bg-green-600" id="next">Next</button>
         </div>
     </section>
+
 
     <section id="review-list" class="page mt-3" style="display:none;">
         <h3 class="mb-7 user" style="font-family: 'Poppins', sans-serif; color: #546e8c !important;">View Reviews</h3>
@@ -1371,12 +1372,6 @@
             const page = document.getElementById(pageId);
             if (page) {
                 page.style.display = 'block';
-            }
-
-            if (linkText === 'View Question') {
-                currentQuiz = 0;
-                loadQuestions(currentQuiz);
-                updatePageDisplay();
             }
 
             window.location.hash = pageId;

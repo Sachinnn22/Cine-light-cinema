@@ -86,3 +86,128 @@ nextBtn.addEventListener("click", () => {
 });
 
 fetchReviews(currentPage);
+
+////////////////////////////////
+let currentQuiz = 0;
+
+document.addEventListener('DOMContentLoaded', function () {
+    loadQuestions(currentQuiz);
+
+    document.getElementById('next').addEventListener('click', function () {
+        currentQuiz++;
+        loadQuestions(currentQuiz);
+    });
+
+    document.getElementById('pre').addEventListener('click', function () {
+        if (currentQuiz > 0) {
+            currentQuiz--;
+            loadQuestions(currentQuiz);
+        }
+    });
+});
+
+function updatePageDisplay() {
+    const pageDisplay = document.getElementById('currentPageDisplay');
+    const preBtn = document.getElementById('pre');
+
+    pageDisplay.textContent = `Page ${currentQuiz + 1}`;
+    preBtn.disabled = currentQuiz === 0;
+}
+
+function loadQuestions(page) {
+    fetch('http://localhost:8080/api/questions/pagination/' + page)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('HTTP error! Status: ' + response.status);
+            }
+            return response.json();
+        })
+        .then(questions => {
+            const container = document.getElementById('questionsContainer');
+            const nextBtn = document.getElementById('next');
+
+            container.innerHTML = '';
+
+            const PAGE_SIZE = 3;
+
+            if (questions.length === 0) {
+                nextBtn.disabled = true;
+
+                // If not first page, revert to previous page and reload
+                if (page > 0) {
+                    currentQuiz = page - 1;
+                    loadQuestions(currentQuiz);
+                } else {
+                    // On first page but no questions
+                    updatePageDisplay();
+                }
+                return;
+            }
+
+            nextBtn.disabled = questions.length < PAGE_SIZE;
+
+            questions.forEach(q => {
+                const card = document.createElement('div');
+                card.className = 'card';
+
+                card.innerHTML = `
+                    <h2 class="username_quiz">${escapeHtml(q.username ?? "Anonymous")}</h2>
+                    <p class="email_quiz">${escapeHtml(q.email ?? "N/A")}</p>
+                    <p class="question">${escapeHtml(q.content ?? "No content available")}</p>
+                    <button class="replyBtn mt-4 px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition">
+                        Reply
+                    </button>
+                `;
+
+                const replyBtn = card.querySelector('.replyBtn');
+                replyBtn.addEventListener('click', () => {
+                    openReplyModal(q.email, q.username);
+                });
+
+                container.appendChild(card);
+            });
+
+            updatePageDisplay();
+        })
+        .catch(error => {
+            console.log("Error:", error);
+            const container = document.getElementById('questionsContainer');
+            container.innerHTML = '<p>Error loading questions.</p>';
+        });
+}
+
+let selectedEmail = '';
+let selectedUsername = '';
+
+function openReplyModal(email, username) {
+    selectedEmail = email;
+    selectedUsername = username;
+    document.getElementById('replyText').value = '';
+    document.getElementById('replyModal').classList.remove('hidden');
+}
+
+document.getElementById('cancelBtn').addEventListener('click', () => {
+    document.getElementById('replyModal').classList.add('hidden');
+});
+
+document.getElementById('sendReplyBtn').addEventListener('click', () => {
+    const message = document.getElementById('replyText').value.trim();
+    if (!message) return alert('Reply message is empty');
+
+    fetch('http://localhost:8080/api/send-reply', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            to: selectedEmail,
+            username: selectedUsername,
+            message: message
+        })
+    }).then(res => {
+        if (res.ok) {
+            showSuccessMessage('Reply sent successfully!');
+            document.getElementById('replyModal').classList.add('hidden');
+        } else {
+            showErrorMessage('Failed to send reply');
+        }
+    });
+});
