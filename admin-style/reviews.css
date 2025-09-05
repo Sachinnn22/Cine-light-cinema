@@ -96,7 +96,7 @@
     }
 }
 
-@media (max-width: 375px) {
+@media (min-width: 375px) and (max-width: 424px) {
     .review-card {
         width: 95%;
         min-height: 250px;
@@ -108,7 +108,7 @@
     }
 }
 
-@media (max-width: 320px) {
+@media (min-width: 320px) and (max-width: 374px){
     .review-card {
         width: 92%;
         min-height: 260px;
