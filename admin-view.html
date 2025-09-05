@@ -239,13 +239,13 @@
         </div>
     </section>
 
-    <section id="user-details" class="page" style="display:none;">
-        <h3 class="mb-8 user">User Details</h3>
+    <section id="user-details" class="page" style="display:none; margin-top: 40px !important;">
+        <h3 class="mb-6 user" style="font-family: 'Poppins', sans-serif; color: #546e8c !important;">User Details</h3>
         <div id="card-container" class="grid grid-cols-3 gap-8 max-w-7xl mx-auto cd"></div>
         <div class="flex justify-center items-center gap-4 mt-10">
-            <button id="prev-btn" class="btn px-4 py-2" disabled>Previous</button>
+            <button id="prev-btn" class="btn px-4 py-2 bg-red-500 text-white hover:bg-red-600" disabled>Previous</button>
             <span id="page-info" class="text-gray-700 font-semibold"></span>
-            <button id="next-btn" class="btn px-4 py-2">Next</button>
+            <button id="next-btn" class="btn px-4 py-2 bg-green-500 text-white hover:bg-green-600">Next</button>
         </div>
     </section>
 
@@ -574,15 +574,15 @@
     </div>
 
 
-    <div id="replyModal" class="fixed inset-0 hidden z-50 flex items-center justify-center bg-black/50 backdrop-blur-lg">
-        <div class="bg-white p-4 sm:p-6 rounded-md shadow-lg w-[90%] max-w-md mx-4">
-            <h2 class="text-lg font-semibold mb-3 text-center">Reply to Question</h2>
+    <div id="replyModal" class="fixed inset-0 hidden z-50 flex items-center justify-center bg-black/50 backdrop-blur-lg" >
+        <div class="bg-white p-4 sm:p-6 rounded-md shadow-lg w-[90%] max-w-md mx-4" style="border: 1px solid #2a4d97; border-radius: 8px;">
+            <h2 class="text-2xl font-semibold mb-3 text-center" style="color: #2a4d97;">Reply to Question</h2>
 
             <label for="replyText">Write Your Reply</label>
             <textarea id="replyText" class="w-full h-32 border border-gray-300 rounded p-2 resize-none mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
 
             <div class="flex justify-end gap-3">
-                <button id="cancelBtn" class="bg-gray-300 hover:bg-gray-400 text-black px-4 py-2 rounded transition">Cancel</button>
+                <button id="cancelBtn" class="bg-red-500 text-white hover:bg-red-600 px-4 py-2 rounded transition">Cancel</button>
                 <button id="sendReplyBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition">Send</button>
             </div>
         </div>
@@ -722,17 +722,19 @@
     updateDashboardCounts();
 
 
-
     const cardContainer = document.getElementById("card-container");
     const prevBtn = document.getElementById("prev-btn");
     const nextBtn = document.getElementById("next-btn");
     const pageInfo = document.getElementById("page-info");
+    const userDetailsSection = document.getElementById("user-details");
+    const membersLink = document.getElementById("members-link");
 
     const rowsPerPage = 3;
     let currentPage = 0;
     const pageKeys = [];
 
     function loadInitialPage() {
+        // Note: Do NOT show the section here, only load users.
         db.ref("users")
             .orderByChild('registerTimestamp')
             .limitToFirst(100)
@@ -851,6 +853,26 @@
         prevBtn.disabled = currentPage === 0;
         nextBtn.disabled = !hasMore;
     }
+
+    // Add click handlers for pagination buttons
+    prevBtn.addEventListener("click", goToPreviousPage);
+    nextBtn.addEventListener("click", goToNextPage);
+
+    // Add click listener on members-link to show the section and load first page
+    membersLink.addEventListener("click", (e) => {
+        e.preventDefault();               // prevent default link behavior
+        userDetailsSection.style.display = "block";  // show the hidden section
+        localStorage.setItem("showMembers", "true"); // save flag in localStorage
+        loadInitialPage();                // load the first page of users
+    });
+
+    // On page load, check if members section should be visible
+    window.addEventListener("DOMContentLoaded", () => {
+        if (localStorage.getItem("showMembers") === "true") {
+            userDetailsSection.style.display = "block";
+            loadInitialPage();
+        }
+    });
 
     document.getElementById('logout-btn').addEventListener('click', function(event) {
         event.preventDefault();
