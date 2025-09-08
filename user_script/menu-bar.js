@@ -318,3 +318,17 @@ newReleaseLock.addEventListener('click', (e) => {
         }, 3000);
     }
 });
+
+document.querySelectorAll('.movieLock.disabled-link').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        const toast = document.getElementById('premiumToast');
+
+        toast.classList.add('show');
+
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 3000);
+    });
+});

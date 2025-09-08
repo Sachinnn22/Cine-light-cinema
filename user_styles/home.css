@@ -1,10 +1,10 @@
 .hero-text  {
-    font-family: 'Perpetua Titling MT', serif !important;
+    font-family: Poppins, serif;
     font-size: 2.7rem !important;
     line-height: 1.1 !important;
     font-weight: 900 !important;
     color: #ffffff !important;
-    letter-spacing: 2.5px !important;
+    letter-spacing: 2.6px !important;
     text-transform: uppercase !important;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5),
     0 0 10px rgba(213, 208, 208, 0.5) !important;
@@ -19,6 +19,19 @@
     letter-spacing: 1.3px !important;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4),
     0 0 5px rgba(255, 255, 255, 0.4) !important;
+}
+
+@keyframes bounce-custom {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15%);
+    }
+}
+
+.animate-bounce-custom {
+    animation: bounce-custom 1s infinite;
 }
 
 @media (min-width: 621px) and (max-width: 800px){

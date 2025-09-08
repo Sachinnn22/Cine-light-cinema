@@ -49,11 +49,12 @@
                     <details>
                         <summary>Movies</summary>
                         <ul class="p-2 dropdown-glass-movie rounded-box mt-1 space-y-1">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Horror</a></li>
-                            <li><a href="#">Sci-Fic</a></li>
-                            <li><a href="#">Romance</a></li>
+                            <li><a class="movieLock disabled-link" href="#">Action</a></li>
+                            <li><a class="movieLock disabled-link" href="#">Horror</a></li>
+                            <li><a class="movieLock disabled-link" href="#">Sci-Fic</a></li>
+                            <li><a class="movieLock disabled-link" href="#">Romance</a></li>
                         </ul>
+
                     </details>
                 </li>
                 <li><a href="multi-faqs.html">FAQ's</a></li>
@@ -334,21 +335,28 @@
 
     <div class="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-transparent z-10"></div>
 
-    <div class="relative z-20 bg-white/10 backdrop-blur-sm rounded-2xl shadow-2xl p-10 sm:p-12 max-w-2xl w-full text-center border border-white/20 transition-all duration-500" style="margin-top: 3.2rem; box-shadow: 0 25px 50px rgba(0,0,0,0.7);" data-aos="fade-up">
+    <div
+            class="relative z-20 bg-white/10 backdrop-blur-sm rounded-2xl p-10 sm:p-12 max-w-xl w-full text-center border border-white/20 transition-all duration-500 shadow-lg"
+            style="margin-top: 3.2rem; box-shadow: 10px 10px 10px rgba(255, 0, 0, 0.8);" data-aos="fade-up">
         <header class="mb-5 flex flex-col items-center">
-            <div class="text-red-600 mb-6 text-6xl sm:text-6xl drop-shadow-lg">
+            <div
+                    class="text-red-600 mb-6 text-7xl sm:text-5xl drop-shadow-lg animate-bounce-custom"
+                    style="line-height: 1;">
                 🎬
             </div>
-            <h1 class="hero-text text-4xl sm:text-5xl font-extrabold text-white mb-4 leading-tight drop-shadow-xl tracking-wide">
+            <h1
+                    class="hero-text text-2xl sm:text-4xl font-extrabold text-white mb-4 leading-tight drop-shadow-xl tracking-wide">
                 Watch Your Movie
             </h1>
-            <p class="text-white text-md sm:text-lg leading-relaxed drop-shadow-sm hero-sub-text max-w-xl">
-                Discover the latest blockbusters, timeless classics, and hidden gems all in one place. Let the story begin.
+            <p class="text-white text-sm sm:text-md leading-relaxed drop-shadow-sm hero-sub-text max-w-xl">
+                Discover the latest blockbusters, timeless classics, and hidden gems all in one place. Let the story
+                begin.
             </p>
         </header>
 
         <div class="flex justify-center">
-            <button class="flex items-center justify-center gap-3 px-10 py-4 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl transition duration-300 ease-in-out text-lg tracking-wide">
+            <button
+                    class="flex items-center justify-center gap-3 px-10 py-4 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl transition duration-300 ease-in-out text-lg tracking-wide">
                 <svg class="w-6 h-6 fill-current text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <path d="M8 5v14l11-7z" />
                 </svg>
@@ -1024,6 +1032,7 @@
         textarea.style.height = 'auto';
         textarea.style.height = textarea.scrollHeight + 'px';
     }
+
 
 </script>
 
