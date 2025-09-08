@@ -63,7 +63,6 @@ async function fetchReviews(page = 0) {
         }
 
         pageDisplay.innerText = `Page ${currentPage + 1}`;
-
         prevBtn.disabled = (currentPage === 0);
         nextBtn.disabled = !hasNext;
 
@@ -87,10 +86,8 @@ nextBtn.addEventListener("click", () => {
 
 fetchReviews(currentPage);
 
-////////////////////////////////
 let currentQuiz = 0;
-let selectedQuestionId = null; // ✅ Add this at the top
-
+let selectedQuestionId = null;
 
 document.addEventListener('DOMContentLoaded', function () {
     loadQuestions(currentQuiz);
@@ -122,7 +119,6 @@ function loadQuestions(page) {
     const nextBtn = document.getElementById('next');
     const preBtn = document.getElementById('pre');
 
-    // Fetch current page questions
     fetch('http://localhost:8080/api/questions/pagination/' + page)
         .then(response => {
             if (!response.ok) throw new Error('HTTP error! Status: ' + response.status);
@@ -135,7 +131,7 @@ function loadQuestions(page) {
                 nextBtn.disabled = true;
                 preBtn.disabled = page === 0;
                 updatePageDisplay();
-                return;  // Stop loading further
+                return;
             }
 
             questions.forEach(q => {
@@ -153,25 +149,21 @@ function loadQuestions(page) {
 
                 const replyBtn = card.querySelector('.replyBtn');
                 replyBtn.addEventListener('click', () => {
-                    openReplyModal(q.email, q.username, q.id); // ✅ pass ID
+                    openReplyModal(q.email, q.username, q.id);
                 });
-
 
                 container.appendChild(card);
             });
 
-            // Now check if next page has questions to decide nextBtn enabled state
             return fetch('http://localhost:8080/api/questions/pagination/' + (page + 1));
         })
         .then(response => {
-            if (!response) return;  // Happens if previous fetch ended with reload
-
+            if (!response) return;
             if (!response.ok) throw new Error('HTTP error! Status: ' + response.status);
             return response.json();
         })
         .then(nextPageQuestions => {
-            if (!nextPageQuestions) return;  // No next page check done
-
+            if (!nextPageQuestions) return;
             nextBtn.disabled = nextPageQuestions.length === 0;
             preBtn.disabled = page === 0;
             updatePageDisplay();
@@ -189,11 +181,10 @@ let selectedUsername = '';
 function openReplyModal(email, username, questionId) {
     selectedEmail = email;
     selectedUsername = username;
-    selectedQuestionId = questionId; // ✅ store the ID
+    selectedQuestionId = questionId;
     document.getElementById('replyText').value = '';
     document.getElementById('replyModal').classList.remove('hidden');
 }
-
 
 document.getElementById('cancelBtn').addEventListener('click', () => {
     document.getElementById('replyModal').classList.add('hidden');
@@ -210,14 +201,13 @@ document.getElementById('sendReplyBtn').addEventListener('click', () => {
             to: selectedEmail,
             username: selectedUsername,
             message: message,
-            questionId: selectedQuestionId // ✅ send ID
+            questionId: selectedQuestionId
         })
-
     }).then(res => {
         if (res.ok) {
             showSuccessMessage('Reply sent successfully!');
             document.getElementById('replyModal').classList.add('hidden');
-            loadQuestions(currentQuiz); // ✅ Reload current page of questions
+            loadQuestions(currentQuiz);
         }
         else {
             showErrorMessage('Failed to send reply');

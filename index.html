@@ -327,45 +327,37 @@
 </div>
 
 <section class="relative min-h-screen flex items-center justify-center px-6 lg:px-24 overflow-hidden" id="home">
-        <div class="absolute inset-0 z-0">
-            <img src="assets/images/Airbrush-OBJECT-REMOVER-1755543227723.jpg" alt="Background Image" class="w-full h-full object-cover scale-105 opacity-80">
-        </div>
+    <div class="absolute inset-0 z-0 overflow-hidden">
+        <img src="assets/images/Airbrush-OBJECT-REMOVER-1755543227723.jpg" alt="Background Image"
+             class="w-full h-full object-cover scale-110 brightness-75">
+    </div>
 
-    <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/80 z-10 backdrop-blur-none"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-transparent z-10"></div>
 
-    <div
-            class="relative z-20 bg-white/10 backdrop-blur-md rounded-xl shadow-2xl p-8 sm:p-10 max-w-2xl w-full text-center border border-white/20"
-            style="margin-top: 3.2rem; box-shadow: 0 20px 40px rgba(62,62,62,0.5);"
-            data-aos="fade-up"
-    >
-        <h1 class="hero-text text-4xl sm:text-5xl font-extrabold text-white mb-4 leading-tight drop-shadow-lg">
-            Watch Your Movie
-        </h1>
-        <p class="text-white text-md sm:text-lg mb-8 leading-relaxed drop-shadow-sm hero-sub-text">
-            Discover the latest blockbusters, timeless classics, and hidden gems all in one place. Let the story begin.
-        </p>
+    <div class="relative z-20 bg-white/10 backdrop-blur-sm rounded-2xl shadow-2xl p-10 sm:p-12 max-w-2xl w-full text-center border border-white/20 transition-all duration-500" style="margin-top: 3.2rem; box-shadow: 0 25px 50px rgba(0,0,0,0.7);" data-aos="fade-up">
+        <header class="mb-5 flex flex-col items-center">
+            <div class="text-red-600 mb-6 text-6xl sm:text-6xl drop-shadow-lg">
+                🎬
+            </div>
+            <h1 class="hero-text text-4xl sm:text-5xl font-extrabold text-white mb-4 leading-tight drop-shadow-xl tracking-wide">
+                Watch Your Movie
+            </h1>
+            <p class="text-white text-md sm:text-lg leading-relaxed drop-shadow-sm hero-sub-text max-w-xl">
+                Discover the latest blockbusters, timeless classics, and hidden gems all in one place. Let the story begin.
+            </p>
+        </header>
 
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <input type="email" placeholder="Enter your email" class="w-full sm:w-72 px-4 py-3 rounded-lg text-black focus:outline-none shadow-md focus:ring-2 focus:ring-red-400">
-            <button class="px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg shadow-md transition duration-300">
-                Get Started
+        <div class="flex justify-center">
+            <button class="flex items-center justify-center gap-3 px-10 py-4 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl transition duration-300 ease-in-out text-lg tracking-wide">
+                <svg class="w-6 h-6 fill-current text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z" />
+                </svg>
+                Start Watching
             </button>
         </div>
-
-        <div class="flex items-center justify-center gap-4 my-6">
-            <hr class="flex-grow border-t border-white/30">
-            <span class="text-white text-sm uppercase tracking-widest opacity-70">or</span>
-            <hr class="flex-grow border-t border-white/30">
-        </div>
-
-        <div class="mt-5 w-full text-white text-[16px] opacity-90 flex justify-center">
-            <a href="#" class="trial-button inline-block w-48 h-12 bg-green-600 text-white rounded-md hover:bg-green-700 transition font-semibold flex items-center justify-center">
-                Try Free Trial
-            </a>
-        </div>
-
     </div>
 </section>
+
 
 <section class="py-12" id="movie">
     <div class="max-w-7xl mx-auto px-4">
