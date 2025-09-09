@@ -369,61 +369,10 @@
             <p class="faq-sub mt-4 text-gray-300">Top blockbusters and fan favorites worldwide</p>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-
-            <article class="movie-card-animated relative bg-[#1c1c1c] rounded-2xl overflow-hidden text-white border-2 border-gray-300 shadow-xl p-4">
-                <div class="relative">
-                    <img src="assets/images/Avengers-Endgame-Marvel-SuperHeros.jpg" alt="Avengers Endgame" class="rounded-xl w-full h-64 object-cover" />
-                    <div class="absolute bottom-2 left-2 bg-[#111] border-2 border-green-500 text-green-400 text-sm font-bold rounded-full w-10 h-10 flex items-center justify-center shadow-md">8.3</div>
-                </div>
-
-                <div class="mt-6">
-                    <h3 class="text-lg font-semibold leading-tight">Avatar: The Way of Water</h3>
-                    <p class="text-green-400 text-sm mt-1 font-medium">Action · Sci-Fi</p>
-                    <p class="text-gray-400 text-sm mt-1">Dec 16, 2022</p>
-                </div>
-            </article>
-
-            <article class="movie-card-animated relative bg-[#1c1c1c] rounded-2xl overflow-hidden text-white border-2 border-gray-300 shadow-xl p-4">
-                <div class="relative">
-                    <img src="assets/images/Avengers-Endgame-Marvel-SuperHeros.jpg" alt="Avengers Endgame" class="rounded-xl w-full h-64 object-cover" />
-                    <div class="absolute bottom-2 left-2 bg-[#111] border-2 border-green-500 text-green-400 text-sm font-bold rounded-full w-10 h-10 flex items-center justify-center shadow-md">8.3</div>
-                </div>
-
-                <div class="mt-6">
-                    <h3 class="text-lg font-semibold leading-tight">Avatar: The Way of Water</h3>
-                    <p class="text-green-400 text-sm mt-1 font-medium">Action · Sci-Fi</p>
-                    <p class="text-gray-400 text-sm mt-1">Dec 16, 2022</p>
-                </div>
-            </article>
-
-            <article class="movie-card-animated relative bg-[#1c1c1c] rounded-2xl overflow-hidden text-white border-2 border-gray-300 shadow-xl p-4">
-                <div class="relative">
-                    <img src="assets/images/Avengers-Endgame-Marvel-SuperHeros.jpg" alt="Avengers Endgame" class="rounded-xl w-full h-64 object-cover" />
-                    <div class="absolute bottom-2 left-2 bg-[#111] border-2 border-green-500 text-green-400 text-sm font-bold rounded-full w-10 h-10 flex items-center justify-center shadow-md">8.3</div>
-                </div>
-
-                <div class="mt-6">
-                    <h3 class="text-lg font-semibold leading-tight">Avatar: The Way of Water</h3>
-                    <p class="text-green-400 text-sm mt-1 font-medium">Action · Sci-Fi</p>
-                    <p class="text-gray-400 text-sm mt-1">Dec 16, 2022</p>
-                </div>
-            </article>
-
-            <article id="mv-4" class="movie-card-animated relative bg-[#1c1c1c] rounded-2xl overflow-hidden text-white border-2 border-gray-300 shadow-xl p-4">
-                <div class="relative">
-                    <img src="assets/images/Avengers-Endgame-Marvel-SuperHeros.jpg" alt="Avengers Endgame" class="rounded-xl w-full h-64 object-cover" />
-                    <div class="absolute bottom-2 left-2 bg-[#111] border-2 border-green-500 text-green-400 text-sm font-bold rounded-full w-10 h-10 flex items-center justify-center shadow-md">8.3</div>
-                </div>
-
-                <div class="mt-6">
-                    <h3 class="text-lg font-semibold leading-tight">Avatar: The Way of Water</h3>
-                    <p class="text-green-400 text-sm mt-1 font-medium">Action · Sci-Fi</p>
-                    <p class="text-gray-400 text-sm mt-1">Dec 16, 2022</p>
-                </div>
-            </article>
-
+        <div id="popular-movies-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            <!-- Dynamic cards will be inserted here -->
         </div>
+
     </div>
 </section>
 
@@ -1024,6 +973,64 @@
 
 
 </script>
+
+<script>
+    async function loadPopularMovies() {
+        const container = document.getElementById("popular-movies-container");
+        container.innerHTML = ''; // Clear existing cards
+
+        try {
+            const response = await fetch("http://localhost:8080/api/movies/popular");
+            if (!response.ok) throw new Error("Failed to fetch popular movies");
+            const movies = await response.json();
+
+            movies.forEach(movie => {
+                const releaseDate = new Date(movie.releaseDate).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                });
+
+                const card = document.createElement('article');
+                card.className = `
+                relative bg-[#1c1c1c] rounded-xl overflow-hidden shadow-lg
+                text-white border border-white cursor-pointer transform transition-transform duration-300 hover:scale-105
+                flex flex-col
+            `;
+
+                card.innerHTML = `
+                <div class="relative w-full h-64 overflow-hidden rounded-t-xl">
+                    <img
+                        src="http://localhost:8080/uploads/${movie.imagePath}"
+                        alt="${movie.name}"
+                        class="w-full h-full object-cover brightness-90 hover:brightness-110 transition duration-300"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent pointer-events-none"></div>
+                    <div class="absolute top-3 right-3 bg-green-500 text-white font-bold rounded-full w-12 h-12 flex items-center justify-center shadow-lg">
+                        ${movie.rating.toFixed(1)}
+                    </div>
+                </div>
+
+                <div class="p-4 flex flex-col flex-grow">
+                    <h3 class="text-2xl font-semibold truncate">${movie.name}</h3>
+                    <p class="text-green-400 text-sm mt-1 font-semibold">${movie.category}</p>
+                    <p class="text-gray-400 text-xs mt-1">${releaseDate}</p>
+                </div>
+            `;
+
+                container.appendChild(card);
+            });
+
+        } catch (error) {
+            console.error("Error loading popular movies:", error);
+            container.innerHTML = '<p class="text-white col-span-4 text-center">Failed to load popular movies.</p>';
+        }
+    }
+
+    window.addEventListener('DOMContentLoaded', loadPopularMovies);
+
+</script>
+
 
 <script src="user_script/menu-bar.js" type="module"></script>
 <script src="user_script/faqs.js" type="module"></script>
