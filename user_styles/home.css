@@ -6,10 +6,11 @@
     color: #ffffff !important;
     letter-spacing: 2.6px !important;
     text-transform: uppercase !important;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5),
-    0 0 10px rgba(213, 208, 208, 0.5) !important;
-}
+    text-shadow:
+            2px 2px 4px rgba(255, 0, 0, 0.7),       /* darker red shadow */
+            0 0 10px rgba(255, 100, 100, 0.8) !important;  /* glowing red */
 
+}
 .hero-sub-text {
     font-family: 'Open Sans', sans-serif !important;
     font-size: 1.125rem !important;

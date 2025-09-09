@@ -1,17 +1,28 @@
-.feu-head{
+.feu-head {
     font-size: 3rem !important;
     font-weight: 600 !important;
     font-family: 'Montserrat', sans-serif;
     letter-spacing: 2px !important;
-    background: linear-gradient(90deg, #669390, #dd0909, #ef2b2b) !important;
-    background-size: 200% auto !important;
-    -webkit-background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-    background-clip: text !important;
-    text-fill-color: transparent !important;
-    animation: glowShift 5s ease-in-out infinite !important;
-    text-shadow: 0 0 10px rgba(0, 255, 255, 0.3) !important;
+
+    /* Remove gradient background and clipping */
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: unset !important;
+    background-clip: unset !important;
+    text-fill-color: unset !important;
+    animation: none !important;
+
+    /* Set solid white color */
+    color: white !important;
+
+    /* Combined white and red text shadow */
+    text-shadow:
+            0 0 3px rgba(255, 255, 255, 0.5),
+            0 0 6px rgba(255, 255, 255, 0.3),
+            0 0 5px rgba(255, 0, 0, 0.7),
+            0 0 10px rgba(255, 0, 0, 0.4);
 }
+
 
 @keyframes float {
     0%, 100% {
@@ -108,3 +119,4 @@
         font-size: 2rem !important;
     }
 }
+
