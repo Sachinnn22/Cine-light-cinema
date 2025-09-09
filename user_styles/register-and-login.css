@@ -30,9 +30,9 @@ html, body {
 
 .custom-heading {
     font-size: 2.4rem;
-    font-weight: 800;
+    font-weight: 600;
     letter-spacing: 1.2px;
-    font-family: "Roboto Light",serif;
+    font-family: 'Montserrat', sans-serif;
     text-align: center;
     color: #f3f2f2;
     margin-bottom: 1.5rem;
@@ -40,9 +40,9 @@ html, body {
 
 .custom-head{
     font-size: 2.4rem;
-    font-weight: 800;
+    font-weight: 600;
     letter-spacing: 1.5px;
-    font-family: "Roboto Light",serif;
+    font-family: 'Montserrat', sans-serif;
     text-align: center;
     color: #f3f2f2;
     margin-bottom: 1.2rem;
