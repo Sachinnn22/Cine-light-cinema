@@ -81,6 +81,14 @@
 
         <div class="flex items-center gap-4">
             <button
+                    id="open-popular-modal-btn"
+                    class="text-red-500 hover:text-red-600 text-2xl transition transform hover:scale-110"
+                    title="Mark Popular Movies"
+            >
+                ❤️
+            </button>
+
+            <button
                     id="credentials-btn"
                     class="flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 text-[22px] text-emerald-500 transition transform hover:scale-125"
                     title="Credentials"
@@ -238,6 +246,54 @@
 
         </div>
     </section>
+
+
+    <!-- Modal -->
+    <div
+            id="popularModal"
+            class="fixed inset-0 backdrop-blur-md bg-black bg-opacity-50 flex items-center justify-center z-50 hidden"
+    >
+        <div class="bg-white w-[80%] max-w-2xl rounded-lg shadow-lg p-6 relative">
+            <!-- Heading -->
+            <h2 class="text-2xl font-bold mb-4 text-blue-600">All Movies</h2>
+
+            <!-- Table -->
+            <div class="overflow-x-auto max-h-[70vh] overflow-y-auto">
+                <table class="min-w-full border border-gray-300 table-fixed">
+                    <thead>
+                    <tr class="bg-gray-100">
+                        <th class="p-2 border w-[20%]">ID</th>
+                        <th class="p-2 border w-[60%]">Name</th>
+                        <th class="p-2 border w-[20%]">Popular?</th>
+                    </tr>
+                    </thead>
+                    <tbody id="popular-movie-table-body">
+                    <!-- Rows injected here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Buttons -->
+            <div class="flex justify-end gap-4 mt-4">
+                <!-- Cancel Button -->
+                <button
+                        onclick="closePopularModal()"
+                        class="w-28 py-2 text-red-600 hover:text-white border border-red-600 hover:bg-red-600 font-semibold rounded"
+                >
+                    Cancel
+                </button>
+
+                <!-- Save Button -->
+                <button
+                        id="save-popular-btn"
+                        class="w-28 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                >
+                    Save
+                </button>
+            </div>
+        </div>
+    </div>
+
 
     <section id="user-details" class="page" style="display:none; margin-top: 40px !important;">
         <h3 class="mb-6 user" style="font-family: 'Poppins', sans-serif; color: #546e8c !important;">User Details</h3>
@@ -2368,6 +2424,97 @@
     loadPaginatedComedyMovies(currentPageComedy);
 </script>
 
+
+<script>
+    // Track changes: movieId -> boolean
+    let popularChanges = new Map();
+
+    document.getElementById("open-popular-modal-btn").addEventListener("click", () => {
+        openPopularModal();
+    });
+
+    function openPopularModal() {
+        document.getElementById("popularModal").classList.remove("hidden");
+        loadPopularMovies();
+    }
+
+    function closePopularModal() {
+        document.getElementById("popularModal").classList.add("hidden");
+        popularChanges.clear();
+    }
+
+    async function loadPopularMovies() {
+        try {
+            const response = await fetch("http://localhost:8080/api/movies");
+            if (!response.ok) throw new Error("Failed to fetch movies");
+            const movies = await response.json();
+            const tbody = document.getElementById("popular-movie-table-body");
+            tbody.innerHTML = "";
+            popularChanges.clear();
+
+            movies.forEach(movie => {
+                const tr = document.createElement("tr");
+
+                // Create checkbox for popular status
+                const popularCheckbox = document.createElement("input");
+                popularCheckbox.type = "checkbox";
+                popularCheckbox.checked = movie.popular === true;
+                popularCheckbox.title = "Toggle Popular";
+                popularCheckbox.dataset.id = movie.id;
+
+                popularCheckbox.addEventListener("change", (event) => {
+                    const id = event.target.dataset.id;
+                    popularChanges.set(id, event.target.checked);
+                });
+
+                tr.innerHTML = `
+                    <td class="p-2 border text-center">${movie.id}</td>
+                    <td class="p-2 border">${movie.name}</td>
+                `;
+
+                const popularTd = document.createElement("td");
+                popularTd.classList.add("p-2", "border", "text-center");
+                popularTd.appendChild(popularCheckbox);
+                tr.appendChild(popularTd);
+
+                tbody.appendChild(tr);
+            });
+
+        } catch (err) {
+            console.error("Error loading popular movies:", err);
+            alert("Could not load movies. Please check your server.");
+        }
+    }
+
+    document.getElementById("save-popular-btn").addEventListener("click", async () => {
+        try {
+            if (popularChanges.size === 0) {
+                alert("Please select at least one checkbox before saving.");
+                return; // Don't proceed if no changes
+            }
+
+            // For each changed movie, send POST request to update popular status
+            for (const [id, popular] of popularChanges.entries()) {
+                await fetch(`http://localhost:8080/api/movies/mark-popular/${id}`, {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ popular })
+                });
+            }
+
+            popularChanges.clear();
+            alert("Popular status updated successfully!");
+            closePopularModal();  // Close modal after save
+            loadPopularMovies();  // Reload list to reflect latest data
+
+        } catch (err) {
+            console.error("Failed to save popular status changes", err);
+            alert("Error saving popular statuses.");
+        }
+    });
+</script>
 
 </body>
 </html>
