@@ -1,16 +1,15 @@
-.mk{
+.mk {
     font-size: 2.19rem !important;
     font-weight: 700 !important;
     letter-spacing: 1.8px !important;
-    background: linear-gradient(45deg, #cca549, #738c97, #275163, #96ceb4, #feca57) !important;
     -webkit-background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
+    -webkit-text-fill-color: white !important; /* changed from transparent */
     background-clip: text !important;
-    text-fill-color: transparent !important;
-    text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.15) !important;
+    text-fill-color: white !important; /* changed from transparent */
+    text-shadow: 1px 1px 4px red !important; /* changed to red */
     animation: pulseGlow 4s infinite ease-in-out !important;
-
 }
+
 
 .mn{
     font-family: cursive;
@@ -213,4 +212,12 @@
         margin-bottom: 2rem !important;
     }
 
+}
+.movie-disable{
+    cursor: not-allowed !important;       /* show disabled cursor */
+    opacity: 0.5;                          /* make card look faded */
+    user-select: none;                    /* prevent text selection */
+    filter: grayscale(30%);               /* slight grayscale for visual effect */
+    pointer-events: none;                 /* disable any interactions */
+    transition: none !important;
 }

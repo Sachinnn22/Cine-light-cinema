@@ -174,7 +174,7 @@ if (notificationBtn && notificationPopup) {
 <article class="flex w-full bg-[#1c1c1c] rounded-2xl overflow-hidden text-white border-2 border-gray-300 shadow-xl p-2 mb-3 disabled-card">
     <img src="http://localhost:8080/uploads/${movie.imagePath}" alt="${movie.name}" class="w-24 h-24 object-cover rounded-lg flex-shrink-0" />
     <div class="ml-6 flex flex-col justify-center">
-        <h3 class="font-semibold text-[18px]">${movie.name}</h3>
+        <h3 class="font-semibold text-[16px]">${movie.name}</h3>
         <p class="text-green-400 mt-0.5 font-medium text-xs">${movie.category}</p>
         <p class="text-gray-400 mt-0.5 text-xs">${movie.releaseDate}</p>
     </div>
