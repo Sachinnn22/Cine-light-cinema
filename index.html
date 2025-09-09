@@ -988,7 +988,7 @@
 
                 const card = document.createElement('article');
                 card.className = `
-        relative movie-disable bg-gradient-to-br from-gray-900 via-black to-gray-900 rounded-2xl overflow-hidden
+        relative  bg-gradient-to-br from-gray-900 via-black to-gray-900 rounded-2xl overflow-hidden
         border border-gray-700 shadow-[0_0_15px_rgba(255,255,255,0.4)] cursor-pointer
         transform transition-transform duration-300 hover:scale-105 hover:shadow-[0_0_25px_rgba(255,255,255,0.6)]
         flex flex-col
@@ -1056,6 +1056,17 @@
         easing: 'ease',
     });
 </script>
+
+<script>
+    // Check if user is logged in
+    const isLoggedIn = sessionStorage.getItem("isLoggedIn");
+
+    if (!isLoggedIn) {
+        // Redirect to login page if not logged in
+        window.location.replace("/AAD-FINAL/AAD-FINAL-PROJECT/register-and-login.html");
+    }
+</script>
+
 
 </body>
 </html>

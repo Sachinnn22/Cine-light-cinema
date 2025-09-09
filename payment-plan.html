@@ -35,10 +35,6 @@
           </span>
         </div>
 
-        <a href="index.html" class="text-gray-200 text-xl sm:text-2xl hover:text-gray-400 transition mr-2 sm:mr-4 flex items-center leading-none">
-            <i class="fas fa-house" style="filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.6));"></i>
-        </a>
-
     </div>
 </nav>
 
@@ -52,32 +48,15 @@
 
     <div id="pricing-carousel" class="flex justify-center items-center gap-6 flex-wrap lg:flex-nowrap">
 
-        <div class="pricing-card shrink-card transition-all duration-300 ease-in-out cursor-pointer" onclick="setActiveCard(0)">
-            <h3 class="mb-4 text-2xl font-semibold">Beginner</h3>
-            <div class="flex justify-center items-baseline my-3">
-                <span class="mr-2 text-5xl font-extrabold">$0</span>
-                <span class="text-gray-300">/14 days</span>
-            </div>
-            <ul role="list" class="mt-5 mb-6 space-y-4 text-center text-sm sm:text-base">
-                <li>✅ Can download old movies</li>
-                <li>❌ Only supports 720p resolution</li>
-                <li>❌ Cannot watch new releases</li>
-                <li>❌ Cannot watch live content</li>
-            </ul>
-            <a href="javascript:void(0)" onclick="openPaymentPopup('Beginner', 0)"
-               class="block w-[85%] mx-auto text-white bg-gray-700 hover:bg-gray-800 font-medium rounded-lg text-sm px-5 py-3 text-center mt-4">
-                Get started
-            </a>
-        </div>
 
-        <div class="pricing-card active-card transition-all duration-300 ease-in-out cursor-pointer" onclick="setActiveCard(1)">
+        <div class="pricing-card active-card transition-all duration-300 ease-in-out cursor-pointer" onclick="setActiveCard(0)">
             <h3 class="mb-4 text-2xl font-semibold">Enterprise</h3>
             <div class="flex justify-center items-baseline my-3">
                 <span class="mr-2 text-5xl font-extrabold">$5</span>
                 <span class="text-gray-300">/month</span>
             </div>
             <ul role="list" class="mt-5 mb-8 space-y-4 text-center text-sm sm:text-base">
-                <li>✅ Access to new movies</li>
+                <li>✅ Access to All movies</li>
                 <li>✅ Can download any movie</li>
                 <li>✅ Supports up to 2K resolution</li>
                 <li>❌ Cannot watch live content</li>
@@ -88,14 +67,14 @@
             </a>
         </div>
 
-        <div class="pricing-card  shrink-card transition-all duration-300 ease-in-out cursor-pointer" onclick="setActiveCard(2)" >
+        <div class="pricing-card  shrink-card transition-all duration-300 ease-in-out cursor-pointer" onclick="setActiveCard(1)" >
             <h3 class="mb-4 text-2xl font-semibold">Intermediate</h3>
             <div class="flex justify-center items-baseline my-3">
                 <span class="mr-2 text-5xl font-extrabold">10$</span>
                 <span class="text-gray-300">/month</span>
             </div>
             <ul role="list" class="mt-5 mb-8 space-y-4 text-center text-sm sm:text-base">
-                <li>✅ Access to new movies</li>
+                <li>✅ Access to All movies</li>
                 <li>✅ Can watch live content</li>
                 <li>✅ Can download any movie</li>
                 <li>✅ Supports up to 4K resolution</li>
@@ -160,6 +139,32 @@
 <script src="user_script/payment-plan.js" type="module"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
 <script src="https://www.payhere.lk/lib/payhere.js"></script>
+
+<script>
+    const loginPageURL = "/login.html";
+
+    history.pushState(null, null, location.href);
+
+    window.addEventListener("popstate", function (event) {
+        location.href = loginPageURL;
+    });
+
+    // Function to toggle active card on click
+    function setActiveCard(index) {
+        const cards = document.querySelectorAll('.pricing-card');
+
+        cards.forEach((card, i) => {
+            if (i === index) {
+                card.classList.add('active-card');
+                card.classList.remove('shrink-card');
+            } else {
+                card.classList.remove('active-card');
+                card.classList.add('shrink-card');
+            }
+        });
+    }
+
+</script>
 
 </body>
 </html>

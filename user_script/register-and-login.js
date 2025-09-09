@@ -136,7 +136,7 @@ document.querySelector('.front form').addEventListener('submit', async (e) => {
         if (userData && userData.role === 'admin') {
             window.location.href = 'admin-view.html';
         } else {
-            window.location.href = 'index.html';
+            window.location.href = 'payment-plan.html';
         }
 
     } catch (err) {
@@ -205,7 +205,7 @@ document.getElementById('googleSignInBtn').addEventListener('click', () => {
                             lastLoginTimestamp: registerTimestamp,
                             loginCount: currentLoginCount + 1
                         }).then(() => {
-                            window.location.href = 'index.html';
+                            window.location.href = 'payment-plan.html';
                         });
                     }
                 });
