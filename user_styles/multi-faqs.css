@@ -12,18 +12,28 @@ body {
 }
 
 .faq-title {
-    font-family: 'Poppins', sans-serif;
     font-size: 3rem !important;
-    font-weight: 700 !important;
-    letter-spacing: 1.5px !important;
-    background: linear-gradient(90deg, #5191a8, #469346, #ba3a3a); /* Red, Green, Blue */
-    background-size: 300% 300%;
-    -webkit-background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-    background-clip: text !important;
-    text-fill-color: transparent !important;
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2) !important;
-    animation: gradientShift 6s ease-in-out infinite, pulseGlow 4s ease-in-out infinite !important;
+    font-weight: 600 !important;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 2px !important;
+
+    /* Remove gradient background and clipping */
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: unset !important;
+    background-clip: unset !important;
+    text-fill-color: unset !important;
+    animation: none !important;
+
+    /* Set solid white color */
+    color: white !important;
+
+    /* Combined white and red text shadow */
+    text-shadow:
+            0 0 3px rgba(255, 255, 255, 0.5),
+            0 0 6px rgba(255, 255, 255, 0.3),
+            0 0 5px rgba(255, 0, 0, 0.7),
+            0 0 10px rgba(255, 0, 0, 0.4);
 }
 
 @keyframes gradientShift {
