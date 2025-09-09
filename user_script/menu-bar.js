@@ -171,8 +171,8 @@ if (notificationBtn && notificationPopup) {
 
             limitedMovies.forEach(movie => {
                 const card = `
-<article class="flex w-full bg-[#1c1c1c] rounded-2xl overflow-hidden text-white border-2 border-gray-300 shadow-xl p-2 mb-3">
-<img src="http://localhost:8080/uploads/${movie.imagePath}" alt="${movie.name}" class="w-24 h-24 object-cover rounded-lg flex-shrink-0" />
+<article class="flex w-full bg-[#1c1c1c] rounded-2xl overflow-hidden text-white border-2 border-gray-300 shadow-xl p-2 mb-3 disabled-card">
+    <img src="http://localhost:8080/uploads/${movie.imagePath}" alt="${movie.name}" class="w-24 h-24 object-cover rounded-lg flex-shrink-0" />
     <div class="ml-6 flex flex-col justify-center">
         <h3 class="font-semibold text-[18px]">${movie.name}</h3>
         <p class="text-green-400 mt-0.5 font-medium text-xs">${movie.category}</p>
@@ -185,8 +185,9 @@ if (notificationBtn && notificationPopup) {
             const advancedSearchBtn = `
 <div class="flex justify-center mt-2">
   <button id="advancedSearchBtn" 
-    onclick="window.location.href='../all-movie.html'"
-    class="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition-colors duration-300 flex items-center gap-2">
+    class="bg-green-600 text-white font-semibold py-3 px-8 rounded-lg shadow-md flex items-center gap-2 disabled-btn"
+    disabled
+  >
     <i class="fas fa-search"></i>
     Enhanced Search
   </button>
@@ -196,6 +197,7 @@ if (notificationBtn && notificationPopup) {
 
         searchResultsPanel.classList.add('show');
     }
+
 
     const searchToggleMobile = document.getElementById('search-toggle-mobile');
     const searchIcon = document.getElementById('search-icon');

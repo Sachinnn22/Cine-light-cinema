@@ -275,6 +275,22 @@ a.mobil-brand {
     transform: translate(-50%, 0);
 }
 
+.disabled-card {
+    cursor: not-allowed !important;       /* change cursor to "no" symbol */
+    opacity: 0.5;              /* make card look faded/disabled */
+    user-select: none;         /* prevent text selection */
+    filter: grayscale(30%);    /* optional: add grayscale for more disabled look */
+    transition: none !important; /* prevent hover or transition effects */
+}
+
+.disabled-btn {
+    cursor: not-allowed;        /* no-allowed cursor */
+    opacity: 0.5;               /* faded look */
+    user-select: none;          /* no text selection */
+    filter: grayscale(30%);
+}
+
+
 .disabled-link {
     color: rgba(255, 255, 255, 0.5) !important;
     cursor: not-allowed !important;

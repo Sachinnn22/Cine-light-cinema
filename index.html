@@ -52,7 +52,7 @@
                             <li><a class="movieLock disabled-link" href="#">Action</a></li>
                             <li><a class="movieLock disabled-link" href="#">Horror</a></li>
                             <li><a class="movieLock disabled-link" href="#">Sci-Fic</a></li>
-                            <li><a class="movieLock disabled-link" href="#">Romance</a></li>
+                            <li><a class="movieLock disabled-link" href="#">Comedy</a></li>
                         </ul>
 
                     </details>
@@ -76,7 +76,7 @@
                     autocomplete="off"
                     class="hidden px-3 py-2 rounded-none bg-[#2a2a2a] text-white border-b border-gray-500 focus:outline-none focus:border-green-500"
             />
-            <button id="searchToggle" class="btn btn-ghost btn-circle ml-2">
+            <button id="searchToggle" class="btn btn-ghost btn-circle ml-2 ">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
                      viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
@@ -130,14 +130,6 @@
                     </a>
                 </li>
                 <li>
-                    <a id="buyPremiumLink" href="payment-plan.html" class="flex items-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none"
-                             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <rect x="2" y="6" width="20" height="12" rx="2" ry="2" />
-                            <path d="M2 10h20" />
-                        </svg>
-                        Buy Premium
-                    </a>
                 </li>
             </ul>
         </div>
@@ -337,8 +329,10 @@
 
     <div
             class="relative z-20 bg-white/10 backdrop-blur-sm rounded-2xl p-10 sm:p-12 w-full text-center border border-white/20 transition-all duration-500 shadow-lg"
-            style="margin-top: 3.2rem; box-shadow: 10px 10px 10px rgba(255, 0, 0, 0.8); width: 600px;">
-        <header class="mb-5 flex flex-col items-center">
+            style="margin-top: 3.2rem; box-shadow: 10px 10px 10px rgba(255, 0, 0, 0.8); width: 600px;"
+            data-aos="fade-up">
+
+    <header class="mb-5 flex flex-col items-center">
             <div
                     class="text-red-600 mb-6 text-7xl sm:text-5xl drop-shadow-lg animate-bounce-custom"
                     style="line-height: 1;">
@@ -747,7 +741,6 @@
 
         if (username && username !== 'U') {
             userMenu.innerHTML = `
-        <li><a href="profile.html"><i class="fas fa-user"></i> My Profile</a></li>
         <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
     `;
 
@@ -782,12 +775,7 @@
             Sign In
           </a>
         </li>
-        <li>
-          <a href="#" id="buyPremiumLink" class="flex items-center gap-2">
-            <i class="fas fa-crown"></i>
-            Buy Premium
-          </a>
-        </li>
+
                 `;
         }
     }
