@@ -7,6 +7,7 @@
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="user_styles/all-movie.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
@@ -157,18 +158,28 @@
         }
 
         .all-movie-header {
-            font-size: 2.9rem !important;
+            font-size: 3rem !important;
             font-weight: 600 !important;
             font-family: 'Montserrat', sans-serif;
             letter-spacing: 2px !important;
-            background: linear-gradient(90deg, #3cacca, #c14747, #fc466b, #3f5efb) !important;
-            background-size: 200% auto !important;
-            -webkit-background-clip: text !important;
-            -webkit-text-fill-color: transparent !important;
-            background-clip: text !important;
-            text-fill-color: transparent !important;
-            animation: glowShift 5s ease-in-out infinite !important;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.3) !important;
+
+            /* Remove gradient background and clipping */
+            background: none !important;
+            -webkit-background-clip: unset !important;
+            -webkit-text-fill-color: unset !important;
+            background-clip: unset !important;
+            text-fill-color: unset !important;
+            animation: none !important;
+
+            /* Set solid white color */
+            color: white !important;
+
+            /* Combined white and red text shadow */
+            text-shadow:
+                    0 0 3px rgba(255, 255, 255, 0.5),
+                    0 0 6px rgba(255, 255, 255, 0.3),
+                    0 0 5px rgba(255, 0, 0, 0.7),
+                    0 0 10px rgba(255, 0, 0, 0.7);
         }
 
         @keyframes glowShift {
@@ -340,7 +351,7 @@
 
 <section class="px-4 sm:px-8 lg:px-16">
     <h2 class="all-movie-header text-white text-3xl font-bold mb-4 tracking-wide text-center" style="padding-top: 6.5rem;">
-        Find More Movies
+        Find Your Movie
     </h2>
     <hr class="border-gray-400 mb-8 w-1/2 mx-auto">
 
@@ -357,105 +368,7 @@
         </div>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 movie">
-        <article class="movie-card-animated relative bg-[#1c1c1c] rounded-2xl overflow-hidden text-white border-2 border-gray-300 shadow-xl p-4">
-            <div class="relative">
-                <img src="assets/images/Avengers-Endgame-Marvel-SuperHeros.jpg" alt="Avengers Endgame" class="rounded-xl w-full h-64 object-cover" />
-                <div class="absolute bottom-2 left-2 bg-[#111] border-2 border-green-500 text-green-400 text-sm font-bold rounded-full w-10 h-10 flex items-center justify-center shadow-md">8.3</div>
-            </div>
-            <div class="mt-6">
-                <h3 class="text-lg font-semibold leading-tight">Avatar: The Way of Water</h3>
-                <p class="text-green-400 text-sm mt-1 font-medium">Action · Sci-Fi</p>
-                <p class="text-gray-400 text-sm mt-1">Dec 16, 2022</p>
-            </div>
-        </article>
-
-        <article class="movie-card-animated relative bg-[#1c1c1c] rounded-2xl overflow-hidden text-white border-2 border-gray-300 shadow-xl p-4">
-            <div class="relative">
-                <img src="assets/images/Avengers-Endgame-Marvel-SuperHeros.jpg" alt="Avengers Endgame" class="rounded-xl w-full h-64 object-cover" />
-                <div class="absolute bottom-2 left-2 bg-[#111] border-2 border-green-500 text-green-400 text-sm font-bold rounded-full w-10 h-10 flex items-center justify-center shadow-md">8.3</div>
-            </div>
-            <div class="mt-6">
-                <h3 class="text-lg font-semibold leading-tight">Avatar: The Way of Water</h3>
-                <p class="text-green-400 text-sm mt-1 font-medium">Action · Sci-Fi</p>
-                <p class="text-gray-400 text-sm mt-1">Dec 16, 2022</p>
-            </div>
-        </article>
-
-
-        <article class="movie-card-animated relative bg-[#1c1c1c] rounded-2xl overflow-hidden text-white border-2 border-gray-300 shadow-xl p-4">
-            <div class="relative">
-                <img src="assets/images/Avengers-Endgame-Marvel-SuperHeros.jpg" alt="Avengers Endgame" class="rounded-xl w-full h-64 object-cover" />
-                <div class="absolute bottom-2 left-2 bg-[#111] border-2 border-green-500 text-green-400 text-sm font-bold rounded-full w-10 h-10 flex items-center justify-center shadow-md">8.3</div>
-            </div>
-            <div class="mt-6">
-                <h3 class="text-lg font-semibold leading-tight">Avatar: The Way of Water</h3>
-                <p class="text-green-400 text-sm mt-1 font-medium">Action · Sci-Fi</p>
-                <p class="text-gray-400 text-sm mt-1">Dec 16, 2022</p>
-            </div>
-        </article>
-
-
-        <article class="movie-card-animated relative bg-[#1c1c1c] rounded-2xl overflow-hidden text-white border-2 border-gray-300 shadow-xl p-4">
-            <div class="relative">
-                <img src="assets/images/Avengers-Endgame-Marvel-SuperHeros.jpg" alt="Avengers Endgame" class="rounded-xl w-full h-64 object-cover" />
-                <div class="absolute bottom-2 left-2 bg-[#111] border-2 border-green-500 text-green-400 text-sm font-bold rounded-full w-10 h-10 flex items-center justify-center shadow-md">8.3</div>
-            </div>
-            <div class="mt-6">
-                <h3 class="text-lg font-semibold leading-tight">Avatar: The Way of Water</h3>
-                <p class="text-green-400 text-sm mt-1 font-medium">Action · Sci-Fi</p>
-                <p class="text-gray-400 text-sm mt-1">Dec 16, 2022</p>
-            </div>
-        </article>
-
-        <article class="movie-card-animated relative bg-[#1c1c1c] rounded-2xl overflow-hidden text-white border-2 border-gray-300 shadow-xl p-4">
-            <div class="relative">
-                <img src="assets/images/Avengers-Endgame-Marvel-SuperHeros.jpg" alt="Avengers Endgame" class="rounded-xl w-full h-64 object-cover" />
-                <div class="absolute bottom-2 left-2 bg-[#111] border-2 border-green-500 text-green-400 text-sm font-bold rounded-full w-10 h-10 flex items-center justify-center shadow-md">8.3</div>
-            </div>
-            <div class="mt-6">
-                <h3 class="text-lg font-semibold leading-tight">Avatar: The Way of Water</h3>
-                <p class="text-green-400 text-sm mt-1 font-medium">Action · Sci-Fi</p>
-                <p class="text-gray-400 text-sm mt-1">Dec 16, 2022</p>
-            </div>
-        </article>
-
-
-        <article class="movie-card-animated relative bg-[#1c1c1c] rounded-2xl overflow-hidden text-white border-2 border-gray-300 shadow-xl p-4">
-            <div class="relative">
-                <img src="assets/images/Avengers-Endgame-Marvel-SuperHeros.jpg" alt="Avengers Endgame" class="rounded-xl w-full h-64 object-cover" />
-                <div class="absolute bottom-2 left-2 bg-[#111] border-2 border-green-500 text-green-400 text-sm font-bold rounded-full w-10 h-10 flex items-center justify-center shadow-md">8.3</div>
-            </div>
-            <div class="mt-6">
-                <h3 class="text-lg font-semibold leading-tight">Avatar: The Way of Water</h3>
-                <p class="text-green-400 text-sm mt-1 font-medium">Action · Sci-Fi</p>
-                <p class="text-gray-400 text-sm mt-1">Dec 16, 2022</p>
-            </div>
-        </article>
-
-        <article class="movie-card-animated relative bg-[#1c1c1c] rounded-2xl overflow-hidden text-white border-2 border-gray-300 shadow-xl p-4">
-            <div class="relative">
-                <img src="assets/images/Avengers-Endgame-Marvel-SuperHeros.jpg" alt="Avengers Endgame" class="rounded-xl w-full h-64 object-cover" />
-                <div class="absolute bottom-2 left-2 bg-[#111] border-2 border-green-500 text-green-400 text-sm font-bold rounded-full w-10 h-10 flex items-center justify-center shadow-md">8.3</div>
-            </div>
-            <div class="mt-6">
-                <h3 class="text-lg font-semibold leading-tight">Avatar: The Way of Water</h3>
-                <p class="text-green-400 text-sm mt-1 font-medium">Action · Sci-Fi</p>
-                <p class="text-gray-400 text-sm mt-1">Dec 16, 2022</p>
-            </div>
-        </article>
-
-        <article class="movie-card-animated relative bg-[#1c1c1c] rounded-2xl overflow-hidden text-white border-2 border-gray-300 shadow-xl p-4">
-            <div class="relative">
-                <img src="assets/images/Avengers-Endgame-Marvel-SuperHeros.jpg" alt="Avengers Endgame" class="rounded-xl w-full h-64 object-cover" />
-                <div class="absolute bottom-2 left-2 bg-[#111] border-2 border-green-500 text-green-400 text-sm font-bold rounded-full w-10 h-10 flex items-center justify-center shadow-md">8.3</div>
-            </div>
-            <div class="mt-6">
-                <h3 class="text-lg font-semibold leading-tight">Avatar: The Way of Water</h3>
-                <p class="text-green-400 text-sm mt-1 font-medium">Action · Sci-Fi</p>
-                <p class="text-gray-400 text-sm mt-1">Dec 16, 2022</p>
-            </div>
-        </article>
+    <div id="all-movies-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 movie">
 
     </div>
 </section>
@@ -476,6 +389,129 @@
             dropdownIcon.classList.add("fa-xmark");
         }
     });
+</script>
+
+<script>
+    async function loadAllMovies() {
+        const container = document.getElementById("all-movies-container");
+        container.innerHTML = ''; // Clear old cards
+
+        try {
+            const res = await fetch("http://localhost:8080/api/movies");
+            if (!res.ok) throw new Error("Failed to fetch movies");
+            const movies = await res.json();
+
+            movies.forEach(movie => {
+                const releaseDate = new Date(movie.releaseDate).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                });
+
+                const cardHtml = `
+  <article class="relative bg-gradient-to-br from-gray-900 via-black to-gray-900 rounded-2xl overflow-hidden border border-gray-700 shadow-2xl transform hover:scale-105 transition duration-300 flex flex-col backdrop-blur-sm h-80 min-w-[18rem]">
+    <div class="relative w-full h-full rounded-2xl overflow-hidden">
+      <img src="http://localhost:8080/uploads/${movie.imagePath}" alt="${movie.name}"
+        class="w-full h-full object-cover brightness-75 hover:brightness-110 transition duration-500 ease-in-out" />
+      <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent pointer-events-none"></div>
+      <div class="absolute top-3 right-3 bg-green-500 text-black font-semibold px-3 py-1 rounded-md text-sm shadow-[0_0_8px_white]">
+        ★ ${movie.rating.toFixed(1)}
+      </div>
+      <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/90 via-black/40 to-transparent p-4 rounded-b-2xl">
+        <h3 class="text-2xl font-extrabold tracking-wide text-white drop-shadow-lg leading-snug">
+          ${movie.name}
+        </h3>
+        <p class="text-green-400 uppercase font-semibold text-sm mt-1">
+          ${movie.category}
+        </p>
+        <p class="text-gray-200 text-xs mt-1 italic">
+          ${releaseDate}
+        </p>
+      </div>
+    </div>
+  </article>
+`;
+
+
+                container.innerHTML += cardHtml;
+            });
+
+        } catch (error) {
+            console.error("Error loading movies:", error);
+            container.innerHTML = '<p class="text-white text-center col-span-4">Failed to load movies.</p>';
+        }
+    }
+
+    // Run on page load
+    window.addEventListener('DOMContentLoaded', loadAllMovies);
+
+    async function searchMovies(keyword) {
+        const container = document.getElementById("all-movies-container");
+        container.innerHTML = ''; // Clear current movies
+
+        if (!keyword.trim()) {
+            // If search box is empty, load all movies
+            loadAllMovies();
+            return;
+        }
+
+        try {
+            const res = await fetch(`http://localhost:8080/api/movies/search?keyword=${encodeURIComponent(keyword)}`);
+            if (!res.ok) throw new Error("Failed to fetch searched movies");
+            const movies = await res.json();
+
+            if (movies.length === 0) {
+                container.innerHTML = '<p class="text-white text-center col-span-4">No movies found.</p>';
+                return;
+            }
+
+            movies.forEach(movie => {
+                const releaseDate = new Date(movie.releaseDate).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                });
+
+                const cardHtml = `
+  <article class="relative bg-gradient-to-br from-gray-900 via-black to-gray-900 rounded-2xl overflow-hidden border border-gray-700 shadow-2xl transform hover:scale-105 transition duration-300 flex flex-col backdrop-blur-sm h-80 min-w-[18rem]">
+    <div class="relative w-full h-full rounded-2xl overflow-hidden">
+      <img src="http://localhost:8080/uploads/${movie.imagePath}" alt="${movie.name}"
+        class="w-full h-full object-cover brightness-75 hover:brightness-110 transition duration-500 ease-in-out" />
+      <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent pointer-events-none"></div>
+      <div class="absolute top-3 right-3 bg-green-500 text-black font-semibold px-3 py-1 rounded-md text-sm shadow-[0_0_8px_white]">
+        ★ ${movie.rating.toFixed(1)}
+      </div>
+      <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/90 via-black/40 to-transparent p-4 rounded-b-2xl">
+        <h3 class="text-2xl font-extrabold tracking-wide text-white drop-shadow-lg leading-snug">
+          ${movie.name}
+        </h3>
+        <p class="text-green-400 uppercase font-semibold text-sm mt-1">
+          ${movie.category}
+        </p>
+        <p class="text-gray-200 text-xs mt-1 italic">
+          ${releaseDate}
+        </p>
+      </div>
+    </div>
+  </article>
+`;
+                container.innerHTML += cardHtml;
+            });
+
+        } catch (error) {
+            console.error("Error searching movies:", error);
+            container.innerHTML = '<p class="text-white text-center col-span-4">Failed to search movies.</p>';
+        }
+    }
+
+    // Select your search input (adjust selector if needed)
+    const searchInput = document.querySelector('input[type="text"]');
+
+    // Listen for input event to trigger search live
+    searchInput.addEventListener('input', () => {
+        searchMovies(searchInput.value);
+    });
+
 </script>
 
 </body>
