@@ -218,6 +218,6 @@
     opacity: 0.5;                          /* make card look faded */
     user-select: none;                    /* prevent text selection */
     filter: grayscale(30%);               /* slight grayscale for visual effect */
-    pointer-events: none;                 /* disable any interactions */
+    pointer-events: none !important;                 /* disable any interactions */
     transition: none !important;
 }

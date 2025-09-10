@@ -649,6 +649,91 @@
 
     let isPaymentActivated = false; // Global flag
 
+    async function loadPopularMovies() {
+        const container = document.getElementById("popular-movies-container");
+        container.innerHTML = ''; // Clear existing cards
+
+        try {
+            const response = await fetch("http://localhost:8080/api/movies/popular");
+            if (!response.ok) throw new Error("Failed to fetch popular movies");
+            const movies = await response.json();
+
+            movies.forEach(movie => {
+                const releaseDate = new Date(movie.releaseDate).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                });
+
+                const card = document.createElement('article');
+                card.className = `
+        relative movie-disable  bg-gradient-to-br from-gray-900 via-black to-gray-900 rounded-2xl overflow-hidden
+        border border-gray-700 shadow-[0_0_15px_rgba(255,255,255,0.4)] cursor-not-allowed
+        transform transition-transform duration-300 hover:scale-105 hover:shadow-[0_0_25px_rgba(255,255,255,0.6)]
+        flex flex-col
+        backdrop-blur-sm
+        h-80
+        min-w-[18rem] flex-shrink-0
+      `;
+
+                card.innerHTML = `
+        <div class="relative w-full h-full overflow-hidden rounded-2xl shadow-lg">
+          <img
+            src="http://localhost:8080/uploads/${movie.imagePath}"
+            alt="${movie.name}"
+            class="w-full h-full object-cover brightness-75 hover:brightness-110 transition duration-500 ease-in-out"
+            style="filter: contrast(1.2) saturate(1.3);"
+          />
+
+          <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent pointer-events-none"></div>
+
+          <div class="absolute top-3 right-3 bg-green-500 text-black font-semibold px-3 py-1 rounded-md text-sm shadow-[0_0_8px_white]">
+            ★ ${movie.rating.toFixed(1)}
+          </div>
+
+          <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/90 via-black/40 to-transparent p-4 rounded-b-2xl">
+            <h3 class="text-2xl font-extrabold tracking-wide text-white break-words overflow-hidden drop-shadow-lg leading-snug">
+              ${movie.name}
+            </h3>
+            <p class="text-green-400 uppercase font-semibold tracking-widest text-sm mt-1">
+              ${movie.category}
+            </p>
+            <p class="text-gray-200 text-xs mt-1 italic">
+              ${releaseDate}
+            </p>
+          </div>
+        </div>
+      `;
+
+                container.appendChild(card);
+            });
+
+            // Duplicate the cards for seamless infinite scrolling
+            container.innerHTML += container.innerHTML;
+
+        } catch (error) {
+            console.error("Error loading popular movies:", error);
+            container.innerHTML = '<p class="text-white col-span-4 text-center">Failed to load popular movies.</p>';
+        }
+    }
+
+    window.addEventListener('DOMContentLoaded', loadPopularMovies);
+
+    // Enable popular movie cards after payment
+    function enablePopularMovies() {
+        const container = document.getElementById("popular-movies-container");
+        const cards = container.querySelectorAll('.movie-disable');
+        cards.forEach(card => {
+            card.classList.remove('movie-disable');
+            card.style.pointerEvents = 'auto';
+            card.style.opacity = '1';
+            card.style.cursor = 'pointer';
+            card.style.userSelect = 'auto';
+            card.style.filter = 'none';
+        });
+    }
+
+
     searchToggle.addEventListener('click', () => {
         if (searchInput.classList.contains('show')) {
             searchInput.classList.remove('show');
@@ -785,7 +870,10 @@
             // Payment activated!
             isPaymentActivated = true;
 
-            // Enable movie links
+            // Enable popular movies cards
+            enablePopularMovies();
+
+            // Enable movie links (if you have .movieLock somewhere else in your app)
             const movieLinks = document.querySelectorAll('.movieLock');
             movieLinks.forEach(link => {
                 link.classList.remove('disabled-link');
@@ -804,7 +892,7 @@
                 }
             });
 
-            // If search results are already rendered on page load (rare), enable them here too
+            // Enable search results if already rendered
             const disabledCards = document.querySelectorAll('.disabled-card');
             disabledCards.forEach(card => {
                 card.classList.remove('disabled-card');
@@ -829,7 +917,6 @@
             if (currentPage.endsWith("payment-plan.html")) {
                 window.location.replace("/AAD-FINAL/AAD-FINAL-PROJECT/index.html");
             }
-
         } catch (err) {
             console.error("Error checking payment:", err);
             if (!currentPage.endsWith("payment-plan.html")) {
