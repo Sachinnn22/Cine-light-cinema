@@ -292,11 +292,13 @@ a.mobil-brand {
 
 
 .disabled-link {
-    color: rgba(255, 255, 255, 0.5) !important;
-    cursor: not-allowed !important;
+    color: rgba(255, 255, 255, 0.5);
+    cursor: not-allowed;
     user-select: none;
     opacity: 0.6;
+    pointer-events: none;
 }
+
 
 @media (min-width: 1024px) and (max-width: 1450px) {
     #notifBtn {

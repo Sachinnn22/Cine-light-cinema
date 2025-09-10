@@ -89,6 +89,32 @@
     </div>
 </section>
 
+<div id="payment-popup" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-md flex justify-center items-center hidden z-50">
+    <div class="bg-neutral-700 text-white rounded-lg p-6 w-full max-w-md relative shadow-2xl border border-gray-300">
+        <h2 class="text-3xl font-bold mb-6 text-center text-white"
+            style="text-shadow: 2px 2px 4px rgba(255, 0, 0, 0.7);">
+            Confirm Your Plan
+        </h2>
+
+        <div class="space-y-3 text-base">
+            <div><strong>Name:</strong> <span id="userName" class="text-gray-300">Loading...</span></div>
+            <div><strong>Email:</strong> <span id="userEmail" class="text-gray-300">Loading...</span></div>
+            <div><strong>Plan:</strong> <span id="planName" class="text-gray-300">Loading...</span></div>
+            <div><strong>Date:</strong> <span id="purchaseDate" class="text-gray-300">Loading...</span></div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row justify-between gap-4 mt-8">
+            <button onclick="closePopup()" class="w-full bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded flex items-center justify-center gap-2">
+                Close
+            </button>
+
+            <button onclick="confirmPayment()" class="w-full bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded">
+                Confirm & Pay
+            </button>
+        </div>
+    </div>
+</div>
+
 <footer class="custom-glass-footer text-white">
     <div class="max-w-7xl mx-auto px-12 py-10 grid grid-cols-1 md:grid-cols-4 gap-2 place-items-center text-center">
         <div class="space-y-2 pb-2">
@@ -140,14 +166,108 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
 <script src="https://www.payhere.lk/lib/payhere.js"></script>
 
-<script>
-    const loginPageURL = "/login.html";
+<!-- Firebase v8 scripts -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
+
+<script>
+
+    // Firebase config (you already have this)
+    const firebaseConfig = {
+        apiKey: "AIzaSyCNH38ylbzfIORN0wmDoizj_eWKunQ1uAQ",
+        authDomain: "my-first-app-6a293.firebaseapp.com",
+        databaseURL: "https://my-first-app-6a293-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "my-first-app-6a293",
+        storageBucket: "my-first-app-6a293.firebasestorage.app",
+        messagingSenderId: "599546991663",
+        appId: "1:599546991663:web:b07d25c55f1d00c06722da",
+        measurementId: "G-5EVKKY7KLP"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.database();
+
+    function openPaymentPopup(plan, price) {
+        const popup = document.getElementById("payment-popup");
+        popup.classList.remove("hidden");
+
+        // ✅ Only set the plan name (no price!)
+        document.getElementById("planName").textContent = plan;
+
+        document.getElementById("purchaseDate").textContent = new Date().toLocaleDateString();
+
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                document.getElementById("userName").textContent = user.displayName || "Anonymous";
+                document.getElementById("userEmail").textContent = user.email;
+            } else {
+                document.getElementById("userName").textContent = "Not logged in";
+                document.getElementById("userEmail").textContent = "-";
+            }
+        });
+    }
+
+    function closePopup() {
+        document.getElementById("payment-popup").classList.add("hidden");
+    }
+
+    function confirmPayment() {
+        const user = auth.currentUser;
+        if (!user) {
+            alert("User not logged in.");
+            return;
+        }
+
+        const name = user.displayName || "Anonymous";
+        const email = user.email;
+        const plan = document.getElementById("planName").textContent;
+        const date = document.getElementById("purchaseDate").textContent;
+
+        // Send payment info to backend
+        fetch("http://localhost:8080/api/payments", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                plan: plan,
+                date: date
+            })
+        }).then(res => {
+            if (!res.ok) throw new Error("Failed to save payment");
+            return res.json();
+        }).then(data => {
+            alert("Payment confirmed & saved to backend!");
+            closePopup();
+            window.location.href = "/index.html";
+        }).catch(err => {
+            console.error("Error:", err);
+            alert("Failed to save payment.");
+        });
+    }
+
+
+</script>
+
+<script>
+    // Current page URL (payment page)
+    const currentPageURL = "/AAD-FINAL/AAD-FINAL-PROJECT/payment-plan.html";
+
+    // Push a new history state to "lock" the user here
     history.pushState(null, null, location.href);
 
+    // Listen for back/forward navigation
     window.addEventListener("popstate", function (event) {
-        location.href = loginPageURL;
+        // Whenever the user tries to navigate back, force redirect to payment page
+        location.replace(currentPageURL);
     });
+
 
     // Function to toggle active card on click
     function setActiveCard(index) {
@@ -164,7 +284,11 @@
         });
     }
 
+
+
 </script>
+
+
 
 </body>
 </html>

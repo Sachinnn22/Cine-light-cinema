@@ -93,6 +93,7 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
 
 document.querySelector('.front form').addEventListener('submit', async (e) => {
     e.preventDefault();
+
     const username = document.getElementById('name').value.trim();
     const password = document.getElementById('password').value;
 
@@ -135,15 +136,35 @@ document.querySelector('.front form').addEventListener('submit', async (e) => {
 
         if (userData && userData.role === 'admin') {
             window.location.href = 'admin-view.html';
-        } else {
-            window.location.href = 'payment-plan.html';
+            return;
         }
+
+        // 🔍 Check if payment is activated
+        const paymentResponse = await fetch(`http://localhost:8080/api/payments/status?email=${encodeURIComponent(email)}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${idToken}`
+            }
+        });
+
+        if (paymentResponse.ok) {
+            const data = await paymentResponse.json();
+            const status = data.status.trim().toLowerCase();
+            if (status === 'activated') {
+                // ✅ Paid
+                window.location.href = 'index.html';
+                return;
+            }
+        }
+
+        // ❌ Not paid or no payment record
+        window.location.href = 'payment-plan.html';
 
     } catch (err) {
         const code = err.code;
 
         if (code === 'auth/too-many-requests') {
-            showErrorMessage('Too many attempts please wait');
+            showErrorMessage('Too many attempts. Please wait.');
         } else if (code === 'auth/wrong-password' || code === 'auth/invalid-login-credentials') {
             showErrorMessage('Incorrect password. Please try again.');
         } else if (code === 'auth/user-not-found') {

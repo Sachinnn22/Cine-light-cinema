@@ -41,11 +41,6 @@
             <ul class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow dropdown-glass rounded-box w-52">
                 <li><a href="#home">Home Page</a></li>
                 <li>
-                    <a href="#" id="newReleaseLock" class="flex justify-between items-center px-3 py-2 w-full rounded disabled-link">
-                        <span class="pr-3">New Release</span>
-                    </a>
-                </li>
-                <li>
                     <details>
                         <summary>Movies</summary>
                         <ul class="p-2 dropdown-glass-movie rounded-box mt-1 space-y-1">
@@ -652,6 +647,76 @@
     const auth = getAuth(app);
     const db = getDatabase(app);
 
+    onAuthStateChanged(auth, async (user) => {
+        const currentPage = window.location.pathname;
+
+        if (!user) {
+            if (!currentPage.endsWith("index.html")) {
+                window.location.replace("/AAD-FINAL/AAD-FINAL-PROJECT/index.html");
+            }
+            return;
+        }
+
+        try {
+            const userEmail = user.email;
+            const idToken = await user.getIdToken();
+
+            const response = await fetch(`http://localhost:8080/api/payments/status?email=${encodeURIComponent(userEmail)}`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${idToken}`
+                }
+            });
+
+            if (!response.ok) {
+                if (!currentPage.endsWith("payment-plan.html")) {
+                    window.location.replace("/AAD-FINAL/AAD-FINAL-PROJECT/payment-plan.html");
+                }
+                return;
+            }
+
+            const data = await response.json();
+            const status = data.status.trim().toLowerCase();
+
+            if (status !== "activated") {
+                if (!currentPage.endsWith("payment-plan.html")) {
+                    window.location.replace("/AAD-FINAL/AAD-FINAL-PROJECT/payment-plan.html");
+                }
+                return;
+            }
+
+            // ✅ Payment activated — unlock content
+            const movieLinks = document.querySelectorAll('.movieLock');
+            movieLinks.forEach(link => {
+                link.classList.remove('disabled-link');
+                link.style.pointerEvents = 'auto';
+                link.style.opacity = '1';
+                link.style.cursor = 'pointer';
+                link.style.userSelect = 'auto';
+                link.style.color = '';
+                if (!link.getAttribute('href')) {
+                    link.setAttribute('href', '#'); // Replace with real link if needed
+                }
+                let parent = link.parentElement;
+                while (parent) {
+                    parent.style.pointerEvents = 'auto';
+                    parent = parent.parentElement;
+                }
+            });
+
+            if (currentPage.endsWith("payment-plan.html")) {
+                window.location.replace("/AAD-FINAL/AAD-FINAL-PROJECT/index.html");
+            }
+
+        } catch (err) {
+            console.error("Error checking payment:", err);
+            if (!currentPage.endsWith("payment-plan.html")) {
+                window.location.replace("/AAD-FINAL/AAD-FINAL-PROJECT/payment-plan.html");
+            }
+        }
+    });
+
+
     function updateUserDropdown(username, photoURL = null) {
         const userInitial = document.getElementById('userInitial');
         const defaultIcon = document.getElementById('defaultUserIcon');
@@ -870,6 +935,8 @@
         }
     }
 
+
+
     function showSuccessMessage(message) {
         const existing = document.getElementById('floating-success');
         if (existing) existing.remove();
@@ -1056,15 +1123,8 @@
         easing: 'ease',
     });
 </script>
-
 <script>
-    // Check if user is logged in
-    const isLoggedIn = sessionStorage.getItem("isLoggedIn");
 
-    if (!isLoggedIn) {
-        // Redirect to login page if not logged in
-        window.location.replace("/AAD-FINAL/AAD-FINAL-PROJECT/register-and-login.html");
-    }
 </script>
 
 
