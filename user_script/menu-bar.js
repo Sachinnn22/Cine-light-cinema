@@ -126,77 +126,78 @@ if (notificationBtn && notificationPopup) {
         e.stopPropagation();
     });
 
-    searchToggle.addEventListener('click', () => {
-        if (searchInput.classList.contains('show')) {
-            searchInput.classList.remove('show');
-            searchInput.classList.add('hidden');
-            searchInput.value = '';
-            searchInput.blur();
-            searchResultsPanel.classList.remove('show');
-            searchResultsPanel.innerHTML = '';
-        } else {
-            searchInput.classList.add('show');
-            searchInput.classList.remove('hidden');
-            searchInput.focus();
-        }
-    });
+//     searchToggle.addEventListener('click', () => {
+//         if (searchInput.classList.contains('show')) {
+//             searchInput.classList.remove('show');
+//             searchInput.classList.add('hidden');
+//             searchInput.value = '';
+//             searchInput.blur();
+//             searchResultsPanel.classList.remove('show');
+//             searchResultsPanel.innerHTML = '';
+//         } else {
+//             searchInput.classList.add('show');
+//             searchInput.classList.remove('hidden');
+//             searchInput.focus();
+//         }
+//     });
+//
+//     searchInput.addEventListener('input', async () => {
+//         const keyword = searchInput.value.trim();
+//         if (keyword.length === 0) {
+//             searchResultsPanel.classList.remove('show');
+//             searchResultsPanel.innerHTML = '';
+//             return;
+//         }
+//
+//         try {
+//             // Use your Spring Boot API parameters (keyword, page=0, size=9)
+//             const res = await fetch(`http://localhost:8080/api/movies/search?keyword=${encodeURIComponent(keyword)}&page=0&size=9`);
+//             if (!res.ok) throw new Error('Network response was not ok');
+//
+//             const movies = await res.json();
+//             renderSearchResults(movies);
+//         } catch (err) {
+//             console.error('Search failed:', err);
+//         }
+//     });
+//
+//     function renderSearchResults(movies) {
+//         searchResultsPanel.innerHTML = '';
+//
+//         if (movies.length === 0) {
+//             searchResultsPanel.innerHTML = '<p class="text-white text-sm">No movies found ?</p>';
+//         } else {
+//             const limitedMovies = movies.slice(0, 9);
+//
+//             limitedMovies.forEach(movie => {
+//                 const card = `
+// <article class="flex w-full bg-[#1c1c1c] rounded-2xl overflow-hidden text-white border-2 border-gray-300 shadow-xl p-2 mb-3 disabled-card">
+//     <img src="http://localhost:8080/uploads/${movie.imagePath}" alt="${movie.name}" class="w-24 h-24 object-cover rounded-lg flex-shrink-0" />
+//     <div class="ml-6 flex flex-col justify-center">
+//         <h3 class="font-semibold text-[16px]">${movie.name}</h3>
+//         <p class="text-green-400 mt-0.5 font-medium text-xs">${movie.category}</p>
+//         <p class="text-gray-400 mt-0.5 text-xs">${movie.releaseDate}</p>
+//     </div>
+// </article>`;
+//                 searchResultsPanel.innerHTML += card;
+//             });
+//
+//             const advancedSearchBtn = `
+// <div class="flex justify-center mt-2">
+//   <button id="advancedSearchBtn"
+//     class="bg-green-600 text-white font-semibold py-3 px-8 rounded-lg shadow-md flex items-center gap-2 disabled-btn"
+//     disabled
+//   >
+//     <i class="fas fa-search"></i>
+//     Enhanced Search
+//   </button>
+// </div>`;
+//             searchResultsPanel.innerHTML += advancedSearchBtn;
+//         }
+//
+//         searchResultsPanel.classList.add('show');
+//     }
 
-    searchInput.addEventListener('input', async () => {
-        const keyword = searchInput.value.trim();
-        if (keyword.length === 0) {
-            searchResultsPanel.classList.remove('show');
-            searchResultsPanel.innerHTML = '';
-            return;
-        }
-
-        try {
-            // Use your Spring Boot API parameters (keyword, page=0, size=9)
-            const res = await fetch(`http://localhost:8080/api/movies/search?keyword=${encodeURIComponent(keyword)}&page=0&size=9`);
-            if (!res.ok) throw new Error('Network response was not ok');
-
-            const movies = await res.json();
-            renderSearchResults(movies);
-        } catch (err) {
-            console.error('Search failed:', err);
-        }
-    });
-
-    function renderSearchResults(movies) {
-        searchResultsPanel.innerHTML = '';
-
-        if (movies.length === 0) {
-            searchResultsPanel.innerHTML = '<p class="text-white text-sm">No movies found ?</p>';
-        } else {
-            const limitedMovies = movies.slice(0, 9);
-
-            limitedMovies.forEach(movie => {
-                const card = `
-<article class="flex w-full bg-[#1c1c1c] rounded-2xl overflow-hidden text-white border-2 border-gray-300 shadow-xl p-2 mb-3 disabled-card">
-    <img src="http://localhost:8080/uploads/${movie.imagePath}" alt="${movie.name}" class="w-24 h-24 object-cover rounded-lg flex-shrink-0" />
-    <div class="ml-6 flex flex-col justify-center">
-        <h3 class="font-semibold text-[16px]">${movie.name}</h3>
-        <p class="text-green-400 mt-0.5 font-medium text-xs">${movie.category}</p>
-        <p class="text-gray-400 mt-0.5 text-xs">${movie.releaseDate}</p>
-    </div>
-</article>`;
-                searchResultsPanel.innerHTML += card;
-            });
-
-            const advancedSearchBtn = `
-<div class="flex justify-center mt-2">
-  <button id="advancedSearchBtn" 
-    class="bg-green-600 text-white font-semibold py-3 px-8 rounded-lg shadow-md flex items-center gap-2 disabled-btn"
-    disabled
-  >
-    <i class="fas fa-search"></i>
-    Enhanced Search
-  </button>
-</div>`;
-            searchResultsPanel.innerHTML += advancedSearchBtn;
-        }
-
-        searchResultsPanel.classList.add('show');
-    }
 
 
     const searchToggleMobile = document.getElementById('search-toggle-mobile');
