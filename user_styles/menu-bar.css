@@ -314,3 +314,12 @@ a.mobil-brand {
 #searchResultsPanel.show {
     display: flex;          /* show when `.show` class is added */
 }
+.indicator {
+    position: relative;
+}
+.notification-hidden {
+    display: none ;
+}
+#notificationPopup {
+    z-index: 9999 !important;
+}

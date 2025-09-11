@@ -81,20 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-const notificationBtn = document.getElementById('notificationBtn');
-const notificationPopup = document.getElementById('notificationPopup');
 
-if (notificationBtn && notificationPopup) {
-    notificationBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        if (notificationPopup.classList.contains('show')) {
-            notificationPopup.classList.remove('show');
-            notificationPopup.classList.add('hidden');
-        } else {
-            notificationPopup.classList.add('show');
-            notificationPopup.classList.remove('hidden');
-        }
-    });
 
     const notifBtn = document.getElementById("notifBtn");
     const notifPopup = document.getElementById("mobile-notificationPopup");
@@ -209,6 +196,20 @@ if (notificationBtn && notificationPopup) {
         closeIcon.classList.toggle('hidden');
     });
 
+const notificationBtn = document.getElementById('notificationBtn');
+const notificationPopup = document.getElementById('notificationPopup');
+
+if (notificationBtn && notificationPopup) {
+    notificationBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (notificationPopup.classList.contains('show')) {
+            notificationPopup.classList.remove('show');
+            notificationPopup.classList.add('hidden');
+        } else {
+            notificationPopup.classList.add('show');
+            notificationPopup.classList.remove('hidden');
+        }
+    });
     document.addEventListener('click', (e) => {
         if (!notificationPopup.contains(e.target) && !notificationBtn.contains(e.target)) {
             notificationPopup.classList.remove('show');
@@ -273,7 +274,7 @@ function renderMobileSearchResults(movies) {
         const limitedMovies = movies.slice(0, 2);
 
         limitedMovies.forEach(movie => {
-                const card = `
+            const card = `
     <article class="w-64 mx-auto mt-3 bg-[#1c1c1c] rounded-lg overflow-hidden text-white border border-gray-600 shadow p-3 flex mb-2">
       <img src="${movie.imageUrl}" alt="${movie.title}" class="w-20 h-20 object-cover rounded-lg flex-shrink-0" />
       <div class="ml-4 flex flex-col justify-center">
@@ -286,7 +287,7 @@ function renderMobileSearchResults(movies) {
             mobileSearchResultsPanel.innerHTML += card;
         });
 
-            const advancedSearchBtn = `
+        const advancedSearchBtn = `
     <div class="flex justify-center mt-3">
       <button id="mobileAdvancedSearchBtn" 
         onclick="window.location.href='../all-movie.html'"

@@ -84,25 +84,30 @@
     <div id="searchResultsPanel" class="hidden absolute top-16 right-4 bg-black bg-opacity-90 rounded-xl p-4 w-[300px] max-h-[500px] overflow-y-auto shadow-lg z-50 border border-white mt-2">
     </div>
 
+    <div class="relative inline-block">
         <button id="notificationBtn" class="btn btn-ghost btn-circle">
             <div class="indicator">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
                      viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.4-1.4A2 2 0 0118 14.2V11a6 6 0 00-4-5.7V5a2 2 0 10-4 0v.3C7.7 6.2 6 8.4 6 11v3.2c0 .5-.2 1.1-.6 1.4L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M15 17h5l-1.4-1.4A2 2 0 0118 14.2V11a6 6 0 00-4-5.7V5a2 2 0 10-4 0v.3C7.7 6.2 6 8.4 6 11v3.2c0 .5-.2 1.1-.6 1.4L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
                 </svg>
+                <span id="notificationBadge"
+                      class="badge badge-sm bg-red-600 text-white absolute -top-1 -right-1 hidden">0</span>
             </div>
         </button>
 
-        <div id="notificationPopup" class="fixed bottom-16 right-4 w-72 bg-black bg-opacity-90 text-white rounded-lg shadow-lg p-4 z-60 hidden">
+        <div id="notificationPopup"
+             class="absolute top-full right-0 mt-2 w-72 bg-black bg-opacity-90 text-white rounded-lg shadow-lg p-4 z-60 hidden">
             <h3 class="font-semibold mb-2 border-b border-gray-600 pb-1">Notifications</h3>
             <ul class="text-sm max-h-48 overflow-y-auto">
-                <li class="mb-2">New movie "Inception 2" added!</li>
-                <li class="mb-2">Your subscription will expire in 3 days.</li>
-                <li class="mb-2">Server maintenance scheduled for tomorrow.</li>
             </ul>
         </div>
+    </div>
 
-        <div class="dropdown dropdown-end" id="userDropdown">
+
+
+    <div class="dropdown dropdown-end" id="userDropdown">
             <button id="userToggle" class="btn btn-ghost btn-circle flex items-center justify-center text-white font-bold text-xl bg-gray-600 rounded-full w-10 h-10 relative">
                 <span id="userInitial" class="select-none"></span>
 
@@ -653,6 +658,7 @@
     const db = getDatabase(app);
 
     let isPaymentActivated = false; // Global flag
+    let paymentNotificationShown = false; // To ensure notification shows only once
 
     async function loadPopularMovies() {
         const container = document.getElementById("popular-movies-container");
@@ -672,43 +678,43 @@
 
                 const card = document.createElement('article');
                 card.className = `
-        relative movie-disable  bg-gradient-to-br from-gray-900 via-black to-gray-900 rounded-2xl overflow-hidden
-        border border-gray-700 shadow-[0_0_15px_rgba(255,255,255,0.4)] cursor-not-allowed
-        transform transition-transform duration-300 hover:scale-105 hover:shadow-[0_0_25px_rgba(255,255,255,0.6)]
-        flex flex-col
-        backdrop-blur-sm
-        h-80
-        min-w-[18rem] flex-shrink-0
-      `;
+relative movie-disable  bg-gradient-to-br from-gray-900 via-black to-gray-900 rounded-2xl overflow-hidden
+border border-gray-700 shadow-[0_0_15px_rgba(255,255,255,0.4)] cursor-not-allowed
+transform transition-transform duration-300 hover:scale-105 hover:shadow-[0_0_25px_rgba(255,255,255,0.6)]
+flex flex-col
+backdrop-blur-sm
+h-80
+min-w-[18rem] flex-shrink-0
+`;
 
                 card.innerHTML = `
-        <div class="relative w-full h-full overflow-hidden rounded-2xl shadow-lg">
-          <img
-            src="http://localhost:8080/uploads/${movie.imagePath}"
-            alt="${movie.name}"
-            class="w-full h-full object-cover brightness-100 hover:brightness-110 transition duration-500 ease-in-out"
-            style="filter: contrast(1.2) saturate(1.3);"
-          />
+<div class="relative w-full h-full overflow-hidden rounded-2xl shadow-lg">
+  <img
+    src="http://localhost:8080/uploads/${movie.imagePath}"
+    alt="${movie.name}"
+    class="w-full h-full object-cover brightness-100 hover:brightness-110 transition duration-500 ease-in-out"
+    style="filter: contrast(1.2) saturate(1.3);"
+  />
 
-          <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent pointer-events-none"></div>
+  <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent pointer-events-none"></div>
 
-          <div class="absolute top-3 right-3 bg-green-500 text-black font-semibold px-3 py-1 rounded-md text-sm shadow-[0_0_8px_white]">
-            ★ ${movie.rating.toFixed(1)}
-          </div>
+  <div class="absolute top-3 right-3 bg-green-500 text-black font-semibold px-3 py-1 rounded-md text-sm shadow-[0_0_8px_white]">
+    ★ ${movie.rating.toFixed(1)}
+  </div>
 
-          <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/90 via-black/40 to-transparent p-4 rounded-b-2xl">
-            <h3 class="text-2xl font-extrabold tracking-wide text-white break-words overflow-hidden drop-shadow-lg leading-snug">
-              ${movie.name}
-            </h3>
-            <p class="text-green-400 uppercase font-semibold tracking-widest text-sm mt-1">
-              ${movie.category}
-            </p>
-            <p class="text-gray-200 text-xs mt-1 italic">
-              ${releaseDate}
-            </p>
-          </div>
-        </div>
-      `;
+  <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/90 via-black/40 to-transparent p-4 rounded-b-2xl">
+    <h3 class="text-2xl font-extrabold tracking-wide text-white break-words overflow-hidden drop-shadow-lg leading-snug">
+      ${movie.name}
+    </h3>
+    <p class="text-green-400 uppercase font-semibold tracking-widest text-sm mt-1">
+      ${movie.category}
+    </p>
+    <p class="text-gray-200 text-xs mt-1 italic">
+      ${releaseDate}
+    </p>
+  </div>
+</div>
+`;
 
                 container.appendChild(card);
             });
@@ -738,7 +744,63 @@
         });
     }
 
+    // Notification system
+    const notificationPopup = document.getElementById('notificationPopup');
+    const notificationList = notificationPopup.querySelector('ul');
+    const notificationBadge = document.getElementById('notificationBadge');
+    const notificationBtn = document.getElementById('notificationBtn');
 
+    let unseenNotificationCount = 0;
+
+    // Show notification only if not seen this session
+    function showNotification(message, uniqueKey = null) {
+        // If a uniqueKey is provided, use it to check sessionStorage to avoid duplicates
+        if (uniqueKey && sessionStorage.getItem(uniqueKey) === 'true') {
+            return; // Already shown this notification for this session
+        }
+
+        const li = document.createElement('li');
+        li.textContent = message;
+        notificationList.prepend(li);
+
+        notificationPopup.classList.remove('hidden');
+
+        unseenNotificationCount++;
+        updateNotificationBadge();
+
+        if (uniqueKey) {
+            sessionStorage.setItem(uniqueKey, 'true');
+        }
+
+        setTimeout(() => {
+            notificationPopup.classList.add('hidden');
+        }, 5000);
+    }
+
+    function updateNotificationBadge() {
+        if (unseenNotificationCount > 0) {
+            notificationBadge.textContent = unseenNotificationCount;
+            notificationBadge.classList.remove('hidden');
+        } else {
+            notificationBadge.classList.add('hidden');
+        }
+    }
+
+    // When user clicks notification button, mark notification as seen and clear count
+    notificationBtn.addEventListener('click', () => {
+        notificationPopup.classList.toggle('hidden');
+
+        if (!notificationPopup.classList.contains('hidden')) {
+            // User opened notification panel: mark as seen
+            unseenNotificationCount = 0;
+            updateNotificationBadge();
+
+            // Persist that user has seen notifications this session
+            sessionStorage.setItem('notificationSeen', 'true');
+        }
+    });
+
+    // Your existing search toggle and input handlers (Make sure these variables exist in your code)
     searchToggle.addEventListener('click', () => {
         if (searchInput.classList.contains('show')) {
             searchInput.classList.remove('show');
@@ -834,6 +896,7 @@
         searchResultsPanel.classList.add('show');
     }
 
+    // Firebase Auth state change handler with payment notification and UI update
     onAuthStateChanged(auth, async (user) => {
         const currentPage = window.location.pathname;
 
@@ -856,6 +919,7 @@
             });
 
             if (!response.ok) {
+                // Payment status fetch failed or payment not activated
                 if (!currentPage.endsWith("payment-plan.html")) {
                     window.location.replace("/AAD-FINAL/AAD-FINAL-PROJECT/payment-plan.html");
                 }
@@ -866,18 +930,33 @@
             const status = data.status.trim().toLowerCase();
 
             if (status !== "activated") {
+                // Payment not activated, redirect to payment page if not already there
                 if (!currentPage.endsWith("payment-plan.html")) {
                     window.location.replace("/AAD-FINAL/AAD-FINAL-PROJECT/payment-plan.html");
                 }
                 return;
             }
 
-            // Payment activated!
-            isPaymentActivated = true;
+            // Payment is activated
+            if (!isPaymentActivated) {
+                isPaymentActivated = true;
+            }
 
-            // Enable popular movies cards
+            // Show payment activated notification only once per session
+            if (!paymentNotificationShown) {
+                paymentNotificationShown = true;
+                showNotification('Your plan has been activated', 'paymentNotificationShown');
+            }
+
+            // Show daily notification (example: "Check out new releases today!")
+            // This is a daily notification key with the current date
+            const todayKey = `dailyNotificationShown_${new Date().toISOString().slice(0, 10)}`;
+            showNotification('Check out the new releases for today!', todayKey);
+
+            // Enable popular movies and other UI elements
             enablePopularMovies();
 
+            // Update Start Watching button
             const startButton = document.getElementById('startButton');
             if (startButton) {
                 startButton.innerHTML = `
@@ -885,28 +964,20 @@
             <path d="M12 4.5C7.5 4.5 3.5 7.5 1.5 12C3.5 16.5 7.5 19.5 12 19.5C16.5 19.5 20.5 16.5 22.5 12C20.5 7.5 16.5 4.5 12 4.5ZM12 17C9 17 6.5 14.5 6.5 12C6.5 9.5 9 7 12 7C15 7 17.5 9.5 17.5 12C17.5 14.5 15 17 12 17ZM12 9C10.5 9 9.5 10.5 9.5 12C9.5 13.5 10.5 15 12 15C13.5 15 14.5 13.5 14.5 12C14.5 10.5 13.5 9 12 9Z"/>
         </svg>
         Start Watching
-    `;
+        `;
                 startButton.href = "all-movie.html";
             }
 
+            // Update hero text and icon
             const heroTitle = document.getElementById('heroTitle');
             const heroSubtitle = document.getElementById('heroSubtitle');
             const heroIcon = document.getElementById('heroIcon');
 
-            if (heroTitle) {
-                heroTitle.textContent = 'Enjoy Your Premium Access';
-            }
+            if (heroTitle) heroTitle.textContent = 'Enjoy Your Premium Access';
+            if (heroSubtitle) heroSubtitle.textContent = 'Unlimited access to all movies, anytime, anywhere. Start watching your favorites now!';
+            if (heroIcon) heroIcon.innerHTML = `<i class="fas fa-crown text-green-500"></i>`;
 
-            if (heroSubtitle) {
-                heroSubtitle.textContent = 'Unlimited access to all movies, anytime, anywhere. Start watching your favorites now!';
-            }
-
-            if (heroIcon) {
-                heroIcon.innerHTML = `<i class="fas fa-crown text-green-500"></i>`;
-
-            }
-
-            // Enable movie links (if you have .movieLock somewhere else in your app)
+            // Enable movie links and search results cards
             const movieLinks = document.querySelectorAll('.movieLock');
             movieLinks.forEach(link => {
                 link.classList.remove('disabled-link');
@@ -915,9 +986,7 @@
                 link.style.cursor = 'pointer';
                 link.style.userSelect = 'auto';
                 link.style.color = '';
-                if (!link.getAttribute('href')) {
-                    link.setAttribute('href', '#'); // Replace with real link if needed
-                }
+                if (!link.getAttribute('href')) link.setAttribute('href', '#');
                 let parent = link.parentElement;
                 while (parent) {
                     parent.style.pointerEvents = 'auto';
@@ -925,7 +994,6 @@
                 }
             });
 
-            // Enable search results if already rendered
             const disabledCards = document.querySelectorAll('.disabled-card');
             disabledCards.forEach(card => {
                 card.classList.remove('disabled-card');
@@ -947,9 +1015,11 @@
                 advancedSearchBtnEl.style.filter = 'none';
             }
 
+            // Redirect to main page if user is on payment page but payment is activated
             if (currentPage.endsWith("payment-plan.html")) {
                 window.location.replace("/AAD-FINAL/AAD-FINAL-PROJECT/index.html");
             }
+
         } catch (err) {
             console.error("Error checking payment:", err);
             if (!currentPage.endsWith("payment-plan.html")) {
@@ -1370,9 +1440,108 @@
         easing: 'ease',
     });
 </script>
-<script>
+<!--<script>-->
+<!--    const BASE_URL = 'http://localhost:8080'; // Backend URL-->
 
-</script>
+<!--    const notificationPopup = document.getElementById('notificationPopup');-->
+<!--    const notificationList = notificationPopup.querySelector('ul');-->
+<!--    const notificationBadge = document.getElementById('notificationBadge');-->
+<!--    const notificationBtn = document.getElementById('notificationBtn');-->
+
+<!--    let lastMovieId = null;-->
+<!--    let paymentActivated = false;-->
+<!--    let unseenNotificationCount = 0;-->
+
+<!--    function showNotification(message) {-->
+<!--        const li = document.createElement('li');-->
+<!--        li.textContent = message;-->
+<!--        notificationList.prepend(li);-->
+
+<!--        notificationPopup.classList.remove('hidden');-->
+
+<!--        unseenNotificationCount++;-->
+<!--        updateNotificationBadge();-->
+
+<!--        setTimeout(() => {-->
+<!--            notificationPopup.classList.add('hidden');-->
+<!--        }, 5000);-->
+<!--    }-->
+
+<!--    function updateNotificationBadge() {-->
+<!--        if (unseenNotificationCount > 0) {-->
+<!--            notificationBadge.textContent = unseenNotificationCount;-->
+<!--            notificationBadge.classList.remove('hidden');-->
+<!--        } else {-->
+<!--            notificationBadge.classList.add('hidden');-->
+<!--        }-->
+<!--    }-->
+
+<!--    notificationBtn.addEventListener('click', () => {-->
+<!--        notificationPopup.classList.toggle('hidden');-->
+<!--        unseenNotificationCount = 0;-->
+<!--        updateNotificationBadge();-->
+<!--    });-->
+
+<!--    async function checkForNewMovie() {-->
+<!--        try {-->
+<!--            const response = await fetch(`${BASE_URL}/api/movies/latest`);-->
+<!--            if (!response.ok) {-->
+<!--                console.error('Failed to fetch latest movie');-->
+<!--                return;-->
+<!--            }-->
+<!--            const latestMovie = await response.json();-->
+<!--            if (latestMovie && latestMovie.id !== lastMovieId) {-->
+<!--                lastMovieId = latestMovie.id;-->
+<!--                showNotification(`New movie added: ${latestMovie.name}`);-->
+<!--            }-->
+<!--        } catch (error) {-->
+<!--            console.error('Error fetching latest movie:', error);-->
+<!--        }-->
+<!--    }-->
+
+<!--    async function checkPaymentStatus(email) {-->
+<!--        if (paymentActivated) return;-->
+
+<!--        const normalizedEmail = email.trim().toLowerCase();-->
+
+<!--        try {-->
+<!--            const response = await fetch(`${BASE_URL}/api/payments/status?email=${encodeURIComponent(normalizedEmail)}`);-->
+<!--            if (!response.ok) {-->
+<!--                console.error('Failed to fetch payment status:', response.statusText);-->
+<!--                return;-->
+<!--            }-->
+
+<!--            const data = await response.json();-->
+
+<!--            if (data.status && data.status.toLowerCase() === 'activated') {-->
+<!--                paymentActivated = true;-->
+<!--                showNotification('Your plan has been activated');-->
+<!--            } else if (data.status === 'not_found') {-->
+<!--                showNotification("You have no active payment plan. Please activate a plan.");-->
+<!--            } else {-->
+<!--                console.log('Payment status:', data.status);-->
+<!--            }-->
+<!--        } catch (error) {-->
+<!--            console.error('Error fetching payment status:', error);-->
+<!--        }-->
+<!--    }-->
+
+
+
+<!--    function getLoggedInUserEmail() {-->
+<!--        return localStorage.getItem('userEmail') || 'test@example.com';-->
+<!--    }-->
+
+<!--    // Poll every 30 seconds-->
+<!--    setInterval(() => {-->
+<!--        checkForNewMovie();-->
+<!--        checkPaymentStatus(getLoggedInUserEmail());-->
+<!--    }, 30000);-->
+
+<!--    // Initial check-->
+<!--    checkForNewMovie();-->
+<!--    checkPaymentStatus(getLoggedInUserEmail());-->
+<!--</script>-->
 
 
 </body>
