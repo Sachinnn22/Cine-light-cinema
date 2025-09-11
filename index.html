@@ -744,6 +744,47 @@ min-w-[18rem] flex-shrink-0
         });
     }
 
+    async function notifyNewMovie() {
+        try {
+            const res = await fetch('http://localhost:8080/api/movies/latest');
+            if (!res.ok) {
+                console.warn('API responded with status:', res.status);
+                return;
+            }
+
+            // Check if response has content before parsing
+            const text = await res.text();
+            if (!text) {
+                console.warn('API returned empty response body for latest movie');
+                return;
+            }
+
+            // Parse JSON safely
+            let latestMovie;
+            try {
+                latestMovie = JSON.parse(text);
+            } catch (parseError) {
+                console.error('Failed to parse JSON from latest movie response:', parseError);
+                return;
+            }
+
+            if (!latestMovie || !latestMovie.id) {
+                console.warn('Latest movie data missing or incomplete:', latestMovie);
+                return;
+            }
+
+            const notificationKey = `movieNotification_${latestMovie.id}`;
+            if (!sessionStorage.getItem(notificationKey)) {
+                const message = `🎬 New Movie Added: ${latestMovie.name}`;
+                showNotification(message, notificationKey);
+            }
+
+        } catch (err) {
+            console.error("Failed to fetch latest movie for notification:", err);
+        }
+    }
+
+
     // Notification system
     const notificationPopup = document.getElementById('notificationPopup');
     const notificationList = notificationPopup.querySelector('ul');
@@ -786,19 +827,27 @@ min-w-[18rem] flex-shrink-0
         }
     }
 
-    // When user clicks notification button, mark notification as seen and clear count
     notificationBtn.addEventListener('click', () => {
-        notificationPopup.classList.toggle('hidden');
+        const isNowVisible = notificationPopup.classList.toggle('hidden');
 
-        if (!notificationPopup.classList.contains('hidden')) {
-            // User opened notification panel: mark as seen
+        if (isNowVisible) {
+            // Panel is now visible: user is viewing notifications
             unseenNotificationCount = 0;
             updateNotificationBadge();
 
             // Persist that user has seen notifications this session
             sessionStorage.setItem('notificationSeen', 'true');
+        } else {
+            // Panel is now hidden again
+            unseenNotificationCount = 0;
+            updateNotificationBadge();
+
+            // Clear the notifications visually only AFTER the user has seen them
+            notificationList.innerHTML = '';
         }
     });
+
+
 
     // Your existing search toggle and input handlers (Make sure these variables exist in your code)
     searchToggle.addEventListener('click', () => {
@@ -955,6 +1004,8 @@ min-w-[18rem] flex-shrink-0
 
             // Enable popular movies and other UI elements
             enablePopularMovies();
+
+            notifyNewMovie();
 
             // Update Start Watching button
             const startButton = document.getElementById('startButton');
