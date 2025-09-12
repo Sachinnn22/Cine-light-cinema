@@ -54,7 +54,7 @@
                     <details>
                         <summary>Movies</summary>
                         <ul class="p-2 dropdown-glass-movie rounded-box mt-1 space-y-1">
-                            <li><a class="movieLock disabled-link" href="#">Action</a></li>
+                            <li><a class="movieLock disabled-link" href="mm.html">Action</a></li>
                             <li><a class="movieLock disabled-link" href="#">Horror</a></li>
                             <li><a class="movieLock disabled-link" href="#">Sci-Fic</a></li>
                             <li><a class="movieLock disabled-link" href="#">Comedy</a></li>
@@ -556,19 +556,18 @@
         <div class="space-y-2 pt-1.7">
             <h3 class="movie">Movies</h3>
             <ul class="movie-sub space-y-1">
-                <li><a href="#" class="hover:underline">Action</a></li>
-                <li><a href="#" class="hover:underline">Horror</a></li>
-                <li><a href="#" class="hover:underline">Sci-Fic</a></li>
-                <li><a href="#" class="hover:underline">Romance</a></li>
+                <li><a href="#" class="movieLock disabled-link hover:underline">Action</a></li>
+                <li><a href="#" class="movieLock disabled-link hover:underline">Horror</a></li>
+                <li><a href="#" class="movieLock disabled-link hover:underline">Sci-Fic</a></li>
+                <li><a href="#" class="movieLock disabled-link hover:underline">Romance</a></li>
             </ul>
         </div>
 
-        <div class="space-y-2 pb-5">
+        <div class="space-y-2 " style="padding-bottom: 3.12rem;">
             <h3 class="company">Company</h3>
             <ul class="company-sub space-y-1">
                 <li><a href="#" class="hover:underline">Why Us</a></li>
                 <li><a href="#" class="hover:underline">FAQ's</a></li>
-                <li><a href="#" class="hover:underline">Buy Premium</a></li>
             </ul>
         </div>
 
@@ -592,11 +591,6 @@
         © 2025 <span class="sin">CINE-LIGHT</span>. All rights reserved.
     </div>
 </footer>
-
-<div id="premiumToast" aria-live="assertive" aria-atomic="true" role="alert" aria-relevant="additions" aria-live="polite">
-    <i class="fas fa-crown" style="margin-right: 0.5rem; color: white;"></i>
-    Buy Premium To Watch
-</div>
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
@@ -680,7 +674,6 @@ min-w-[18rem] flex-shrink-0
                 container.appendChild(card);
             });
 
-            // Duplicate the cards for seamless infinite scrolling
             container.innerHTML += container.innerHTML;
 
         } catch (error) {
@@ -1382,11 +1375,11 @@ min-w-[18rem] flex-shrink-0
                 card.className = `relative movie-disable bg-gradient-to-br from-gray-900 via-black/20 to-gray-900 rounded-2xl overflow-hidden border border-white shadow-[0_0_25px_rgba(255,255,255,0.6)] transform transition-transform duration-300 hover:scale-105 hover:shadow-[0_0_35px_rgba(255,255,255,0.8)] flex flex-col backdrop-blur-sm h-80 min-w-[18rem] flex-shrink-0`;
                 card.innerHTML = `
         <div class="relative w-full h-full overflow-hidden rounded-2xl shadow-lg ">
-          <img src="http://localhost:8080/uploads/${movie.imagePath}" alt="${movie.name}" class="w-full h-full object-cover transition duration-500 ease-in-out transform brightness-75 hover:brightness-110 hover:contrast-125 hover:saturate-125 hover:scale-105" />
+          <img src="http://localhost:8080/uploads/${movie.imagePath}" alt="${movie.name}" class="w-full h-full object-cover transition duration-500 ease-in-out transform brightness-75 hover:brightness-100" />
           <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent pointer-events-none"></div>
           <div class="absolute top-3 right-3 bg-green-500 text-black font-semibold px-3 py-1 rounded-md text-sm shadow-[0_0_8px_white]"> ★ ${movie.rating.toFixed(1)} </div>
           <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/90 via-black/40 to-transparent p-4 rounded-b-2xl">
-            <h3 class="text-2xl font-extrabold tracking-wide text-white break-words overflow-hidden drop-shadow-lg leading-snug"> ${movie.name} </h3>
+            <h3 class="text-2xl font-bold tracking-wide text-white break-words overflow-hidden drop-shadow-lg leading-snug"> ${movie.name} </h3>
             <p class="text-green-400 uppercase font-semibold tracking-widest text-sm mt-1"> ${movie.category} </p>
             <p class="text-gray-200 text-xs mt-1 italic"> ${releaseDate} </p>
           </div>

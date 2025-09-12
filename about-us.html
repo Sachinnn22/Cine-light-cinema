@@ -166,10 +166,10 @@
             <div class="space-y-2 pt-1.7">
                 <h3 class="movie">Movies</h3>
                 <ul class="movie-sub space-y-1">
-                    <li><a href="#" class="hover:underline">Action</a></li>
-                    <li><a href="#" class="hover:underline">Horror</a></li>
-                    <li><a href="#" class="hover:underline">Sci-Fic</a></li>
-                    <li><a href="#" class="hover:underline">Romance</a></li>
+                    <li><a href="#" class="movieLock disabled-link hover:underline hover:underline">Action</a></li>
+                    <li><a href="#" class="movieLock disabled-link hover:underline hover:underline">Horror</a></li>
+                    <li><a href="#" class="movieLock disabled-link hover:underline hover:underline">Sci-Fic</a></li>
+                    <li><a href="#" class="movieLock disabled-link hover:underline hover:underline">Romance</a></li>
                 </ul>
             </div>
 
@@ -205,7 +205,7 @@
 
     <dialog id="reviewModal" class="modal">
         <div class="modal-box bg-neutral-700 backdrop-blur-md border border-white rounded-xl shadow-xl text-black max-w-md w-full">
-            <h3 class="font-bold text-3xl text-white/70 text-center mb-4">Add Your Review</h3>
+            <h3 class="font-bold text-3xl text-white/90 text-center mb-4">Add Your Review</h3>
 
             <div class="star-rating justify-center text-4xl mb-6" id="starRating">
                 <i class="fas fa-star" data-value="1"></i>
@@ -227,7 +227,7 @@
                 <button
                         class="w-2/5 py-2.5 rounded-lg bg-red-600 text-white font-semibold hover:bg-red-800 transition-all flex items-center justify-center gap-2"
                         onclick="document.getElementById('reviewModal').close()">
-                    <i class="fas fa-times-circle"></i>
+                    <i class="fas fa-chevron-left"></i>
                     Not Now
                 </button>
 

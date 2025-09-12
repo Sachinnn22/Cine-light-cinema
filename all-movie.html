@@ -769,7 +769,7 @@
                 });
 
                 const cardHtml = `
-  <article class="movie-card-animated  relative bg-gradient-to-br from-gray-900 via-black to-gray-900 rounded-2xl overflow-hidden border border-gray-700 shadow-[0_0_15px_rgba(255,255,255,0.4)] transform transition duration-300 flex flex-col backdrop-blur-sm h-80 min-w-[18rem]">
+  <article class="movie-card-animated  relative bg-gradient-to-br from-gray-900 via-black to-gray-900 rounded-2xl overflow-hidden border border-white shadow-[0_0_15px_rgba(255,255,255,0.4)] transform transition duration-300 flex flex-col backdrop-blur-sm h-80 min-w-[18rem]">
     <div class="relative w-full h-full rounded-2xl overflow-hidden">
       <img src="http://localhost:8080/uploads/${movie.imagePath}" alt="${movie.name}"
         class="w-full h-full object-cover brightness-75 hover:brightness-110 transition duration-500 ease-in-out" />
@@ -832,22 +832,22 @@
                     day: 'numeric'
                 });
                 const cardHtml = `
-  <article class=" cursor-pointer relative bg-gradient-to-br from-gray-900 brightness-110 via-black to-gray-900 rounded-2xl overflow-hidden border border-gray-700 shadow-[0_0_15px_rgba(255,255,255,0.4)] transform hover:scale-105 transition duration-300 flex flex-col backdrop-blur-sm h-80 min-w-[18rem]">
+  <article class=" cursor-pointer relative bg-gradient-to-br from-gray-900 brightness-110 via-black to-gray-900 rounded-2xl overflow-hidden border border-white shadow-[0_0_15px_rgba(255,255,255,0.4)] transform hover:scale-105 transition duration-300 flex flex-col backdrop-blur-sm h-80 min-w-[18rem]">
     <div class="relative w-full h-full rounded-2xl overflow-hidden">
       <img src="http://localhost:8080/uploads/${movie.imagePath}" alt="${movie.name}"
-        class="w-full h-full object-cover brightness-110" />
+        class="w-full h-full object-cover brightness-75 hover:brightness-110" />
       <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent pointer-events-none"></div>
       <div class="absolute top-3 right-3 bg-green-500 text-black font-semibold px-3 py-1 rounded-md text-sm shadow-[0_0_8px_white]">
         ★ ${movie.rating.toFixed(1)}
       </div>
       <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/90 via-black/40 to-transparent p-4 rounded-b-2xl">
-        <h3 class="text-2xl font-extrabold tracking-wide text-white drop-shadow-lg leading-snug">
+        <h3 class="text-2xl font-bold tracking-wide text-white drop-shadow-lg leading-snug">
           ${movie.name}
         </h3>
         <p class="text-green-400 uppercase font-semibold text-sm mt-1">
           ${movie.category}
         </p>
-        <p class="text-gray-200 text-xs mt-1 italic">
+        <p class="text-gray-200 font-normal text-xs mt-1 italic">
           ${releaseDate}
         </p>
       </div>
@@ -909,7 +909,7 @@
                 });
 
                 const cardHtml = `
-<article class="movie-card-animated relative bg-gradient-to-br from-gray-900 via-black to-gray-900 rounded-2xl overflow-hidden border border-gray-700 shadow-[0_0_15px_rgba(255,255,255,0.4)] transform transition duration-300 flex flex-col backdrop-blur-sm h-80 min-w-[18rem]">
+<article class="movie-card-animated relative bg-gradient-to-br from-gray-900 via-black to-gray-900 rounded-2xl overflow-hidden border border-white shadow-[0_0_15px_rgba(255,255,255,0.4)] transform transition duration-300 flex flex-col backdrop-blur-sm h-80 min-w-[18rem]">
   <div class="relative w-full h-full rounded-2xl overflow-hidden">
     <img src="http://localhost:8080/uploads/${movie.imagePath}" alt="${movie.name}"
       class="w-full h-full object-cover brightness-75 hover:brightness-110 transition duration-500 ease-in-out" />
@@ -918,15 +918,16 @@
       ★ ${movie.rating.toFixed(1)}
     </div>
     <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/90 via-black/40 to-transparent p-4 rounded-b-2xl">
-      <h3 class="text-2xl font-extrabold tracking-wide text-white drop-shadow-lg leading-snug">
+      <h3 class="text-2xl font-bold tracking-wide text-white drop-shadow-lg leading-snug">
         ${movie.name}
       </h3>
       <p class="text-green-400 uppercase font-semibold text-sm mt-1">
         ${movie.category}
       </p>
-      <p class="text-gray-200 text-xs mt-1 italic">
-        ${releaseDate}
-      </p>
+    <p class="text-gray-200 text-xs font-normal mt-1 italic">
+  ${releaseDate}
+</p>
+
     </div>
   </div>
 </article>
@@ -950,7 +951,10 @@
         if (currentPage > 0) {
             const prevPageButton = document.createElement("button");
             prevPageButton.innerText = (currentPage).toString(); // page numbers shown to user are 1-based
-            prevPageButton.className = "mx-1 px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-600";
+            prevPageButton.className = "mx-1 px-4 py-2 text-white rounded cursor-pointer";
+            prevPageButton.style.backgroundColor = "#6a6969";  // silver color
+            prevPageButton.onmouseover = () => prevPageButton.style.backgroundColor = "#A9A9A9"; // darker on hover
+            prevPageButton.onmouseout = () => prevPageButton.style.backgroundColor = "#C0C0C0";
             prevPageButton.onclick = () => loadPaginatedMovies(currentPage - 1);
             paginationControls.appendChild(prevPageButton);
         }
@@ -958,21 +962,24 @@
         // Current page number button (highlighted and disabled)
         const currentPageButton = document.createElement("button");
         currentPageButton.innerText = (currentPage + 1).toString();
-        currentPageButton.className = "mx-1 px-4 py-2 bg-green-600 text-white rounded cursor-default";
+        currentPageButton.className = "mx-1 px-4 py-2 text-white rounded cursor-default";
+        currentPageButton.style.backgroundColor = "#6a6969"; // darker silver for current page
         currentPageButton.disabled = true; // disable clicking current page button
         paginationControls.appendChild(currentPageButton);
 
-        // Next page number button if next page exists
         if (hasNextPage) {
             const nextPageButton = document.createElement("button");
             nextPageButton.innerText = (currentPage + 2).toString();
-            nextPageButton.className = "mx-1 px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-600";
+            nextPageButton.className = "mx-1 px-4 py-2 text-white rounded cursor-pointer";
+            nextPageButton.style.backgroundColor = "#6a6969";  // silver color
+            nextPageButton.onmouseover = () => nextPageButton.style.backgroundColor = "#A9A9A9"; // darker on hover
+            nextPageButton.onmouseout = () => nextPageButton.style.backgroundColor = "#C0C0C0";
             nextPageButton.onclick = () => loadPaginatedMovies(currentPage + 1);
             paginationControls.appendChild(nextPageButton);
         }
     }
 
-    // On page load
+
     window.addEventListener('DOMContentLoaded', () => loadPaginatedMovies());
 </script>
 
