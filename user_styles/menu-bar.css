@@ -323,3 +323,103 @@ a.mobil-brand {
 #notificationPopup {
     z-index: 9999 !important;
 }
+/*.intro-splash {*/
+/*    position: fixed;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    background: radial-gradient(circle at center, #000000 0%, #0a0a0a 100%);*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*    z-index: 10000;*/
+/*    overflow: hidden;*/
+/*    animation: splashFadeOut 1s ease 3.2s forwards;*/
+/*}*/
+
+/*.intro-inner {*/
+/*    text-align: center;*/
+/*    animation: fadeInScale 1.5s ease-out forwards;*/
+/*    transform: scale(0.8);*/
+/*    opacity: 0;*/
+/*    position: relative;*/
+/*}*/
+
+/*.intro-icon {*/
+/*    font-size: 5.5rem;*/
+/*    color: #fff;*/
+/*    margin-bottom: 1rem;*/
+/*    animation: neonFlicker 2.2s linear infinite;*/
+/*    filter: drop-shadow(0 0 5px #ffffff)*/
+/*    drop-shadow(0 0 15px #ff0000)*/
+/*    drop-shadow(0 0 25px #ff0000);*/
+/*}*/
+
+/*.intro-text {*/
+/*    font-family: 'Orbitron', sans-serif;*/
+/*    font-size: 4rem;*/
+/*    text-transform: uppercase;*/
+/*    letter-spacing: 8px;*/
+/*    background: linear-gradient(90deg, #ffffff, #ff0000, #ffffff);*/
+/*    background-size: 200% auto;*/
+/*    -webkit-background-clip: text;*/
+/*    -webkit-text-fill-color: transparent;*/
+/*    animation: gradientShift 4s linear infinite, glowText 2.2s ease-in-out infinite alternate;*/
+/*}*/
+
+/*!* Keyframes *!*/
+/*@keyframes fadeInScale {*/
+/*    0% {*/
+/*        opacity: 0;*/
+/*        transform: scale(0.5);*/
+/*    }*/
+/*    100% {*/
+/*        opacity: 1;*/
+/*        transform: scale(1);*/
+/*    }*/
+/*}*/
+
+/*@keyframes neonFlicker {*/
+/*    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {*/
+/*        opacity: 1;*/
+/*    }*/
+/*    20%, 22%, 24%, 55% {*/
+/*        opacity: 0.4;*/
+/*    }*/
+/*}*/
+
+/*@keyframes glowText {*/
+/*    0% {*/
+/*        text-shadow:*/
+/*                0 0 5px #fff,*/
+/*                0 0 15px #ff0000,*/
+/*                0 0 25px #ff0000;*/
+/*    }*/
+/*    100% {*/
+/*        text-shadow:*/
+/*                0 0 10px #fff,*/
+/*                0 0 20px #ff0000,*/
+/*                0 0 35px #ff0000;*/
+/*    }*/
+/*}*/
+
+/*@keyframes gradientShift {*/
+/*    0% {*/
+/*        background-position: 0% 50%;*/
+/*    }*/
+/*    50% {*/
+/*        background-position: 100% 50%;*/
+/*    }*/
+/*    100% {*/
+/*        background-position: 0% 50%;*/
+/*    }*/
+/*}*/
+
+/*@keyframes splashFadeOut {*/
+/*    to {*/
+/*        opacity: 0;*/
+/*        visibility: hidden;*/
+/*    }*/
+/*}*/
+

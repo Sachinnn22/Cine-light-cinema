@@ -29,7 +29,9 @@ document.getElementById("questionForm").addEventListener("submit", function (e) 
             if (xhr.status === 201) {
                 showSuccessMessage("Question submitted successfully!");
                 input.value = "";
-            } else {
+                autoResize(input);  // Add this line to reset the height
+            }
+            else {
                 showErrorMessage("Error: " + xhr.responseText);
             }
         }
@@ -38,7 +40,3 @@ document.getElementById("questionForm").addEventListener("submit", function (e) 
     xhr.send(JSON.stringify({ content: question, email: email, username: username }));
 });
 
-function autoResize(textarea) {
-    textarea.style.height = 'auto';
-    textarea.style.height = textarea.scrollHeight + 'px';
-}

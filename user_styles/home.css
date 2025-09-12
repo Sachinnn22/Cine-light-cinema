@@ -1,4 +1,5 @@
-.hero-text  {
+/* Hero Title with Typing Animation */
+.typing-text {
     font-family: 'Montserrat', sans-serif;
     font-size: 2.5rem !important;
     line-height: 1.1 !important;
@@ -6,11 +7,41 @@
     color: #ffffff !important;
     letter-spacing: 2.6px !important;
     text-transform: uppercase !important;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid rgba(255,255,255,0.75);
+    width: 0;
+    animation: typing 3.5s steps(30, end) forwards, blink-caret 0.75s step-end infinite;
     text-shadow:
-            2px 2px 4px rgba(255, 0, 0, 0.7),       /* darker red shadow */
-            0 0 10px rgba(255, 100, 100, 0.8) !important;  /* glowing red */
-
+            2px 2px 4px rgba(255, 0, 0, 0.7),
+            0 0 10px rgba(255, 100, 100, 0.8);
 }
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: rgba(255,255,255,0.75); }
+}
+
+/* Subtitle */
 .hero-sub-text {
     font-family: 'Open Sans', sans-serif !important;
     font-size: 1.125rem !important;
@@ -22,6 +53,7 @@
     0 0 5px rgba(255, 255, 255, 0.4) !important;
 }
 
+/* Custom Bounce Animation */
 @keyframes bounce-custom {
     0%, 100% {
         transform: translateY(0);
@@ -30,9 +62,29 @@
         transform: translateY(-15%);
     }
 }
-
 .animate-bounce-custom {
     animation: bounce-custom 1s infinite;
+}
+
+/* Floating Entrance Animation */
+@keyframes float-in {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.98);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+.animate-float-in {
+    animation: float-in 1.3s ease-out forwards;
+}
+
+/* Background Diagonal Cut */
+.diagonal-mask {
+    -webkit-mask-image: linear-gradient(135deg, rgba(0,0,0,1) 60%, transparent 100%);
+    mask-image: linear-gradient(135deg, rgba(0,0,0,1) 60%, transparent 100%);
 }
 
 @media (min-width: 621px) and (max-width: 800px){

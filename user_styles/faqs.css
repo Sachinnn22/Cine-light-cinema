@@ -102,7 +102,7 @@
 }
 .centered-textarea {
     width: 100%;
-    min-height: 3rem;
+    min-height: 0;
     max-height: 300px;
     padding: 0.75rem 1rem;
     line-height: 1.5;
@@ -215,28 +215,21 @@
     }
 }
 @keyframes slide-left {
-    0% {
-        transform: translateX(0%);
-    }
-    100% {
-        transform: translateX(-50%);
-    }
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
 }
 
-/* The container holding the cards slides left continuously */
 #popular-movies-container {
     display: flex;
     animation: slide-left 40s linear infinite;
-    /* adjust duration to speed up/down */
 }
 
-/* Pause animation on hover */
 #popular-movies-container:hover {
     animation-play-state: paused;
 }
 
 #popular-movies-container > article {
-    width: 12rem;    /* fixed width */
+    width: 12rem;
     flex-shrink: 0;
-    overflow: hidden; /* keep content inside */
+    overflow: hidden;
 }
