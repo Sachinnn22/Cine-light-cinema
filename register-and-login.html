@@ -218,8 +218,8 @@
     </div>
 </section>
 
-<div id="forgotPasswordModal" class="hidden fixed inset-0 bg-black bg-opacity-80 backdrop-blur-md flex items-center justify-center z-50 p-4">
-    <div class="bg-gray-700 rounded-lg p-6 w-full max-w-sm space-y-4 shadow-lg text-white border-2 border-white">
+<div id="forgotPasswordModal" class="hidden fixed inset-0 bg-black/50 bg-opacity-80 backdrop-blur-md flex items-center justify-center z-50 p-4" >
+    <div class="bg-zinc-700 rounded-lg p-6 w-full max-w-sm space-y-4 shadow-lg text-white border-2 border-white">
         <h2 id="modalTitle" class="text-xl font-semibold text-gray-300 text-center">Forgot Password</h2>
 
         <div id="stepEmail" class="step-section">
@@ -227,8 +227,9 @@
                     id="resetEmail"
                     type="email"
                     placeholder="Enter your email"
-                    class="w-full placeholder-white p-2 border rounded focus:outline-none focus:border-white focus:ring-2 focus:ring-white"
+                    class="w-full bg-zinc-800 text-white placeholder-white p-2 border rounded focus:outline-none focus:border-white focus:ring-2 focus:ring-white"
             />
+
             <button onclick="handleSendOtp()" class="mt-3 w-full bg-indigo-500 text-white p-2 rounded font-bold">
                 Send OTP
             </button>
@@ -240,7 +241,7 @@
                     type="text"
                     maxlength="6"
                     placeholder="Enter your OTP"
-                    class="w-full placeholder-white p-2 border rounded focus:outline-none focus:border-white focus:ring-2 focus:ring-white"
+                    class="w-full placeholder-white bg-zinc-800 p-2 border rounded focus:outline-none focus:border-white focus:ring-2 focus:ring-white"
             />
             <button onclick="handleVerifyOtp()" class="mt-3 w-full bg-green-600 text-white p-2 rounded">
                 Verify OTP
@@ -255,7 +256,7 @@
                     id="newPassword"
                     type="password"
                     placeholder="Enter new password"
-                    class="w-full placeholder-white p-2 border rounded focus:outline-none focus:border-white focus:ring-2 focus:ring-white"
+                    class="w-full placeholder-white bg-zinc-700 p-2 border rounded focus:outline-none focus:border-white focus:ring-2 focus:ring-white"
             />
             <button onclick="handleResetPassword()" class="mt-3 w-full bg-green-700 text-white p-2 rounded">
                 Reset Password
@@ -336,12 +337,128 @@
 }</script>
 
 <script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyCNH38ylbzfIORN0wmDoizj_eWKunQ1uAQ",
+        authDomain: "my-first-app-6a293.firebaseapp.com",
+        databaseURL: "https://my-first-app-6a293-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "my-first-app-6a293",
+        storageBucket: "my-first-app-6a293.firebasestorage.app",
+        messagingSenderId: "599546991663",
+        appId: "1:599546991663:web:b07d25c55f1d00c06722da",
+        measurementId: "G-5EVKKY7KLP"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.database();
+
     const userMenuButton = document.getElementById('userMenuButton');
     const userDropdown = document.getElementById('userDropdown');
 
     userMenuButton.addEventListener('click', () => {
         userDropdown.classList.toggle('hidden');
     });
+
+    function showErrorMessage(message) {
+        const existing = document.getElementById('floating-error');
+        if (existing) existing.remove();
+
+        const errorElement = document.createElement('div');
+        errorElement.id = 'floating-error';
+        errorElement.innerHTML = `
+        <div style="
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            color: white;
+            background-color: #dc2626;
+            border-radius: 0.75rem;
+            padding: 0.5rem 1rem;
+        ">
+        <i class="fas fa-info-circle" style="font-size: 1rem; margin-right: 0.5rem;"></i>
+            <span style="font-weight: 500;">${message}</span>
+        </div>
+    `;
+
+        errorElement.style.position = 'fixed';
+        errorElement.style.top = '5.8rem';
+        errorElement.style.left = '50%';
+        errorElement.style.transform = 'translateX(-50%) translateY(-20px)';
+        errorElement.style.zIndex = '9999';
+        errorElement.style.width = '460px';
+        errorElement.style.maxWidth = '90%';
+        errorElement.style.textAlign = 'center';
+        errorElement.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)';
+        errorElement.style.opacity = '0';
+        errorElement.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+
+        document.body.appendChild(errorElement);
+
+        requestAnimationFrame(() => {
+            errorElement.style.opacity = '1';
+            errorElement.style.transform = 'translateX(-50%) translateY(0)';
+        });
+
+        setTimeout(() => {
+            errorElement.style.opacity = '0';
+            errorElement.style.transform = 'translateX(-50%) translateY(-20px)';
+            setTimeout(() => {
+                errorElement.remove();
+            }, 500);
+        }, 4000);
+    }
+
+    function showSuccessMessage(message) {
+        const existing = document.getElementById('floating-success');
+        if (existing) existing.remove();
+
+        const successElement = document.createElement('div');
+        successElement.id = 'floating-success';
+
+        successElement.innerHTML = `
+        <div style="
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            color: white;
+            background-color: #16a34a;
+            border-radius: 0.75rem;
+            padding: 0.5rem 1rem;
+        ">
+            <i class="fas fa-check-circle" style="font-size: 1rem; margin-right: 0.6rem;"></i>
+            <span style="font-weight: 500;">${message}</span>
+        </div>
+    `;
+
+        successElement.style.position = 'fixed';
+        successElement.style.top = '5.8rem';
+        successElement.style.left = '50%';
+        successElement.style.transform = 'translateX(-50%) translateY(-20px)';
+        successElement.style.zIndex = '9999';
+        successElement.style.width = '460px';
+        successElement.style.maxWidth = '90%';
+        successElement.style.textAlign = 'center';
+        successElement.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)';
+        successElement.style.opacity = '0';
+        successElement.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+
+        document.body.appendChild(successElement);
+
+        requestAnimationFrame(() => {
+            successElement.style.opacity = '1';
+            successElement.style.transform = 'translateX(-50%) translateY(0)';
+        });
+
+        setTimeout(() => {
+            successElement.style.opacity = '0';
+            successElement.style.transform = 'translateX(-50%) translateY(-20px)';
+            setTimeout(() => {
+                successElement.remove();
+            }, 500);
+        }, 4000);
+    }
 
     document.addEventListener('click', (e) => {
         if (!userMenuButton.contains(e.target) && !userDropdown.contains(e.target)) {
@@ -354,6 +471,196 @@
             userDropdown.classList.add('hidden');
         });
     });
+
+    const toggleBtns = document.querySelectorAll('.re-togglePassword');
+
+    toggleBtns.forEach(toggleBtn => {
+        const passwordInput = toggleBtn.previousElementSibling;
+        const icon = toggleBtn.querySelector('i');
+
+        toggleBtn.addEventListener('click', () => {
+            if (!passwordInput) return;
+
+            const isPassword = passwordInput.type === 'password';
+            passwordInput.type = isPassword ? 'text' : 'password';
+
+            icon.classList.toggle('fa-eye-slash');
+            icon.classList.toggle('fa-eye');
+        });
+    });
+
+    function forgotPassword() {
+        openForgotModal();
+    }
+
+    function openForgotModal() {
+        document.getElementById('forgotPasswordModal').classList.remove('hidden');
+        showStep('stepEmail');
+    }
+
+    function closeForgotModal() {
+        document.getElementById('forgotPasswordModal').classList.add('hidden');
+        resetForgotModal();
+    }
+
+    function showStep(stepId) {
+        document.querySelectorAll('.step-section').forEach(el => el.classList.add('hidden'));
+        document.getElementById(stepId).classList.remove('hidden');
+    }
+
+    function resetForgotModal() {
+        document.getElementById('resetEmail').value = '';
+        document.getElementById('otpInput').value = '';
+        document.getElementById('newPassword').value = '';
+        showStep('stepEmail');
+    }
+
+    function generateOTP(length = 6) {
+        let otp = '';
+        for (let i = 0; i < length; i++) {
+            otp += Math.floor(Math.random() * 10);
+        }
+        return otp;
+    }
+
+    async function sendOTP(email) {
+        const otp = generateOTP();
+        const now = Date.now();
+        const expiresAt = now + 5 * 60 * 1000;
+        const emailKey = email.replace('.', '_');
+        const attemptsRef = db.ref(`otpAttempts/${emailKey}`);
+
+        const snapshot = await attemptsRef.once('value');
+        const attempts = snapshot.val() || [];
+
+        const recentAttempts = attempts.filter(ts => now - ts < 30 * 60 * 1000);
+
+        if (recentAttempts.length >= 4) {
+            showErrorMessage('Too many requests. Try again after 30 minutes.');
+            return false;
+        }
+
+        recentAttempts.push(now);
+        await attemptsRef.set(recentAttempts);
+
+        await db.ref('passwordResetOtps/' + emailKey).set({ otp, expiresAt });
+
+        const templateParams = {
+            name: email,
+            user_name: 'YourApp',
+            otp: otp,
+            to_email: email,
+        };
+
+        try {
+            await emailjs.send('service_8ke883v', 'template_ou2hgcb', templateParams);
+            showSuccessMessage("OTP sent to your email address.");
+            return true;
+        } catch (error) {
+            console.error("EmailJS error:", error);
+            showErrorMessage("Failed to send OTP email.");
+            return false;
+        }
+    }
+
+    async function handleSendOtp() {
+        const email = document.getElementById('resetEmail').value.trim().toLowerCase();
+
+        if (!email || !email.includes('@')) {
+            showErrorMessage('Please enter a valid email address.');
+            return;
+        }
+
+        const snapshot = await db.ref('users').orderByChild('email').equalTo(email).once('value');
+        if (!snapshot.exists()) {
+            showErrorMessage('No account found with this email.');
+            return;
+        }
+
+        const otpSent = await sendOTP(email);
+
+        if (otpSent) {
+            showStep('stepOtp');
+        } else {
+            showStep('stepEmail');
+        }
+    }
+
+    async function verifyOTP(email, enteredOtp) {
+        const snapshot = await db.ref('passwordResetOtps/' + email.replace('.', '_')).once('value');
+        if (!snapshot.exists()) {
+            showErrorMessage('No OTP request found. Please send OTP first.');
+            return false;
+        }
+
+        const data = snapshot.val();
+
+        if (Date.now() > data.expiresAt) {
+            showErrorMessage('OTP expired. Please resend OTP.');
+            await db.ref('passwordResetOtps/' + email.replace('.', '_')).remove();
+            return false;
+        }
+
+        if (data.otp !== enteredOtp) {
+            showErrorMessage('Incorrect OTP. Try again.');
+            return false;
+        }
+
+        await db.ref('passwordResetOtps/' + email.replace('.', '_')).remove();
+        return true;
+    }
+
+    async function handleVerifyOtp() {
+        const email = document.getElementById('resetEmail').value.trim().toLowerCase();
+        const otp = document.getElementById('otpInput').value.trim();
+
+        if (!otp) {
+            showErrorMessage('Please enter OTP.');
+            return;
+        }
+
+        const valid = await verifyOTP(email, otp);
+        if (valid) {
+            showSuccessMessage('OTP verified! Please enter your new password.');
+            showStep('stepNewPassword');
+        }
+    }
+
+    function resendOtp() {
+        showStep('stepEmail');
+        showSuccessMessage('Resend your OTP again.');
+    }
+
+    async function handleResetPassword() {
+        const email = document.getElementById('resetEmail').value.trim().toLowerCase();
+        const newPassword = document.getElementById('newPassword').value;
+
+        if (!newPassword || newPassword.length < 6) {
+            showErrorMessage('Password must be at least 6 characters.');
+            return;
+        }
+
+        try {
+            const response = await fetch("http://localhost:3000/reset-password", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    email: email,
+                    newPassword: newPassword
+                })
+            });
+
+            if (response.ok) {
+                showSuccessMessage('✅ Password reset successfully.');
+                closeForgotModal();
+            } else {
+                const errorText = await response.text();
+                showErrorMessage('❌ Failed: ' + errorText);
+            }
+        } catch (err) {
+            showErrorMessage('❌ Error: ' + err.message);
+        }
+    }
 </script>
 
 </body>
