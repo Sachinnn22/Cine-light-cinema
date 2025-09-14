@@ -54,7 +54,7 @@
                     <details>
                         <summary>Movies</summary>
                         <ul class="p-2 dropdown-glass-movie rounded-box mt-1 space-y-1">
-                            <li><a class="movieLock disabled-link" href="mm.html">Action</a></li>
+                            <li><a class="movieLock disabled-link" href="all-actions.html">Action</a></li>
                             <li><a class="movieLock disabled-link" href="#">Horror</a></li>
                             <li><a class="movieLock disabled-link" href="#">Sci-Fic</a></li>
                             <li><a class="movieLock disabled-link" href="#">Comedy</a></li>
@@ -769,7 +769,7 @@ min-w-[18rem] flex-shrink-0
 
         setTimeout(() => {
             notificationPopup.classList.add('hidden');
-        }, 5000);
+        }, 12000);
     }
 
     function updateNotificationBadge() {
@@ -792,11 +792,11 @@ min-w-[18rem] flex-shrink-0
             // Persist that user has seen notifications this session
             sessionStorage.setItem('notificationSeen', 'true');
         } else {
-            // Panel is now hidden again
+            // Panel is now hidden again — clear notifications here
             unseenNotificationCount = 0;
             updateNotificationBadge();
 
-            // Clear the notifications visually only AFTER the user has seen them
+            // Clear notifications ONLY when panel is closed
             notificationList.innerHTML = '';
         }
     });
@@ -909,7 +909,6 @@ min-w-[18rem] flex-shrink-0
             }
             return;
         }
-
         try {
             const userEmail = user.email;
             const idToken = await user.getIdToken();
@@ -921,31 +920,35 @@ min-w-[18rem] flex-shrink-0
                 }
             });
 
-            if (!response.ok) {
-                // Payment status fetch failed or payment not activated
-                if (!currentPage.endsWith("payment-plan.html")) {
-                    window.location.replace("/AAD-FINAL/AAD-FINAL-PROJECT/payment-plan.html");
+
+                if (!response.ok) {
+                    // Payment status fetch failed or payment not activated
+                    if (
+                        currentPage.endsWith("index.html") ||
+                        currentPage.endsWith("all-movie.html")
+                    ) {
+                        window.location.replace("/AAD-FINAL/AAD-FINAL-PROJECT/payment-plan.html");
+                    }
+                    return;
                 }
-                return;
-            }
 
-            const data = await response.json();
-            const status = data.status.trim().toLowerCase();
+                const data = await response.json();
+                const status = data.status.trim().toLowerCase();
 
-            if (status !== "activated") {
-                // Payment not activated, redirect to payment page if not already there
-                if (!currentPage.endsWith("payment-plan.html")) {
-                    window.location.replace("/AAD-FINAL/AAD-FINAL-PROJECT/payment-plan.html");
+                if (status !== "activated") {
+                    if (
+                        currentPage.endsWith("index.html") ||
+                        currentPage.endsWith("all-movie.html")
+                    ) {
+                        window.location.replace("/AAD-FINAL/AAD-FINAL-PROJECT/payment-plan.html");
+                    }
+                    return;
                 }
-                return;
-            }
 
-            // Payment is activated
             if (!isPaymentActivated) {
                 isPaymentActivated = true;
             }
 
-            // Show payment activated notification only once per session
             if (!paymentNotificationShown) {
                 paymentNotificationShown = true;
                 showNotification('Your plan has been activated', 'paymentNotificationShown');
