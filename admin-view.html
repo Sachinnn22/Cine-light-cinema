@@ -79,21 +79,30 @@
             </button>
         </div>
 
-        <div class="flex items-center gap-4">
+        <div id="search-add-info" class="search-add-group hidden flex items-center gap-2 w-full max-w-md">
+            <button id="add-info-btn" class="px-4 py-2 bg-blue-600 text-white flex items-center gap-2 hover:bg-blue-700 transition-colors duration-200 rounded-full whitespace-nowrap">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+                </svg>
+                <span class="hidden sm:inline">Add Movies</span>
+            </button>
+        </div>
+
+        <div class="flex items-center gap-3">
             <button
                     id="open-popular-modal-btn"
-                    class="text-red-500 hover:text-red-600 text-2xl transition transform hover:scale-110"
-                    title="Mark Popular Movies"
+                    class="flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 text-[22px] text-indigo-500 transition transform hover:scale-125"
+                    title="Add Popular Movie"
             >
-                ❤️
+                <i class="fas fa-plus"></i>
             </button>
 
             <button
                     id="credentials-btn"
-                    class="flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 text-[22px] text-emerald-500 transition transform hover:scale-125"
+                    class="flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 text-[22px] text-green-500 transition transform hover:scale-125"
                     title="Credentials"
             >
-                <i class="fa-solid fa-user-shield"></i>
+                <i class="fas fa-user-shield"></i>
             </button>
 
             <button
@@ -101,12 +110,11 @@
                     class="flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 text-[22px] text-red-500 transition transform hover:scale-125"
                     title="Logout"
             >
-                <i class="fa-solid fa-door-open"></i>
+                <i class="fas fa-right-from-bracket"></i>
             </button>
         </div>
     </div>
 </header>
-
 
 <div class="flex items-center">
     <button id="menu-btn" aria-label="Toggle Menu" type="button" class="text-gray-600 hover:text-gray-800 transition-colors duration-300 z-50">
@@ -140,6 +148,21 @@
                 <span>Dashboard</span>
             </a>
 
+            <a href="#" id="members-link" class="flex items-center gap-3 px-3 py-2 border-b border-gray-700 mb-4 text-gray-300 hover:bg-zinc-900 hover:text-white font-bold">
+                <i class="fa-solid fa-users opacity-75 w-5"></i>
+                <span>Members</span>
+            </a>
+
+            <a href="#" id="addinfo-link" class="flex items-center gap-3 px-3 py-2 border-b border-gray-700 mb-4 text-gray-300 hover:bg-zinc-900 hover:text-white font-bold">
+                <i class="fa-solid fa-circle-plus opacity-75 w-5"></i>
+                <span>Add Info</span>
+            </a>
+
+            <a href="#" id="adventure-link" class="flex items-center gap-3 px-3 py-2 border-b border-gray-700 mb-4 text-gray-300 hover:bg-zinc-900 hover:text-white font-bold">
+                <i class="fa-solid fa-globe opacity-75 w-5"></i>
+                <span>Adventure Movie</span>
+            </a>
+
             <a href="#" id="comedy-link" class="flex items-center gap-3 px-3 py-2 border-b border-gray-700 mb-4 text-gray-300 hover:bg-zinc-900 hover:text-white font-bold">
                 <i class="fa-solid fa-face-laugh-squint opacity-75 w-5"></i>
                 <span>Comedy Movie</span>
@@ -150,19 +173,9 @@
                 <span>Sci-Fi Movie</span>
             </a>
 
-            <a href="#" id="adventure-link" class="flex items-center gap-3 px-3 py-2 border-b border-gray-700 mb-4 text-gray-300 hover:bg-zinc-900 hover:text-white font-bold">
-                <i class="fa-solid fa-globe opacity-75 w-5"></i>
-                <span>Adventure</span>
-            </a>
-
             <a href="#" id="horror-link" class="flex items-center gap-3 px-3 py-2 border-b border-gray-700 mb-4 text-gray-300 hover:bg-zinc-900 hover:text-white font-bold">
                 <i class="fa-solid fa-ghost opacity-75 w-5"></i>
-                <span>Horror</span>
-            </a>
-
-            <a href="#" id="addinfo-link" class="flex items-center gap-3 px-3 py-2 border-b border-gray-700 mb-4 text-gray-300 hover:bg-zinc-900 hover:text-white font-bold">
-                <i class="fa-solid fa-circle-plus opacity-75 w-5"></i>
-                <span>Add Info</span>
+                <span>Horror Movie</span>
             </a>
 
             <a href="#" id="viewquestion-link" class="flex items-center gap-3 px-3 py-2 border-b border-gray-700 mb-4 text-gray-300 hover:bg-zinc-900 hover:text-white font-bold">
@@ -175,10 +188,7 @@
                 <span>View Reviews</span>
             </a>
 
-            <a href="#" id="members-link" class="flex items-center gap-3 px-3 py-2 border-b border-gray-700 mb-4 text-gray-300 hover:bg-zinc-900 hover:text-white font-bold">
-                <i class="fa-solid fa-users opacity-75 w-5"></i>
-                <span>Members</span>
-            </a>
+
 
         </nav>
 
@@ -247,17 +257,13 @@
         </div>
     </section>
 
-
-    <!-- Modal -->
     <div
             id="popularModal"
             class="fixed inset-0 backdrop-blur-md bg-black bg-opacity-50 flex items-center justify-center z-50 hidden"
     >
-        <div class="bg-white w-[80%] max-w-2xl rounded-lg shadow-lg p-6 relative">
-            <!-- Heading -->
+        <div class="bg-white w-[80%] max-w-2xl rounded-lg shadow-lg p-6 relative border-2 border-black">
             <h2 class="text-2xl font-bold mb-4 text-blue-600">All Movies</h2>
 
-            <!-- Table -->
             <div class="overflow-x-auto max-h-[70vh] overflow-y-auto">
                 <table class="min-w-full border border-gray-300 table-fixed">
                     <thead>
@@ -267,33 +273,28 @@
                         <th class="p-2 border w-[20%]">Popular?</th>
                     </tr>
                     </thead>
-                    <tbody id="popular-movie-table-body">
-                    <!-- Rows injected here -->
-                    </tbody>
+                    <tbody id="popular-movie-table-body"></tbody>
                 </table>
             </div>
 
-            <!-- Buttons -->
             <div class="flex justify-end gap-4 mt-4">
-                <!-- Cancel Button -->
                 <button
-                        onclick="closePopularModal()"
+                        id="cancel-popular-btn"
                         class="w-28 py-2 text-red-600 hover:text-white border border-red-600 hover:bg-red-600 font-semibold rounded"
                 >
                     Cancel
                 </button>
 
-                <!-- Save Button -->
                 <button
                         id="save-popular-btn"
-                        class="w-28 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                        class="w-28 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 flex items-center justify-center gap-2"
                 >
+                    <i class="fas fa-save"></i>
                     Save
                 </button>
             </div>
         </div>
     </div>
-
 
     <section id="user-details" class="page" style="display:none; margin-top: 40px !important;">
         <h3 class="mb-6 user" style="font-family: 'Poppins', sans-serif; color: #546e8c !important;">User Details</h3>
@@ -315,7 +316,6 @@
         </div>
     </section>
 
-
     <section id="review-list" class="page mt-3" style="display:none;">
         <h3 class="mb-7 user" style="font-family: 'Poppins', sans-serif; color: #546e8c !important;">View Reviews</h3>
         <div id="review-card-container" class="card-container"></div>
@@ -325,19 +325,6 @@
             <button  class="btn px-4 py-2 bg-green-500 text-white hover:bg-green-600" id="next-review">Next</button>
         </div>
     </section>
-
-<!--    <div id="add-movie-wrapper" style="display:none; position: fixed; top: 0.8rem; right: 8rem;">-->
-<!--        <button-->
-<!--                class="px-4 py-2 bg-blue-600 text-white flex items-center gap-2 hover:bg-blue-700 transition-colors duration-200 rounded-full"-->
-<!--                id="add-movie-btn"-->
-<!--        >-->
-<!--            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">-->
-<!--                <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />-->
-<!--            </svg>-->
-<!--            <span class="add-movie-text">Add Movie</span>-->
-<!--        </button>-->
-
-<!--    </div>-->
 
     <section id="action-list" class="page mt-4" style="display:none;">
         <h3 class="mb-6 user" style="font-family: 'Poppins', sans-serif; color: #546e8c !important;">View Adventures</h3>
@@ -354,14 +341,21 @@
     </section>
 
     <div id="movie-modal" class="fixed inset-0 bg-black/50 backdrop-blur-md flex items-center justify-center hidden z-50 p-4 ">
-        <div class="bg-white p-6 rounded-lg w-full max-w-full sm:max-w-sm md:max-w-md lg:max-w-lg relative max-h-screen overflow-auto border border-blue-600">
+        <div class="bg-white p-6 rounded-lg w-full max-w-full sm:max-w-sm md:max-w-md lg:max-w-lg relative max-h-screen overflow-auto border-2 border-black">
             <h2 class="text-3xl font-extrabold mb-6 text-center text-blue-700">Add Actions</h2>
 
             <form id="movie-form" class="space-y-4">
                 <div>
-                    <label class="block font-medium">Movie Image</label>
-                    <input type="file" id="movie-image" accept="image/*" class="w-full border border-gray-300 rounded px-2 py-1" required>
+                    <label class="block font-medium mb-1">Movie Image</label>
+                    <input
+                            type="file"
+                            id="movie-image"
+                            accept="image/*"
+                            class="w-full border border-gray-300 rounded px-2 py-1 text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                            required
+                    >
                 </div>
+
 
                 <div>
                     <label class="block font-medium">Movie Name</label>
@@ -398,6 +392,7 @@
                             class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded focus:outline-none hidden"
                             id="edit-btn"
                     >
+                        <i class="fas fa-save mr-1"></i>
                         Edit
                     </button>
                     <button
@@ -405,6 +400,7 @@
                             class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded focus:outline-none"
                             id="save-btn"
                     >
+                        <i class="fas fa-save mr-1"></i>
                         Save
                     </button>
                 </div>
@@ -415,7 +411,7 @@
     <section id="comedy-list" class="page mt-4" style="display:none;">
         <h3 class="mb-6 user" style="font-family: 'Poppins', sans-serif; color: #546e8c !important;">View Comedy</h3>
 
-        <div id="comedy-card-container" class="card-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6 px-4">
+        <div id="comedy-card-container" class="card-container flex flex-wrap justify-center gap-6 mt-6 px-4">
         </div>
 
         <div class="flex justify-center items-center gap-4 mt-10">
@@ -426,13 +422,19 @@
     </section>
 
     <div id="comedy-modal" class="fixed inset-0 bg-black/50 backdrop-blur-md flex items-center justify-center hidden z-50 p-4 ">
-        <div class="bg-white p-6 rounded-lg w-full max-w-full sm:max-w-sm md:max-w-md lg:max-w-lg relative max-h-screen overflow-auto border border-blue-600">
+        <div class="bg-white p-6 rounded-lg w-full max-w-full sm:max-w-sm md:max-w-md lg:max-w-lg relative max-h-screen overflow-auto border-2 border-black">
             <h2 class="text-3xl font-extrabold mb-6 text-center text-blue-700">Add Comedy</h2>
 
             <form id="comedy-form" class="space-y-4">
                 <div>
-                    <label class="block font-medium">Movie Image</label>
-                    <input type="file" id="comedy-image" accept="image/*" class="w-full border border-gray-300 rounded px-2 py-1" required>
+                    <label class="block font-medium mb-1">Movie Image</label>
+                    <input
+                            type="file"
+                            id="comedy-image"
+                            accept="image/*"
+                            class="w-full border border-gray-300 rounded px-2 py-1 text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                            required
+                    >
                 </div>
 
                 <div>
@@ -470,6 +472,7 @@
                             class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded focus:outline-none hidden"
                             id="edit-comedy-btn"
                     >
+                        <i class="fas fa-save mr-1"></i>
                         Edit
                     </button>
                     <button
@@ -477,6 +480,7 @@
                             class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded focus:outline-none"
                             id="save-comedy-btn"
                     >
+                        <i class="fas fa-save mr-1"></i>
                         Save
                     </button>
                 </div>
@@ -487,7 +491,7 @@
     <section id="horror-list" class="page mt-4" style="display:none;">
         <h3 class="mb-6 user" style="font-family: 'Poppins', sans-serif; color: #546e8c !important;">View Horror</h3>
 
-        <div id="horror-card-container" class="card-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6 px-4">
+        <div id="horror-card-container" class="card-container flex flex-wrap justify-center gap-6 mt-6 px-4">
         </div>
 
         <div class="flex justify-center items-center gap-4 mt-10">
@@ -499,13 +503,20 @@
     </section>
 
     <div id="horror-modal" class="fixed inset-0 bg-black/50 backdrop-blur-md flex items-center justify-center hidden z-50 p-4">
-        <div class="bg-white p-6 rounded-lg w-full max-w-full sm:max-w-sm md:max-w-md lg:max-w-lg relative max-h-screen overflow-auto border border-blue-600">
+        <div class="bg-white p-6 rounded-lg w-full max-w-full sm:max-w-sm md:max-w-md lg:max-w-lg relative max-h-screen overflow-auto border border-2 border-black">
             <h2 class="text-3xl font-extrabold mb-6 text-center text-blue-700">Add Horror Movie</h2>
 
             <form id="horror-movie-form" class="space-y-4">
+
                 <div>
-                    <label class="block font-medium">Movie Image</label>
-                    <input type="file" id="horror-movie-image" accept="image/*" class="w-full border border-gray-300 rounded px-2 py-1" required>
+                    <label class="block font-medium mb-1">Movie Image</label>
+                    <input
+                            type="file"
+                            id="horror-movie-image"
+                            accept="image/*"
+                            class="w-full border border-gray-300 rounded px-2 py-1 text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                            required
+                    >
                 </div>
 
                 <div>
@@ -543,6 +554,7 @@
                             class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded focus:outline-none hidden"
                             id="edit-horror-btn"
                     >
+                        <i class="fas fa-save mr-1"></i>
                         Edit
                     </button>
                     <button
@@ -550,6 +562,7 @@
                             class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded focus:outline-none"
                             id="save-horror-btn"
                     >
+                        <i class="fas fa-save mr-1"></i>
                         Save
                     </button>
                 </div>
@@ -560,7 +573,7 @@
     <section id="scific-list" class="page mt-4" style="display:none;">
         <h3 class="mb-6 user" style="font-family: 'Poppins', sans-serif; color: #546e8c !important;">View Sci-Fic</h3>
 
-        <div id="scific-card-container" class="card-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6 px-4">
+        <div id="scific-card-container" class="card-container flex flex-wrap justify-center gap-6 mt-6 px-4">
         </div>
 
         <div class="flex justify-center items-center gap-4 mt-10">
@@ -571,13 +584,20 @@
     </section>
 
     <div id="scific-modal" class="fixed inset-0 bg-black/50 backdrop-blur-md flex items-center justify-center hidden z-50 p-4">
-        <div class="bg-white p-6 rounded-lg w-full max-w-full sm:max-w-sm md:max-w-md lg:max-w-lg relative max-h-screen overflow-auto border border-blue-600">
+        <div class="bg-white p-6 rounded-lg w-full max-w-full sm:max-w-sm md:max-w-md lg:max-w-lg relative max-h-screen overflow-auto border border-black">
             <h2 class="text-3xl font-extrabold mb-6 text-center text-blue-700">Add Sci-Fi Movie</h2>
 
             <form id="scific-movie-form" class="space-y-4">
+
                 <div>
-                    <label class="block font-medium">Movie Image</label>
-                    <input type="file" id="scific-movie-image" accept="image/*" class="w-full border border-gray-300 rounded px-2 py-1" required>
+                    <label class="block font-medium mb-1">Movie Image</label>
+                    <input
+                            type="file"
+                            id="scific-movie-image"
+                            accept="image/*"
+                            class="w-full border border-gray-300 rounded px-2 py-1 text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                            required
+                    >
                 </div>
 
                 <div>
@@ -615,6 +635,7 @@
                             class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded focus:outline-none hidden"
                             id="edit-scific-btn"
                     >
+                        <i class="fas fa-save mr-1"></i>
                         Edit
                     </button>
                     <button
@@ -622,6 +643,7 @@
                             class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded focus:outline-none"
                             id="save-scific-btn"
                     >
+                        <i class="fas fa-save mr-1"></i>
                         Save
                     </button>
                 </div>
@@ -629,12 +651,11 @@
         </div>
     </div>
 
-
     <div id="replyModal" class="fixed inset-0 hidden z-50 flex items-center justify-center bg-black/50 backdrop-blur-lg" >
         <div class="bg-white p-4 sm:p-6 rounded-md shadow-lg w-[90%] max-w-md mx-4" style="border: 1px solid #2a4d97; border-radius: 8px;">
             <h2 class="text-2xl font-semibold mb-3 text-center" style="color: #2a4d97;">Reply to Question</h2>
 
-            <label for="replyText">Write Your Reply</label>
+            <label for="replyText" class="text-gray-600">Write Your Reply</label>
             <textarea id="replyText" class="w-full h-32 border border-gray-300 rounded p-2 resize-none mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
 
             <div class="flex justify-end gap-3">
@@ -645,15 +666,19 @@
     </div>
 </main>
 
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
-<script src="admin-script/members.js" type="module"></script>
-<script src="admin-script/reviews.js" type="module"></script>
-<script src="admin-script/side-bar.js" type="module"></script>
-<script src="admin-script/question.js" type="module"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+<script src="admin-script/members.js" type="module"></script>
+<script src="admin-script/dashboard.js" type="module"></script>
+<script src="admin-script/reviews.js" type="module"></script>
+<script src="admin-script/question.js" type="module"></script>
+<script src="admin-script/menu-bar.js" type="module"></script>
+<script src="admin-script/action-movie.js" type="module"></script>
+<script src="admin-script/horror-movie.js" type="module"></script>
+<script src="admin-script/sci-fic-movie.js" type="module"></script>
+<script src="admin-script/comedy-movie.js" type="module"></script>
 
 <script>
     const firebaseConfig = {
@@ -675,359 +700,6 @@
 
     const db = firebase.database();
 
-    async function updateUserCountAndChart() {
-        try {
-            const snapshot = await db.ref("users").once('value');
-            const userCount = snapshot.numChildren();
-            document.getElementById('total-users').innerText = userCount;
-
-            const dataPoints = Array.from({ length: 7 }, (_, i) => Math.round((userCount / 6) * i));
-            const ctx = document.getElementById('userActivityChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: Array(7).fill(''),
-                    datasets: [{
-                        label: 'Active Users',
-                        data: dataPoints,
-                        borderColor: '#3b82f6',
-                        backgroundColor: 'rgba(59, 130, 246, 0.2)',
-                        fill: true,
-                        tension: 0.3
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: { legend: { display: false } },
-                    scales: {
-                        x: { display: false },
-                        y: {
-                            beginAtZero: true,
-                            suggestedMax: userCount,
-                            ticks: {
-                                stepSize: Math.max(1, Math.ceil(userCount / 5)),
-                                precision: 0
-                            }
-                        }
-                    }
-                }
-            });
-        } catch (error) {
-            console.error('Error fetching user count:', error);
-        }
-    }
-
-    let genreChart = null;
-
-    async function updateDashboardCounts() {
-        try {
-            const response = await fetch('http://localhost:8080/api/dashboard/counts');
-            if (!response.ok) throw new Error('Network error');
-            const data = await response.json();
-
-            document.getElementById('total-movies').innerText = data.totalMovies;
-            document.getElementById('total-reviews').innerText = data.totalReviews;
-            document.getElementById('total-questions').innerText = data.totalQuestions;
-
-            const ctx = document.getElementById('genreChart').getContext('2d');
-            if (genreChart) genreChart.destroy();
-
-            const maxValue = Math.max(
-                data.actionMovies,
-                data.horrorMovies,
-                data.comedyMovies,
-                data.sciFicMovies
-            );
-
-            genreChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['Action', 'Horror', 'Comedy', 'Sci‑Fi'],
-                    datasets: [{
-                        label: 'Movies',
-                        data: [
-                            data.actionMovies,
-                            data.horrorMovies,
-                            data.comedyMovies,
-                            data.sciFicMovies
-                        ],
-                        backgroundColor: ['#3b82f6', '#ef4444', '#f59e0b', '#10b981'],
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: { legend: { display: false } },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            suggestedMax: Math.ceil(maxValue / 10) * 10 + 10,
-                            ticks: {
-                                stepSize: 5,
-                                precision: 0
-                            }
-                        }
-                    }
-                }
-            });
-        } catch (error) {
-            console.error('Error fetching dashboard counts:', error);
-        }
-    }
-
-    updateUserCountAndChart();
-    updateDashboardCounts();
-
-
-        const cardContainer = document.getElementById("card-container");
-        const prevBtn = document.getElementById("prev-btn");
-        const nextBtn = document.getElementById("next-btn");
-        const pageInfo = document.getElementById("page-info");
-        const userDetailsSection = document.getElementById("user-details");
-        const membersLink = document.getElementById("members-link");
-
-        const rowsPerPage = 3;
-        let currentPage = 0;
-        const pageKeys = [];
-
-        function loadInitialPage() {
-            db.ref("users")
-                .orderByChild('registerTimestamp')
-                .limitToFirst(100)
-                .once("value", snapshot => {
-                    let users = [];
-                    snapshot.forEach(child => {
-                        const user = { key: child.key, val: child.val() };
-                        if (user.val.role !== 'admin') {
-                            users.push(user);
-                        }
-                    });
-
-                    const paginatedUsers = users.slice(0, rowsPerPage);
-                    const hasMore = users.length > rowsPerPage;
-
-                    renderUsers(paginatedUsers);
-
-                    pageKeys[0] = {
-                        first: paginatedUsers[0]?.val.registerTimestamp || null,
-                        last: paginatedUsers[paginatedUsers.length - 1]?.val.registerTimestamp || null
-                    };
-
-                    currentPage = 0;
-                    updateButtons(hasMore);
-                });
-        }
-
-        function goToNextPage() {
-            const lastTimestamp = pageKeys[currentPage]?.last;
-            if (!lastTimestamp) return;
-
-            db.ref("users")
-                .orderByChild('registerTimestamp')
-                .startAfter(lastTimestamp)
-                .limitToFirst(100)
-                .once("value", snapshot => {
-                    let users = [];
-                    snapshot.forEach(child => {
-                        const user = { key: child.key, val: child.val() };
-                        if (user.val.role !== 'admin') {
-                            users.push(user);
-                        }
-                    });
-
-                    const paginatedUsers = users.slice(0, rowsPerPage);
-                    const hasMore = users.length > rowsPerPage;
-
-                    if (paginatedUsers.length === 0) return;
-
-                    currentPage++;
-                    pageKeys[currentPage] = {
-                        first: paginatedUsers[0]?.val.registerTimestamp || null,
-                        last: paginatedUsers[paginatedUsers.length - 1]?.val.registerTimestamp || null
-                    };
-
-                    renderUsers(paginatedUsers);
-                    updateButtons(hasMore);
-                });
-        }
-
-        function goToPreviousPage() {
-            if (currentPage <= 0) return;
-
-            const prevPage = currentPage - 1;
-            const prevTimestamp = pageKeys[prevPage]?.first;
-            if (!prevTimestamp) return;
-
-            db.ref("users")
-                .orderByChild('registerTimestamp')
-                .startAt(prevTimestamp)
-                .limitToFirst(100)
-                .once("value", snapshot => {
-                    let users = [];
-                    snapshot.forEach(child => {
-                        const user = { key: child.key, val: child.val() };
-                        if (user.val.role !== 'admin') {
-                            users.push(user);
-                        }
-                    });
-
-                    const paginatedUsers = users.slice(0, rowsPerPage);
-                    const hasMore = users.length > rowsPerPage;
-
-                    if (paginatedUsers.length === 0) return;
-
-                    currentPage--;
-                    renderUsers(paginatedUsers);
-                    updateButtons(true);
-                });
-        }
-
-        function renderUsers(users) {
-            cardContainer.innerHTML = "";
-
-            users.forEach(user => {
-                const card = document.createElement("div");
-                card.className =
-                    "bg-white rounded-xl p-8 shadow-lg flex flex-col items-center text-center w-[310px] h-[320px] custom-border";
-                card.dataset.key = user.key;
-                card.dataset.timestamp = user.val.registerTimestamp;
-
-                card.innerHTML = `
-              <img src="${user.val.photoURL}" alt="${user.val.username}" class="w-20 h-20 rounded-full object-cover mb-5 shadow-lg" />
-              <h2 class="username">${user.val.username}</h2>
-              <p class="email">${user.val.email}</p>
-              <p class="text-base text-gray-700">Join Time: ${user.val.registerTime ?? "N/A"}</p>
-              <p class="text-base text-gray-700">Join Date: ${user.val.registerDate ?? "N/A"}</p>
-            `;
-                cardContainer.appendChild(card);
-            });
-
-            pageInfo.textContent = `Page ${currentPage + 1}`;
-        }
-
-        function updateButtons(hasMore) {
-            prevBtn.disabled = currentPage === 0;
-            nextBtn.disabled = !hasMore;
-        }
-
-        // Add click handlers for pagination buttons
-        prevBtn.addEventListener("click", goToPreviousPage);
-        nextBtn.addEventListener("click", goToNextPage);
-
-        // Add click listener on members-link to show the section and load first page
-        membersLink.addEventListener("click", (e) => {
-            e.preventDefault();               // prevent default link behavior
-            userDetailsSection.style.display = "block";  // show the hidden section
-            localStorage.setItem("showMembers", "true"); // save flag in localStorage
-            loadInitialPage();                // load the first page of users
-        });
-
-        // On page load, check if members section should be visible
-        window.addEventListener("DOMContentLoaded", () => {
-            if (localStorage.getItem("showMembers") === "true") {
-                userDetailsSection.style.display = "block";
-                loadInitialPage();
-            }
-        });
-
-    document.getElementById('logout-btn').addEventListener('click', function(event) {
-        event.preventDefault();
-
-        firebase.auth().signOut()
-            .then(() => {
-                document.cookie = "authToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-
-                window.location.href = 'index.html';
-            })
-            .catch((error) => {
-                console.error('Error during sign out:', error);
-                alert('Failed to logout. Please try again.');
-            });
-    });
-
-    // firebase.auth().onAuthStateChanged(function(user) {
-    //     if (!user) {
-    //         window.location.href = 'index.html';
-    //     }
-    // });
-
-
-
-    document.addEventListener('DOMContentLoaded', () => {
-        const credentialsBtn = document.getElementById('credentials-btn');
-        const modal = document.getElementById('credentials-modal');
-        const closeModalBtn = document.getElementById('close-modal-btn');
-        const form = document.getElementById('credentials-form');
-        const errorMsg = document.getElementById('credentials-error');    // optional now
-        const successMsg = document.getElementById('credentials-success'); // optional now
-
-        credentialsBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            errorMsg.classList.add('hidden');
-            successMsg.classList.add('hidden');
-            form.reset();
-            modal.classList.remove('hidden');
-        });
-
-        closeModalBtn.addEventListener('click', () => {
-            modal.classList.add('hidden');
-        });
-
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            errorMsg.classList.add('hidden');
-            successMsg.classList.add('hidden');
-
-            const currentPassword = form.currentPassword.value.trim();
-            const newPassword = form.newPassword.value.trim();
-            const confirmPassword = form.confirmPassword.value.trim();
-
-            if (newPassword !== confirmPassword) {
-                showErrorMessage("New password and confirm password do not match.");
-                return;
-            }
-
-            const user = firebase.auth().currentUser;
-
-            if (!user) {
-                showErrorMessage("User not logged in.");
-                return;
-            }
-
-            const email = user.email;
-
-            const payload = {
-                email,
-                newPassword
-            };
-
-            try {
-                const response = await fetch('http://localhost:8080/reset-password', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(payload),
-                });
-
-                const data = await response.text();
-
-                if (response.ok) {
-                    showSuccessMessage(data || "Password changed successfully.");
-                    form.reset();
-                    setTimeout(() => {
-                        modal.classList.add('hidden');
-                    }, 2000);
-                } else {
-                    showErrorMessage(data || "Failed to change password.");
-                }
-            } catch (err) {
-                console.error('Error:', err);
-                showErrorMessage("Error connecting to server.");
-            }
-        });
-    });
-
     function showErrorMessage(message) {
         const existing = document.getElementById('floating-error');
         if (existing) existing.remove();
@@ -1035,23 +707,23 @@
         const errorElement = document.createElement('div');
         errorElement.id = 'floating-error';
         errorElement.innerHTML = `
-        <div style="
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            color: white;
-            background-color: #dc2626;
-            border-radius: 0.75rem;
-            padding: 0.5rem 1rem;
-        ">
-        <i class="fas fa-info-circle" style="font-size: 1rem; margin-right: 0.5rem;"></i>
-            <span style="font-weight: 500;">${message}</span>
-        </div>
-    `;
+    <div style="
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        color: white;
+        background-color: #dc2626;
+        border-radius: 0.75rem;
+        padding: 0.5rem 1rem;
+    ">
+    <i class="fas fa-info-circle" style="font-size: 1rem; margin-right: 0.5rem;"></i>
+        <span style="font-weight: 500;">${message}</span>
+    </div>
+`;
 
         errorElement.style.position = 'fixed';
-        errorElement.style.top = '3rem';
+        errorElement.style.top = '5rem';
         errorElement.style.left = '50%';
         errorElement.style.transform = 'translateX(-50%) translateY(-20px)';
         errorElement.style.zIndex = '9999';
@@ -1086,23 +758,23 @@
         successElement.id = 'floating-success';
 
         successElement.innerHTML = `
-        <div style="
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            color: white;
-            background-color: #16a34a; /* Tailwind green-600 */
-            border-radius: 0.75rem;
-            padding: 0.5rem 1rem;
-        ">
-            <i class="fas fa-check-circle" style="font-size: 1rem; margin-right: 0.6rem;"></i>
-            <span style="font-weight: 500;">${message}</span>
-        </div>
-    `;
+    <div style="
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        color: white;
+        background-color: #16a34a;
+        border-radius: 0.75rem;
+        padding: 0.5rem 1rem;
+    ">
+        <i class="fas fa-check-circle" style="font-size: 1rem; margin-right: 0.6rem;"></i>
+        <span style="font-weight: 500;">${message}</span>
+    </div>
+`;
 
         successElement.style.position = 'fixed';
-        successElement.style.top = '3rem';
+        successElement.style.top = '5rem';
         successElement.style.left = '50%';
         successElement.style.transform = 'translateX(-50%) translateY(-20px)';
         successElement.style.zIndex = '9999';
@@ -1129,312 +801,102 @@
         }, 4000);
     }
 
-</script>
 
-<script>
-    const modal = document.getElementById('movie-modal');
-    const openBtn = document.getElementById('add-action-btn');
-    const closeBtn = document.getElementById('close-modal');
-    const form = document.getElementById('movie-form');
-    const container = document.getElementById('action-card-container');
 
-    const nextBtnAc = document.getElementById('next-action');
-    const prevBtnAc = document.getElementById('pre-action');
-    const currentPageDisplay = document.getElementById('currentPageDisplayAction');
+    function showDeleteConfirmation(movieId, movieName) {
+        const existing = document.getElementById('floating-confirm');
+        if (existing) existing.remove();
 
-    let currentPageAc = 0;
-    const pageSizeAc = 3;
-    let lastPageReachedAc = false;
+        const confirmElement = document.createElement('div');
+        confirmElement.id = 'floating-confirm';
 
-    let currentMovieId = null;
+        confirmElement.innerHTML = `
+    <div style="
+        background-color: #dc2626;
+        border-radius: 0.75rem;
+        padding: 1.25rem 1.5rem;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+        text-align: center;
+        max-width: 540px;
+        width: 100%;
+        font-family: 'Inter', sans-serif;
+        color: white;
+    ">
+        <p style="font-size: 1.05rem; font-weight: 500;">
+            Are you sure you want to delete?
+        </p>
+        <p style="font-size: 1.15rem; font-weight: 600; margin-top: 0.5rem;">
+            <strong>${movieName}</strong>
+        </p>
+        <div style="margin-top: 1.25rem; display: flex; justify-content: center; gap: 1rem;">
+            <button id="confirm-delete" style="
+                background-color: white;
+                color: #dc2626;
+                padding: 0.5rem 1.25rem;
+                border-radius: 0.5rem;
+                font-weight: 600;
+                font-size: 0.95rem;
+                border: none;
+                cursor: pointer;
+                transition: background-color 0.2s ease;
+            ">Yes, Delete</button>
+            <button id="cancel-delete" style="
+                background-color: #f87171;
+                color: white;
+                padding: 0.5rem 1.25rem;
+                border-radius: 0.5rem;
+                font-weight: 600;
+                font-size: 0.95rem;
+                border: none;
+                cursor: pointer;
+                transition: background-color 0.2s ease;
+            ">Cancel</button>
+        </div>
+    </div>
+    `;
 
-    function createMovieCard(movie) {
-        const card = document.createElement('div');
-        card.classList.add('p-4', 'rounded-lg', 'shadow', 'bg-white', 'mb-4', 'flex', 'flex-col', 'justify-between');
-        card.style.border = '3px solid gray';
-        card.style.width = '280px';
+        confirmElement.style.position = 'fixed';
+        confirmElement.style.top = '4.2rem';
+        confirmElement.style.left = '50%';
+        confirmElement.style.transform = 'translateX(-50%) translateY(-20px)';
+        confirmElement.style.zIndex = '9999';
+        confirmElement.style.opacity = '0';
+        confirmElement.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
 
-        card.innerHTML = `
-            <img src="http://localhost:8080/uploads/${movie.imagePath}" alt="${movie.name}" class="w-full h-40 object-cover rounded mb-2">
-            <h4 class="font-bold text-lg">${movie.name}</h4>
-            <p>Rating: ${movie.rating}</p>
-            <p>Release: ${movie.releaseDate}</p>
-            <p>Category: ${movie.category}</p>
-            <div class="flex justify-end mt-2 space-x-4">
-                <button class="edit-btn text-blue-500 hover:text-blue-600" title="Edit" data-id="${movie.id}">
-                    <i class="fas fa-edit text-xl"></i>
-                </button>
-                <button class="delete-btn text-red-500 hover:text-red-600" title="Delete" data-id="${movie.id}">
-                    <i class="fas fa-trash-alt text-xl"></i>
-                </button>
-            </div>
-        `;
+        document.body.appendChild(confirmElement);
 
-        card.querySelector('.edit-btn').addEventListener('click', () => openEditModal(movie));
-        card.querySelector('.delete-btn').addEventListener('click', () => {
-            if (confirm('Are you sure you want to delete this movie?')) {
-                deleteMovie(movie.id);
-            }
+        requestAnimationFrame(() => {
+            confirmElement.style.opacity = '1';
+            confirmElement.style.transform = 'translateX(-50%) translateY(0)';
         });
 
-        container.appendChild(card);
+        document.getElementById('confirm-delete').addEventListener('click', () => {
+            confirmElement.remove();
+            deleteMovie(movieId);
+        });
+
+        document.getElementById('cancel-delete').addEventListener('click', () => {
+            confirmElement.style.opacity = '0';
+            confirmElement.style.transform = 'translateX(-50%) translateY(-20px)';
+            setTimeout(() => confirmElement.remove(), 300);
+        });
+
+        setTimeout(() => {
+            if (document.body.contains(confirmElement)) {
+                confirmElement.style.opacity = '0';
+                confirmElement.style.transform = 'translateX(-50%) translateY(-20px)';
+                setTimeout(() => confirmElement.remove(), 300);
+            }
+        }, 10000);
     }
 
-    function loadPaginatedMovies(page) {
-        fetch(`http://localhost:8080/api/action-movies/paginated?page=${page}&size=${pageSizeAc}`)
-            .then(res => {
-                if (!res.ok) throw new Error("Failed to fetch paginated movies");
-                return res.json();
-            })
-            .then(movies => {
-                container.innerHTML = '';
-
-                if (movies.length === 0) {
-                    if (page > 0) {
-                        currentPageAc--;
-                        return loadPaginatedMovies(currentPageAc);
-                    } else {
-                        container.innerHTML = `
-                    <div class="flex items-center justify-center">
-                        <p class="text-gray-600 text-lg italic">No movies found.</p>
-                    </div>
-                `;
-                        lastPageReachedAc = true;
-                        nextBtnAc.disabled = true;
-                        prevBtnAc.disabled = true;
-                        currentPageDisplay.textContent = `Page 1`;
-                        return;
-                    }
-                }
-
-                movies.forEach(createMovieCard);
-
-                currentPageDisplay.textContent = `Page ${currentPageAc + 1}`;
-                prevBtnAc.disabled = currentPageAc === 0;
-
-                fetch(`http://localhost:8080/api/action-movies/paginated?page=${page + 1}&size=${pageSizeAc}`)
-                    .then(res => {
-                        if (!res.ok) throw new Error('Failed to check next page');
-                        return res.json();
-                    })
-                    .then(nextPageMovies => {
-                        lastPageReachedAc = nextPageMovies.length === 0;
-                        nextBtnAc.disabled = lastPageReachedAc;
-                    })
-                    .catch(() => {
-                        // In case of error, disable next button safely
-                        lastPageReachedAc = true;
-                        nextBtnAc.disabled = true;
-                    });
-            })
-            .catch(error => {
-                container.innerHTML = `
-                <div class="text-center mt-4">
-                    <p class="text-red-500 italic">Error loading movies: ${error.message}</p>
-                </div>`;
-            });
-    }
-
-    nextBtnAc.addEventListener('click', () => {
-        if (!lastPageReachedAc) {
-            currentPageAc++;
-            loadPaginatedMovies(currentPageAc);
-        }
-    });
-
-    prevBtnAc.addEventListener('click', () => {
-        if (currentPageAc > 0) {
-            currentPageAc--;
-            loadPaginatedMovies(currentPageAc);
-        }
-    });
-
-    function openEditModal(movie) {
-        currentMovieId = movie.id;
-
-        document.querySelector('#movie-modal h2').textContent = 'Edit Action';
-        document.getElementById('movie-name').value = movie.name;
-        document.getElementById('movie-rating').value = movie.rating;
-        document.getElementById('release-date').value = movie.releaseDate;
-        document.getElementById('movie-category').value = movie.category;
-
-        document.getElementById('save-btn').classList.add('hidden');
-        document.getElementById('edit-btn').classList.remove('hidden');
-
-        modal.classList.remove('hidden');
-    }
-
-    document.getElementById('edit-btn').addEventListener('click', () => {
-        const name = document.getElementById('movie-name').value;
-        const rating = parseFloat(document.getElementById('movie-rating').value);
-        const releaseDate = document.getElementById('release-date').value;
-        const category = document.getElementById('movie-category').value;
-        const imageFile = document.getElementById('movie-image').files[0];
-
-        const formData = new FormData();
-        formData.append('name', name);
-        formData.append('rating', rating);
-        formData.append('releaseDate', releaseDate);
-        formData.append('category', category);
-        if (imageFile) formData.append('image', imageFile);
-
-        fetch(`http://localhost:8080/api/action-movies/${currentMovieId}`, {
-            method: 'PUT',
-            body: formData
-        })
-            .then(async response => {
-                const text = await response.text();
-                if (!response.ok) return showErrorMessage(text);
-
-                showSuccessMessage(text);
-                modal.classList.add('hidden');
-                form.reset();
-                currentMovieId = null;
-                loadPaginatedMovies(currentPageAc);
-            })
-            .catch(error => showErrorMessage('Error: ' + error.message));
-    });
-
-    function deleteMovie(movieId) {
-        fetch(`http://localhost:8080/api/action-movies/${movieId}`, { method: 'DELETE' })
-            .then(async response => {
-                const text = await response.text();
-                if (!response.ok) return showErrorMessage(text);
-
-                showSuccessMessage(text);
-                loadPaginatedMovies(currentPageAc);
-            })
-            .catch(error => showErrorMessage('Error deleting movie: ' + error.message));
-    }
-
-    const searchInput = document.getElementById('search-input');
-
-    function performSearch(keyword) {
-        if (!keyword) {
-            currentPageAc = 0;
-            return loadPaginatedMovies(currentPageAc);
-        }
-
-        fetch(`http://localhost:8080/api/action-movies/search?keyword=${encodeURIComponent(keyword)}`)
-            .then(res => {
-                if (!res.ok) throw new Error('Failed to fetch search results');
-                return res.json();
-            })
-            .then(movies => {
-                container.innerHTML = '';
-
-                if (movies.length === 0) {
-                    container.innerHTML = `
-    <div class="text-center mt-4">
-          <p class="text-gray-600 text-lg italic">
-            No movies found for "<strong>${keyword}</strong>".
-          </p>
-        </div>
-
-                    `;
-                    return;
-                }
-
-                movies.forEach(createMovieCard);
-            })
-            .catch(err => {
-                container.innerHTML = `
-                     <div class="text-center mt-4">
-                        <p class="text-red-500 italic">Error loading search results: ${err.message}</p>
-                    </div>
-                `;
-            });
-    }
-
-    function debounce(func, delay) {
-        let timer;
-        return function (...args) {
-            clearTimeout(timer);
-            timer = setTimeout(() => func.apply(this, args), delay);
-        };
-    }
-
-    searchInput.addEventListener('input', debounce((e) => {
-        const keyword = e.target.value.trim();
-        performSearch(keyword);
-    }, 300));
-
-    openBtn.addEventListener('click', () => {
-        modal.classList.remove('hidden');
-        currentMovieId = null;
-
-        document.querySelector('#movie-modal h2').textContent = 'Add Action';
-        document.getElementById('save-btn').classList.remove('hidden');
-        document.getElementById('edit-btn').classList.add('hidden');
-    });
-
-    closeBtn.addEventListener('click', () => {
-        modal.classList.add('hidden');
-    });
-
-    const MAX_IMAGE_SIZE = 100 * 1024 * 1024;
-
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        const name = document.getElementById('movie-name').value;
-        const rating = parseFloat(document.getElementById('movie-rating').value);
-        const releaseDate = document.getElementById('release-date').value;
-        const category = document.getElementById('movie-category').value;
-        const imageFile = document.getElementById('movie-image').files[0];
-
-        if (!imageFile && currentMovieId === null) {
-            return showErrorMessage('Please select an image.');
-        }
-
-        if (imageFile && imageFile.size > MAX_IMAGE_SIZE) {
-            return showErrorMessage('Choose small size image');
-        }
-
-        const formData = new FormData();
-        formData.append('name', name);
-        formData.append('rating', rating);
-        formData.append('releaseDate', releaseDate);
-        formData.append('category', category);
-        if (imageFile) formData.append('image', imageFile);
-
-        fetch('http://localhost:8080/api/action-movies', {
-            method: 'POST',
-            body: formData
-        })
-            .then(async response => {
-                const text = await response.text();
-                if (!response.ok) return showErrorMessage(text);
-
-                showSuccessMessage(text);
-                modal.classList.add('hidden');
-                form.reset();
-                currentMovieId = null;
-                loadPaginatedMovies(currentPageAc);
-            })
-            .catch(error => showErrorMessage('Error: ' + error.message));
-    });
-
-
-    function showErrorMessage(message) {
-        alert('Error: ' + message);
-    }
-
-    function showSuccessMessage(message) {
-        alert('Success: ' + message);
-    }
-
-    loadPaginatedMovies(currentPageAc);
-</script>
-
-<script>
     const routes = {
         'Members': 'user-details',
         'View Question': 'questions-list',
         'View Reviews': 'review-list',
-        'Adventure': 'action-list',
+        'Adventure Movie': 'action-list',
         'Dashboard': 'dashboard',
-        'Horror': 'horror-list',
+        'Horror Movie': 'horror-list',
         'Sci-Fi Movie': 'scific-list',
         'Comedy Movie': 'comedy-list',
     };
@@ -1484,31 +946,25 @@
         const isVisible = !sidebar.classList.contains("-translate-x-full");
 
         if (isVisible) {
-            // Hide sidebar and overlay
             sidebar.classList.add("-translate-x-full");
-            overlay.classList.remove("active"); // <-- remove active class
+            overlay.classList.remove("active");
             icon.classList.remove("fa-times", "text-red-600");
             icon.classList.add("fa-bars", "text-gray-600");
         } else {
-            // Show sidebar and overlay
             sidebar.classList.remove("-translate-x-full");
-            overlay.classList.add("active"); // <-- add active class
+            overlay.classList.add("active");
             icon.classList.remove("fa-bars", "text-gray-600");
             icon.classList.add("fa-times", "text-red-600");
         }
     });
 
     overlay.addEventListener("click", () => {
-        // Clicking outside sidebar closes it
         sidebar.classList.add("-translate-x-full");
-        overlay.classList.remove("active"); // <-- remove active class
+        overlay.classList.remove("active");
         icon.classList.remove("fa-times", "text-red-600");
         icon.classList.add("fa-bars", "text-gray-600");
     });
 
-</script>
-
-<script>
     document.addEventListener("DOMContentLoaded", () => {
         const groups = document.querySelectorAll(".search-add-group");
 
@@ -1551,7 +1007,7 @@
             }
         });
 
-        ["members-link","dashboard-nav", "addinfo-link", "reviews-link", "viewquestion-link"].forEach(id => {
+        ["members-link", "dashboard-nav", "addinfo-link", "reviews-link", "viewquestion-link"].forEach(id => {
             const el = document.getElementById(id);
             if (el) {
                 el.addEventListener("click", () => {
@@ -1561,966 +1017,7 @@
             }
         });
     });
-</script>
 
-<script>
-    const horrorModal = document.getElementById('horror-modal');
-    const openHorrorBtn = document.getElementById('add-horror-btn');
-    const closeHorrorBtn = document.getElementById('close-horror-modal');
-    const horrorForm = document.getElementById('horror-movie-form');
-    const horrorContainer = document.getElementById('horror-card-container');
-
-    const nextBtnHorror = document.getElementById('next-horror');
-    const prevBtnHorror = document.getElementById('pre-horror');
-    const currentPageDisplayHorror = document.getElementById('currentPageDisplayHorror');
-
-    const searchInputHorror = document.querySelector('#search-add-horror input[type="search"]');
-
-    let currentPageHorror = 0;
-    const pageSizeHorror = 3;
-    let lastPageReachedHorror = false;
-
-    let currentHorrorMovieId = null;
-
-    function createHorrorCard(movie) {
-        const card = document.createElement('div');
-        card.classList.add('p-4', 'rounded-lg', 'shadow', 'bg-white', 'mb-4', 'flex', 'flex-col', 'justify-between');
-        card.style.border = '3px solid gray';
-        card.style.width = '280px';
-
-        card.innerHTML = `
-            <img src="http://localhost:8080/uploads/${movie.imagePath}" alt="${movie.name}" class="w-full h-40 object-cover rounded mb-2">
-            <h4 class="font-bold text-lg">${movie.name}</h4>
-            <p>Rating: ${movie.rating}</p>
-            <p>Release: ${movie.releaseDate}</p>
-            <p>Category: ${movie.category}</p>
-            <div class="flex justify-end mt-2 space-x-4">
-                <button class="edit-horror-btn text-blue-500 hover:text-blue-600" title="Edit" data-id="${movie.id}">
-                    <i class="fas fa-edit text-xl"></i>
-                </button>
-                <button class="delete-horror-btn text-red-500 hover:text-red-600" title="Delete" data-id="${movie.id}">
-                    <i class="fas fa-trash-alt text-xl"></i>
-                </button>
-            </div>
-        `;
-
-        card.querySelector('.edit-horror-btn').addEventListener('click', () => openEditHorrorModal(movie));
-        card.querySelector('.delete-horror-btn').addEventListener('click', () => {
-            if (confirm('Are you sure you want to delete this horror movie?')) {
-                deleteHorrorMovie(movie.id);
-            }
-        });
-
-        horrorContainer.appendChild(card);
-    }
-
-    function loadPaginatedHorrorMovies(page) {
-        fetch(`http://localhost:8080/api/horror-movies/paginated?page=${page}&size=${pageSizeHorror}`)
-            .then(res => {
-                if (!res.ok) throw new Error("Failed to fetch horror movies");
-                return res.json();
-            })
-            .then(movies => {
-                horrorContainer.innerHTML = '';
-
-                if (movies.length === 0) {
-                    if (page > 0) {
-                        currentPageHorror--;
-                        return loadPaginatedHorrorMovies(currentPageHorror);
-                    } else {
-                        horrorContainer.innerHTML = `
-                            <div class="flex items-center justify-center">
-                                <p class="text-gray-600 text-lg italic">No horror movies found.</p>
-                            </div>
-                        `;
-                        lastPageReachedHorror = true;
-                        nextBtnHorror.disabled = true;
-                        prevBtnHorror.disabled = true;
-                        currentPageDisplayHorror.textContent = `Page 1`;
-                        return;
-                    }
-                }
-
-                movies.forEach(createHorrorCard);
-
-                currentPageDisplayHorror.textContent = `Page ${currentPageHorror + 1}`;
-                prevBtnHorror.disabled = currentPageHorror === 0;
-
-                fetch(`http://localhost:8080/api/horror-movies/paginated?page=${page + 1}&size=${pageSizeHorror}`)
-                    .then(res => {
-                        if (!res.ok) throw new Error('Failed to check next page');
-                        return res.json();
-                    })
-                    .then(nextPageMovies => {
-                        lastPageReachedHorror = nextPageMovies.length === 0;
-                        nextBtnHorror.disabled = lastPageReachedHorror;
-                    })
-                    .catch(() => {
-                        lastPageReachedHorror = true;
-                        nextBtnHorror.disabled = true;
-                    });
-            })
-            .catch(error => {
-                horrorContainer.innerHTML = `
-                    <div class="text-center mt-4">
-                        <p class="text-red-500 italic">Error loading horror movies: ${error.message}</p>
-                    </div>`;
-            });
-    }
-
-    nextBtnHorror.addEventListener('click', () => {
-        if (!lastPageReachedHorror) {
-            currentPageHorror++;
-            loadPaginatedHorrorMovies(currentPageHorror);
-        }
-    });
-
-    prevBtnHorror.addEventListener('click', () => {
-        if (currentPageHorror > 0) {
-            currentPageHorror--;
-            loadPaginatedHorrorMovies(currentPageHorror);
-        }
-    });
-
-    function openEditHorrorModal(movie) {
-        currentHorrorMovieId = movie.id;
-
-        document.querySelector('#horror-modal h2').textContent = 'Edit Horror Movie';
-        document.getElementById('horror-movie-name').value = movie.name;
-        document.getElementById('horror-movie-rating').value = movie.rating;
-        document.getElementById('horror-release-date').value = movie.releaseDate;
-        document.getElementById('horror-movie-category').value = movie.category;
-
-        document.getElementById('save-horror-btn').classList.add('hidden');
-        document.getElementById('edit-horror-btn').classList.remove('hidden');
-
-        horrorModal.classList.remove('hidden');
-    }
-
-    document.getElementById('edit-horror-btn').addEventListener('click', () => {
-        const name = document.getElementById('horror-movie-name').value;
-        const rating = parseFloat(document.getElementById('horror-movie-rating').value);
-        const releaseDate = document.getElementById('horror-release-date').value;
-        const category = document.getElementById('horror-movie-category').value;
-        const imageFile = document.getElementById('horror-movie-image').files[0];
-
-        const formData = new FormData();
-        formData.append('name', name);
-        formData.append('rating', rating);
-        formData.append('releaseDate', releaseDate);
-        formData.append('category', category);
-        if (imageFile) formData.append('image', imageFile);
-
-        fetch(`http://localhost:8080/api/horror-movies/${currentHorrorMovieId}`, {
-            method: 'PUT',
-            body: formData
-        })
-            .then(async response => {
-                const text = await response.text();
-                if (!response.ok) return showHorrorErrorMessage(text);
-
-                showHorrorSuccessMessage(text);
-                horrorModal.classList.add('hidden');
-                horrorForm.reset();
-                currentHorrorMovieId = null;
-                loadPaginatedHorrorMovies(currentPageHorror);
-            })
-            .catch(error => showHorrorErrorMessage('Error: ' + error.message));
-    });
-
-    function deleteHorrorMovie(movieId) {
-        fetch(`http://localhost:8080/api/horror-movies/${movieId}`, { method: 'DELETE' })
-            .then(async response => {
-                const text = await response.text();
-                if (!response.ok) return showHorrorErrorMessage(text);
-
-                showHorrorSuccessMessage(text);
-                loadPaginatedHorrorMovies(currentPageHorror);
-            })
-            .catch(error => showHorrorErrorMessage('Error deleting horror movie: ' + error.message));
-    }
-
-    function performHorrorSearch(keyword) {
-        if (!keyword) {
-            currentPageHorror = 0;
-            return loadPaginatedHorrorMovies(currentPageHorror);
-        }
-
-        fetch(`http://localhost:8080/api/horror-movies/search?keyword=${encodeURIComponent(keyword)}`)
-            .then(res => {
-                if (!res.ok) throw new Error('Failed to fetch search results');
-                return res.json();
-            })
-            .then(movies => {
-                horrorContainer.innerHTML = '';
-
-                if (movies.length === 0) {
-                    horrorContainer.innerHTML = `
-                        <div class="text-center mt-4">
-                            <p class="text-gray-600 text-lg italic">
-                                No horror movies found for "<strong>${keyword}</strong>".
-                            </p>
-                        </div>`;
-                    return;
-                }
-
-                movies.forEach(createHorrorCard);
-            })
-            .catch(err => {
-                horrorContainer.innerHTML = `
-                    <div class="text-center mt-4">
-                        <p class="text-red-500 italic">Error loading search results: ${err.message}</p>
-                    </div>`;
-            });
-    }
-
-    function debounce(func, delay) {
-        let timer;
-        return function (...args) {
-            clearTimeout(timer);
-            timer = setTimeout(() => func.apply(this, args), delay);
-        };
-    }
-
-    searchInputHorror.addEventListener('input', debounce((e) => {
-        const keyword = e.target.value.trim();
-        performHorrorSearch(keyword);
-    }, 300));
-
-    openHorrorBtn.addEventListener('click', () => {
-        horrorModal.classList.remove('hidden');
-        currentHorrorMovieId = null;
-
-        document.querySelector('#horror-modal h2').textContent = 'Add Horror Movie';
-        document.getElementById('save-horror-btn').classList.remove('hidden');
-        document.getElementById('edit-horror-btn').classList.add('hidden');
-    });
-
-    closeHorrorBtn.addEventListener('click', () => {
-        horrorModal.classList.add('hidden');
-    });
-
-    const MAX_HORROR_IMAGE_SIZE = 100 * 1024 * 1024;
-
-    horrorForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        const name = document.getElementById('horror-movie-name').value;
-        const rating = parseFloat(document.getElementById('horror-movie-rating').value);
-        const releaseDate = document.getElementById('horror-release-date').value;
-        const category = document.getElementById('horror-movie-category').value;
-        const imageFile = document.getElementById('horror-movie-image').files[0];
-
-        if (!imageFile && currentHorrorMovieId === null) {
-            return showHorrorErrorMessage('Please select an image.');
-        }
-
-        if (imageFile && imageFile.size > MAX_HORROR_IMAGE_SIZE) {
-            return showHorrorErrorMessage('Choose a smaller size image.');
-        }
-
-        const formData = new FormData();
-        formData.append('name', name);
-        formData.append('rating', rating);
-        formData.append('releaseDate', releaseDate);
-        formData.append('category', category);
-        if (imageFile) formData.append('image', imageFile);
-
-        fetch('http://localhost:8080/api/horror-movies', {
-            method: 'POST',
-            body: formData
-        })
-            .then(async response => {
-                const text = await response.text();
-                if (!response.ok) return showHorrorErrorMessage(text);
-
-                showHorrorSuccessMessage(text);
-                horrorModal.classList.add('hidden');
-                horrorForm.reset();
-                currentHorrorMovieId = null;
-                loadPaginatedHorrorMovies(currentPageHorror);
-            })
-            .catch(error => showHorrorErrorMessage('Error: ' + error.message));
-    });
-
-    function showHorrorErrorMessage(message) {
-        alert('Error: ' + message);
-    }
-
-    function showHorrorSuccessMessage(message) {
-        alert('Success: ' + message);
-    }
-
-    loadPaginatedHorrorMovies(currentPageHorror);
-</script>
-
-<script>
-    const scificModal = document.getElementById('scific-modal');
-    const openScificBtn = document.getElementById('add-scific-btn');
-    const closeScificBtn = document.getElementById('close-scific-modal');
-    const scificForm = document.getElementById('scific-movie-form');
-    const scificContainer = document.getElementById('scific-card-container');
-
-    const nextBtnScific = document.getElementById('next-scific');
-    const prevBtnScific = document.getElementById('pre-scific');
-    const currentPageDisplayScific = document.getElementById('currentPageDisplayScific');
-
-    const searchInputScific = document.querySelector('#search-add-scifi input[type="search"]');
-
-    let currentPageScific = 0;
-    const pageSizeScific = 3;
-    let lastPageReachedScific = false;
-
-    let currentScificMovieId = null;
-
-    function createScificCard(movie) {
-        const card = document.createElement('div');
-        card.classList.add('p-4', 'rounded-lg', 'shadow', 'bg-white', 'mb-4', 'flex', 'flex-col', 'justify-between');
-        card.style.border = '3px solid gray';
-        card.style.width = '280px';
-
-        card.innerHTML = `
-            <img src="http://localhost:8080/uploads/${movie.imagePath}" alt="${movie.name}" class="w-full h-40 object-cover rounded mb-2">
-            <h4 class="font-bold text-lg">${movie.name}</h4>
-            <p>Rating: ${movie.rating}</p>
-            <p>Release: ${movie.releaseDate}</p>
-            <p>Category: ${movie.category}</p>
-            <div class="flex justify-end mt-2 space-x-4">
-                <button class="edit-scific-btn text-blue-500 hover:text-blue-600" title="Edit" data-id="${movie.id}">
-                    <i class="fas fa-edit text-xl"></i>
-                </button>
-                <button class="delete-scific-btn text-red-500 hover:text-red-600" title="Delete" data-id="${movie.id}">
-                    <i class="fas fa-trash-alt text-xl"></i>
-                </button>
-            </div>
-        `;
-
-        card.querySelector('.edit-scific-btn').addEventListener('click', () => openEditScificModal(movie));
-        card.querySelector('.delete-scific-btn').addEventListener('click', () => {
-            if (confirm('Are you sure you want to delete this Sci-Fi movie?')) {
-                deleteScificMovie(movie.id);
-            }
-        });
-
-        scificContainer.appendChild(card);
-    }
-
-    function loadPaginatedScificMovies(page) {
-        fetch(`http://localhost:8080/api/scific-movies/paginated?page=${page}&size=${pageSizeScific}`)
-            .then(res => {
-                if (!res.ok) throw new Error("Failed to fetch Sci-Fi movies");
-                return res.json();
-            })
-            .then(movies => {
-                scificContainer.innerHTML = '';
-
-                if (movies.length === 0) {
-                    if (page > 0) {
-                        currentPageScific--;
-                        return loadPaginatedScificMovies(currentPageScific);
-                    } else {
-                        scificContainer.innerHTML = `
-                            <div class="flex items-center justify-center">
-                                <p class="text-gray-600 text-lg italic">No Sci-Fi movies found.</p>
-                            </div>
-                        `;
-                        lastPageReachedScific = true;
-                        nextBtnScific.disabled = true;
-                        prevBtnScific.disabled = true;
-                        currentPageDisplayScific.textContent = `Page 1`;
-                        return;
-                    }
-                }
-
-                movies.forEach(createScificCard);
-
-                currentPageDisplayScific.textContent = `Page ${currentPageScific + 1}`;
-                prevBtnScific.disabled = currentPageScific === 0;
-
-                fetch(`http://localhost:8080/api/scific-movies/paginated?page=${page + 1}&size=${pageSizeScific}`)
-                    .then(res => {
-                        if (!res.ok) throw new Error('Failed to check next page');
-                        return res.json();
-                    })
-                    .then(nextPageMovies => {
-                        lastPageReachedScific = nextPageMovies.length === 0;
-                        nextBtnScific.disabled = lastPageReachedScific;
-                    })
-                    .catch(() => {
-                        lastPageReachedScific = true;
-                        nextBtnScific.disabled = true;
-                    });
-            })
-            .catch(error => {
-                scificContainer.innerHTML = `
-                    <div class="text-center mt-4">
-                        <p class="text-red-500 italic">Error loading Sci-Fi movies: ${error.message}</p>
-                    </div>`;
-            });
-    }
-
-    nextBtnScific.addEventListener('click', () => {
-        if (!lastPageReachedScific) {
-            currentPageScific++;
-            loadPaginatedScificMovies(currentPageScific);
-        }
-    });
-
-    prevBtnScific.addEventListener('click', () => {
-        if (currentPageScific > 0) {
-            currentPageScific--;
-            loadPaginatedScificMovies(currentPageScific);
-        }
-    });
-
-    function openEditScificModal(movie) {
-        currentScificMovieId = movie.id;
-
-        document.querySelector('#scific-modal h2').textContent = 'Edit Sci-Fi Movie';
-        document.getElementById('scific-movie-name').value = movie.name;
-        document.getElementById('scific-movie-rating').value = movie.rating;
-        document.getElementById('scific-release-date').value = movie.releaseDate;
-        document.getElementById('scific-movie-category').value = movie.category;
-
-        document.getElementById('save-scific-btn').classList.add('hidden');
-        document.getElementById('edit-scific-btn').classList.remove('hidden');
-
-        scificModal.classList.remove('hidden');
-    }
-
-    document.getElementById('edit-scific-btn').addEventListener('click', () => {
-        const name = document.getElementById('scific-movie-name').value;
-        const rating = parseFloat(document.getElementById('scific-movie-rating').value);
-        const releaseDate = document.getElementById('scific-release-date').value;
-        const category = document.getElementById('scific-movie-category').value;
-        const imageFile = document.getElementById('scific-movie-image').files[0];
-
-        const formData = new FormData();
-        formData.append('name', name);
-        formData.append('rating', rating);
-        formData.append('releaseDate', releaseDate);
-        formData.append('category', category);
-        if (imageFile) formData.append('image', imageFile);
-
-        fetch(`http://localhost:8080/api/scific-movies/${currentScificMovieId}`, {
-            method: 'PUT',
-            body: formData
-        })
-            .then(async response => {
-                const text = await response.text();
-                if (!response.ok) return showScificErrorMessage(text);
-
-                showScificSuccessMessage(text);
-                scificModal.classList.add('hidden');
-                scificForm.reset();
-                currentScificMovieId = null;
-                loadPaginatedScificMovies(currentPageScific);
-            })
-            .catch(error => showScificErrorMessage('Error: ' + error.message));
-    });
-
-    function deleteScificMovie(movieId) {
-        fetch(`http://localhost:8080/api/scific-movies/${movieId}`, { method: 'DELETE' })
-            .then(async response => {
-                const text = await response.text();
-                if (!response.ok) return showScificErrorMessage(text);
-
-                showScificSuccessMessage(text);
-                loadPaginatedScificMovies(currentPageScific);
-            })
-            .catch(error => showScificErrorMessage('Error deleting Sci-Fi movie: ' + error.message));
-    }
-
-    function performScificSearch(keyword) {
-        if (!keyword) {
-            currentPageScific = 0;
-            return loadPaginatedScificMovies(currentPageScific);
-        }
-
-        fetch(`http://localhost:8080/api/scific-movies/search?keyword=${encodeURIComponent(keyword)}`)
-            .then(res => {
-                if (!res.ok) throw new Error('Failed to fetch search results');
-                return res.json();
-            })
-            .then(movies => {
-                scificContainer.innerHTML = '';
-
-                if (movies.length === 0) {
-                    scificContainer.innerHTML = `
-                        <div class="text-center mt-4">
-                            <p class="text-gray-600 text-lg italic">
-                                No Sci-Fi movies found for "<strong>${keyword}</strong>".
-                            </p>
-                        </div>`;
-                    return;
-                }
-
-                movies.forEach(createScificCard);
-            })
-            .catch(err => {
-                scificContainer.innerHTML = `
-                    <div class="text-center mt-4">
-                        <p class="text-red-500 italic">Error loading search results: ${err.message}</p>
-                    </div>`;
-            });
-    }
-
-    function debounce(func, delay) {
-        let timer;
-        return function (...args) {
-            clearTimeout(timer);
-            timer = setTimeout(() => func.apply(this, args), delay);
-        };
-    }
-
-    searchInputScific.addEventListener('input', debounce((e) => {
-        const keyword = e.target.value.trim();
-        performScificSearch(keyword);
-    }, 300));
-
-    openScificBtn.addEventListener('click', () => {
-        scificModal.classList.remove('hidden');
-        currentScificMovieId = null;
-
-        document.querySelector('#scific-modal h2').textContent = 'Add Sci-Fi Movie';
-        document.getElementById('save-scific-btn').classList.remove('hidden');
-        document.getElementById('edit-scific-btn').classList.add('hidden');
-    });
-
-    closeScificBtn.addEventListener('click', () => {
-        scificModal.classList.add('hidden');
-    });
-
-    const MAX_SCIFIC_IMAGE_SIZE = 100 * 1024 * 1024;
-
-    scificForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        const name = document.getElementById('scific-movie-name').value;
-        const rating = parseFloat(document.getElementById('scific-movie-rating').value);
-        const releaseDate = document.getElementById('scific-release-date').value;
-        const category = document.getElementById('scific-movie-category').value;
-        const imageFile = document.getElementById('scific-movie-image').files[0];
-
-        if (!imageFile && currentScificMovieId === null) {
-            return showScificErrorMessage('Please select an image.');
-        }
-
-        if (imageFile && imageFile.size > MAX_SCIFIC_IMAGE_SIZE) {
-            return showScificErrorMessage('Choose a smaller size image.');
-        }
-
-        const formData = new FormData();
-        formData.append('name', name);
-        formData.append('rating', rating);
-        formData.append('releaseDate', releaseDate);
-        formData.append('category', category);
-        if (imageFile) formData.append('image', imageFile);
-
-        fetch('http://localhost:8080/api/scific-movies', {
-            method: 'POST',
-            body: formData
-        })
-            .then(async response => {
-                const text = await response.text();
-                if (!response.ok) return showScificErrorMessage(text);
-
-                showScificSuccessMessage(text);
-                scificModal.classList.add('hidden');
-                scificForm.reset();
-                currentScificMovieId = null;
-                loadPaginatedScificMovies(currentPageScific);
-            })
-            .catch(error => showScificErrorMessage('Error: ' + error.message));
-    });
-
-    function showScificErrorMessage(message) {
-        alert('Error: ' + message);
-    }
-
-    function showScificSuccessMessage(message) {
-        alert('Success: ' + message);
-    }
-
-    loadPaginatedScificMovies(currentPageScific);
-</script>
-
-
-<script>
-    const comedyModal = document.getElementById('comedy-modal');
-    const openComedyBtn = document.getElementById('add-comedy-btn');
-    const closeComedyBtn = document.getElementById('close-comedy-modal');
-    const comedyForm = document.getElementById('comedy-form');
-    const comedyContainer = document.getElementById('comedy-card-container');
-
-    const nextBtnComedy = document.getElementById('next-comedy');
-    const prevBtnComedy = document.getElementById('pre-comedy');
-    const currentPageDisplayComedy = document.getElementById('currentPageDisplayComedy');
-
-    const searchInputComedy = document.querySelector('#search-add-comedy input[type="search"]');
-
-    let currentPageComedy = 0;
-    const pageSizeComedy = 3;
-    let lastPageReachedComedy = false;
-
-    let currentComedyMovieId = null;
-
-    function createComedyCard(movie) {
-        const card = document.createElement('div');
-        card.classList.add('p-4', 'rounded-lg', 'shadow', 'bg-white', 'mb-4', 'flex', 'flex-col', 'justify-between');
-        card.style.border = '3px solid gray';
-        card.style.width = '280px';
-
-        card.innerHTML = `
-            <img src="http://localhost:8080/uploads/${movie.imagePath}" alt="${movie.name}" class="w-full h-40 object-cover rounded mb-2">
-            <h4 class="font-bold text-lg">${movie.name}</h4>
-            <p>Rating: ${movie.rating}</p>
-            <p>Release: ${movie.releaseDate}</p>
-            <p>Category: ${movie.category}</p>
-            <div class="flex justify-end mt-2 space-x-4">
-                <button class="edit-comedy-btn text-blue-500 hover:text-blue-600" title="Edit" data-id="${movie.id}">
-                    <i class="fas fa-edit text-xl"></i>
-                </button>
-                <button class="delete-comedy-btn text-red-500 hover:text-red-600" title="Delete" data-id="${movie.id}">
-                    <i class="fas fa-trash-alt text-xl"></i>
-                </button>
-            </div>
-        `;
-
-        card.querySelector('.edit-comedy-btn').addEventListener('click', () => openEditComedyModal(movie));
-        card.querySelector('.delete-comedy-btn').addEventListener('click', () => {
-            if (confirm('Are you sure you want to delete this Comedy movie?')) {
-                deleteComedyMovie(movie.id);
-            }
-        });
-
-        comedyContainer.appendChild(card);
-    }
-
-    function loadPaginatedComedyMovies(page) {
-        fetch(`http://localhost:8080/api/comedy-movies/paginated?page=${page}&size=${pageSizeComedy}`)
-            .then(res => {
-                if (!res.ok) throw new Error("Failed to fetch Comedy movies");
-                return res.json();
-            })
-            .then(movies => {
-                comedyContainer.innerHTML = '';
-
-                if (movies.length === 0) {
-                    if (page > 0) {
-                        currentPageComedy--;
-                        return loadPaginatedComedyMovies(currentPageComedy);
-                    } else {
-                        comedyContainer.innerHTML = `
-                            <div class="flex items-center justify-center">
-                                <p class="text-gray-600 text-lg italic">No Comedy movies found.</p>
-                            </div>
-                        `;
-                        lastPageReachedComedy = true;
-                        nextBtnComedy.disabled = true;
-                        prevBtnComedy.disabled = true;
-                        currentPageDisplayComedy.textContent = `Page 1`;
-                        return;
-                    }
-                }
-
-                movies.forEach(createComedyCard);
-
-                currentPageDisplayComedy.textContent = `Page ${currentPageComedy + 1}`;
-                prevBtnComedy.disabled = currentPageComedy === 0;
-
-                fetch(`http://localhost:8080/api/comedy-movies/paginated?page=${page + 1}&size=${pageSizeComedy}`)
-                    .then(res => res.json())
-                    .then(nextPageMovies => {
-                        lastPageReachedComedy = nextPageMovies.length === 0;
-                        nextBtnComedy.disabled = lastPageReachedComedy;
-                    })
-                    .catch(() => {
-                        lastPageReachedComedy = true;
-                        nextBtnComedy.disabled = true;
-                    });
-            })
-            .catch(error => {
-                comedyContainer.innerHTML = `
-                    <div class="text-center mt-4">
-                        <p class="text-red-500 italic">Error loading Comedy movies: ${error.message}</p>
-                    </div>`;
-            });
-    }
-
-    nextBtnComedy.addEventListener('click', () => {
-        if (!lastPageReachedComedy) {
-            currentPageComedy++;
-            loadPaginatedComedyMovies(currentPageComedy);
-        }
-    });
-
-    prevBtnComedy.addEventListener('click', () => {
-        if (currentPageComedy > 0) {
-            currentPageComedy--;
-            loadPaginatedComedyMovies(currentPageComedy);
-        }
-    });
-
-    function openEditComedyModal(movie) {
-        currentComedyMovieId = movie.id;
-
-        document.querySelector('#comedy-modal h2').textContent = 'Edit Comedy Movie';
-        document.getElementById('comedy-name').value = movie.name;
-        document.getElementById('comedy-rating').value = movie.rating;
-        document.getElementById('comedy-release-date').value = movie.releaseDate;
-        document.getElementById('comedy-category').value = movie.category;
-
-        document.getElementById('save-comedy-btn').classList.add('hidden');
-        document.getElementById('edit-comedy-btn').classList.remove('hidden');
-
-        comedyModal.classList.remove('hidden');
-    }
-
-    document.getElementById('edit-comedy-btn').addEventListener('click', () => {
-        const name = document.getElementById('comedy-name').value;
-        const rating = parseFloat(document.getElementById('comedy-rating').value);
-        const releaseDate = document.getElementById('comedy-release-date').value;
-        const category = document.getElementById('comedy-category').value;
-        const imageFile = document.getElementById('comedy-image').files[0];
-
-        const formData = new FormData();
-        formData.append('name', name);
-        formData.append('rating', rating);
-        formData.append('releaseDate', releaseDate);
-        formData.append('category', category);
-        if (imageFile) formData.append('image', imageFile);
-
-        fetch(`http://localhost:8081/api/comedy-movies/${currentComedyMovieId}`, {
-            method: 'PUT',
-            body: formData
-        })
-            .then(async response => {
-                const text = await response.text();
-                if (!response.ok) return showComedyErrorMessage(text);
-
-                showComedySuccessMessage(text);
-                comedyModal.classList.add('hidden');
-                comedyForm.reset();
-                currentComedyMovieId = null;
-                loadPaginatedComedyMovies(currentPageComedy);
-            })
-            .catch(error => showComedyErrorMessage('Error: ' + error.message));
-    });
-
-    function deleteComedyMovie(movieId) {
-        fetch(`http://localhost:8080/api/comedy-movies/${movieId}`, { method: 'DELETE' })
-            .then(async response => {
-                const text = await response.text();
-                if (!response.ok) return showComedyErrorMessage(text);
-
-                showComedySuccessMessage(text);
-                loadPaginatedComedyMovies(currentPageComedy);
-            })
-            .catch(error => showComedyErrorMessage('Error deleting Comedy movie: ' + error.message));
-    }
-
-    function performComedySearch(keyword) {
-        if (!keyword) {
-            currentPageComedy = 0;
-            return loadPaginatedComedyMovies(currentPageComedy);
-        }
-
-        fetch(`http://localhost:8080/api/comedy-movies/search?keyword=${encodeURIComponent(keyword)}`)
-            .then(res => res.json())
-            .then(movies => {
-                comedyContainer.innerHTML = '';
-
-                if (movies.length === 0) {
-                    comedyContainer.innerHTML = `
-                        <div class="text-center mt-4">
-                            <p class="text-gray-600 text-lg italic">
-                                No Comedy movies found for "<strong>${keyword}</strong>".
-                            </p>
-                        </div>`;
-                    return;
-                }
-
-                movies.forEach(createComedyCard);
-            })
-            .catch(err => {
-                comedyContainer.innerHTML = `
-                    <div class="text-center mt-4">
-                        <p class="text-red-500 italic">Error loading search results: ${err.message}</p>
-                    </div>`;
-            });
-    }
-
-    function debounce(func, delay) {
-        let timer;
-        return function (...args) {
-            clearTimeout(timer);
-            timer = setTimeout(() => func.apply(this, args), delay);
-        };
-    }
-
-    searchInputComedy.addEventListener('input', debounce((e) => {
-        const keyword = e.target.value.trim();
-        performComedySearch(keyword);
-    }, 300));
-
-    openComedyBtn.addEventListener('click', () => {
-        comedyModal.classList.remove('hidden');
-        currentComedyMovieId = null;
-
-        document.querySelector('#comedy-modal h2').textContent = 'Add Comedy Movie';
-        document.getElementById('save-comedy-btn').classList.remove('hidden');
-        document.getElementById('edit-comedy-btn').classList.add('hidden');
-    });
-
-    closeComedyBtn.addEventListener('click', () => {
-        comedyModal.classList.add('hidden');
-    });
-
-    const MAX_COMEDY_IMAGE_SIZE = 100 * 1024 * 1024;
-
-    comedyForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        const name = document.getElementById('comedy-name').value;
-        const rating = parseFloat(document.getElementById('comedy-rating').value);
-        const releaseDate = document.getElementById('comedy-release-date').value;
-        const category = document.getElementById('comedy-category').value;
-        const imageFile = document.getElementById('comedy-image').files[0];
-
-        if (!imageFile && currentComedyMovieId === null) {
-            return showComedyErrorMessage('Please select an image.');
-        }
-
-        if (imageFile && imageFile.size > MAX_COMEDY_IMAGE_SIZE) {
-            return showComedyErrorMessage('Choose a smaller size image.');
-        }
-
-        const formData = new FormData();
-        formData.append('name', name);
-        formData.append('rating', rating);
-        formData.append('releaseDate', releaseDate);
-        formData.append('category', category);
-        if (imageFile) formData.append('image', imageFile);
-
-        fetch('http://localhost:8080/api/comedy-movies', {
-            method: 'POST',
-            body: formData
-        })
-            .then(async response => {
-                const text = await response.text();
-                if (!response.ok) return showComedyErrorMessage(text);
-
-                showComedySuccessMessage(text);
-                comedyModal.classList.add('hidden');
-                comedyForm.reset();
-                currentComedyMovieId = null;
-                loadPaginatedComedyMovies(currentPageComedy);
-            })
-            .catch(error => showComedyErrorMessage('Error: ' + error.message));
-    });
-
-    function showComedyErrorMessage(message) {
-        alert('Error: ' + message);
-    }
-
-    function showComedySuccessMessage(message) {
-        alert('Success: ' + message);
-    }
-
-    loadPaginatedComedyMovies(currentPageComedy);
-</script>
-
-
-<script>
-    // Track changes: movieId -> boolean
-    let popularChanges = new Map();
-
-    document.getElementById("open-popular-modal-btn").addEventListener("click", () => {
-        openPopularModal();
-    });
-
-    function openPopularModal() {
-        document.getElementById("popularModal").classList.remove("hidden");
-        loadPopularMovies();
-    }
-
-    function closePopularModal() {
-        document.getElementById("popularModal").classList.add("hidden");
-        popularChanges.clear();
-    }
-
-    async function loadPopularMovies() {
-        try {
-            const response = await fetch("http://localhost:8080/api/movies");
-            if (!response.ok) throw new Error("Failed to fetch movies");
-            const movies = await response.json();
-            const tbody = document.getElementById("popular-movie-table-body");
-            tbody.innerHTML = "";
-            popularChanges.clear();
-
-            movies.forEach(movie => {
-                const tr = document.createElement("tr");
-
-                // Create checkbox for popular status
-                const popularCheckbox = document.createElement("input");
-                popularCheckbox.type = "checkbox";
-                popularCheckbox.checked = movie.popular === true;
-                popularCheckbox.title = "Toggle Popular";
-                popularCheckbox.dataset.id = movie.id;
-
-                popularCheckbox.addEventListener("change", (event) => {
-                    const id = event.target.dataset.id;
-                    popularChanges.set(id, event.target.checked);
-                });
-
-                tr.innerHTML = `
-                    <td class="p-2 border text-center">${movie.id}</td>
-                    <td class="p-2 border">${movie.name}</td>
-                `;
-
-                const popularTd = document.createElement("td");
-                popularTd.classList.add("p-2", "border", "text-center");
-                popularTd.appendChild(popularCheckbox);
-                tr.appendChild(popularTd);
-
-                tbody.appendChild(tr);
-            });
-
-        } catch (err) {
-            console.error("Error loading popular movies:", err);
-            alert("Could not load movies. Please check your server.");
-        }
-    }
-
-    document.getElementById("save-popular-btn").addEventListener("click", async () => {
-        try {
-            if (popularChanges.size === 0) {
-                alert("Please select at least one checkbox before saving.");
-                return; // Don't proceed if no changes
-            }
-
-            // For each changed movie, send POST request to update popular status
-            for (const [id, popular] of popularChanges.entries()) {
-                await fetch(`http://localhost:8080/api/movies/mark-popular/${id}`, {
-                    method: "POST",
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ popular })
-                });
-            }
-
-            popularChanges.clear();
-            alert("Popular status updated successfully!");
-            closePopularModal();  // Close modal after save
-            loadPopularMovies();  // Reload list to reflect latest data
-
-        } catch (err) {
-            console.error("Failed to save popular status changes", err);
-            alert("Error saving popular statuses.");
-        }
-    });
 </script>
 
 </body>
